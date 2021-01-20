@@ -3,51 +3,176 @@
         <a mat-icon-button aria-label="Example icon button with a vertical three dot icon">
             <mat-icon>chevron_left</mat-icon>
         </a>
-          <h1 style="flex-basis: 90%; text-align: center;;" class="headFont">Financial Planner</h1>
+        <h1 style="flex-basis: 90%; text-align: center;;" class="headFont">Financial Planner</h1>
     </div>
-    <div class="background-green padding-beauty" style="height: 90%;">
-        <mat-card class="box-outline padding-beauty" style="margin-bottom: 10px;">
-        <div class="jflex-row stretch">
-            <div class="jflex-column stretch">
-                <span><strong> iPhone 12 Pro</strong></span>
-                <span class="percentage-list">50%</span>
-                <span class="target">Target:25.000.000</span>
-            </div>
-            <div>
-                <mat-progress-spinner mode="determinate" value="10"></mat-progress-spinner>
-            </div>
-        </div>
+    <!-- <div class="jflex-column padding-beauty center-main-axis center-cross-axis" style="height:90%">
+        <img src="assets/img/list-planner-nothing.png">
+        <h2 class="font-green"><strong>Tidak ada item yang bisa dicari :(</strong></h2>
+        <p class="font-green"> Ayo selesaikan objectives dan dapatkan berbagai macam Promo Menarik</p>
         
-    </mat-card>
-    <mat-card class="box-outline padding-beauty" style="margin-bottom: 10px;">
-        <div class="jflex-row stretch">
-            <div class="jflex-column stretch">
-                <span><strong> iPhone 12 Pro</strong></span>
-                <span class="percentage-list">50%</span>
-                <span class="target">Target:25.000.000</span>
+    </div> -->
+    <div class="background-green padding-beauty scroll" style="height: 90%; overflow: auto;">
+        <mat-card class="box-outline padding-beauty" style="margin-bottom: 10px; cursor: pointer;">
+            <div class="jflex-row stretch">
+                <div class="jflex-column stretch">
+                    <span><strong> iPhone 12 Pro</strong></span>
+                    <span class="percentage-list">50%</span>
+                    <span class="target">Target:25.000.000</span>
+                </div>
+                <div class="jflex-column">
+                    <circle-progress 
+                    
+                    [percent]="85"
+                    [radius]="50"
+                    [outerStrokeWidth]="8"
+                    [innerStrokeWidth]="4"
+                    [outerStrokeColor]="'#6ED940'"
+                    [innerStrokeColor]="'#C7E596'"
+                    [animation]="true"
+                    [animationDuration]="300"
+                    [imageSrc]="'/assets/img/iPhone.png'"
+                    [showImage]="true"
+                    [imageWidth]="20"
+                    [imageHeight]="40"
+                    ></circle-progress>
+                </div>
             </div>
-            <div>
-                <mat-progress-spinner mode="determinate" value="10">Test</mat-progress-spinner>
+            
+        </mat-card><mat-card class="box-outline padding-beauty" style="margin-bottom: 10px; cursor: pointer;">
+            <div class="jflex-row stretch">
+                <div class="jflex-column stretch">
+                    <span><strong> iPhone 12 Pro</strong></span>
+                    <span class="percentage-list">50%</span>
+                    <span class="target">Target:25.000.000</span>
+                </div>
+                <div class="jflex-column">
+                    <circle-progress 
+                    
+                    [percent]="85"
+                    [radius]="50"
+                    [outerStrokeWidth]="8"
+                    [innerStrokeWidth]="4"
+                    [outerStrokeColor]="'#6ED940'"
+                    [innerStrokeColor]="'#C7E596'"
+                    [animation]="true"
+                    [animationDuration]="300"
+                    [imageSrc]="'/assets/img/iPhone.png'"
+                    [showImage]="true"
+                    [imageWidth]="20"
+                    [imageHeight]="40"
+                    ></circle-progress>
+                </div>
             </div>
-        </div>
+            
+        </mat-card><mat-card class="box-outline padding-beauty" style="margin-bottom: 10px; cursor: pointer;">
+            <div class="jflex-row stretch">
+                <div class="jflex-column stretch">
+                    <span><strong> iPhone 12 Pro</strong></span>
+                    <span class="percentage-list">50%</span>
+                    <span class="target">Target:25.000.000</span>
+                </div>
+                <div class="jflex-column">
+                    <circle-progress 
+                    
+                    [percent]="85"
+                    [radius]="50"
+                    [outerStrokeWidth]="8"
+                    [innerStrokeWidth]="4"
+                    [outerStrokeColor]="'#6ED940'"
+                    [innerStrokeColor]="'#C7E596'"
+                    [animation]="true"
+                    [animationDuration]="300"
+                    [imageSrc]="'/assets/img/iPhone.png'"
+                    [showImage]="true"
+                    [imageWidth]="20"
+                    [imageHeight]="40"
+                    ></circle-progress>
+                </div>
+            </div>
+            
+        </mat-card><mat-card class="box-outline padding-beauty" style="margin-bottom: 10px; cursor: pointer;">
+            <div class="jflex-row stretch">
+                <div class="jflex-column stretch">
+                    <span><strong> iPhone 12 Pro</strong></span>
+                    <span class="percentage-list">50%</span>
+                    <span class="target">Target:25.000.000</span>
+                </div>
+                <div class="jflex-column">
+                    <circle-progress 
+                    
+                    [percent]="85"
+                    [radius]="50"
+                    [outerStrokeWidth]="8"
+                    [innerStrokeWidth]="4"
+                    [outerStrokeColor]="'#6ED940'"
+                    [innerStrokeColor]="'#C7E596'"
+                    [animation]="true"
+                    [animationDuration]="300"
+                    [imageSrc]="'/assets/img/iPhone.png'"
+                    [showImage]="true"
+                    [imageWidth]="20"
+                    [imageHeight]="40"
+                    ></circle-progress>
+                </div>
+            </div>
+            
+        </mat-card><mat-card class="box-outline padding-beauty" style="margin-bottom: 10px; cursor: pointer;">
+            <div class="jflex-row stretch">
+                <div class="jflex-column stretch">
+                    <span><strong> iPhone 12 Pro</strong></span>
+                    <span class="percentage-list">50%</span>
+                    <span class="target">Target:25.000.000</span>
+                </div>
+                <div class="jflex-column">
+                    <circle-progress 
+                    
+                    [percent]="85"
+                    [radius]="50"
+                    [outerStrokeWidth]="8"
+                    [innerStrokeWidth]="4"
+                    [outerStrokeColor]="'#6ED940'"
+                    [innerStrokeColor]="'#C7E596'"
+                    [animation]="true"
+                    [animationDuration]="300"
+                    [imageSrc]="'/assets/img/iPhone.png'"
+                    [showImage]="true"
+                    [imageWidth]="20"
+                    [imageHeight]="40"
+                    ></circle-progress>
+                </div>
+            </div>
+            
+        </mat-card>
+        <mat-card class="box-outline padding-beauty" style="margin-bottom: 10px; cursor: pointer;">
+            <div class="jflex-row stretch">
+                <div class="jflex-column stretch">
+                    <span><strong> iPhone 12 Pro</strong></span>
+                    <span class="percentage-list">50%</span>
+                    <span class="target">Target:25.000.000</span>
+                </div>
+                <div class="jflex-column">
+                    <circle-progress 
+                    
+                    [percent]="85"
+                    [radius]="50"
+                    [outerStrokeWidth]="8"
+                    [innerStrokeWidth]="4"
+                    [outerStrokeColor]="'#6ED940'"
+                    [innerStrokeColor]="'#C7E596'"
+                    [animation]="true"
+                    [animationDuration]="300"
+                    [imageSrc]="'/assets/img/iPhone.png'"
+                    [showImage]="true"
+                    [imageWidth]="20"
+                    [imageHeight]="40"
+                    ></circle-progress>
+                </div>
+            </div>
+            
+        </mat-card>
         
-    </mat-card>
-    <mat-card class="box-outline padding-beauty" style="margin-bottom: 10px;">
-        <div class="jflex-row stretch">
-            <div class="jflex-column stretch">
-                <span><strong> iPhone 12 Pro</strong></span>
-                <span class="percentage-list">50%</span>
-                <span class="target">Target:25.000.000</span>
-            </div>
-            <div>
-                <mat-progress-spinner mode="determinate" value="10"></mat-progress-spinner>
-            </div>
-        </div>
-        
-    </mat-card>
-    
     </div>
-    <div class="background-green jflex-row padding-beauty" >
-        <button mat-raised-button style="background-color: #6ED940; color: white; width: 40%;">Primary</button>
+    <div class="background-green jflex-row padding-beauty center-main-axis">
+        <button mat-raised-button style="background-color: #6ED940; color: white; width: 80%; ">Tambah Portofolio</button>
     </div>
 </div>

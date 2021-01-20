@@ -40,6 +40,11 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { ProfileComponent } from './components/profile/profile.component';
 import { MatButtonModule } from '@angular/material/button';
 import { FinancialPlannerListComponent } from './components/financial-planner-list/financial-planner-list.component';
+import { PilihTargetComponent } from './components/pilih-target/pilih-target.component';
+import { PortofolioBaruComponent } from './components/portofolio-baru/portofolio-baru.component';
+import { SimulasiPlannerComponent } from './components/simulasi-planner/simulasi-planner.component';
+import { SummaryPlannerComponent } from './components/summary-planner/summary-planner.component';
+import { NgCircleProgressModule } from 'ng-circle-progress';
 
 @NgModule({
   declarations: [
@@ -47,14 +52,22 @@ import { FinancialPlannerListComponent } from './components/financial-planner-li
     HomeComponent,
     ProfileComponent,
 
-    FinancialPlannerListComponent
+    FinancialPlannerListComponent,
+
+    PilihTargetComponent,
+
+    PortofolioBaruComponent,
+
+    SimulasiPlannerComponent,
+
+    SummaryPlannerComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-
+    MatButtonToggleModule,
     MatDatepickerModule,
     MatInputModule,
     MatFormFieldModule,
@@ -63,7 +76,15 @@ import { FinancialPlannerListComponent } from './components/financial-planner-li
     MatToolbarModule,
     MatButtonModule,
     MatCardModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    NgCircleProgressModule.forRoot({
+      radius: 100,
+      outerStrokeWidth: 16,
+      innerStrokeWidth: 8,
+      outerStrokeColor: "#78C000",
+      innerStrokeColor: "#C7E596",
+      animationDuration: 300,
+    }),
   ],
   providers: [Globals,MatDatepickerModule],
   bootstrap: [AppComponent]

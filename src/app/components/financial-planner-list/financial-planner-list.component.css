@@ -17,6 +17,7 @@
     line-height: 15px;
  }
  
- .stretch{
-     justify-content: space-between;
+ svg{
+    width: 100px;
+    height: 100px;
  }
