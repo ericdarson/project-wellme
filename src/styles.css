@@ -1,4 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: 'Quicksand', sans-serif !important; }
+*{font-family: 'Quicksand', sans-serif !important;}
+.centering{
+    width: 768px;
+    margin-right: auto;
+    margin-left: auto;
+    
+}
+
+.jflex-column{
+    display: flex;
+    flex-direction: column;
+
+}
+.jflex-row{
+    display: flex;
+    flex-direction: row;
+
+}
