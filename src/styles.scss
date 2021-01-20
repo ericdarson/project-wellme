@@ -1,0 +1,6 @@
+// NOTE: From `2.0.0-beta.10`, you can now pass the typography via the mat-core() mixin:
+@import '~@angular/material/theming';
+$custom-typography: mat-typography-config(
+  $font-family: 'Quicksand'
+);
+@include mat-core($custom-typography);
