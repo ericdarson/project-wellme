@@ -29,7 +29,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule, MatSpinner } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -44,6 +44,8 @@ import { MoreComponent } from './components/more/more.component';
 import { NewsComponent } from './components/news/news.component';
 import { PortofolioComponent } from './components/portofolio/portofolio.component';
 import { NgCircleProgressModule } from 'ng-circle-progress';
+import { MatButtonModule } from '@angular/material/button';
+import { FinancialPlannerListComponent } from './components/financial-planner-list/financial-planner-list.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,8 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     ProductComponent,
     MoreComponent,
     NewsComponent,
-    PortofolioComponent
+    PortofolioComponent,
+    FinancialPlannerListComponent,
   ],
   imports: [
     BrowserModule,
@@ -76,7 +79,10 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
       innerStrokeColor: "#C7E596",
       animationDuration: 300,
     }),
-    MatGridListModule
+    MatGridListModule,
+    MatButtonModule,
+    MatCardModule,
+    MatProgressSpinnerModule
   ],
   providers: [Globals,MatDatepickerModule],
   bootstrap: [AppComponent]
