@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'planner-list', component: FinancialPlannerListComponent },
   
+
 ];
 
 @NgModule({

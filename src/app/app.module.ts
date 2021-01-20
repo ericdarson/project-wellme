@@ -1,12 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import {MatIconModule} from '@angular/material/icon';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import { Globals } from './globals';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import {MatInputModule} from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -28,7 +29,6 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatChipsModule } from '@angular/material/chips';
-import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule, MatSpinner } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -46,6 +46,7 @@ import { FinancialPlannerListComponent } from './components/financial-planner-li
     AppComponent,
     HomeComponent,
     ProfileComponent,
+
     FinancialPlannerListComponent
   ],
   imports: [
@@ -53,6 +54,7 @@ import { FinancialPlannerListComponent } from './components/financial-planner-li
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+
     MatDatepickerModule,
     MatInputModule,
     MatFormFieldModule,
