@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
-
+import {MatIconModule} from '@angular/material/icon';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import { Globals } from './globals';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import {MatInputModule} from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -27,7 +28,6 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatChipsModule } from '@angular/material/chips';
-import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule, MatSpinner } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -42,23 +42,32 @@ import { ProductComponent } from './components/product/product.component';
 import { MoreComponent } from './components/more/more.component';
 import { NewsComponent } from './components/news/news.component';
 import { PortofolioComponent } from './components/portofolio/portofolio.component';
-import { NgCircleProgressModule } from 'ng-circle-progress';
 import { MatButtonModule } from '@angular/material/button';
 import { FinancialPlannerListComponent } from './components/financial-planner-list/financial-planner-list.component';
 import { SharedModule } from './shared/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
+
+import { PilihTargetComponent } from './components/pilih-target/pilih-target.component';
+import { PortofolioBaruComponent } from './components/portofolio-baru/portofolio-baru.component';
+import { SimulasiPlannerComponent } from './components/simulasi-planner/simulasi-planner.component';
+import { SummaryPlannerComponent } from './components/summary-planner/summary-planner.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     FinancialPlannerListComponent,
+    PilihTargetComponent,
+    PortofolioBaruComponent,
+    SimulasiPlannerComponent,
+    SummaryPlannerComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     SharedModule
+
   ],
   providers: [Globals,MatDatepickerModule],
   bootstrap: [AppComponent]
