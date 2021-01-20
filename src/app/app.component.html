@@ -1,32 +1,35 @@
-<router-outlet></router-outlet>
-<mat-toolbar class="toolbarNav">
-  <div class="clickable text-center" routerLink="./home">
-    <i class="fas fa-book-open"></i>
-    <div style="font-size: small;">
-      Portofolio
+<div>
+  <router-outlet></router-outlet>
+
+  <mat-toolbar class="toolbarNav">
+    <div class="clickable text-center" routerLink="./portofolio" [routerLinkActive]="['is-active']">
+      <i class="fas fa-book-open"></i>
+      <div style="font-size: small;">
+        Portofolio
+      </div>
     </div>
-  </div>
-  <div class="clickable text-center" routerLink="./profile">
-    <i class="far fa-user-circle"></i>
-    <div style="font-size: small;">
-      Profile
-    </div></div>
-  <div class="clickable text-center" routerLink="./profile">
-    <i class="fas fa-chart-line"></i>
-    <div style="font-size: small;">
-      Products
+    <div class="clickable text-center" routerLink="./profile" [routerLinkActive]="['is-active']">
+      <i class="far fa-user-circle"></i>
+      <div style="font-size: small;">
+        Profile
+      </div></div>
+    <div class="clickable text-center" routerLink="./product" [routerLinkActive]="['is-active']">
+      <i class="fas fa-chart-line"></i>
+      <div style="font-size: small;">
+        Products
+      </div>
     </div>
-  </div>
-  <div class="clickable text-center" routerLink="./profile">
-    <i class="far fa-newspaper"></i>
-    <div style="font-size: small;">
-      News
+    <div class="clickable text-center" routerLink="./news" [routerLinkActive]="['is-active']">
+      <i class="far fa-newspaper"></i>
+      <div style="font-size: small;">
+        News
+      </div>
     </div>
-  </div>
-  <div class="clickable text-center" routerLink="./profile">
-    <i class="fas fa-ellipsis-h"></i>
-    <div style="font-size: small;">
-      More
+    <div class="clickable text-center" routerLink="./more" [routerLinkActive]="['is-active']">
+      <i class="fas fa-ellipsis-h"></i>
+      <div style="font-size: small;">
+        More
+      </div>
     </div>
-  </div>
-</mat-toolbar>
+  </mat-toolbar>
+</div>

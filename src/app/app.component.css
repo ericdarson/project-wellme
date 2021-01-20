@@ -10,10 +10,12 @@
     border: 1px solid #ccc;
 }
 
-.clickable{
-    cursor: pointer;
-}
+
 
 .text-center{
     text-align: center;
+}
+
+.is-active{
+    color: #6ED940;
 }

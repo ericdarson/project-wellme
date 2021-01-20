@@ -38,12 +38,22 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { ProfileComponent } from './components/profile/profile.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { ProductComponent } from './components/product/product.component';
+import { MoreComponent } from './components/more/more.component';
+import { NewsComponent } from './components/news/news.component';
+import { PortofolioComponent } from './components/portofolio/portofolio.component';
+import { NgCircleProgressModule } from 'ng-circle-progress';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    ProfileComponent
+    ProfileComponent,
+    ProductComponent,
+    MoreComponent,
+    NewsComponent,
+    PortofolioComponent
   ],
   imports: [
     BrowserModule,
@@ -56,6 +66,17 @@ import { ProfileComponent } from './components/profile/profile.component';
     MatNativeDateModule,
     MatIconModule,
     MatToolbarModule,
+    InfiniteScrollModule,
+    NgCircleProgressModule.forRoot({
+      // set defaults here
+      radius: 100,
+      outerStrokeWidth: 16,
+      innerStrokeWidth: 8,
+      outerStrokeColor: "#78C000",
+      innerStrokeColor: "#C7E596",
+      animationDuration: 300,
+    }),
+    MatGridListModule
   ],
   providers: [Globals,MatDatepickerModule],
   bootstrap: [AppComponent]

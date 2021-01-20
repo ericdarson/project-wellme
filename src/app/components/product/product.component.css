@@ -1,15 +1,9 @@
-
-
-.bg-wellme{
-    background-color: rgba(204, 237, 190, 0.5);
-}
-
-
-.profile-button{
+.wellme-button{
     background: #CCEDBE;
     border: 1px solid #6ED940;
     box-sizing: border-box;
     border-radius: 5px;
     padding: 1em;
     color : #309F00;
+    width: fit-content;
 }
