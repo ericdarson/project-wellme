@@ -7,16 +7,14 @@ import { NewsComponent } from './components/news/news.component';
 import { PortofolioComponent } from './components/portofolio/portofolio.component';
 import { ProductComponent } from './components/product/product.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { IndexModule } from './index/index.module';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'portofolio', pathMatch: 'full'},
+  { path: '', redirectTo: 'index', pathMatch: 'full'},
   { path: 'home', component: HomeComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'product', component: ProductComponent },
-  { path: 'more', component: MoreComponent },
-  { path: 'news', component: NewsComponent },
-  { path: 'portofolio', component: PortofolioComponent },
+ 
   { path: 'planner-list', component: FinancialPlannerListComponent },
+  { path: 'index',  loadChildren: () => IndexModule },
   
 ];
 

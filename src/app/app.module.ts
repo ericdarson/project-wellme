@@ -1,4 +1,3 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -46,43 +45,20 @@ import { PortofolioComponent } from './components/portofolio/portofolio.componen
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { MatButtonModule } from '@angular/material/button';
 import { FinancialPlannerListComponent } from './components/financial-planner-list/financial-planner-list.component';
+import { SharedModule } from './shared/shared.module';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    ProfileComponent,
-    ProductComponent,
-    MoreComponent,
-    NewsComponent,
-    PortofolioComponent,
     FinancialPlannerListComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
     BrowserAnimationsModule,
-    MatDatepickerModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatNativeDateModule,
-    MatIconModule,
-    MatToolbarModule,
-    InfiniteScrollModule,
-    NgCircleProgressModule.forRoot({
-      // set defaults here
-      radius: 100,
-      outerStrokeWidth: 16,
-      innerStrokeWidth: 8,
-      outerStrokeColor: "#78C000",
-      innerStrokeColor: "#C7E596",
-      animationDuration: 300,
-    }),
-    MatGridListModule,
-    MatButtonModule,
-    MatCardModule,
-    MatProgressSpinnerModule
+    AppRoutingModule,
+    SharedModule
   ],
   providers: [Globals,MatDatepickerModule],
   bootstrap: [AppComponent]
