@@ -6,6 +6,7 @@ import { PilihTargetComponent } from './components/pilih-target/pilih-target.com
 import { PortofolioBaruComponent } from './components/portofolio-baru/portofolio-baru.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { SimulasiPlannerComponent } from './components/simulasi-planner/simulasi-planner.component';
+import { SummaryPlannerComponent } from './components/summary-planner/summary-planner.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: 'planner-list', component: FinancialPlannerListComponent },
   { path: 'pilih-target', component: PilihTargetComponent},
   { path: 'detail-portofolio', component:PortofolioBaruComponent},
-  { path: 'simulasi-planner', component:SimulasiPlannerComponent}
+  { path: 'simulasi-planner', component:SimulasiPlannerComponent},
+  { path:'summary-planner', component:SummaryPlannerComponent}
   
 
 ];
