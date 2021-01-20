@@ -29,7 +29,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule, MatSpinner } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -38,12 +38,15 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { ProfileComponent } from './components/profile/profile.component';
+import { MatButtonModule } from '@angular/material/button';
+import { FinancialPlannerListComponent } from './components/financial-planner-list/financial-planner-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    ProfileComponent
+    ProfileComponent,
+    FinancialPlannerListComponent
   ],
   imports: [
     BrowserModule,
@@ -56,6 +59,9 @@ import { ProfileComponent } from './components/profile/profile.component';
     MatNativeDateModule,
     MatIconModule,
     MatToolbarModule,
+    MatButtonModule,
+    MatCardModule,
+    MatProgressSpinnerModule
   ],
   providers: [Globals,MatDatepickerModule],
   bootstrap: [AppComponent]

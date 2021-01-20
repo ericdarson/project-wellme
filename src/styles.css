@@ -9,6 +9,7 @@ body { margin: 0; font-family: Quicksand, "Helvetica Neue", sans-serif; }
     
 }
 
+
 .flex-center{
     display: flex;
     justify-content: center;
@@ -21,3 +22,37 @@ body { margin: 0; font-family: Quicksand, "Helvetica Neue", sans-serif; }
 .flex{
     display: flex;
 }
+
+.jflex-column{
+    display: flex;
+    flex-direction: column;
+
+}
+.jflex-row{
+    display: flex;
+    flex-direction: row;
+}
+ .headFont{
+    font-family: Quicksand;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 30px;
+ }
+ .background-green{
+    background: rgba(204, 237, 190, 0.5);
+ }
+ .padding-beauty{
+     padding: 10px;
+ }
+ .box-outline{
+    background: #FFFFFF;
+    border: 1px solid #6ED940;
+    box-sizing: border-box;
+    border-radius: 5px;
+ }
+ 
+ circle{
+     stroke: #6ED940 !important;
+ }
+

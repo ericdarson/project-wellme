@@ -136,5 +136,8 @@
       }
     }
   },
-  "defaultProject": "wellme-project"
+  "defaultProject": "wellme-project",
+  "cli": {
+    "analytics": false
+  }
 }
