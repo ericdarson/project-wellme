@@ -16,6 +16,37 @@ body { margin: 0; font-family: Quicksand, "Helvetica Neue", sans-serif; }
     
 }
 
+
+.flex-center{
+    display: flex;
+    justify-content: center;
+}
+
+.width-full{
+    width: 100%;
+}
+
+.flex{
+    display: flex;
+}
+
+.clickable{
+    cursor: pointer;
+}
+
+.profile-name{
+    font-size: xx-large;
+}
+
+
+.profile-item-box{
+    background: #FFFFFF;
+    border: 1px solid #6ED940;
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin-bottom: 1em;
+}
+
 .jflex-column{
     display: flex;
     flex-direction: column;
@@ -44,9 +75,42 @@ body { margin: 0; font-family: Quicksand, "Helvetica Neue", sans-serif; }
     border: 1px solid #6ED940;
     box-sizing: border-box;
     border-radius: 5px;
- }
+    margin-bottom: 1em;
+}
+
+.text-wellme-color{
+    color: #309F00;
+}
+
+.font-12{
+    font-size: 12px;
+}
+
+.font-14{
+    font-size: 14px;
+}
+
+.font-18{
+    font-size: 18px;
+}
+.font-20{
+    font-size: 20px;
+}
+
+.font-32{
+    font-size: 32px;
+}
+
+.master-component{
+   padding-bottom: 5em;
+    padding-top:2em;
+}
+
+.text-center{
+    text-align: center;
+}
  
- circle{
+.circle{
      stroke: #6ED940 !important;
  }
 .center-main-axis{

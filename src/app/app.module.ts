@@ -1,4 +1,3 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {MatIconModule} from '@angular/material/icon';
 import { AppRoutingModule } from './app-routing.module';
@@ -38,53 +37,37 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { ProfileComponent } from './components/profile/profile.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { ProductComponent } from './components/product/product.component';
+import { MoreComponent } from './components/more/more.component';
+import { NewsComponent } from './components/news/news.component';
+import { PortofolioComponent } from './components/portofolio/portofolio.component';
 import { MatButtonModule } from '@angular/material/button';
 import { FinancialPlannerListComponent } from './components/financial-planner-list/financial-planner-list.component';
+import { SharedModule } from './shared/shared.module';
+import { BrowserModule } from '@angular/platform-browser';
+
 import { PilihTargetComponent } from './components/pilih-target/pilih-target.component';
 import { PortofolioBaruComponent } from './components/portofolio-baru/portofolio-baru.component';
 import { SimulasiPlannerComponent } from './components/simulasi-planner/simulasi-planner.component';
 import { SummaryPlannerComponent } from './components/summary-planner/summary-planner.component';
-import { NgCircleProgressModule } from 'ng-circle-progress';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    ProfileComponent,
-
     FinancialPlannerListComponent,
-
     PilihTargetComponent,
-
     PortofolioBaruComponent,
-
     SimulasiPlannerComponent,
-
     SummaryPlannerComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
     BrowserAnimationsModule,
-    MatButtonToggleModule,
-    MatDatepickerModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatNativeDateModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatCardModule,
-    MatProgressSpinnerModule,
-    NgCircleProgressModule.forRoot({
-      radius: 100,
-      outerStrokeWidth: 16,
-      innerStrokeWidth: 8,
-      outerStrokeColor: "#78C000",
-      innerStrokeColor: "#C7E596",
-      animationDuration: 300,
-    }),
+    AppRoutingModule,
+    SharedModule
+
   ],
   providers: [Globals,MatDatepickerModule],
   bootstrap: [AppComponent]

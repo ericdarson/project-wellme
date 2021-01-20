@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
+  buttonShowRekening : boolean = false
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  buttonShowRekClicked(){
+    this.buttonShowRekening = !this.buttonShowRekening
+    console.log(this.buttonShowRekening)
   }
 
 }

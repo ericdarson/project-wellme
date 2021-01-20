@@ -1,0 +1,15 @@
+.toolbarNav{  
+    position: fixed;
+    bottom: 0;
+    width: 768px;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    padding: 2em;
+    background-color: white;
+    border: 1px solid #ccc;
+}
+
+.is-active{
+    color: #6ED940;
+}
