@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import url("https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
 html, body { height: 100%; }
 
 body { margin: 0; font-family: Quicksand, "Helvetica Neue", sans-serif; }
@@ -161,3 +162,19 @@ body { margin: 0; font-family: Quicksand, "Helvetica Neue", sans-serif; }
  .pointer{
      cursor: pointer;
  }
+
+ .button-fill{
+    background: #6ED940;
+    border-radius: 5px;
+    color:white
+ }
+
+ .button-fill-disabled{
+    background: rgba(110, 217, 64, 0.5);
+    border-radius: 5px;
+    color:white
+ }
+
+ .bg-wellme{
+    background-color: rgba(204, 237, 190, 0.5);
+}

@@ -1,0 +1,46 @@
+<div class="jflex-column" style="height: 100%;">
+    <div class="jflex-row" style="padding-top:20px;">
+        <mat-icon class="clickable" routerLink="../backward-projection">chevron_left</mat-icon>
+        <h1 style="text-align: center;" class="width-full headFont"><b>Backward Projection</b></h1>
+    </div>
+
+    <div class="flex-center" style="margin-bottom: 2em;margin-top: 1em;">
+        <div class="profile-name">
+            Pasar Uang
+        </div>
+    </div>
+
+    <div class="bg-wellme" style="padding-left: 1em; padding-right: 1em; padding-top: 2em;padding-bottom: 2em; width: 50%; align-self: center;">
+        <div *ngFor="let reksa of this.tempVar" class="profile-item-box" style="padding: 1em;" (click)="goToPembelianPage(reksa.id)">
+            <div class="text-wellme-color font-18">
+                <b>{{reksa.nama}}</b>
+            </div>
+            <div class="font-12">
+                {{reksa.kategori}}
+            </div>
+            <div style="margin-top: 1em;">
+                <div>
+                    <b>Kinerja 1 Tahun</b>
+                </div>
+                <div>
+                    {{reksa.kinerja}}
+                </div>
+                <div class="flex" style="justify-content: space-between;margin-top: 1em;">
+                    <div>
+                        <div>
+                            <b>NAB/ Unit</b>
+                        </div>
+                        <div>
+                            {{reksa.nab}}
+                        </div>
+                    </div>
+                    <div>
+                        <button mat-button class="pilih-button" style="width: 100px;">Pilih</button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+</div>

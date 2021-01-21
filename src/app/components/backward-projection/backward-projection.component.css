@@ -1,0 +1,43 @@
+
+.item-box{
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin-bottom: 1em;
+    color : #000000 50%;
+}
+
+.item-box:hover{
+    background: #FFFFFF;
+    border: 1px solid #6ED940;
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin-bottom: 1em;
+    color : #309F00;
+}
+
+.item-box-choosen{
+    background: #FFFFFF;
+    border: 1px solid #6ED940;
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin-bottom: 1em;
+    color : #309F00;
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-ripple .mat-ripple-element {
+    opacity: 0.03 !important;
+    background-color: #6ED940!important;
+  }
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+    background-color: #6ED940;
+  }
+
+  ::ng-deep .mat-checkbox .mat-checkbox-label {
+    width: 100%;
+ }
+
+
+ 

@@ -51,6 +51,12 @@ import { PilihTargetComponent } from './components/pilih-target/pilih-target.com
 import { PortofolioBaruComponent } from './components/portofolio-baru/portofolio-baru.component';
 import { SimulasiPlannerComponent } from './components/simulasi-planner/simulasi-planner.component';
 import { SummaryPlannerComponent } from './components/summary-planner/summary-planner.component';
+import { BackwardProjectionComponent } from './components/backward-projection/backward-projection.component';
+import { PopupSyaratKetentuanComponent } from './popup/popup-syarat-ketentuan/popup-syarat-ketentuan.component';
+import { BackwardListReksadanaComponent } from './components/backward-list-reksadana/backward-list-reksadana.component';
+import { BackwardPembelianComponent } from './components/backward-pembelian/backward-pembelian.component';
+import { CurrencyPipe } from '@angular/common';
+import { BackwardSimulasiComponent } from './components/backward-simulasi/backward-simulasi.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +66,12 @@ import { SummaryPlannerComponent } from './components/summary-planner/summary-pl
     PilihTargetComponent,
     PortofolioBaruComponent,
     SimulasiPlannerComponent,
-    SummaryPlannerComponent
+    SummaryPlannerComponent,
+    BackwardProjectionComponent,
+    PopupSyaratKetentuanComponent,
+    BackwardListReksadanaComponent,
+    BackwardPembelianComponent,
+    BackwardSimulasiComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +80,7 @@ import { SummaryPlannerComponent } from './components/summary-planner/summary-pl
     SharedModule
 
   ],
-  providers: [Globals,MatDatepickerModule],
+  providers: [Globals,MatDatepickerModule,CurrencyPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -37,6 +37,7 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
 import { MatButtonModule } from '@angular/material/button';
 import { PortofolioComponent } from '../components/portofolio/portofolio.component';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { CommonModule } from '@angular/common';
     CommonModule,
     HttpClientModule,
     //modules
+    FormsModule,
     MatCheckboxModule,
     MatInputModule,
     MatAutocompleteModule,
@@ -78,11 +80,13 @@ import { CommonModule } from '@angular/common';
     NgCircleProgressModule,
     InfiniteScrollModule,
     
+    MatButtonModule,
   ],
   imports: [
     CommonModule,
     HttpClientModule,
     MatDatepickerModule,
+    FormsModule,
     MatInputModule,
     MatFormFieldModule,
     MatNativeDateModule,
