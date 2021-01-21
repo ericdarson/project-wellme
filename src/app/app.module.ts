@@ -51,6 +51,12 @@ import { PilihTargetComponent } from './components/pilih-target/pilih-target.com
 import { PortofolioBaruComponent } from './components/portofolio-baru/portofolio-baru.component';
 import { SimulasiPlannerComponent } from './components/simulasi-planner/simulasi-planner.component';
 import { SummaryPlannerComponent } from './components/summary-planner/summary-planner.component';
+import { DetailPlannerComponent } from './components/detail-planner/detail-planner.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BeliReksadanaComponent } from './components/beli-reksadana/beli-reksadana.component';
+import { PromoKodeComponent } from './components/promo-kode/promo-kode.component';
+import { ProductDetailComponent } from './components/product-detail/product-detail.component';
+import { KonfirmasiTransaksiComponent } from './components/konfirmasi-transaksi/konfirmasi-transaksi.component';
 
 @NgModule({
   declarations: [
@@ -60,13 +66,20 @@ import { SummaryPlannerComponent } from './components/summary-planner/summary-pl
     PilihTargetComponent,
     PortofolioBaruComponent,
     SimulasiPlannerComponent,
-    SummaryPlannerComponent
+    SummaryPlannerComponent,
+    DetailPlannerComponent,
+    BeliReksadanaComponent,
+    PromoKodeComponent,
+    ProductDetailComponent,
+    KonfirmasiTransaksiComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    MatButtonModule,
+    NgbModule
 
   ],
   providers: [Globals,MatDatepickerModule],

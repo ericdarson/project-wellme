@@ -161,3 +161,17 @@ body { margin: 0; font-family: Quicksand, "Helvetica Neue", sans-serif; }
  .pointer{
      cursor: pointer;
  }
+ .green-button{
+    background: #CCEDBE;
+    border: 1px solid #6ED940;
+    box-sizing: border-box;
+    border-radius: 5px;
+    color : #309F00;
+}
+a:hover, a:focus .project-name {
+    color:#6ED940;
+    text-decoration: none;
+  }
+  .litle-space{
+    margin-bottom: 10px;
+}

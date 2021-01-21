@@ -9,6 +9,11 @@ import { PortofolioBaruComponent } from './components/portofolio-baru/portofolio
 import { ProfileComponent } from './components/profile/profile.component';
 import { SimulasiPlannerComponent } from './components/simulasi-planner/simulasi-planner.component';
 import { SummaryPlannerComponent } from './components/summary-planner/summary-planner.component';
+import { DetailPlannerComponent } from './components/detail-planner/detail-planner.component';
+import { BeliReksadanaComponent } from './components/beli-reksadana/beli-reksadana.component';
+import { PromoKodeComponent } from './components/promo-kode/promo-kode.component';
+import { ProductDetailComponent } from './components/product-detail/product-detail.component';
+import { KonfirmasiTransaksiComponent } from './components/konfirmasi-transaksi/konfirmasi-transaksi.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'index', pathMatch: 'full'},
@@ -18,13 +23,13 @@ const routes: Routes = [
   { path: 'index',  loadChildren: () => IndexModule },
   { path: 'pilih-target', component: PilihTargetComponent},
   { path: 'detail-portofolio', component:PortofolioBaruComponent},
-<<<<<<< HEAD
   { path: 'simulasi-planner', component:SimulasiPlannerComponent},
-  { path:'summary-planner', component:SummaryPlannerComponent}
-=======
-  { path: 'simulasi-planner', component:SimulasiPlannerComponent}
-
->>>>>>> 2a3a26ec7c2125c1f03a21d2b23835cd956b015a
+  { path:'summary-planner', component:SummaryPlannerComponent},
+  { path:'detail-planner', component:DetailPlannerComponent},
+  { path:'beli-reksadana', component:BeliReksadanaComponent},
+  { path:'promo-kode', component:PromoKodeComponent},
+  { path:'product-detail', component:ProductDetailComponent},
+  { path:'konfirmasi-transaksi', component:KonfirmasiTransaksiComponent},
   
 
 ];
