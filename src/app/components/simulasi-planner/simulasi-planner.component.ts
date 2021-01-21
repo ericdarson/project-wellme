@@ -23,7 +23,7 @@ export class SimulasiPlannerComponent implements OnInit,AfterViewInit  {
 }
 ngAfterViewInit() {
   console.log("afterinit");
-  setTimeout(() => {
+
     
   this.context = this.myCanvas.nativeElement.getContext('2d'); 
   this.ctx=this.context==null?new CanvasRenderingContext2D():this.context;
@@ -158,7 +158,6 @@ ngAfterViewInit() {
         })
 
 
-  }, 1000);
 }
   ngOnInit(): void {
 

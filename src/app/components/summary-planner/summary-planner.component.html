@@ -6,43 +6,34 @@
         <h1 style="flex-basis: 90%; text-align: center;;" class="headFont">Portofolio Baru</h1>
     </div>
     <div class="jflex-column padding-beauty  center-cross-axis " style="height:90%; flex-wrap: wrap;">
-        <h1 style="font-weight: 300;">Gadget</h1>
-        <mat-card class="box-outline litle-space" style="width: 100%;">
-            <div><strong>Nama Portofolio</strong></div>
-            <mat-form-field appearance="standard" style="width: 100%;">
-                <mat-label>Masukan Nama Portfolio</mat-label>
-                <input  matInput>
-              </mat-form-field>
-        </mat-card>
-        <mat-card class="box-outline litle-space" style="width: 100%;">
-            <div>
-            <div><strong>Total Target yang Harus Terkumpul</strong></div>
-            <mat-form-field appearance="standard" style="width: 100%;">
-                <mat-label>Masukan target</mat-label>
-                <input type="number"  matInput>
-              </mat-form-field>
-            </div>
-        </mat-card>
-        <mat-card class="box-outline litle-space" style="width: 100%;">
-            <div><strong>Durasi Target</strong></div>
-            <mat-form-field appearance="standard" style="width: 100%;">
-                <mat-label>Masukan Tanggal</mat-label>
-                <input matInput [matDatepicker]="picker">
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-              </mat-form-field>
-        </mat-card>
+        <h1 style="font-weight: 300;">Iphone 12 Pro Baru</h1>
         <mat-card class="box-outline litle-space" style="width: 100%;">
             <div class=" jflex-row stretch">
-            <div><strong>Periode Menabung</strong></div>
-            <div class="font-green"><strong>Mingguan</strong></div>
-        </div>
+                <div><strong>Profil Resiko</strong></div>
+                <div >Agresif</div>
+            </div>
         </mat-card>
-        <mat-button-toggle-group name="fontStyle" style="width: 100%;">
-            <mat-button-toggle style="width: 33.3%;" value="Weekly"><strong>Mingguan</strong></mat-button-toggle>
-            <mat-button-toggle style="width: 33.3%;" value="Monthly"><strong>Bulanan</strong></mat-button-toggle>
-            <mat-button-toggle style="width: 33.34%;" value="Yearly"><strong>Tahunan</strong></mat-button-toggle>
-          </mat-button-toggle-group>
+        
+        <mat-card class="box-outline litle-space" style="width: 100%;">
+            <div class=" jflex-row stretch litle-space">
+                <div><strong>Profil Resiko</strong></div>
+                <div><strong>Alokasi</strong></div>
+            </div>
+            <div class=" jflex-row stretch litle-space">
+                <div class="font-green">Pasar Uang</div>
+                <div class="font-green"><strong>10%</strong></div>
+            </div>
+            <div class=" jflex-row stretch litle-space">
+                <div class="font-green">Obliagasi</div>
+                <div class="font-green"><strong>20%</strong></div>
+            </div>
+            <div class=" jflex-row stretch litle-space">
+                <div class="font-green">Saham</div>
+                <div class="font-green"><strong>70%</strong></div>
+            </div>
+            
+
+        </mat-card>
     </div>
     
     

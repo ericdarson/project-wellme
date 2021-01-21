@@ -57,6 +57,12 @@ import { BackwardListReksadanaComponent } from './components/backward-list-reksa
 import { BackwardPembelianComponent } from './components/backward-pembelian/backward-pembelian.component';
 import { CurrencyPipe } from '@angular/common';
 import { BackwardSimulasiComponent } from './components/backward-simulasi/backward-simulasi.component';
+import { DetailPlannerComponent } from './components/detail-planner/detail-planner.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BeliReksadanaComponent } from './components/beli-reksadana/beli-reksadana.component';
+import { PromoKodeComponent } from './components/promo-kode/promo-kode.component';
+import { ProductDetailComponent } from './components/product-detail/product-detail.component';
+import { KonfirmasiTransaksiComponent } from './components/konfirmasi-transaksi/konfirmasi-transaksi.component';
 
 @NgModule({
   declarations: [
@@ -71,13 +77,20 @@ import { BackwardSimulasiComponent } from './components/backward-simulasi/backwa
     PopupSyaratKetentuanComponent,
     BackwardListReksadanaComponent,
     BackwardPembelianComponent,
-    BackwardSimulasiComponent
+    BackwardSimulasiComponent,
+    DetailPlannerComponent,
+    BeliReksadanaComponent,
+    PromoKodeComponent,
+    ProductDetailComponent,
+    KonfirmasiTransaksiComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    MatButtonModule,
+    NgbModule,
 
   ],
   providers: [Globals,MatDatepickerModule,CurrencyPipe],

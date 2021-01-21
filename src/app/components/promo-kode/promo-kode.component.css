@@ -1,0 +1,23 @@
+.percentage-list{
+   
+    
+    font-family: Quicksand;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 42px;
+    line-height: 52px;
+    color: #6ED940;
+ }
+
+ .target{
+    font-family: Quicksand;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+ }
+ 
+ svg{
+    width: 100px;
+    height: 100px;
+ }
