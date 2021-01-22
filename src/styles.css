@@ -92,14 +92,21 @@ body { margin: 0; font-family: Quicksand, "Helvetica Neue", sans-serif; }
 }
 
 .font-18{
-    font-size: 18px;
+    font-size: 18px !important;
 }
 .font-20{
-    font-size: 20px;
+    font-size: 20px !important;
+}
+
+.font-24{
+    font-size: 24px !important;
 }
 
 .font-32{
-    font-size: 32px;
+    font-size: 32px !important;
+}
+.font-48{
+    font-size: 48px;
 }
 
 .master-component{
@@ -185,6 +192,8 @@ body { margin: 0; font-family: Quicksand, "Helvetica Neue", sans-serif; }
     border-radius: 5px;
     color : #309F00;
 }
+
+
 a:hover, a:focus .project-name {
     color:#6ED940;
     text-decoration: none;
@@ -192,3 +201,4 @@ a:hover, a:focus .project-name {
   .litle-space{
     margin-bottom: 10px;
 }
+

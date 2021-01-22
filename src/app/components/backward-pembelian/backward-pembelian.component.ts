@@ -21,7 +21,6 @@ export class BackwardPembelianComponent implements OnInit {
   threeMonthRangeSelected : boolean =false
   oneYearRangeSelected : boolean =false
   reksaId :string
-  @ViewChild(MatCalendar) _datePicker: MatCalendar<Date>
   
   dateNow :Date;
   constructor(private location: Location,private currencyPipe : CurrencyPipe,private router : Router,private route: ActivatedRoute) {
@@ -94,7 +93,7 @@ export class BackwardPembelianComponent implements OnInit {
   }
 
   goToSimulasiPage(idReksadana : string){
-    this.router.navigate(['../../backward-simulasi',idReksadana])
+    this.router.navigate(['../../backward-simulasi',idReksadana],{relativeTo:this.route})
   }
 
 

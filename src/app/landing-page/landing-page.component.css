@@ -1,0 +1,42 @@
+.sticky-toolbar {
+    position: sticky;
+    top: 0px;
+    z-index: 1034;
+  }
+.scroll-wrapper {    
+     overflow: auto;
+    max-height: 100vh; 
+}
+
+.background-all{
+    background-image: url('../../assets/img/bg-landing-page-1.jpeg');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.background-down{
+    background-image: url('../../assets/img/landing-page-icon-3.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.rounded-button-fill{
+    background: #6ED940;
+    border-radius: 182.88px;
+    color:white
+}
+
+.rounder-daftar-button{
+    border: 2px solid #000000;
+    box-sizing: border-box;
+    border-radius: 182.88px;
+}
+
+
+.box-landing-page-item{
+    background: #FFFFFF;
+    border: 1px solid #6ED940;
+    box-sizing: border-box;
+    box-shadow: 4.66574px 4.66574px 4.66574px rgba(110, 217, 64, 0.18);
+    border-radius: 13.9972px;
+}

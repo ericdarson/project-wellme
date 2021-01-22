@@ -38,6 +38,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { PortofolioComponent } from '../components/portofolio/portofolio.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {ScrollingModule , ScrollDispatcher} from '@angular/cdk/scrolling';
 
 @NgModule({
   declarations: [
@@ -81,6 +83,9 @@ import { FormsModule } from '@angular/forms';
     InfiniteScrollModule,
     
     MatButtonModule,
+    MatButtonModule,
+    NgbModule,
+    ScrollingModule,
   ],
   imports: [
     CommonModule,
@@ -133,6 +138,9 @@ import { FormsModule } from '@angular/forms';
     MatSortModule,
     MatPaginatorModule,
     InfiniteScrollModule,
+    MatButtonModule,
+    NgbModule,
+    ScrollingModule,
   ],
 })
 export class SharedModule { 
@@ -140,7 +148,7 @@ export class SharedModule {
         return {
           ngModule: SharedModule,
           providers: [
-          
+            ScrollDispatcher,
           ]
         };
       }
