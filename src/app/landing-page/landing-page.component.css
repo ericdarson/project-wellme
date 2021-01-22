@@ -2,10 +2,18 @@
     position: sticky;
     top: 0px;
     z-index: 1034;
+    padding: 1em;
   }
-.scroll-wrapper {    
-     overflow: auto;
-    max-height: 100vh; 
+
+
+    .scroll-wrapper {    
+        overflow: auto;
+       max-height: 100vh; 
+   }
+
+.row{
+    margin-left: 0px !important;
+    margin-right: 0px !important;
 }
 
 .background-all{
@@ -16,8 +24,8 @@
 
 .background-down{
     background-image: url('../../assets/img/landing-page-icon-3.png');
-    background-size: cover;
     background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .rounded-button-fill{
@@ -39,4 +47,13 @@
     box-sizing: border-box;
     box-shadow: 4.66574px 4.66574px 4.66574px rgba(110, 217, 64, 0.18);
     border-radius: 13.9972px;
+}
+
+
+::ng-deep .mat-drawer:not(.mat-drawe-side){
+   box-shadow: unset ;
+  }
+
+::ng-deep .mat-toolbar-row, .mat-toolbar-single-row {
+    height: 100%;
 }

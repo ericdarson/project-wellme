@@ -1,5 +1,5 @@
 import { ScrollDispatcher, CdkScrollable } from "@angular/cdk/scrolling";
-import { Component, NgZone, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-landing-page',
@@ -9,6 +9,9 @@ import { Component, NgZone, OnInit } from '@angular/core';
 export class LandingPageComponent implements OnInit {
 
   opacity =0.5;
+
+  @ViewChild('sidenav') sidenav: any;
+
   constructor(private scrollDispatcher: ScrollDispatcher,
     private zone: NgZone) { }
 

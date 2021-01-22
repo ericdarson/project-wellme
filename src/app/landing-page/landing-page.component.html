@@ -1,32 +1,63 @@
-<div class="scroll-wrapper" style="overflow-x: hidden;" cdkScrollable >
-   
+<div class="scroll-wrapper" [style.overflow-y]="this.sidenav.opened ? 'hidden' : 'auto'" cdkScrollable >
     <div class="background-all">
-        <mat-toolbar  class="sticky-toolbar" [style.background-color]="'rgba(255,255,255,' + opacity +')'">
-            <div class="flex width-full" style="justify-content: space-between;padding-left: 3em;padding-right: 3em;">
-                <div style="width: 50%;">
+        <mat-toolbar fxShow="true" fxHide.lt-md="true" class="sticky-toolbar" [style.background-color]="'rgba(255,255,255,' + opacity +')'">
+            <div class="flex row width-full" >
+                <div class="col-sm-3 text-center">
                     <img src="assets/icon/well-me-logo.png" alt="Wellme" width="150" height="50">
                 </div>
-                <div class="flex" style="justify-content: space-between; width: 50%; align-items: center;">
-                    <div class="clickable">
+                <div class="col-sm-9 flex" style="justify-content: space-between; align-items: center;">
+                    <div class="clickable text-center col-md-3 font-18">
                         <b>Reksadana</b>
                     </div>
-                    <div class="clickable">
+                    <div class="clickable text-center col-md-2 font-18">
                         <b>Blog</b>
                     </div>
-                    <div class="clickable">
+                    <div class="clickable text-center col-md-2 font-18">
                         <b>FAQ</b>
                     </div>
-                    <div class="clickable">
+                    <div class="clickable text-center col-md-3 font-18">
                         <b>Tentang Wellme</b>
                     </div>
-                    <div class="clickable">
-                        <b>Login</b>
-                    </div>
+                    <button mat-button class="button-fill font-18 col-md-2">Yuk Mulai</button>
                 </div>
             </div>
         </mat-toolbar>
-		<div class="flex row" style="justify-content: space-between; padding: 4em 6em 4em 6em;">
-            <div class="col-md-6" style=" padding-top: 4em; margin-bottom: 3em;">
+        <mat-sidenav-container fxHide="true" fxShow.lt-md="true" class="sticky-toolbar" [style.background-color]="'rgba(255,255,255,' + opacity +')'">
+            <mat-sidenav-content fxFlexFill>
+                <div class="flex width-full" style="justify-content: space-between;padding: 1em;" >
+                    <div class="text-center" >
+                        <img src="assets/icon/well-me-logo.png" class="img-fluid" alt="Wellme" width="150" height="50">
+                    </div>
+                    <div class="flex" style="justify-content: space-between; align-items: center;">
+                        <mat-icon *ngIf="!this.sidenav.opened" class="clickable" (click)="sidenav.toggle()">dehaze</mat-icon>
+                        <mat-icon *ngIf="this.sidenav.opened" class="clickable" (click)="sidenav.toggle()">close</mat-icon>
+                    </div>
+                </div>
+            </mat-sidenav-content>
+            
+        </mat-sidenav-container>
+        <mat-sidenav #sidenav fxHide="true" fxShow.lt-md="true"  class="width-full" 
+        style="margin-top: 7em;z-index: 1036;background-color: rgba(255,255,255);">
+            <div class="width-full" style="margin-top: 1em;">
+                <div class="clickable text-center font-24 padding-1em hover-wellme">
+                    <b>Reksadana</b>
+                </div>
+                <div class="clickable text-center font-24 padding-1em hover-wellme">
+                    <b>Blog</b>
+                </div>
+                <div class="clickable text-center font-24 padding-1em hover-wellme ">
+                    <b>FAQ</b>
+                </div>
+                <div class="clickable text-center font-24 padding-1em hover-wellme">
+                    <b>Tentang Wellme</b>
+                </div>
+                <div class="clickable text-center font-24 padding-1em hover-wellme">
+                    <b>Login</b>
+                </div>
+            </div>
+        </mat-sidenav>
+		<div class="flex row" style="justify-content: space-between; margin-top: 4em;padding-left: 6em; padding-right: 6em;">
+            <div class="col-md-6" style="padding-top: 4em; margin-bottom: 3em; ">
                 <div class="font-48 text-wellme-color" style="line-height: 64px;">
                     <b>APLIKASI PENGELOLA
                         INVESTASI REKSA DANA</b>
@@ -41,7 +72,7 @@
                 </div>
             </div>
             <div class="col-md-6 text-center" >
-                <img src="assets/img/phone-landing-page-1.png" alt="Wellme">
+                <img  class="img-fluid" src="assets/img/phone-landing-page-1.png" alt="Wellme">
             </div>
         </div>
         <div class="flex row" style="justify-content: space-between; padding: 4em 6em 4em 6em;">
@@ -74,7 +105,7 @@
                     memaksimalkan keuntungan lewat diversifikasi produk.
                 </div>
             </div>
-            <div class="col-md-5" style="margin-left: 3em; ">
+            <div class="col-md-5">
                 <img style="width: 100%" class="img-fluid" src="assets/img/landing-page-icon-2.png">
             </div>
         </div>
@@ -90,11 +121,11 @@
                     menguji strategi investasi, tanpa resiko.
                 </div>        
             </div>
-            <div class="col-md-12" style=" margin-top: 3em; padding-left: 5em;">
+            <div class="col-md-12" style=" margin-top: 3em;">
                 <img  class="img-fluid" src="assets/img/phone-landing-page-2.png">
             </div>
         </div>
-        <div class="flex row" style="justify-content: space-between; padding: 4em 12em 4em 12em;">
+        <div class="flex row" style="justify-content: space-between; padding-right: 4em;padding-left: 4em;">
             <div class="col-md-3 box-landing-page-item text-center" style="padding: 1em; margin-bottom: 2em;">
                 <div>
                     Gratis Biaya Komisi
@@ -126,7 +157,7 @@
                 </div>
             </div>
         </div>
-        <div class="row background-down text-center" style="padding: 20em 6em 4em 6em; justify-content: center;">
+        <div class="row background-down text-center" style="padding: 20em 6em 4em 6em; margin-top: 3em; justify-content: center;">
            <div class="col-md-12 font-32">
                 Rancang Masa Depan dengan Wellme.
            </div>
@@ -134,7 +165,7 @@
                 Dream. Invest. Enjoy.
            </div>
            <div>
-                <img style="width: 100%;margin-top: 5em;" class="img-fluid" src="assets/img/app-store-icon.png" alt="Wellme">
+                <img style="width: 100%;margin-top: 5em; margin-bottom: 20em;" class="img-fluid" src="assets/img/app-store-icon.png" alt="Wellme">
            </div>
         </div>
 	</div>

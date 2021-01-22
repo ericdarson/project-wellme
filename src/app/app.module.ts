@@ -73,26 +73,12 @@ import { BackwardResultComponent } from './components/backward-result/backward-r
   declarations: [
     AppComponent,
     HomeComponent,
-    FinancialPlannerListComponent,
-    PilihTargetComponent,
-    PortofolioBaruComponent,
-    SimulasiPlannerComponent,
-      SummaryPlannerComponent,
     
-    DetailPlannerComponent,
-    BeliReksadanaComponent,
-    PromoKodeComponent,
-    ProductDetailComponent,
-    KonfirmasiTransaksiComponent,
-    BackwardResultComponent,
     LandingPageComponent,
-    BackwardProjectionComponent,
-    PopupSyaratKetentuanComponent,
-    BackwardListReksadanaComponent,
-    BackwardPembelianComponent,
-    BackwardSimulasiComponent,
+
     DetailTransaksiComponent,
     PinComponent,
+
   ],
   imports: [
     BrowserModule,

@@ -9,6 +9,7 @@ import { PopupSyaratKetentuanComponent } from '../popup/popup-syarat-ketentuan/p
 import { BackwardPembelianComponent } from '../components/backward-pembelian/backward-pembelian.component';
 import { BackwardSimulasiComponent } from '../components/backward-simulasi/backward-simulasi.component';
 import { BackwardListReksadanaComponent } from '../components/backward-list-reksadana/backward-list-reksadana.component';
+import { BackwardResultComponent } from '../components/backward-result/backward-result.component';
 
 
 @NgModule({
@@ -19,7 +20,7 @@ import { BackwardListReksadanaComponent } from '../components/backward-list-reks
     BackwardListReksadanaComponent,
     BackwardPembelianComponent,
     BackwardSimulasiComponent,
-  
+    BackwardResultComponent,
   ],
   imports: [
     CommonModule,

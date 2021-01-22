@@ -27,7 +27,6 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'index',  loadChildren: () => IndexModule },
   { path: 'backward-projection',  loadChildren: () => BackwardModuleModule },
-  
   { path: 'landing-page',  loadChildren: () => LandingPageModule },
   { path: 'pilih-target', component: PilihTargetComponent},
   { path: 'detail-portofolio', component:PortofolioBaruComponent},

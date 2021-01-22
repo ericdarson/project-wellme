@@ -36,10 +36,11 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { MatButtonModule } from '@angular/material/button';
 import { PortofolioComponent } from '../components/portofolio/portofolio.component';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {ScrollingModule , ScrollDispatcher} from '@angular/cdk/scrolling';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -86,6 +87,8 @@ import {ScrollingModule , ScrollDispatcher} from '@angular/cdk/scrolling';
     MatButtonModule,
     NgbModule,
     ScrollingModule,
+    MatGridListModule,
+    FlexLayoutModule,
   ],
   imports: [
     CommonModule,
@@ -141,6 +144,8 @@ import {ScrollingModule , ScrollDispatcher} from '@angular/cdk/scrolling';
     MatButtonModule,
     NgbModule,
     ScrollingModule,
+    MatGridListModule,
+    FlexLayoutModule
   ],
 })
 export class SharedModule { 
@@ -149,6 +154,8 @@ export class SharedModule {
           ngModule: SharedModule,
           providers: [
             ScrollDispatcher,
+            CurrencyPipe,
+            MatDatepickerModule
           ]
         };
       }
