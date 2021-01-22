@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RouteConfigLoadEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-financial-planner-list',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FinancialPlannerListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
   }
 
+
+  portofolioClicked():void{
+    this.router.navigate(['/financial-planner/detail-planner'])
+  }
 }

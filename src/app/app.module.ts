@@ -63,9 +63,11 @@ import { BeliReksadanaComponent } from './components/beli-reksadana/beli-reksada
 import { PromoKodeComponent } from './components/promo-kode/promo-kode.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { KonfirmasiTransaksiComponent } from './components/konfirmasi-transaksi/konfirmasi-transaksi.component';
-import { BackwardResultComponent } from './components/backward-result/backward-result.component';
-import { LandingPageComponent } from './landing-page/landing-page.component';
+import { DetailTransaksiComponent } from './components/detail-transaksi/detail-transaksi.component';
+import { PinComponent } from './components/pin/pin.component';
 import { ScrollDispatcher } from '@angular/cdk/overlay';
+import { LandingPageComponent } from './landing-page/landing-page.component';
+import { BackwardResultComponent } from './components/backward-result/backward-result.component';
 
 @NgModule({
   declarations: [
@@ -83,13 +85,20 @@ import { ScrollDispatcher } from '@angular/cdk/overlay';
     ProductDetailComponent,
     KonfirmasiTransaksiComponent,
     BackwardResultComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    BackwardProjectionComponent,
+    PopupSyaratKetentuanComponent,
+    BackwardListReksadanaComponent,
+    BackwardPembelianComponent,
+    BackwardSimulasiComponent,
+    DetailTransaksiComponent,
+    PinComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    SharedModule,
+    SharedModule
   ],
   providers: [Globals,MatDatepickerModule,CurrencyPipe,ScrollDispatcher],
   bootstrap: [AppComponent]

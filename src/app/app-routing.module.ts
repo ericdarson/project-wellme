@@ -18,15 +18,13 @@ import { BeliReksadanaComponent } from './components/beli-reksadana/beli-reksada
 import { PromoKodeComponent } from './components/promo-kode/promo-kode.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { KonfirmasiTransaksiComponent } from './components/konfirmasi-transaksi/konfirmasi-transaksi.component';
+import { FinancialPlannerModule } from './financial-planner/financial-planner.module';
 import { BackwardModuleModule } from './backward-module/backward-module.module';
-import { LandingPageComponent } from './landing-page/landing-page.component';
 import { LandingPageModule } from './landing-page/landing-page.module';
 
 const routes: Routes = [
   { path: '', redirectTo: 'landing-page', pathMatch: 'full'},
   { path: 'home', component: HomeComponent },
- 
-  { path: 'planner-list', component: FinancialPlannerListComponent },
   { path: 'index',  loadChildren: () => IndexModule },
   { path: 'backward-projection',  loadChildren: () => BackwardModuleModule },
   
@@ -34,13 +32,8 @@ const routes: Routes = [
   { path: 'pilih-target', component: PilihTargetComponent},
   { path: 'detail-portofolio', component:PortofolioBaruComponent},
   { path: 'simulasi-planner', component:SimulasiPlannerComponent},
-  
-  { path:'summary-planner', component:SummaryPlannerComponent},
-  { path:'detail-planner', component:DetailPlannerComponent},
-  { path:'beli-reksadana', component:BeliReksadanaComponent},
-  { path:'promo-kode', component:PromoKodeComponent},
-  { path:'product-detail', component:ProductDetailComponent},
-  { path:'konfirmasi-transaksi', component:KonfirmasiTransaksiComponent},
+  { path: 'financial-planner',  loadChildren: () => FinancialPlannerModule},
+
   
 
 ];
