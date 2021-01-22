@@ -58,39 +58,31 @@ import { BackwardPembelianComponent } from './components/backward-pembelian/back
 import { CurrencyPipe } from '@angular/common';
 import { BackwardSimulasiComponent } from './components/backward-simulasi/backward-simulasi.component';
 import { DetailPlannerComponent } from './components/detail-planner/detail-planner.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { BeliReksadanaComponent } from './components/beli-reksadana/beli-reksadana.component';
 import { PromoKodeComponent } from './components/promo-kode/promo-kode.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { KonfirmasiTransaksiComponent } from './components/konfirmasi-transaksi/konfirmasi-transaksi.component';
+import { DetailTransaksiComponent } from './components/detail-transaksi/detail-transaksi.component';
+import { PinComponent } from './components/pin/pin.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    FinancialPlannerListComponent,
-    PilihTargetComponent,
-    PortofolioBaruComponent,
-    SimulasiPlannerComponent,
-    SummaryPlannerComponent,
     BackwardProjectionComponent,
     PopupSyaratKetentuanComponent,
     BackwardListReksadanaComponent,
     BackwardPembelianComponent,
     BackwardSimulasiComponent,
-    DetailPlannerComponent,
-    BeliReksadanaComponent,
-    PromoKodeComponent,
-    ProductDetailComponent,
-    KonfirmasiTransaksiComponent
+    DetailTransaksiComponent,
+    PinComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    SharedModule,
-    MatButtonModule,
-    NgbModule,
+    SharedModule
 
   ],
   providers: [Globals,MatDatepickerModule,CurrencyPipe],

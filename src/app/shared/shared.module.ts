@@ -38,7 +38,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { PortofolioComponent } from '../components/portofolio/portofolio.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
    
@@ -81,6 +81,7 @@ import { FormsModule } from '@angular/forms';
     InfiniteScrollModule,
     
     MatButtonModule,
+    NgbModule,
   ],
   imports: [
     CommonModule,
@@ -133,6 +134,9 @@ import { FormsModule } from '@angular/forms';
     MatSortModule,
     MatPaginatorModule,
     InfiniteScrollModule,
+    
+    MatButtonModule,
+    NgbModule,
   ],
 })
 export class SharedModule { 

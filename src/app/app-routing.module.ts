@@ -18,26 +18,18 @@ import { BeliReksadanaComponent } from './components/beli-reksadana/beli-reksada
 import { PromoKodeComponent } from './components/promo-kode/promo-kode.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { KonfirmasiTransaksiComponent } from './components/konfirmasi-transaksi/konfirmasi-transaksi.component';
+import { FinancialPlannerModule } from './financial-planner/financial-planner.module';
 
 const routes: Routes = [
   { path: '', redirectTo: 'index', pathMatch: 'full'},
   { path: 'home', component: HomeComponent },
- 
-  { path: 'planner-list', component: FinancialPlannerListComponent },
   { path: 'index',  loadChildren: () => IndexModule },
-  { path: 'pilih-target', component: PilihTargetComponent},
-  { path: 'detail-portofolio', component:PortofolioBaruComponent},
-  { path: 'simulasi-planner', component:SimulasiPlannerComponent},
+  { path: 'financial-planner',  loadChildren: () => FinancialPlannerModule},
   { path: 'backward-projection', component:BackwardProjectionComponent},
   { path: 'backward-list-reksadana', component:BackwardListReksadanaComponent},
   { path: 'backward-pembelian/:id', component:BackwardPembelianComponent},
   { path: 'backward-simulasi/:id', component:BackwardSimulasiComponent},
-  { path:'summary-planner', component:SummaryPlannerComponent},
-  { path:'detail-planner', component:DetailPlannerComponent},
-  { path:'beli-reksadana', component:BeliReksadanaComponent},
-  { path:'promo-kode', component:PromoKodeComponent},
-  { path:'product-detail', component:ProductDetailComponent},
-  { path:'konfirmasi-transaksi', component:KonfirmasiTransaksiComponent},
+  
   
 
 ];
