@@ -58,11 +58,14 @@ import { BackwardPembelianComponent } from './components/backward-pembelian/back
 import { CurrencyPipe } from '@angular/common';
 import { BackwardSimulasiComponent } from './components/backward-simulasi/backward-simulasi.component';
 import { DetailPlannerComponent } from './components/detail-planner/detail-planner.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { BeliReksadanaComponent } from './components/beli-reksadana/beli-reksadana.component';
 import { PromoKodeComponent } from './components/promo-kode/promo-kode.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { KonfirmasiTransaksiComponent } from './components/konfirmasi-transaksi/konfirmasi-transaksi.component';
+import { BackwardResultComponent } from './components/backward-result/backward-result.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
+import { ScrollDispatcher } from '@angular/cdk/overlay';
 
 @NgModule({
   declarations: [
@@ -72,28 +75,23 @@ import { KonfirmasiTransaksiComponent } from './components/konfirmasi-transaksi/
     PilihTargetComponent,
     PortofolioBaruComponent,
     SimulasiPlannerComponent,
-    SummaryPlannerComponent,
-    BackwardProjectionComponent,
-    PopupSyaratKetentuanComponent,
-    BackwardListReksadanaComponent,
-    BackwardPembelianComponent,
-    BackwardSimulasiComponent,
+      SummaryPlannerComponent,
+    
     DetailPlannerComponent,
     BeliReksadanaComponent,
     PromoKodeComponent,
     ProductDetailComponent,
-    KonfirmasiTransaksiComponent
+    KonfirmasiTransaksiComponent,
+    BackwardResultComponent,
+    LandingPageComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     SharedModule,
-    MatButtonModule,
-    NgbModule,
-
   ],
-  providers: [Globals,MatDatepickerModule,CurrencyPipe],
+  providers: [Globals,MatDatepickerModule,CurrencyPipe,ScrollDispatcher],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

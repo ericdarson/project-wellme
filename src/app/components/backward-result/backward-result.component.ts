@@ -1,16 +1,13 @@
-import { CurrencyPipe, Location } from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { MatCalendar, MatDatepicker } from '@angular/material/datepicker';
-import { ActivatedRoute, Router } from '@angular/router';
+import { CurrencyPipe, Location } from '@angular/common';
 import { Chart } from 'chart.js';
 
 @Component({
-  selector: 'app-backward-pembelian',
-  templateUrl: './backward-pembelian.component.html',
-  styleUrls: ['./backward-pembelian.component.css']
+  selector: 'app-backward-result',
+  templateUrl: './backward-result.component.html',
+  styleUrls: ['./backward-result.component.css']
 })
-export class BackwardPembelianComponent implements OnInit {
+export class BackwardResultComponent implements OnInit {
 
   @ViewChild('line',{static:true})
   myCanvas: ElementRef<HTMLCanvasElement>;
@@ -21,16 +18,10 @@ export class BackwardPembelianComponent implements OnInit {
   threeMonthRangeSelected : boolean =false
   oneYearRangeSelected : boolean =false
   reksaId :string
-  
-  dateNow :Date;
-  constructor(private location: Location,private currencyPipe : CurrencyPipe,private router : Router,private route: ActivatedRoute) {
-    this.route.paramMap.subscribe(params => {
-      this.reksaId = params.get('id')!
-    });
-  }
+
+  constructor(private location : Location) { }
 
   ngOnInit(): void {
-    this.dateNow = new Date();
     this.context = this.myCanvas.nativeElement.getContext('2d'); 
     this.ctx=this.context==null?new CanvasRenderingContext2D():this.context;
     var  chart:any;
@@ -79,22 +70,4 @@ export class BackwardPembelianComponent implements OnInit {
     this.oneYearRangeSelected  = true
     this.oneMonthRangeSelected= this.threeMonthRangeSelected = this.oneWeekRangeSelected = false
   }
-
-  formattedAmount :string;
-  temp :any
-  transformAmount(element:any){
-    this.formattedAmount= this.formattedAmount.replace(/[^0-9]/g, "")
-    console.log(this.formattedAmount)
-    this.temp = this.currencyPipe.transform(this.formattedAmount, ' ');
-    if(this.temp!=null){
-      this.formattedAmount =this.temp
-    }
-    element.target.value = this.formattedAmount;
-  }
-
-  goToSimulasiPage(idReksadana : string){
-    this.router.navigate(['../../backward-simulasi',idReksadana],{relativeTo:this.route})
-  }
-
-
 }

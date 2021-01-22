@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CurrencyPipe, Location } from '@angular/common';
 
 @Component({
   selector: 'app-backward-list-reksadana',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 export class BackwardListReksadanaComponent implements OnInit {
 
   tempVar : any[]
-  constructor(private router : Router) { }
+  constructor(private router : Router, private location:Location,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
 
@@ -48,7 +49,12 @@ export class BackwardListReksadanaComponent implements OnInit {
 
 
   goToPembelianPage(idReksadana : string){
-    this.router.navigate(['./backward-pembelian',idReksadana])
+    console.log(this.router.url)
+    this.router.navigate(['../backward-pembelian',idReksadana], {relativeTo: this.route})
+  }
+
+  goBack(){
+    this.location.back()
   }
 
 }

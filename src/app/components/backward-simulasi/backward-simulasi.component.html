@@ -97,7 +97,7 @@
         </div>
         <div class="flex" style="justify-content: space-between; align-items: center;">
             <div>
-                NAB/ Unit Beli
+                NAB/ Unit Simulasi
             </div>
             <div class="text-wellme-color">
                 <b>{{2000.08 | currency : 'Rp '}}</b>
@@ -105,28 +105,38 @@
         </div>
         <div class="flex" style="justify-content: space-between; align-items: center;">
             <div>
-                NAB/ Unit Beli
+                Tanggal Beli
             </div>
             <div class="text-wellme-color">
-                <b>1566.08</b>
+                <b>21 Dec 15</b>
             </div>
         </div>
         <div class="flex" style="justify-content: space-between; align-items: center;">
             <div>
-                NAB/ Unit Beli
+                Tanggal Durasi Investasi
             </div>
             <div class="text-wellme-color">
-                <b>1566.08</b>
+                <b>28 Dec 15</b>
             </div>
         </div>
         <div class="flex" style="justify-content: space-between; align-items: center;">
             <div>
-                NAB/ Unit Beli
+                Total Investasi Anda Setelah
             </div>
             <div class="text-wellme-color">
-                <b>1566.08</b>
+                <b>7 Hari</b>
             </div>
         </div>
+        <div class="width-full text-center font-24 text-wellme-color" style="margin-top: 1em; margin-bottom: 1em;">
+            <b>{{1566.08 | currency : 'Rp '}}</b>
+        </div>
+        <button mat-button class="pilih-button width-full " (click)="goToBackwardResult()">  
+            <b>Lihat Proyeksi</b>    
+        </button>
     </div>
-   
+    <button mat-button class="button-fill clickable text-center width-full" style="padding: 1em;" (click)="selectHari()">
+       <div>
+           <b>Selesai</b>
+       </div>
+   </button>
 </div>

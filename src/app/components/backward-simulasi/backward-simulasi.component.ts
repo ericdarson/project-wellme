@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CurrencyPipe, Location } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-backward-simulasi',
   templateUrl: './backward-simulasi.component.html',
@@ -11,7 +12,7 @@ export class BackwardSimulasiComponent implements OnInit {
   mingguSelected: boolean = false;
   bulanSelected: boolean = false;
   
-  constructor(private location: Location) { }
+  constructor(private location: Location,private router : Router,private route : ActivatedRoute) { }
 
   ngOnInit(): void {
   }
@@ -32,5 +33,9 @@ export class BackwardSimulasiComponent implements OnInit {
   selectBulan(){
     this.bulanSelected  = true
     this.hariSelected = this.mingguSelected = false
+  }
+
+  goToBackwardResult(){
+    this.router.navigate(['../../backward-result'],{relativeTo:this.route})
   }
 }
