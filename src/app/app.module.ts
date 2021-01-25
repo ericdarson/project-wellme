@@ -68,16 +68,16 @@ import { PinComponent } from './components/pin/pin.component';
 import { ScrollDispatcher } from '@angular/cdk/overlay';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { BackwardResultComponent } from './components/backward-result/backward-result.component';
+import { PromoDetailComponent } from './components/promo-detail/promo-detail.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    
     LandingPageComponent,
+    PromoDetailComponent
 
-    DetailTransaksiComponent,
-    PinComponent,
 
   ],
   imports: [

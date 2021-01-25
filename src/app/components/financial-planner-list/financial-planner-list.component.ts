@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouteConfigLoadEnd, Router } from '@angular/router';
+import { PlannerService } from 'src/app/services/planner.service';
 
 @Component({
   selector: 'app-financial-planner-list',
@@ -7,14 +8,33 @@ import { RouteConfigLoadEnd, Router } from '@angular/router';
   styleUrls: ['./financial-planner-list.component.css']
 })
 export class FinancialPlannerListComponent implements OnInit {
-
-  constructor(private router:Router) { }
+shimmering:string="block";
+listDisplay:string="hidden";
+  listPlanner:any;
+  listPlannerDisplay:any;
+  constructor(private router:Router,private plannerService:PlannerService) { }
 
   ngOnInit(): void {
+    this.getListPlanner();
   }
 
 
-  portofolioClicked():void{
-    this.router.navigate(['/financial-planner/detail-planner'])
+  portofolioClicked(plan:any):void{
+    this.plannerService.setIdDetail(plan.id_plan);
+    this.router.navigate(['/financial-planner/detail-planner'],plan.id_plan);
+  }
+
+  getListPlanner():void{
+    this.plannerService.getPlannerList().subscribe(response=>{
+      console.log(response);
+      this.listPlanner=response.output_schema.list_planner;
+      this.listPlanner.forEach((element:any) => {
+        var round=Math.ceil(element.current/element.floor)
+        this.shimmering="hidden";
+        this.listPlannerDisplay="block";
+      });
+    },(error)=>{
+      console.log('err-->',error);
+    })
   }
 }

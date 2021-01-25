@@ -21,6 +21,7 @@ import { KonfirmasiTransaksiComponent } from './components/konfirmasi-transaksi/
 import { FinancialPlannerModule } from './financial-planner/financial-planner.module';
 import { BackwardModuleModule } from './backward-module/backward-module.module';
 import { LandingPageModule } from './landing-page/landing-page.module';
+import { PromoModule } from './promo/promo.module';
 
 const routes: Routes = [
   { path: '', redirectTo: 'landing-page', pathMatch: 'full'},
@@ -32,6 +33,7 @@ const routes: Routes = [
   { path: 'detail-portofolio', component:PortofolioBaruComponent},
   { path: 'simulasi-planner', component:SimulasiPlannerComponent},
   { path: 'financial-planner',  loadChildren: () => FinancialPlannerModule},
+  { path: 'promo',  loadChildren: () => PromoModule},
 
   
 

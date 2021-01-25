@@ -209,3 +209,10 @@ a:hover, a:focus .project-name {
 .hover-wellme:hover{
     color:#6ED940;
 }
+
+.hidden{
+    display:none;
+}
+.block{
+    display: block;
+}

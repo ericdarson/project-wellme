@@ -1,6 +1,6 @@
 <div class="jflex-column" style="height: 100%;">
     <div class="jflex-row" style="padding-top:20px;">
-        <a mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+        <a mat-icon-button aria-label="Example icon button with a vertical three dot icon" (click)="goBack()">
             <mat-icon>chevron_left</mat-icon>
         </a>
         <h1 style="flex-basis: 90%; text-align: center;;" class="headFont">Macbook Baru</h1>
@@ -10,9 +10,9 @@
         <mat-card class="box-outline litle-space" style="width: 100%;">
            <div class="jflex-row stretch">
                <div class="jflex-column">
-                    <div>Target Tabungan</div>
-                    <h1 class="font-green">25,000,000</h1>
-                    <div>Deadline: December,2021</div>
+                    <div>{{plan.nama_plan}}</div>
+                    <h1 class="font-green">{{plan.target_plan | currency:'Rp ':'code'}}</h1>
+                    <div>Deadline: {{plan.due_date}}</div>
                </div>
                <div class="jflex-column center-main-axis center-cross-axis">
                    <a mat-icon-button>
@@ -23,19 +23,19 @@
         </mat-card>
     <div class="jflex-column little-space">
         <div class="jflex-row">
-            <img style="width: 100px; height: 100px;" src="assets/img/laptop_1.png">
-            <img style="width: 100px; height: 100px;" src="assets/img/laptop_2.png">
-            <img style="width: 100px; height: 100px;" src="assets/img/laptop_3.png">
+            <img style="width: 100px; height: 100px;" src="{{imgSrcSequence[0]}}">
+            <img style="width: 100px; height: 100px;" src="{{imgSrcSequence[1]}}">
+            <img style="width: 100px; height: 100px;" src="{{imgSrcSequence[2]}}">
         </div>
         <div class="jflex-row">
-            <img style="width: 100px; height: 100px;" src="assets/img/laptop_4.png">
-            <img style="width: 100px; height: 100px;" src="assets/img/laptop_5.png">
-            <img style="width: 100px; height: 100px;" src="assets/img/laptop_6.png">
+            <img style="width: 100px; height: 100px;" src="{{imgSrcSequence[3]}}">
+            <img style="width: 100px; height: 100px;" src="{{imgSrcSequence[4]}}">
+            <img style="width: 100px; height: 100px;" src="{{imgSrcSequence[5]}}">
         </div>
         <div class="jflex-row">
-            <img style="width: 100px; height: 100px;" src="assets/img/laptop_7.png">
-            <img style="width: 100px; height: 100px;" src="assets/img/laptop_8.png">
-            <img style="width: 100px; height: 100px;" src="assets/img/laptop_9.png">
+            <img style="width: 100px; height: 100px;" src="{{imgSrcSequence[6]}}">
+            <img style="width: 100px; height: 100px;" src="{{imgSrcSequence[7]}}">
+            <img style="width: 100px; height: 100px;" src="{{imgSrcSequence[8]}}">
         </div>
  
         
@@ -43,14 +43,15 @@
      
     </div>
     <div class="jflex-column little-space center-cross-axis center-main-axis">
-        <p style="width: 500px;"><ngb-progressbar style="background-color:#6ED940" type="success" [height]="'50px'"  textType="white" [value]="25" [showValue]="true"></ngb-progressbar></p>    
-        <h1><strong>2,000,000/25,000,000</strong></h1>
+        <p style="width: 90%;"><ngb-progressbar style="background-color: #B7EC9F;"  [height]="'50px'" textType="white" [value]="plan.current_amount/plan.target_plan*100>100?100:plan.current_amount/plan.target_plan*100" [showValue]="true"></ngb-progressbar></p>    
+        <h1><strong>{{plan.current_amount | currency:' ':'code'}}/{{plan.target_plan | currency:' ':'code'}}</strong></h1>
     </div> 
     
     
     
     <div class=" jflex-column padding-beauty center-cross-axis">
-        <a mat-button  class="litle-space box-outline" style="background-color: white; color: #6ED940; border: 2px solid #6ED940; width: 80%; ">Jual Reksadana</a>
-        <a href="financial-planner/beli-reksadana" mat-raised-button style="background-color: #6ED940; color: white; width: 80%; ">Beli Reksadana</a>
+        <a href="financial-planner/beli-reksadana" mat-raised-button style="background-color: #6ED940; color: white; width: 100%; ">Lihat Detail</a>
+        <!-- <a mat-button  class="litle-space box-outline" style="background-color: white; color: #6ED940; border: 2px solid #6ED940; width: 100%; ">Jual Reksadana</a>
+        <a href="financial-planner/beli-reksadana" mat-raised-button style="background-color: #6ED940; color: white; width: 100%; ">Beli Reksadana</a> -->
     </div>
 </div>
