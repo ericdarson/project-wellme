@@ -6,10 +6,10 @@
   }
 
 
-    .scroll-wrapper {    
-        overflow: auto;
-       max-height: 100vh; 
-   }
+.scroll-wrapper {    
+    overflow: auto;
+    max-height: 100vh; 
+}
 
 .row{
     margin-left: 0px !important;
@@ -23,9 +23,11 @@
 }
 
 .background-down{
-    background-image: url('../../assets/img/landing-page-icon-3.png');
+    background-image: url('../../assets/img/bg-landing-page-2.png');
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
+    height: 100%;
+    background-position: center;
 }
 
 .rounded-button-fill{
@@ -56,4 +58,8 @@
 
 ::ng-deep .mat-toolbar-row, .mat-toolbar-single-row {
     height: 100%;
+}
+
+.page-footer{
+    background: #E6FFDB;
 }

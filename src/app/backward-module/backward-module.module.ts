@@ -10,6 +10,8 @@ import { BackwardPembelianComponent } from '../components/backward-pembelian/bac
 import { BackwardSimulasiComponent } from '../components/backward-simulasi/backward-simulasi.component';
 import { BackwardListReksadanaComponent } from '../components/backward-list-reksadana/backward-list-reksadana.component';
 import { BackwardResultComponent } from '../components/backward-result/backward-result.component';
+import { PopupTutorialBackwardComponent } from '../popup/popup-tutorial-backward/popup-tutorial-backward.component';
+import { BackwardTutorialComponent } from '../components/backward-tutorial/backward-tutorial.component';
 
 
 @NgModule({
@@ -21,6 +23,8 @@ import { BackwardResultComponent } from '../components/backward-result/backward-
     BackwardPembelianComponent,
     BackwardSimulasiComponent,
     BackwardResultComponent,
+    PopupTutorialBackwardComponent,
+    BackwardTutorialComponent,
   ],
   imports: [
     CommonModule,

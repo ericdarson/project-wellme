@@ -5,6 +5,7 @@ import { BackwardPembelianComponent } from '../components/backward-pembelian/bac
 import { BackwardProjectionComponent } from '../components/backward-projection/backward-projection.component';
 import { BackwardResultComponent } from '../components/backward-result/backward-result.component';
 import { BackwardSimulasiComponent } from '../components/backward-simulasi/backward-simulasi.component';
+import { BackwardTutorialComponent } from '../components/backward-tutorial/backward-tutorial.component';
 import { BackwardModuleComponent } from './backward-module.component';
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
       { path: 'backward-pembelian/:id', component:BackwardPembelianComponent},
       { path: 'backward-simulasi/:id', component:BackwardSimulasiComponent},
       { path: 'backward-result', component:BackwardResultComponent},
+      { path: 'backward-tutorial', component:BackwardTutorialComponent},
     ]
   }
 ];

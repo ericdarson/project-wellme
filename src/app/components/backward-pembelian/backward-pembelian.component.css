@@ -10,3 +10,24 @@
     color: #309F00;
     border: 1px solid #6ED940;
 }
+
+::ng-deep.mat-form-field-underline {
+    /*change color of underline*/
+    background-color: #6ED940 !important;
+  } 
+  
+  ::ng-deep.mat-form-field-ripple {
+   /*change color of underline when focused*/
+   background-color: #6ED940 !important;;
+  }
+
+  input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input {
+    color: #6ED940;
+    font-weight: bold;
+}

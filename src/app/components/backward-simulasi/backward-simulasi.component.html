@@ -1,4 +1,4 @@
-<div class="master-component">
+<div class="master-component container">
     <div class="jflex-row" style="padding-top:20px;">
         <mat-icon class="clickable" (click)="back()">chevron_left</mat-icon>
         <h1 style="text-align: center;" class="width-full headFont"><b>Backward Projection</b></h1>
@@ -10,133 +10,150 @@
         </div>
     </div>
 
-    <div class="profile-item-box" style="padding: 1em;">
-        <div class="text-wellme-color font-18">
-            <b>Batavia Dana Kas Maxima</b>
-        </div>
-        <div style="margin-top: 1em;">
-            <div>
-                Nominal Pembelian
-            </div>
-            <div class="text-wellme-color">
-                <b>{{200000 | currency : 'Rp '}}</b>
-            </div>
-            <div class="flex" style="justify-content: space-between;margin-top: 1em;align-items: center;">
-                <div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="profile-item-box" style="padding: 1em;">
+                <div class="text-wellme-color font-18">
+                    <b>Batavia Dana Kas Maxima</b>
+                </div>
+                <div class="mt-5">
                     <div>
-                        NAB/ Unit
+                        Nominal Pembelian
                     </div>
                     <div class="text-wellme-color">
-                        <b>{{1500 | currency : 'Rp '}}</b>
+                        <b>{{200000 | currency : 'Rp '}}</b>
+                    </div>
+                    <div class="flex mt-4" style="justify-content: space-between;align-items: center;">
+                        <div>
+                            <div>
+                                NAB/ Unit
+                            </div>
+                            <div class="text-wellme-color">
+                                <b>{{1500 | currency : 'Rp '}}</b>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                Total Unit NAB
+                            </div>
+                            <div class="text-wellme-color">
+                                <b>30</b>&nbsp;
+                                <b>Unit</b>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="profile-item-box" style="padding: 1em;">
+                <div class="flex" style="justify-content: space-between; align-items: center;">
                     <div>
-                        Total Unit NAB
+                        <div class=" font-16">
+                            <b>Lamanya Investasi</b>
+                        </div>
+                        <mat-form-field>
+                            <mat-label></mat-label>
+                            <input matInput type="number" [(ngModel)]="lamaInvestasi" placeholder="(contoh : 1,2,3, dst..)" />
+                        </mat-form-field>
                     </div>
-                    <div class="text-wellme-color">
-                        <b>30</b>&nbsp;
-                        <b>Unit</b>
+                    <div>
+                        <button mat-button class="pilih-button width-full ">  
+                            <b>Terapkan </b>    
+                        </button>
                     </div>
                 </div>
             </div>
+            <mat-grid-list cols="3" rowHeight="5em">
+                <mat-grid-tile>
+                    <button mat-button [ngClass]="hariSelected ? 'button-fill' : 'button-range'"
+                     class="clickable text-center width-full" style="padding: 1em;" (click)="selectHari()">
+                        <div>
+                            <b>Hari</b>
+                        </div>
+                    </button>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <button mat-button [ngClass]="mingguSelected ? 'button-fill' : 'button-range'"
+                     class="clickable text-center width-full" style="padding: 1em;" (click)="selectMinggu()">
+                        <div>
+                            <b>Minggu</b>
+                        </div>
+                    </button>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <button mat-button  [ngClass]="bulanSelected ? 'button-fill' : 'button-range'"
+                     class=" clickable text-center width-full" style="padding: 1em;" (click)="selectBulan()">
+                        <div>
+                            <b>Bulan</b>
+                        </div>
+                    </button>
+                </mat-grid-tile>
+            </mat-grid-list>
         </div>
     </div>
-    <div class="profile-item-box" style="padding: 1em;">
-        <div class="flex" style="justify-content: space-between; align-items: center;">
-            <div>
-                <div class=" font-16">
-                    <b>Lamanya Investasi</b>
-                </div>
-                <mat-form-field>
-                    <mat-label></mat-label>
-                    <input matInput type="number" [(ngModel)]="lamaInvestasi" placeholder="(contoh : 1,2,3, dst..)" />
-                </mat-form-field>
-            </div>
-            <div>
-                <button mat-button class="pilih-button width-full ">  
-                    <b>Terapkan </b>    
-                </button>
-            </div>
-        </div>
-    </div>
-    <mat-grid-list cols="3" rowHeight="6em">
-        <mat-grid-tile>
-            <button mat-button [ngClass]="hariSelected ? 'button-fill' : 'button-range'"
-             class="clickable text-center width-full" style="padding: 1em;" (click)="selectHari()">
+   
+    <div class="row mt-3">
+        <div class="col-md-6">
+            <div class="profile-item-box" style="padding: 1em;">
+            <div class="flex" style="justify-content: space-between; align-items: center;">
                 <div>
-                    <b>Hari</b>
+                    NAB/ Unit Beli
                 </div>
-            </button>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <button mat-button [ngClass]="mingguSelected ? 'button-fill' : 'button-range'"
-             class="clickable text-center width-full" style="padding: 1em;" (click)="selectMinggu()">
-                <div>
-                    <b>Minggu</b>
+                <div class="text-wellme-color">
+                    <b>{{1566.08 | currency : 'Rp '}}</b>
                 </div>
-            </button>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <button mat-button  [ngClass]="bulanSelected ? 'button-fill' : 'button-range'"
-             class=" clickable text-center width-full" style="padding: 1em;" (click)="selectBulan()">
-                <div>
-                    <b>Bulan</b>
-                </div>
-            </button>
-        </mat-grid-tile>
-    </mat-grid-list>
-    <div class="profile-item-box" style="padding: 1em;">
-        <div class="flex" style="justify-content: space-between; align-items: center;">
-            <div>
-                NAB/ Unit Beli
             </div>
-            <div class="text-wellme-color">
+            <div class="flex" style="justify-content: space-between; align-items: center;">
+                <div>
+                    NAB/ Unit Simulasi
+                </div>
+                <div class="text-wellme-color">
+                    <b>{{2000.08 | currency : 'Rp '}}</b>
+                </div>
+            </div>
+            <div class="flex" style="justify-content: space-between; align-items: center;">
+                <div>
+                    Tanggal Beli
+                </div>
+                <div class="text-wellme-color">
+                    <b>21 Dec 15</b>
+                </div>
+            </div>
+            <div class="flex" style="justify-content: space-between; align-items: center;">
+                <div>
+                    Tanggal Durasi Investasi
+                </div>
+                <div class="text-wellme-color">
+                    <b>28 Dec 15</b>
+                </div>
+            </div>
+            <div class="flex" style="justify-content: space-between; align-items: center;">
+                <div>
+                    Total Investasi Anda Setelah
+                </div>
+                <div class="text-wellme-color">
+                    <b>7 Hari</b>
+                </div>
+            </div>
+            <div class="width-full text-center font-24 text-wellme-color" style="margin-top: 1em; margin-bottom: 1em;">
                 <b>{{1566.08 | currency : 'Rp '}}</b>
             </div>
-        </div>
-        <div class="flex" style="justify-content: space-between; align-items: center;">
-            <div>
-                NAB/ Unit Simulasi
-            </div>
-            <div class="text-wellme-color">
-                <b>{{2000.08 | currency : 'Rp '}}</b>
+            <button mat-button class="pilih-button width-full " (click)="goToBackwardResult()">  
+                <b>Lihat Proyeksi</b>    
+            </button>
             </div>
         </div>
-        <div class="flex" style="justify-content: space-between; align-items: center;">
-            <div>
-                Tanggal Beli
-            </div>
-            <div class="text-wellme-color">
-                <b>21 Dec 15</b>
-            </div>
-        </div>
-        <div class="flex" style="justify-content: space-between; align-items: center;">
-            <div>
-                Tanggal Durasi Investasi
-            </div>
-            <div class="text-wellme-color">
-                <b>28 Dec 15</b>
-            </div>
-        </div>
-        <div class="flex" style="justify-content: space-between; align-items: center;">
-            <div>
-                Total Investasi Anda Setelah
-            </div>
-            <div class="text-wellme-color">
-                <b>7 Hari</b>
-            </div>
-        </div>
-        <div class="width-full text-center font-24 text-wellme-color" style="margin-top: 1em; margin-bottom: 1em;">
-            <b>{{1566.08 | currency : 'Rp '}}</b>
-        </div>
-        <button mat-button class="pilih-button width-full " (click)="goToBackwardResult()">  
-            <b>Lihat Proyeksi</b>    
-        </button>
     </div>
-    <button mat-button class="button-fill clickable text-center width-full" style="padding: 1em;" (click)="selectHari()">
-       <div>
-           <b>Selesai</b>
-       </div>
-   </button>
+   
+    <div class="row mt-4">
+        <div class="col-md-12 text-center">
+            <button mat-button class="button-fill clickable text-center" style="padding: 1em; width: 50%;" (click)="selectHari()">
+                <div>
+                    <b>Selesai</b>
+                </div>
+            </button>
+        </div>
+    </div>
 </div>

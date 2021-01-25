@@ -1,75 +1,167 @@
-<div class="master-component">
+<div class="master-component container">
 
     <img src="../../../assets/icon/well-me-logo.png" alt="Wellme" width="100" height="30">
 
-    <div class="font-14" style="color:rgba(0, 0, 0, 0.6);">
-        Saldo Investasi
-    </div>
-    <div class="flex">
-        <div>
-            Rp
-        </div>
-        <div class="font-20">
-            <b>4,000,000</b>
-        </div>
-    </div>
 
-    <div class="profile-item-box" style="padding: 1em 2em 1em 2em; margin-top: 2em;">
-        <div class="flex" style="align-items: center; justify-content: space-between;">
-            <div>
-                <div class="font-14" >
-                    <b>
-                        Reksadana
-                    </b>
+    <div class="row mt-3" >
+        <div class="profile-item-box width-full" style="padding:2em;">
+            <div class="font-14" style="color:rgba(0, 0, 0, 0.6);">
+                <b>Saldo Investasi</b>
+            </div>
+            <div class="flex mt-2" >
+                <div>
+                    Rp
                 </div>
                 <div class="font-20">
-                    Rp1,000,000
+                    <b>4,000,000</b>
                 </div>
-            </div>
-            <div class="flex" style="align-items: center;">
-                <circle-progress
-                [percent]="90"
-                [radius]="50"
-                [showSubtitle]="false"
-                [renderOnClick]="false"
-                [outerStrokeWidth]="16"
-                [innerStrokeWidth]="8"
-                [outerStrokeColor]="'#78C000'"
-                [innerStrokeColor]="'#C7E596'"
-                [animation]="true"
-                [animationDuration]="300">
-            </circle-progress>
-            <mat-icon class="font-32 clickable" style="margin-left: 2em;">arrow_forward_ios</mat-icon>
             </div>
         </div>
     </div>
-    <div class="profile-item-box" style="padding: 1em 2em 1em 2em; margin-top: 2em;">
-        <div class="flex" style="align-items: center; justify-content: space-between;">
-            <div>
-                <div class="font-14" >
-                    <b>
-                        Reksadana
-                    </b>
+   
+    <div class="row flex">
+        <div class="col-md-4 pl-0">
+            <div class="profile-item-box p-3">
+                <div class="flex">
+                    <div>
+                        <div class="text-wellme-color font-14">
+                            <b>
+                                Yuk Manfaatkan
+                                Fitur Financial Planner!
+                            </b>
+                        </div>
+                        <div class="text-wellme-color font-12">
+                            Buat target, dan tentukan
+                            pilihan reksadana yang
+                            sesuai dengan kamu!
+                        </div>
+                    </div>
+                    <div style="align-self: center;">
+                        <mat-icon class="clickable text-wellme-color" style="font-size: 55px;" [inline]="true">list_alt</mat-icon>
+                    </div>
                 </div>
-                <div class="font-20">
-                    Rp1,000,000
+                <div class="text-center mt-3">
+                    <button mat-button class="pilih-button" >Buat Target</button>
                 </div>
             </div>
-            <div class="flex" style="align-items: center;">
-                <circle-progress
-                    [percent]="50"
-                    [radius]="50"
-                    [showSubtitle]="false"
-                    [renderOnClick]="false"
-                    [outerStrokeWidth]="16"
-                    [innerStrokeWidth]="8"
-                    [outerStrokeColor]="'#78C000'"
-                    [innerStrokeColor]="'#C7E596'"
-                    [animation]="true"
-                    [animationDuration]="300">
-                </circle-progress>
-            <mat-icon class="font-32 clickable" style="margin-left: 2em;">arrow_forward_ios</mat-icon>
+        </div>
+        
+        <div class="col-md-4 pl-0">
+            <div class="profile-item-box p-3">
+                <div class="flex">
+                    <div>
+                        <div class="text-wellme-color font-14">
+                            <b>
+                                Masih bingung cara 
+                                memulai investasi?
+                            </b>
+                        </div>
+                        <div class="text-wellme-color font-12">
+                            Pakai fitur Virtual Trading
+                            agar kamu semakin yakin
+                            dalam berinvestasi!
+                        </div>
+                    </div>
+                    <div style="align-self: center;">
+                        <mat-icon class="clickable text-wellme-color" style="font-size: 55px;" [inline]="true">calculate</mat-icon>
+                    </div>
+                </div>
+                <div class="text-center mt-3">
+                    <button mat-button class="pilih-button">Mulai Belajar</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 px-0">
+            <div class="profile-item-box p-3 ">
+                <div class="flex">
+                    <div>
+                        <div class="text-wellme-color font-14">
+                            <b>
+                                Yuk, cek promo
+                                terbaik hari ini!
+                            </b>
+                        </div>
+                        <div class="text-wellme-color font-12">
+                            Dengan Promo, kamu bisa
+                            dengan mudah mendapatkan
+                            cashback dari transaksi.
+                        </div>
+                    </div>
+                    <div style="align-self: center;">
+                        <mat-icon class="clickable text-wellme-color" style="font-size: 55px;" [inline]="true">loyalty</mat-icon>
+                    </div>
+                </div>
+                <div class="text-center mt-3">
+                    <button mat-button class="pilih-button" >Cek Promo</button>
+                </div>
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-4">
+            <img class="img-fluid mt-4" src="/assets/icon/icon-kategori-1.png" alt="Wellme" width="200" height="150">
+            <img class="img-fluid mt-4"  src="/assets/img/landing-page-icon-2.png" alt="Wellme" width="200" height="150">
+        </div>
+        <div class="col-md-8 px-0 mt-2">
+            <div class="profile-item-box" style="padding: 1em 2em 1em 2em;">
+                <div class="flex" style="align-items: center; justify-content: space-between;">
+                    <div>
+                        <div class="font-14" >
+                            <b>
+                                Reksadana
+                            </b>
+                        </div>
+                        <div class="font-20">
+                            Rp1,000,000
+                        </div>
+                    </div>
+                    <div class="flex" style="align-items: center;">
+                        <circle-progress
+                        [percent]="90"
+                        [radius]="50"
+                        [showSubtitle]="false"
+                        [renderOnClick]="false"
+                        [outerStrokeWidth]="16"
+                        [innerStrokeWidth]="8"
+                        [outerStrokeColor]="'#78C000'"
+                        [innerStrokeColor]="'#C7E596'"
+                        [animation]="true"
+                        [animationDuration]="300">
+                    </circle-progress>
+                    <mat-icon class="font-32 clickable" style="margin-left: 2em;">arrow_forward_ios</mat-icon>
+                    </div>
+                </div>
+            </div>
+            <div class="profile-item-box" style="padding: 1em 2em 1em 2em; margin-top: 2em;">
+                <div class="flex" style="align-items: center; justify-content: space-between;">
+                    <div>
+                        <div class="font-14" >
+                            <b>
+                                Reksadana
+                            </b>
+                        </div>
+                        <div class="font-20">
+                            Rp1,000,000
+                        </div>
+                    </div>
+                    <div class="flex" style="align-items: center;">
+                        <circle-progress
+                            [percent]="50"
+                            [radius]="50"
+                            [showSubtitle]="false"
+                            [renderOnClick]="false"
+                            [outerStrokeWidth]="16"
+                            [innerStrokeWidth]="8"
+                            [outerStrokeColor]="'#78C000'"
+                            [innerStrokeColor]="'#C7E596'"
+                            [animation]="true"
+                            [animationDuration]="300">
+                        </circle-progress>
+                    <mat-icon class="font-32 clickable" style="margin-left: 2em;">arrow_forward_ios</mat-icon>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 </div>

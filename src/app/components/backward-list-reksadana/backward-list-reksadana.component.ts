@@ -43,6 +43,35 @@ export class BackwardListReksadanaComponent implements OnInit {
         kinerja : "1234%",
         kategori : "Pasar Uang",
       },
+      {
+        id: "5",
+        nama : "Danaa kas 5",
+        nab : 12344,
+        kinerja : "1234%",
+        kategori : "Pasar Uang",
+      },
+      {
+        id: "6",
+        nama : "Danaa kas 6",
+        nab : 12344,
+        kinerja : "1234%",
+        kategori : "Pasar Uang",
+      },
+      {
+        id: "7",
+        nama : "Danaa kas 7",
+        nab : 12344,
+        kinerja : "1234%",
+        kategori : "Pasar Uang",
+      },
+      {
+        id: "8",
+        nama : "Danaa kas 8",
+        nab : 12344,
+        kinerja : "1234%",
+        kategori : "Pasar Uang",
+      },
+
     ]
     this.tempVar = temp
   }

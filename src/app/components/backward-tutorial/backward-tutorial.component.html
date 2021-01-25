@@ -1,0 +1,28 @@
+<div class="row flex mx-0">
+    <img class="full-image" src="{{this.imageBackgroundArray[page]}}">
+    <div class="button-fill" [ngClass]="'dialog-middle-'+page">
+        <div *ngIf="page==0" class="component-middle-small p-4">
+            <div>
+                Selamat datang
+                di Backward Projection!
+
+                Untuk memulai tur singkat 
+                penggunaan fitur simulasi, 
+                tekan tombol lanjut
+            </div>
+            <div class="mt-2">
+                <button mat-button class="lanjut-button" (click)="clickNextButton()" >Pilih</button>
+            </div>
+        </div>
+        <div *ngIf="page>0" class="component-middle-medium">
+            <ngb-carousel #ngcarousel (slide)="slideActivate($event)" [activeId]="'one'" [interval]="0" style="height: 100%;">
+                <ng-template ngbSlide *ngFor="let image of imageBackgroundArray; let i = index" id="{{i}}">
+                  <div class="mx-auto my-auto font-18" style="padding:3em; height: 100%; width: 100%;">
+                        {{textTutorial[i]}}
+                  </div>
+                </ng-template>
+            </ngb-carousel>
+        </div>
+        
+    </div>
+</div>

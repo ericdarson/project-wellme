@@ -1,0 +1,141 @@
+@import "./backward-tutorial.component.scss";
+.full-image{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+}
+
+.dialog-middle-0{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.component-middle-large{
+    height: 400px;
+    width: 400px;
+}
+
+.component-middle-medium{
+    height: 300px;
+    width: 300px;
+}
+
+.component-middle-small{
+    height: 200px;
+    width: 200px;
+}
+
+.lanjut-button{
+    background-color: #CCEDBE;
+    color: #309F00;
+    border: 1.56463px solid #6ED940;
+    box-sizing: border-box;
+    border-radius: 7.82313px;
+}
+
+.dialog-middle-1{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -20%);
+}
+
+.dialog-middle-2{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -65%);
+}
+.dialog-middle-3{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(5%, -80%);
+}
+
+.dialog-middle-4{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, 0%);
+}
+.dialog-middle-5{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, 15%);
+}
+.dialog-middle-6{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -40%);
+}
+.dialog-middle-7{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-80%, -10%);
+}
+.dialog-middle-8{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -10%);
+}
+.dialog-middle-9{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-105%, -85%);
+}
+.dialog-middle-10{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(35%, -20%);
+}
+.dialog-middle-11{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -10%);
+}
+.dialog-middle-12{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -10%);
+}
+.dialog-middle-13{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -10%);
+}
+.dialog-middle-14{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -10%);
+}
+.dialog-middle-15{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -10%);
+}
+.dialog-middle-16{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -10%);
+}
+.dialog-middle-17{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -10%);
+}

@@ -1,4 +1,4 @@
-<div class="master-component">
+<div class="master-component container">
     <div class="jflex-row" style="padding-top:20px;">
         <mat-icon class="clickable" (click)="back()">chevron_left</mat-icon>
         <h1 style="text-align: center;" class="width-full headFont"><b>Backward Projection</b></h1>
@@ -13,85 +13,111 @@
         <canvas id="line" #line></canvas><br>
     </div>
 
-    <mat-grid-list cols="4">
-        <mat-grid-tile>
-            <button mat-button [ngClass]="oneWeekRangeSelected ? 'button-fill' : 'button-range'"
-             class="clickable text-center width-full" style="padding: 1em;" (click)="selectOneWeekRange()">
-                <div>
-                    <b>1 Week</b>
-                </div>
-            </button>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <button mat-button [ngClass]="oneMonthRangeSelected ? 'button-fill' : 'button-range'"
-             class="clickable text-center width-full" style="padding: 1em;" (click)="selectOneMonthRange()">
-                <div>
-                    <b>1 Month</b>
-                </div>
-            </button>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <button mat-button  [ngClass]="threeMonthRangeSelected ? 'button-fill' : 'button-range'"
-             class=" clickable text-center width-full" style="padding: 1em;" (click)="selectThreeMonthRange()">
-                <div>
-                    <b>3 Month</b>
-                </div>
-            </button>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <button mat-button  [ngClass]="oneYearRangeSelected ? 'button-fill' : 'button-range'"
-             class="clickable text-center width-full" style="padding: 1em;" (click)="selectOneYearRange()">
-                <div>
-                    <b>1 Year</b>
-                </div>
-            </button>
-        </mat-grid-tile>
-    </mat-grid-list>
-
-    <div class="profile-item-box" style="padding: 1em;">
-        <div class="text-wellme-color font-18">
-            <b>Batavia Dana Kas Maxima</b>
+    <div class="row">
+        <div class="col-md-12">
+            <mat-grid-list  cols="4">
+                <mat-grid-tile>
+                    <button mat-button [ngClass]="oneWeekRangeSelected ? 'button-fill' : 'button-range'"
+                     class="clickable text-center width-full" style="padding: 1em;" (click)="selectOneWeekRange()">
+                        <div>
+                            <b>1 Week</b>
+                        </div>
+                    </button>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <button mat-button [ngClass]="oneMonthRangeSelected ? 'button-fill' : 'button-range'"
+                     class="clickable text-center width-full" style="padding: 1em;" (click)="selectOneMonthRange()">
+                        <div>
+                            <b>1 Month</b>
+                        </div>
+                    </button>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <button mat-button  [ngClass]="threeMonthRangeSelected ? 'button-fill' : 'button-range'"
+                     class=" clickable text-center width-full" style="padding: 1em;" (click)="selectThreeMonthRange()">
+                        <div>
+                            <b>3 Month</b>
+                        </div>
+                    </button>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <button mat-button  [ngClass]="oneYearRangeSelected ? 'button-fill' : 'button-range'"
+                     class="clickable text-center width-full" style="padding: 1em;" (click)="selectOneYearRange()">
+                        <div>
+                            <b>1 Year</b>
+                        </div>
+                    </button>
+                </mat-grid-tile>
+            </mat-grid-list>
         </div>
-        <div style="margin-top: 1em;">
-            <div>
-               Kinerja 1 Tahun
-            </div>
-            <div class="text-wellme-color">
-                <b>+0.33%</b>
-            </div>
-            <div class="flex" style="justify-content: space-between;margin-top: 1em;align-items: center;">
-                <div>
+        
+    </div>
+    
+
+    <div class="row flex">
+        <div class="col-md-7">
+            <div class="profile-item-box p-3">
+                <div class="text-wellme-color font-18">
+                    <b>Batavia Dana Kas Maxima</b>
+                </div>
+                <div style="margin-top: 1em;">
                     <div>
-                        NAB/ Unit
+                    Kinerja 1 Tahun
                     </div>
                     <div class="text-wellme-color">
-                        <b>{{1500 | currency : 'Rp '}}</b>
+                        <b>+0.33%</b>
                     </div>
-                </div>
-                <div class="text-center">
-                    <div>Ubah Tanggal Beli</div>
-                    <input matInput [matDatepicker]="picker" style="visibility: hidden;width: 100%;" [(ngModel)]="dateNow">
-                    <mat-datepicker #picker ></mat-datepicker>
-                    <button mat-button class="pilih-button width-full " (click)="picker.open()">  
-                        <b>{{dateNow | date:'dd MMMM YYYY'}} </b>    
-                    </button>
+                    <div class="flex" style="justify-content: space-between;margin-top: 1em;align-items: center;">
+                        <div>
+                            <div>
+                                NAB/ Unit
+                            </div>
+                            <div class="text-wellme-color">
+                                <b>{{1500 | currency : 'Rp '}}</b>
+                            </div>
+                        </div>
+                        
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="profile-item-box" style="padding: 1em;">
-        <div class="font-18">
-            <b>Nominal Pembelian</b>
+        
+        <div class="col-md-5">
+            <div class="profile-item-box text-center p-3">
+                <div>Ubah Tanggal Beli</div>
+                <input matInput [matDatepicker]="picker" style="visibility: hidden;width: 100%;" [(ngModel)]="dateNow">
+                <mat-datepicker #picker ></mat-datepicker>
+                <button mat-button class="pilih-button width-full " (click)="picker.open()">  
+                    <b>{{dateNow | date:'dd MMMM YYYY'}} </b>    
+                </button>
+            </div>
         </div>
-        <mat-form-field class="example-full-width">
-            <span matPrefix>Rp &nbsp;</span>
-            <input matInput type="text" (change)="transformAmount($event)" [(ngModel)]="formattedAmount"  />
-        </mat-form-field>
+       
     </div>
+    
+    <div class="row">
+        <div class="col-md-12">
+            <div class="profile-item-box" style="padding: 1em;"> 
+                <div class="font-18">
+                    <b>Nominal Pembelian</b>
+                </div>
+                <mat-form-field class="example-full-width">
+                    <span style="color: #6ED940;" matPrefix><b>Rp</b> &nbsp;</span>
+                    <input matInput type="text" (change)="transformAmount($event)" [(ngModel)]="formattedAmount"  />
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+  
 
-    <button mat-button  class="button-fill clickable text-center width-full" style="padding: 1em;" (click)="goToSimulasiPage(reksaId)">
-        <div>
-            <b>Simulasi</b>
+    <div class="row">
+        <div class="col-md-12">
+            <button mat-button  class="button-fill clickable text-center width-full" style="padding: 1em;" (click)="goToSimulasiPage(reksaId)">
+                <div>
+                    <b>Simulasi</b>
+                </div>
+            </button>
         </div>
-    </button>
+    </div>
+    
 </div>

@@ -145,7 +145,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     NgbModule,
     ScrollingModule,
     MatGridListModule,
-    FlexLayoutModule
+    FlexLayoutModule,
   ],
 })
 export class SharedModule { 

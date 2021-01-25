@@ -1,36 +1,85 @@
-<div class="centering">
+<div class="centering" [style.overflow]="this.sidenav.opened ? 'hidden' : 'auto'">
     <router-outlet></router-outlet>
   
-    <mat-toolbar class="toolbarNav">
-      <div class="clickable text-center" routerLink="./portofolio" [routerLinkActive]="['is-active']">
+    <mat-toolbar class="toolbarNav" fxShow="true" fxHide.lt-md="true">
+      <div class="clickable text-center hover-wellme" routerLink="./portofolio" [routerLinkActive]="['is-active']">
         <i class="fas fa-book-open"></i>
         <div style="font-size: small;">
           Portofolio
         </div>
       </div>
-      <div class="clickable text-center" routerLink="./profile" [routerLinkActive]="['is-active']">
+      <div class="clickable text-center hover-wellme" routerLink="./profile" [routerLinkActive]="['is-active']">
         <i class="far fa-user-circle"></i>
         <div style="font-size: small;">
           Profile
         </div></div>
-      <div class="clickable text-center" routerLink="./product" [routerLinkActive]="['is-active']">
+      <div class="clickable text-center hover-wellme" routerLink="./product" [routerLinkActive]="['is-active']">
         <i class="fas fa-chart-line"></i>
         <div style="font-size: small;">
           Products
         </div>
       </div>
-      <div class="clickable text-center" routerLink="./news" [routerLinkActive]="['is-active']">
+      <div class="clickable text-center hover-wellme" routerLink="./news" [routerLinkActive]="['is-active']">
         <i class="far fa-newspaper"></i>
         <div style="font-size: small;">
           News
         </div>
       </div>
-      <div class="clickable text-center" routerLink="./more" [routerLinkActive]="['is-active']">
+      <div class="clickable text-center hover-wellme" routerLink="./more" [routerLinkActive]="['is-active']">
         <i class="fas fa-ellipsis-h"></i>
         <div style="font-size: small;">
           More
         </div>
       </div>
     </mat-toolbar>
+
+    <mat-sidenav-container fxHide="true" fxShow.lt-md="true" class="sticky-footer">
+      <mat-sidenav-content fxFlexFill>
+          <div class="flex width-full" style="justify-content: space-between;padding: 1em;" >
+              <div class="text-center" >
+                  <img src="assets/icon/well-me-logo.png" class="img-fluid" alt="Wellme" width="150" height="50">
+              </div>
+              <div class="flex" style="justify-content: space-between; align-items: center;">
+                  <mat-icon *ngIf="!this.sidenav.opened" class="clickable" (click)="sidenav.toggle()">dehaze</mat-icon>
+                  <mat-icon *ngIf="this.sidenav.opened" class="clickable" (click)="sidenav.toggle()">close</mat-icon>
+              </div>
+          </div>
+      </mat-sidenav-content>
+      
+    </mat-sidenav-container>
+    <mat-sidenav fixedInViewport="true" #sidenav fxHide="true" fxShow.lt-md="true"  class="width-full" 
+    style="margin-bottom: 7em;z-index: 1036;background-color: rgba(255,255,255);">
+        <div class="width-full" style="margin-top: 1em;">
+          <div class="clickable text-center hover-wellme mt-3" routerLink="./portofolio" (click)="sidenav.toggle()" [routerLinkActive]="['is-active']">
+            <i class="fas fa-book-open fa-3x"></i>
+            <div class="font-24">
+              Portofolio
+            </div>
+          </div>
+          <div class="clickable text-center hover-wellme mt-3" routerLink="./profile" (click)="sidenav.toggle()" [routerLinkActive]="['is-active']">
+            <i class="far fa-user-circle fa-3x"></i>
+            <div sclass="font-24">
+              Profile
+            </div></div>
+          <div class="clickable text-center hover-wellme mt-3" routerLink="./product" (click)="sidenav.toggle()" [routerLinkActive]="['is-active']">
+            <i class="fas fa-chart-line fa-3x"></i>
+            <div class="font-24">
+              Products
+            </div>
+          </div>
+          <div class="clickable text-center hover-wellme mt-3" routerLink="./news" (click)="sidenav.toggle()" [routerLinkActive]="['is-active']">
+            <i class="far fa-newspaper fa-3x"></i>
+            <div class="font-24">
+              News
+            </div>
+          </div>
+          <div class="clickable text-center hover-wellme mt-3" routerLink="./more" (click)="sidenav.toggle()" [routerLinkActive]="['is-active']">
+            <i class="fas fa-ellipsis-h fa-3x"></i>
+            <div class="font-24">
+              More
+            </div>
+          </div>
+        </div>
+    </mat-sidenav>
   </div>
   

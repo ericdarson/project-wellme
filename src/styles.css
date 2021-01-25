@@ -110,7 +110,7 @@ body { margin: 0; font-family: Quicksand, "Helvetica Neue", sans-serif; }
 }
 
 .master-component{
-   padding-bottom: 5em;
+   padding-bottom: 7em;
     padding-top:2em;
 }
 
@@ -208,4 +208,7 @@ a:hover, a:focus .project-name {
 
 .hover-wellme:hover{
     color:#6ED940;
+}
+*:focus {
+    outline: none;
 }

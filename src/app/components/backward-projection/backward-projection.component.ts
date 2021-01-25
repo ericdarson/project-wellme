@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PopupSyaratKetentuanComponent } from '../../popup/popup-syarat-ketentuan/popup-syarat-ketentuan.component';
+import { PopupTutorialBackwardComponent } from '../../popup/popup-tutorial-backward/popup-tutorial-backward.component';
 
 @Component({
   selector: 'app-backward-projection',
@@ -15,7 +17,7 @@ export class BackwardProjectionComponent implements OnInit {
   obligasiBool : boolean= false
   sahamBool : boolean= false
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog,private router : Router,private route : ActivatedRoute) { }
 
   ngOnInit(): void {
     
@@ -30,6 +32,23 @@ export class BackwardProjectionComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
 
+    });
+  }
+
+  openTutorialBackward():void{
+    const dialogRef = this.dialog.open(PopupTutorialBackwardComponent, {
+      height:'350px',
+      width: '350px',
+      disableClose: true 
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed ' + result);
+      if(result){
+        this.router.navigate(['../backward-tutorial'], {relativeTo: this.route})
+      }else{
+        this.router.navigate(['../backward-list-reksadana'], {relativeTo: this.route})
+      }
     });
   }
 

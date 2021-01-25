@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatGridList } from '@angular/material/grid-list';
+import { MediaChange, MediaObserver  } from '@angular/flex-layout';
 
 @Component({
   selector: 'app-portofolio',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PortofolioComponent implements OnInit {
 
-  constructor() { }
+
+  constructor( ) { }
 
   ngOnInit(): void {
   }
+
 
 }

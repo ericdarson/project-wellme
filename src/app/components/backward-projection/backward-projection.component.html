@@ -1,4 +1,4 @@
-<div class="jflex-column" style="height: 100%;">
+<div class="jflex-column container pb-2" style="height: 100%;">
     <div class="jflex-row" style="padding-top:20px;">
         <mat-icon class="clickable" routerLink="../../index/more">chevron_left</mat-icon>
         <h1 style="text-align: center;" class="width-full headFont"><b>Backward Projection</b></h1>
@@ -10,32 +10,41 @@
         </div>
     </div>
 
-    <div class="clickable" [ngClass]="pasarUangBool ? 'item-box-choosen':'item-box'" style="padding: 1em;" (click)="pasarUangChoose()">
-        <div class="width-full text-center">
+    <div class="clickable flex" [ngClass]="pasarUangBool ? 'item-box-choosen':'item-box'" style="padding: 2em;align-items: center;" (click)="pasarUangChoose()">
+        <div class="width-full font-32">
             <b>Pasar Uang</b>
         </div>
+        <div>
+            <img src="/assets/icon/icon-kategori-1.png" alt="Wellme" width="200" height="100">
+        </div>
     </div>
-    <div class="clickable" [ngClass]="obligasiBool ? 'item-box-choosen':'item-box'" style="padding: 1em;" (click)="obligasiChoose()">
-        <div class="width-full text-center">
+    <div class="clickable flex" [ngClass]="obligasiBool ? 'item-box-choosen':'item-box'" style="padding: 2em;align-items: center;" (click)="obligasiChoose()">
+        <div class="width-full font-32">
             <b>Obligasi</b>
         </div>
-    </div>
-    <div class="clickable" [ngClass]="sahamBool ? 'item-box-choosen':'item-box'" style="padding: 1em;" (click)="sahamChoose()">
-        <div class="width-full text-center">
-            <b>Saham</b>
+        <div>
+            <img src="/assets/icon/icon-kategori-2.png" alt="Wellme" width="200" height="100">
         </div>
     </div>
-    <div class="flex" style="align-self: center;">
+    <div class="clickable flex" [ngClass]="sahamBool ? 'item-box-choosen':'item-box'" style="padding: 2em;align-items: center;" (click)="sahamChoose()">
+        <div class="width-full font-32">
+            <b>Saham</b>
+        </div>
+        <div>
+            <img src="/assets/icon/icon-kategori-3.png" alt="Wellme" width="200" height="100">
+        </div>
+    </div>
+    <div class="flex mt-3" style="align-self: center;">
         <mat-checkbox class="text-center" [checked]="skCheck" (change)="setSk($event.checked)">
-            <div>
+            <div class="font-18">
                 <b>Saya Sudah Baca  &nbsp;</b>
             </div>
         </mat-checkbox>
-        <div class="clickable" style="color: #6ED940;padding-top: 0.20em" (click)="openSKPopup()">
+        <div class="clickable font-18" style="color: #6ED940;padding-top: 0.10em" (click)="openSKPopup()">
             <b>Syarat dan Ketentuan</b>
         </div>
     </div>
 
     <button mat-button [ngClass]="checkDisable() ? 'button-fill-disabled':'button-fill'" class=" width-full"
-     style="margin-top:2em;" [disabled]="checkDisable()" routerLink="../backward-list-reksadana">Lanjut</button>
+     style="margin-top:2em;" [disabled]="checkDisable()" (click)="openTutorialBackward()">Lanjut</button>
 </div>
