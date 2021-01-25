@@ -41,7 +41,7 @@ import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {ScrollingModule , ScrollDispatcher} from '@angular/cdk/scrolling';
 import { FlexLayoutModule } from '@angular/flex-layout';
-
+import { NgxShimmerLoadingModule } from  'ngx-shimmer-loading';
 @NgModule({
   declarations: [
    
@@ -89,6 +89,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     ScrollingModule,
     MatGridListModule,
     FlexLayoutModule,
+    NgxShimmerLoadingModule,
   ],
   imports: [
     CommonModule,
@@ -146,6 +147,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     ScrollingModule,
     MatGridListModule,
     FlexLayoutModule,
+    NgxShimmerLoadingModule, 
   ],
 })
 export class SharedModule { 

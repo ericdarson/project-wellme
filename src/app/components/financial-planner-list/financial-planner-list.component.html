@@ -7,169 +7,89 @@
     </div>
     <!-- <div class="jflex-column padding-beauty center-main-axis center-cross-axis" style="height:90%">
         <img src="assets/img/list-planner-nothing.png">
-        <h2 class="font-green"><strong>Tidak ada item yang bisa dicari :(</strong></h2>
-        <p class="font-green"> Ayo selesaikan objectives dan dapatkan berbagai macam Promo Menarik</p>
+        <h2 class="font-green"  style="text-align: center;"><strong>Tidak ada item yang bisa dicari :(</strong></h2>
+        <p class="font-green"  style="text-align: center;"> Ayo selesaikan objectives dan dapatkan berbagai macam Promo Menarik</p>
         
     </div> -->
-    <div class="background-green padding-beauty scroll" (click)="portofolioClicked()" style="height: 90%; overflow: auto;">
-        <mat-card class="box-outline padding-beauty" style="margin-bottom: 10px; cursor: pointer;">
+    <div class="background-green padding-beauty scroll" [ngClass]="listPlannerDisplay" style="height: 90%; overflow: auto;">
+        <div *ngFor="let plan of listPlanner" (click)="portofolioClicked(plan)">
+        <mat-card class="box-outline padding-beauty" style="margin-bottom: 10px; cursor: pointer;" >
             <div class="jflex-row stretch">
                 <div class="jflex-column stretch">
-                    <span><strong> iPhone 12 Pro</strong></span>
-                    <span class="percentage-list">50%</span>
-                    <span class="target">Target:25.000.000</span>
+                    <span><strong>{{plan.nama_plan}}</strong></span>
+                    <span class="percentage-list">{{plan.current/plan.target*100 | number:'1.0-0'}} %</span>
+                    <span class="target">Target:&nbsp;{{plan.target | currency:'Rp ':'code'}}</span>
                 </div>
                 <div class="jflex-column">
-                    <circle-progress 
-                    
-                    [percent]="85"
+                <circle-progress 
+                    [percent]="plan.current/plan.target*100>100?100:plan.current/plan.target*100"
                     [radius]="50"
                     [outerStrokeWidth]="8"
                     [innerStrokeWidth]="4"
                     [outerStrokeColor]="'#6ED940'"
                     [innerStrokeColor]="'#C7E596'"
                     [animation]="true"
-                    [animationDuration]="300"
-                    [imageSrc]="'/assets/img/iPhone.png'"
-                    [showImage]="true"
-                    [imageWidth]="20"
-                    [imageHeight]="40"
-                    ></circle-progress>
-                </div>
-            </div>
-            
-        </mat-card><mat-card class="box-outline padding-beauty" style="margin-bottom: 10px; cursor: pointer;">
-            <div class="jflex-row stretch">
-                <div class="jflex-column stretch">
-                    <span><strong> iPhone 12 Pro</strong></span>
-                    <span class="percentage-list">50%</span>
-                    <span class="target">Target:25.000.000</span>
-                </div>
-                <div class="jflex-column">
-                    <circle-progress 
-                    
-                    [percent]="85"
-                    [radius]="50"
-                    [outerStrokeWidth]="8"
-                    [innerStrokeWidth]="4"
-                    [outerStrokeColor]="'#6ED940'"
-                    [innerStrokeColor]="'#C7E596'"
-                    [animation]="true"
-                    [animationDuration]="300"
-                    [imageSrc]="'/assets/img/iPhone.png'"
-                    [showImage]="true"
-                    [imageWidth]="20"
-                    [imageHeight]="40"
-                    ></circle-progress>
-                </div>
-            </div>
-            
-        </mat-card><mat-card class="box-outline padding-beauty" style="margin-bottom: 10px; cursor: pointer;">
-            <div class="jflex-row stretch">
-                <div class="jflex-column stretch">
-                    <span><strong> iPhone 12 Pro</strong></span>
-                    <span class="percentage-list">50%</span>
-                    <span class="target">Target:25.000.000</span>
-                </div>
-                <div class="jflex-column">
-                    <circle-progress 
-                    
-                    [percent]="85"
-                    [radius]="50"
-                    [outerStrokeWidth]="8"
-                    [innerStrokeWidth]="4"
-                    [outerStrokeColor]="'#6ED940'"
-                    [innerStrokeColor]="'#C7E596'"
-                    [animation]="true"
-                    [animationDuration]="300"
-                    [imageSrc]="'/assets/img/iPhone.png'"
-                    [showImage]="true"
-                    [imageWidth]="20"
-                    [imageHeight]="40"
-                    ></circle-progress>
-                </div>
-            </div>
-            
-        </mat-card><mat-card class="box-outline padding-beauty" style="margin-bottom: 10px; cursor: pointer;">
-            <div class="jflex-row stretch">
-                <div class="jflex-column stretch">
-                    <span><strong> iPhone 12 Pro</strong></span>
-                    <span class="percentage-list">50%</span>
-                    <span class="target">Target:25.000.000</span>
-                </div>
-                <div class="jflex-column">
-                    <circle-progress 
-                    
-                    [percent]="85"
-                    [radius]="50"
-                    [outerStrokeWidth]="8"
-                    [innerStrokeWidth]="4"
-                    [outerStrokeColor]="'#6ED940'"
-                    [innerStrokeColor]="'#C7E596'"
-                    [animation]="true"
-                    [animationDuration]="300"
-                    [imageSrc]="'/assets/img/iPhone.png'"
-                    [showImage]="true"
-                    [imageWidth]="20"
-                    [imageHeight]="40"
-                    ></circle-progress>
-                </div>
-            </div>
-            
-        </mat-card><mat-card class="box-outline padding-beauty" style="margin-bottom: 10px; cursor: pointer;">
-            <div class="jflex-row stretch">
-                <div class="jflex-column stretch">
-                    <span><strong> iPhone 12 Pro</strong></span>
-                    <span class="percentage-list">50%</span>
-                    <span class="target">Target:25.000.000</span>
-                </div>
-                <div class="jflex-column">
-                    <circle-progress 
-                    
-                    [percent]="85"
-                    [radius]="50"
-                    [outerStrokeWidth]="8"
-                    [innerStrokeWidth]="4"
-                    [outerStrokeColor]="'#6ED940'"
-                    [innerStrokeColor]="'#C7E596'"
-                    [animation]="true"
-                    [animationDuration]="300"
-                    [imageSrc]="'/assets/img/iPhone.png'"
-                    [showImage]="true"
-                    [imageWidth]="20"
-                    [imageHeight]="40"
-                    ></circle-progress>
+                    [animationDuration]="300">
+                </circle-progress>
                 </div>
             </div>
             
         </mat-card>
-        <mat-card class="box-outline padding-beauty" style="margin-bottom: 10px; cursor: pointer;">
-            <div class="jflex-row stretch">
-                <div class="jflex-column stretch">
-                    <span><strong> iPhone 12 Pro</strong></span>
-                    <span class="percentage-list">50%</span>
-                    <span class="target">Target:25.000.000</span>
+        </div>
+        <div [ngClass]="shimmering">
+            <mat-card class="box-outline padding-beauty" style="margin-bottom: 10px; cursor: pointer;" >
+                <div class="jflex-row stretch">
+                    <div class="jflex-column stretch">
+                        <span><strong><ngx-shimmer-loading [shape]="'rect'" [width]="'100px'" [height]="'14px'"></ngx-shimmer-loading></strong></span>
+                        <span class="percentage-list"><ngx-shimmer-loading [shape]="'rect'" [width]="'200px'" [height]="'50px'"></ngx-shimmer-loading></span>
+                        <span class="target"><ngx-shimmer-loading [shape]="'rect'" [width]="'100px'" [height]="'14px'"></ngx-shimmer-loading></span>
+                    </div>
+                    <div class="jflex-column">
+                        <ngx-shimmer-loading [shape]="'circle'" [width]="'100px'" [height]="'100px'"></ngx-shimmer-loading>
+                    </div>
                 </div>
-                <div class="jflex-column">
-                    <circle-progress 
-                    
-                    [percent]="85"
-                    [radius]="50"
-                    [outerStrokeWidth]="8"
-                    [innerStrokeWidth]="4"
-                    [outerStrokeColor]="'#6ED940'"
-                    [innerStrokeColor]="'#C7E596'"
-                    [animation]="true"
-                    [animationDuration]="300"
-                    [imageSrc]="'/assets/img/iPhone.png'"
-                    [showImage]="true"
-                    [imageWidth]="20"
-                    [imageHeight]="40"
-                    ></circle-progress>
+                
+            </mat-card>
+            <mat-card class="box-outline padding-beauty" style="margin-bottom: 10px; cursor: pointer;" >
+                <div class="jflex-row stretch">
+                    <div class="jflex-column stretch">
+                        <span><strong><ngx-shimmer-loading [shape]="'rect'" [width]="'100px'" [height]="'14px'"></ngx-shimmer-loading></strong></span>
+                        <span class="percentage-list"><ngx-shimmer-loading [shape]="'rect'" [width]="'200px'" [height]="'50px'"></ngx-shimmer-loading></span>
+                        <span class="target"><ngx-shimmer-loading [shape]="'rect'" [width]="'100px'" [height]="'14px'"></ngx-shimmer-loading></span>
+                    </div>
+                    <div class="jflex-column">
+                        <ngx-shimmer-loading [shape]="'circle'" [width]="'100px'" [height]="'100px'"></ngx-shimmer-loading>
+                    </div>
                 </div>
-            </div>
-            
-        </mat-card>
+                
+            </mat-card>
+            <mat-card class="box-outline padding-beauty" style="margin-bottom: 10px; cursor: pointer;" >
+                <div class="jflex-row stretch">
+                    <div class="jflex-column stretch">
+                        <span><strong><ngx-shimmer-loading [shape]="'rect'" [width]="'100px'" [height]="'14px'"></ngx-shimmer-loading></strong></span>
+                        <span class="percentage-list"><ngx-shimmer-loading [shape]="'rect'" [width]="'200px'" [height]="'50px'"></ngx-shimmer-loading></span>
+                        <span class="target"><ngx-shimmer-loading [shape]="'rect'" [width]="'100px'" [height]="'14px'"></ngx-shimmer-loading></span>
+                    </div>
+                    <div class="jflex-column">
+                        <ngx-shimmer-loading [shape]="'circle'" [width]="'100px'" [height]="'100px'"></ngx-shimmer-loading>
+                    </div>
+                </div>
+                
+            </mat-card>
+            <mat-card class="box-outline padding-beauty" style="margin-bottom: 10px; cursor: pointer;" >
+                <div class="jflex-row stretch">
+                    <div class="jflex-column stretch">
+                        <span><strong><ngx-shimmer-loading [shape]="'rect'" [width]="'100px'" [height]="'14px'"></ngx-shimmer-loading></strong></span>
+                        <span class="percentage-list"><ngx-shimmer-loading [shape]="'rect'" [width]="'200px'" [height]="'50px'"></ngx-shimmer-loading></span>
+                        <span class="target"><ngx-shimmer-loading [shape]="'rect'" [width]="'100px'" [height]="'14px'"></ngx-shimmer-loading></span>
+                    </div>
+                    <div class="jflex-column">
+                        <ngx-shimmer-loading [shape]="'circle'" [width]="'100px'" [height]="'100px'"></ngx-shimmer-loading>
+                    </div>
+                </div>
+                
+            </mat-card>
+        </div>
         
     </div>
     <div class="background-green jflex-row padding-beauty center-main-axis">

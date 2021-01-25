@@ -70,17 +70,16 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { BackwardResultComponent } from './components/backward-result/backward-result.component';
 import { PopupTutorialBackwardComponent } from './popup/popup-tutorial-backward/popup-tutorial-backward.component';
 import { BackwardTutorialComponent } from './components/backward-tutorial/backward-tutorial.component';
+import { PromoDetailComponent } from './components/promo-detail/promo-detail.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    
     LandingPageComponent,
+    PromoDetailComponent,
 
-    DetailTransaksiComponent,
-    PinComponent,
-   
 
   ],
   imports: [

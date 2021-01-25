@@ -212,3 +212,9 @@ a:hover, a:focus .project-name {
 *:focus {
     outline: none;
 }
+.hidden{
+    display:none;
+}
+.block{
+    display: block;
+}

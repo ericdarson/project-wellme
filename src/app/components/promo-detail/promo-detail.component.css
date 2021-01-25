@@ -1,0 +1,42 @@
+.percentage-list{
+   
+    
+    font-family: Quicksand;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 42px;
+    line-height: 52px;
+    color: #6ED940;
+ }
+
+ .target{
+    font-family: Quicksand;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+ }
+ 
+ svg{
+    width: 100px;
+    height: 100px;
+ }
+
+ .btn-active{
+    background-color: #6ED940; color: white; width: 100%; 
+ }
+ .btn-non-active{
+   background-color: white; color:#6ED940 ; width: 200px; border: #6ED940 2px solid; 
+ }
+ .card-objectives{
+    
+ }
+ .little-space{
+     margin-bottom: 10px;
+ }
+ .promo-box{
+    margin-bottom: 10px;  background:#CCEDBE;
+ }
+ .promo-box-complete{
+    margin-bottom: 10px;  background:white;
+ }

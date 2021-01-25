@@ -15,7 +15,8 @@ import { ProductDetailComponent } from '../components/product-detail/product-det
 import { KonfirmasiTransaksiComponent } from '../components/konfirmasi-transaksi/konfirmasi-transaksi.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { FinancialPlannerComponent } from './financial-planner.component';
-
+import { DetailTransaksiComponent } from '../components/detail-transaksi/detail-transaksi.component';
+import { PinComponent } from '../components/pin/pin.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,8 @@ import { FinancialPlannerComponent } from './financial-planner.component';
     ProductDetailComponent,
     KonfirmasiTransaksiComponent,
     FinancialPlannerComponent,
+    DetailTransaksiComponent,
+    PinComponent
   ],
   imports: [
     CommonModule,
