@@ -67,10 +67,8 @@ import { DetailTransaksiComponent } from './components/detail-transaksi/detail-t
 import { PinComponent } from './components/pin/pin.component';
 import { ScrollDispatcher } from '@angular/cdk/overlay';
 import { LandingPageComponent } from './landing-page/landing-page.component';
-import { BackwardResultComponent } from './components/backward-result/backward-result.component';
-import { PopupTutorialBackwardComponent } from './popup/popup-tutorial-backward/popup-tutorial-backward.component';
-import { BackwardTutorialComponent } from './components/backward-tutorial/backward-tutorial.component';
 import { PromoDetailComponent } from './components/promo-detail/promo-detail.component';
+import { LoginPageComponent } from './components/login-page/login-page.component';
 
 
 @NgModule({
@@ -79,7 +77,7 @@ import { PromoDetailComponent } from './components/promo-detail/promo-detail.com
     HomeComponent,
     LandingPageComponent,
     PromoDetailComponent,
-
+    LoginPageComponent,
 
   ],
   imports: [

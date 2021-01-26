@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbCarousel, NgbSlideEvent,NgbSlideEventSource  } from '@ng-bootstrap/ng-bootstrap';
+import { CurrencyPipe, Location } from '@angular/common';
+import { Route } from '@angular/compiler/src/core';
 
 @Component({
   selector: 'app-backward-tutorial',
@@ -22,7 +24,7 @@ export class BackwardTutorialComponent implements OnInit {
   ];
 
 
-  constructor(private activeRoute : ActivatedRoute) { }
+  constructor(private activeRoute : ActivatedRoute, private location : Location,private router : Router) { }
 
   ngOnInit(): void {
   
@@ -71,11 +73,11 @@ export class BackwardTutorialComponent implements OnInit {
 
   slideActivate(ngbSlideEvent: NgbSlideEvent) {
     console.log(ngbSlideEvent.current);
-    this.page = +ngbSlideEvent.current+1
+    this.page = +ngbSlideEvent.current
   }
 
   clickNextButton(){
-    this.page+=1
+    this.goToNext()
   }
 
   // Move to specific slide
@@ -104,6 +106,7 @@ export class BackwardTutorialComponent implements OnInit {
     this.ngCarousel.cycle();
   }
 
-
-  
+  clickExitButton(){
+    this.router.navigate(['../backward-list-reksadana'],{relativeTo:this.activeRoute})
+  }
 }

@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import url("https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+
 html, body { height: 100%; }
 
 body { margin: 0; font-family: Quicksand, "Helvetica Neue", sans-serif; }
@@ -11,7 +12,7 @@ body { margin: 0; font-family: Quicksand, "Helvetica Neue", sans-serif; }
     }
   }
 .centering{
-    width: 768px;
+    width: 768px !important;
     margin-right: auto;
     margin-left: auto;
     
@@ -100,6 +101,7 @@ body { margin: 0; font-family: Quicksand, "Helvetica Neue", sans-serif; }
 
 .font-24{
     font-size: 24px !important;
+    line-height: 24px !important;
 }
 
 .font-32{

@@ -42,6 +42,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {ScrollingModule , ScrollDispatcher} from '@angular/cdk/scrolling';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxShimmerLoadingModule } from  'ngx-shimmer-loading';
+
 @NgModule({
   declarations: [
    

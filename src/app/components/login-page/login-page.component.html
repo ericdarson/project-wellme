@@ -1,0 +1,45 @@
+<div class="container-fluid">
+    <div class="pt-3">
+        <div class="border-login w-75 mx-auto">
+            <div class="row">
+                <div class="col-xl-6">
+                    <div>
+                        <img class="img-fluid"  src="/assets/img/login-page-image.png" alt="Wellme">
+                    </div>
+                </div>
+                <div class="col-xl-6 flex">
+                    <div class="w-100" style="margin: 10em 10em 10em 10em;">
+                        <div>
+                            <div class="font-24"> <b>BCA ID [User ID]</b> </div>
+                            <mat-form-field class="w-100">
+                                <input matInput type="text" [(ngModel)]="bca_id" placeholder="(Massukan ID anda)" required />
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <div class="font-24"> <b>Password</b> </div>
+                            <mat-form-field class="w-100">
+                                <input matInput placeholder="(Masukkan Password anda)" [type]="hide ? 'password' : 'text'" required>
+                                <mat-icon matSuffix class="clickable" (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </mat-form-field>
+                        </div> 
+                        <div class="flex" style="justify-content:flex-end;">
+                            Forgot Password?
+                        </div>   
+                        <div class="mt-5">
+                            <button mat-button class="button-fill w-100 font-24 p-3" (click)="loginClicked()" >Login</button>
+                        </div> 
+                        <div class="flex mt-5 text-center" style="justify-content: center;">
+                            <div class="font-18">
+                                New User? &nbsp;
+                            </div>
+                            <div class="text-wellme-color font-18"> 
+                                SignUp Here
+                            </div>
+                        </div> 
+                    </div>      
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>

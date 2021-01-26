@@ -83,7 +83,7 @@ export class BackwardListReksadanaComponent implements OnInit {
   }
 
   goBack(){
-    this.location.back()
+    this.router.navigate(['../home'], {relativeTo: this.route})
   }
 
 }

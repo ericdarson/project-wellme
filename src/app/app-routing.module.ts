@@ -22,6 +22,7 @@ import { FinancialPlannerModule } from './financial-planner/financial-planner.mo
 import { BackwardModuleModule } from './backward-module/backward-module.module';
 import { LandingPageModule } from './landing-page/landing-page.module';
 import { PromoModule } from './promo/promo.module';
+import { LoginPageComponent } from './components/login-page/login-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'landing-page', pathMatch: 'full'},
@@ -34,7 +35,7 @@ const routes: Routes = [
   { path: 'simulasi-planner', component:SimulasiPlannerComponent},
   { path: 'financial-planner',  loadChildren: () => FinancialPlannerModule},
   { path: 'promo',  loadChildren: () => PromoModule},
-
+  { path: 'login',  component:LoginPageComponent},
   
 
 ];

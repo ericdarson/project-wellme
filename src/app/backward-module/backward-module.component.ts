@@ -18,9 +18,13 @@ export class BackwardModuleComponent implements OnInit {
     }
     this.router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
-        this.isInTutorialPage= true
+        if(val.url.indexOf('tutorial') > -1){
+          this.isInTutorialPage= true
+        }else{
+          this.isInTutorialPage= false
+        }
       }
-  });
+    });
   }
 
 }
