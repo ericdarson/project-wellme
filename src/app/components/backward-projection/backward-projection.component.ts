@@ -3,24 +3,44 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PopupSyaratKetentuanComponent } from '../../popup/popup-syarat-ketentuan/popup-syarat-ketentuan.component';
 import { PopupTutorialBackwardComponent } from '../../popup/popup-tutorial-backward/popup-tutorial-backward.component';
-
+import { BackwardProjectionListReksadana } from '../../models/BackwardProjectionListReksadana'
 @Component({
   selector: 'app-backward-projection',
   templateUrl: './backward-projection.component.html',
   styleUrls: ['./backward-projection.component.css']
 })
 export class BackwardProjectionComponent implements OnInit {
-
+  listReksadana:BackwardProjectionListReksadana[]
   isDisabled:boolean = true
   skCheck :boolean = false
-  pasarUangBool : boolean= false
-  obligasiBool : boolean= false
-  sahamBool : boolean= false
+  selectedId :string = ""
 
   constructor(public dialog: MatDialog,private router : Router,private route : ActivatedRoute) { }
 
   ngOnInit(): void {
-    
+    this.listReksadana = [
+      {
+        id:"1",
+        nama:"nama",
+        selected:false
+      },{
+        id:"2",
+        nama:"nama2",
+        selected:false
+      },{
+        id:"2",
+        nama:"nama2",
+        selected:false
+      },{
+        id:"2",
+        nama:"nama2",
+        selected:false
+      },{
+        id:"2",
+        nama:"nama2",
+        selected:false
+      },
+    ]
   }
 
   openSKPopup():void{
@@ -55,30 +75,31 @@ export class BackwardProjectionComponent implements OnInit {
   setSk(checked: boolean) {
     this.skCheck = checked
   }
-
-  pasarUangChoose(){
-    this.pasarUangBool = true
-    this.obligasiBool = this.sahamBool = false
+  choose(item: BackwardProjectionListReksadana){
+    this.listReksadana.forEach (
+      function(single) {
+        single.selected = false;
+      }
+    );
+    item.selected = true;
+    this.selectedId = item.id;
   }
 
-  obligasiChoose(){
-    this.obligasiBool = true
-    this.sahamBool = this.pasarUangBool= false
+  setClass(item: BackwardProjectionListReksadana){
+    let classes =  {
+      'item-box-choosen': item.selected,
+      'item-box': !item.selected
+    }
+    return classes
   }
-
-  sahamChoose(){
-    this.sahamBool = true
-    this.obligasiBool = this.pasarUangBool= false
-  }
-
 
   checkDisable():boolean{
     if (this.skCheck){
-      if(this.pasarUangBool || this.sahamBool ||this.obligasiBool ){
-        return false
-      }else{
-        return true
-      }
+      let validity = true;
+      this.listReksadana.forEach( function (single) {
+        if (single.selected) validity = false;
+      });
+      return validity;
     }else{
       return true
     }
