@@ -2,8 +2,8 @@
   <div class="row" [style.overflow]="this.sidenav.opened ? 'hidden' : 'auto'">
     <div class="col-md-6 mx-auto">
       <router-outlet></router-outlet>
-    
-      <mat-toolbar class="toolbarNav" fxShow="true" fxHide.lt-md="true">
+      
+      <mat-toolbar class="toolbarNav col-md-12" fxShow="true" fxHide.lt-md="true">
         <div class="clickable text-center hover-wellme" routerLink="./portofolio" [routerLinkActive]="['is-active']">
           <i class="fas fa-book-open"></i>
           <div style="font-size: small;">
@@ -34,8 +34,9 @@
           </div>
         </div>
       </mat-toolbar>
-  
-      <mat-sidenav-container fxHide="true" fxShow.lt-md="true" class="sticky-footer">
+      
+
+      <mat-sidenav-container fxHide="true" fxShow.lt-md="true" class="sticky-footer col-md-6">
         <mat-sidenav-content fxFlexFill>
             <div class="flex width-full" style="justify-content: space-between;padding: 1em;" >
                 <div class="text-center" >

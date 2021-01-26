@@ -42,6 +42,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {ScrollingModule , ScrollDispatcher} from '@angular/cdk/scrolling';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxShimmerLoadingModule } from  'ngx-shimmer-loading';
+import { NgxWebstorageModule, SessionStorageService } from 'ngx-webstorage';
 
 @NgModule({
   declarations: [
@@ -91,6 +92,8 @@ import { NgxShimmerLoadingModule } from  'ngx-shimmer-loading';
     MatGridListModule,
     FlexLayoutModule,
     NgxShimmerLoadingModule,
+    
+    NgxWebstorageModule,
   ],
   imports: [
     CommonModule,
@@ -149,6 +152,8 @@ import { NgxShimmerLoadingModule } from  'ngx-shimmer-loading';
     MatGridListModule,
     FlexLayoutModule,
     NgxShimmerLoadingModule, 
+    
+    NgxWebstorageModule.forRoot(),
   ],
 })
 export class SharedModule { 
@@ -158,7 +163,7 @@ export class SharedModule {
           providers: [
             ScrollDispatcher,
             CurrencyPipe,
-            MatDatepickerModule
+            MatDatepickerModule,
           ]
         };
       }

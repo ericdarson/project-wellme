@@ -10,19 +10,19 @@
                 <div class="col-xl-6 flex">
                     <div class="w-100" style="margin: 10em 10em 10em 10em;">
                         <div>
-                            <div class="font-24"> <b>BCA ID [User ID]</b> </div>
+                            <div class="font-24 mb-2"> <b>BCA ID [User ID]</b> </div>
                             <mat-form-field class="w-100">
-                                <input matInput type="text" [(ngModel)]="bca_id" placeholder="(Massukan ID anda)" required />
+                                <input matInput type="text" [(ngModel)]="this.bca_id" placeholder="(Massukan ID anda)" required />
                             </mat-form-field>
                         </div>
                         <div>
-                            <div class="font-24"> <b>Password</b> </div>
+                            <div class="font-24 mb-2"> <b>Password</b> </div>
                             <mat-form-field class="w-100">
-                                <input matInput placeholder="(Masukkan Password anda)" [type]="hide ? 'password' : 'text'" required>
+                                <input matInput [(ngModel)]="this.password" autocomplete="off" placeholder="(Masukkan Password anda)" [type]="hide ? 'password' : 'text'" required>
                                 <mat-icon matSuffix class="clickable" (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                             </mat-form-field>
                         </div> 
-                        <div class="flex" style="justify-content:flex-end;">
+                        <div class="flex hover-wellme clickable" style="justify-content:flex-end;">
                             Forgot Password?
                         </div>   
                         <div class="mt-5">
@@ -32,7 +32,7 @@
                             <div class="font-18">
                                 New User? &nbsp;
                             </div>
-                            <div class="text-wellme-color font-18"> 
+                            <div class="text-wellme-color font-18 clickable"> 
                                 SignUp Here
                             </div>
                         </div> 

@@ -3,6 +3,7 @@ import {HttpClient,HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {Md5} from 'ts-md5/dist/md5';
 import {environment} from 'src/environments/environment'
+import { GeturlService } from './geturl.service';
 const httpOptions={
   headers:new HttpHeaders({
     'Content-Type':'application/json',
@@ -18,16 +19,16 @@ const httpOptions={
 
 export class LoginService {
   
- constructor(private http:HttpClient) {
+ constructor(private http:HttpClient, private getUrlService : GeturlService) {
    
  }
   
-  login(username:string,password:string):Observable<any>{
-    const url=environment.loginUrl;
+  login(bca_id:string,password:string):Observable<any>{
+    const url= this.getUrlService.getLoginUrl();
     const md5 = new Md5();
     password=md5.appendStr(password).end().toString();
     const request={
-      username:username,
+      bcaId:bca_id,
       password:password
     }
     return this.http.post(url,request,httpOptions);

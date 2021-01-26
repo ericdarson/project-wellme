@@ -69,6 +69,7 @@ import { ScrollDispatcher } from '@angular/cdk/overlay';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { PromoDetailComponent } from './components/promo-detail/promo-detail.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
+import { NgxWebstorageModule, SessionStorageService } from 'ngx-webstorage';
 
 
 @NgModule({
@@ -78,15 +79,14 @@ import { LoginPageComponent } from './components/login-page/login-page.component
     LandingPageComponent,
     PromoDetailComponent,
     LoginPageComponent,
-
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
   ],
-  providers: [Globals,MatDatepickerModule,CurrencyPipe,ScrollDispatcher],
+  providers: [Globals,MatDatepickerModule,CurrencyPipe,ScrollDispatcher,SessionStorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

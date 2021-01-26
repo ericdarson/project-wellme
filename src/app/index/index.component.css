@@ -1,7 +1,7 @@
 .toolbarNav{  
     position: fixed;
     bottom: 0;
-    width: 720px;;
+    width: 48%;
     z-index: 1000;
     display: flex;
     justify-content: space-between;

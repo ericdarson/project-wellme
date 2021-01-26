@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class ProductComponent implements OnInit {
 
   constructor() { }
-
+  x : number =3;
   ngOnInit(): void {
   }
 

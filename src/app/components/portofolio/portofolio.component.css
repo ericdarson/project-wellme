@@ -4,3 +4,7 @@
     border: 1px solid #6ED940;
     font-weight: bold;
 }
+.row{
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}

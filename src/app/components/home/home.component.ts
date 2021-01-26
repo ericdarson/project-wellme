@@ -16,10 +16,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     
-    this.dataService.getProfile("123").subscribe((data)=>{
-      console.log(data);
-      this.products = data
-    })  
   }
 
 }
