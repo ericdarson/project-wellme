@@ -10,6 +10,8 @@ import { PlannerService } from 'src/app/services/planner.service';
 export class FinancialPlannerListComponent implements OnInit {
 shimmering:string="block";
 listDisplay:string="hidden";
+notFound:string="hidden";
+display:string="block";
   listPlanner:any;
   listPlannerDisplay:any;
   constructor(private router:Router,private plannerService:PlannerService) { }
@@ -33,6 +35,11 @@ listDisplay:string="hidden";
         this.shimmering="hidden";
         this.listPlannerDisplay="block";
       });
+      if(this.listPlanner==[])
+      {
+        this.notFound="block";
+        this.listPlannerDisplay="hidden";
+      }
     },(error)=>{
       console.log('err-->',error);
     })

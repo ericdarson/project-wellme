@@ -28,8 +28,7 @@ export class DetailPlannerComponent implements OnInit {
     this.plannerService.getPlannerDetail().subscribe(response=>{
       this.plan=response.output_schema;
       this.distributeImage(this.plan.gambar,this.plan.puzzle_sequence,this.plan.category,this.plan.current_amount,this.plan.target_plan);
-      console.log(this.imgSrcSequence);
-      console.log(this.plan);
+
     },(error)=>{
       console.log(error);
     }

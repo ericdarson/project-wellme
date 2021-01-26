@@ -1,0 +1,11 @@
+.litle-space{
+    margin-bottom: 10px;
+}
+.bg-success:first-child {
+    background-color: #6ED940 !important;
+}
+
+
+::ng-deep .progress-bar {
+    background-color: #6ED940 !important;
+  }

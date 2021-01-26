@@ -7,6 +7,7 @@ import { FinancialPlannerListComponent } from '../components/financial-planner-l
 import { KonfirmasiTransaksiComponent } from '../components/konfirmasi-transaksi/konfirmasi-transaksi.component';
 import { PilihTargetComponent } from '../components/pilih-target/pilih-target.component';
 import { PinComponent } from '../components/pin/pin.component';
+import { PlannerDetailPortfolioComponent } from '../components/planner-detail-portfolio/planner-detail-portfolio.component';
 import { PortofolioBaruComponent } from '../components/portofolio-baru/portofolio-baru.component';
 import { ProductDetailComponent } from '../components/product-detail/product-detail.component';
 import { PromoKodeComponent } from '../components/promo-kode/promo-kode.component';
@@ -23,6 +24,7 @@ const routes: Routes = [
       { path:'planner-list', component:FinancialPlannerListComponent},
       { path:'summary-planner', component:SummaryPlannerComponent},
       { path:'detail-planner', component:DetailPlannerComponent},
+      { path:'detail-portfolio', component:PlannerDetailPortfolioComponent},
       { path:'beli-reksadana', component:BeliReksadanaComponent},
       { path:'promo-kode', component:PromoKodeComponent},
       { path:'product-detail', component:ProductDetailComponent},

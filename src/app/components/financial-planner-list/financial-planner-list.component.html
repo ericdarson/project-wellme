@@ -5,12 +5,12 @@
         </a>
         <h1 style="flex-basis: 90%; text-align: center;;" class="headFont">Financial Planner</h1>
     </div>
-    <!-- <div class="jflex-column padding-beauty center-main-axis center-cross-axis" style="height:90%">
+    <div class="jflex-column padding-beauty center-main-axis center-cross-axis" style="height:90%" [ngClass]="notFound">
         <img src="assets/img/list-planner-nothing.png">
         <h2 class="font-green"  style="text-align: center;"><strong>Tidak ada item yang bisa dicari :(</strong></h2>
         <p class="font-green"  style="text-align: center;"> Ayo selesaikan objectives dan dapatkan berbagai macam Promo Menarik</p>
         
-    </div> -->
+    </div>
     <div class="background-green padding-beauty scroll" [ngClass]="listPlannerDisplay" style="height: 90%; overflow: auto;">
         <div *ngFor="let plan of listPlanner" (click)="portofolioClicked(plan)">
         <mat-card class="box-outline padding-beauty" style="margin-bottom: 10px; cursor: pointer;" >

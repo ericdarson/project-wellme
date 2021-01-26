@@ -71,6 +71,7 @@ import { BackwardResultComponent } from './components/backward-result/backward-r
 import { PopupTutorialBackwardComponent } from './popup/popup-tutorial-backward/popup-tutorial-backward.component';
 import { BackwardTutorialComponent } from './components/backward-tutorial/backward-tutorial.component';
 import { PromoDetailComponent } from './components/promo-detail/promo-detail.component';
+import { PlannerDetailPortfolioComponent } from './components/planner-detail-portfolio/planner-detail-portfolio.component';
 
 
 @NgModule({
@@ -79,6 +80,7 @@ import { PromoDetailComponent } from './components/promo-detail/promo-detail.com
     HomeComponent,
     LandingPageComponent,
     PromoDetailComponent,
+    PlannerDetailPortfolioComponent,
 
 
   ],
