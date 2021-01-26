@@ -44,6 +44,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxShimmerLoadingModule } from  'ngx-shimmer-loading';
 import { NgxWebstorageModule, SessionStorageService } from 'ngx-webstorage';
 
+import {ReactiveFormsModule} from '@angular/forms'
 @NgModule({
   declarations: [
    
@@ -94,6 +95,7 @@ import { NgxWebstorageModule, SessionStorageService } from 'ngx-webstorage';
     NgxShimmerLoadingModule,
     
     NgxWebstorageModule,
+    ReactiveFormsModule
   ],
   imports: [
     CommonModule,
@@ -154,6 +156,7 @@ import { NgxWebstorageModule, SessionStorageService } from 'ngx-webstorage';
     NgxShimmerLoadingModule, 
     
     NgxWebstorageModule.forRoot(),
+    ReactiveFormsModule
   ],
 })
 export class SharedModule { 

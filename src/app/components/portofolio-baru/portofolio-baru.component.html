@@ -1,52 +1,59 @@
 <div class="jflex-column" style="height: 100%;">
     <div class="jflex-row" style="padding-top:20px;">
-        <a mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+        <a (click)="goBack()" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
             <mat-icon>chevron_left</mat-icon>
         </a>
         <h1 style="flex-basis: 90%; text-align: center;;" class="headFont">Portofolio Baru</h1>
     </div>
-    <div class="jflex-column padding-beauty  center-cross-axis " style=" flex-wrap: nowrap;">
-        <h1 style="font-weight: 300;">Gadget</h1>
-        <mat-card class="box-outline litle-space" style="width: 100%;">
-            <div><strong>Nama Portofolio</strong></div>
-            <mat-form-field appearance="standard" style="width: 100%;">
-                <mat-label>Masukan Nama Portfolio</mat-label>
-                <input  matInput>
-              </mat-form-field>
-        </mat-card>
-        <mat-card class="box-outline litle-space" style="width: 100%;">
-            <div><strong>Total Target yang Harus Terkumpul</strong></div>
-            <mat-form-field appearance="standard" style="width: 100%;">
-                <mat-label>Masukan target</mat-label>
-                <input type="number"  matInput>
-              </mat-form-field>
-        </mat-card>
-        <mat-card class="box-outline litle-space" style="width: 100%;">
-            <div><strong>Durasi Target</strong></div>
-            <mat-form-field appearance="standard" style="width: 100%;">
-                <mat-label>Masukan Tanggal</mat-label>
-                <input matInput [matDatepicker]="picker">
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-              </mat-form-field>
-        </mat-card>
-        <mat-card class="box-outline litle-space" style="width: 100%;">
-            <div class=" jflex-row stretch">
-            <div><strong>Periode Menabung</strong></div>
-            <div class="font-green"><strong>Mingguan</strong></div>
+    <form [formGroup]="portfolioForm" (submit)="onSubmit()">
+        <div class="jflex-column padding-beauty  center-cross-axis " style=" flex-wrap: nowrap;">
+            <h1 style="font-weight: 300;">Gadget</h1>
+            
+            <mat-card class="box-outline litle-space" style="width: 100%;">
+                <div><strong>Nama Portofolio</strong></div>
+                <mat-form-field appearance="standard" style="width: 100%;">
+                    <mat-label>Masukan Nama Portfolio</mat-label>
+                    <input  matInput formControlName="nama_portfolio">
+                    <mat-error *ngIf="portfolioForm.controls['nama_portfolio'].invalid">Nama Portfolio Tidak Boleh Kosong</mat-error>
+                </mat-form-field>
+            </mat-card>
+            <mat-card class="box-outline litle-space" style="width: 100%;">
+                <div><strong>Total Target yang Harus Terkumpul</strong></div>
+                <mat-form-field appearance="standard" style="width: 100%;" >
+                    <mat-label>Masukan target</mat-label>
+                    <input type="number"  matInput formControlName="target">
+                    <mat-error *ngIf="portfolioForm.controls['target'].invalid">Target Tidak Boleh Kosong</mat-error>
+                </mat-form-field>
+            </mat-card>
+            <mat-card class="box-outline litle-space" style="width: 100%;">
+                <div><strong>Durasi Target</strong></div>
+                <mat-form-field appearance="standard" style="width: 100%;">
+                    <mat-label>Masukan Tanggal</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="durasi_target">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-error *ngIf="portfolioForm.controls['durasi_target'].invalid">Durasi Target Minimal 2 Minggu dari Tanggal Hari Ini</mat-error>
+                </mat-form-field>
+            </mat-card>
+            <mat-card class="box-outline litle-space" style="width: 100%;">
+                <div class=" jflex-row stretch">
+                    <div><strong>Periode Menabung</strong></div>
+                    <div class="font-green"><strong>{{portfolioForm.controls['periodic'].value}}</strong></div>
+                </div>
+            </mat-card>
+            <mat-button-toggle-group name="fontStyle" style="width: 100%;" formControlName="periodic" [ngModel]="periodic">
+                <mat-button-toggle style="width: 33.3%;" value="Mingguan"><strong>Mingguan</strong></mat-button-toggle>
+                <mat-button-toggle style="width: 33.3%;" value="Bulanan" [disabled]="monthlyDisabled"><strong>Bulanan</strong></mat-button-toggle>
+                <mat-button-toggle style="width: 33.34%;" value="Tahunan" [disabled]="yearlyDisabled"><strong>Tahunan</strong></mat-button-toggle>
+            </mat-button-toggle-group>
+            
         </div>
-        </mat-card>
-        <mat-button-toggle-group name="fontStyle" style="width: 100%;">
-            <mat-button-toggle style="width: 33.3%;" value="Weekly"><strong>Mingguan</strong></mat-button-toggle>
-            <mat-button-toggle style="width: 33.3%;" value="Monthly"><strong>Bulanan</strong></mat-button-toggle>
-            <mat-button-toggle style="width: 33.34%;" value="Yearly"><strong>Tahunan</strong></mat-button-toggle>
-          </mat-button-toggle-group>
-    </div>
-    
-    
-    
-    
-    <div class="background-green jflex-row padding-beauty center-main-axis">
-        <a href="financial-planner/simulasi-planner" mat-raised-button style="background-color: #6ED940; color: white; width: 80%; ">Lanjut</a>
-    </div>
+        
+        
+        
+        
+        <div class="background-green jflex-row padding-beauty center-main-axis">
+            <button type="submit" [disabled]="!portfolioForm.valid" href="financial-planner/simulasi-planner" mat-raised-button class="button-active">Lanjut</button>
+        </div>
+    </form>
 </div>

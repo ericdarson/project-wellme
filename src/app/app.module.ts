@@ -70,6 +70,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { PromoDetailComponent } from './components/promo-detail/promo-detail.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { NgxWebstorageModule, SessionStorageService } from 'ngx-webstorage';
+import { PlannerDetailPortfolioComponent } from './components/planner-detail-portfolio/planner-detail-portfolio.component';
 
 
 @NgModule({
@@ -79,6 +80,9 @@ import { NgxWebstorageModule, SessionStorageService } from 'ngx-webstorage';
     LandingPageComponent,
     PromoDetailComponent,
     LoginPageComponent,
+    PlannerDetailPortfolioComponent,
+
+
   ],
   imports: [
     BrowserModule,
