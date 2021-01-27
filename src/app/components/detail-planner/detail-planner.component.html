@@ -3,7 +3,7 @@
         <a mat-icon-button aria-label="Example icon button with a vertical three dot icon" (click)="goBack()">
             <mat-icon>chevron_left</mat-icon>
         </a>
-        <h1 style="flex-basis: 90%; text-align: center;;" class="headFont">Macbook Baru</h1>
+        <h1 style="flex-basis: 90%; text-align: center;;" class="headFont">{{plan.nama_plan}}</h1>
     </div>
     <div class="jflex-column padding-beauty  center-cross-axis ">
 
@@ -11,7 +11,7 @@
            <div class="jflex-row stretch">
                <div class="jflex-column">
                     <div>{{plan.nama_plan}}</div>
-                    <h1 class="font-green">{{plan.target_plan | currency:'Rp ':'code'}}</h1>
+                    <h1 class="font-green">{{plan.target_plan |currency:'Rp ':true:'1.0-2'}}</h1>
                     <div>Deadline: {{plan.due_date}}</div>
                </div>
                <div class="jflex-column center-main-axis center-cross-axis">
@@ -44,13 +44,13 @@
     </div>
     <div class="jflex-column little-space center-cross-axis center-main-axis">
         <p style="width: 90%;"><ngb-progressbar style="background-color: #B7EC9F;"  [height]="'50px'" textType="white" [value]="plan.current_amount/plan.target_plan*100>100?100:plan.current_amount/plan.target_plan*100" [showValue]="true"></ngb-progressbar></p>    
-        <h1><strong>{{plan.current_amount | currency:' ':'code'}}/{{plan.target_plan | currency:' ':'code'}}</strong></h1>
+        <h1><strong>{{plan.current_amount |currency:' ':true:'1.0-2'}}/{{plan.target_plan |currency:' ':true:'1.0-2'}}</strong></h1>
     </div> 
     
     
     
     <div class=" jflex-column padding-beauty center-cross-axis">
-        <a href="financial-planner/beli-reksadana" mat-raised-button style="background-color: #6ED940; color: white; width: 100%; ">Lihat Detail</a>
+        <a routerLink="/financial-planner/detail-portfolio" mat-raised-button style="background-color: #6ED940; color: white; width: 100%; ">Lihat Detail</a>
         <!-- <a mat-button  class="litle-space box-outline" style="background-color: white; color: #6ED940; border: 2px solid #6ED940; width: 100%; ">Jual Reksadana</a>
         <a href="financial-planner/beli-reksadana" mat-raised-button style="background-color: #6ED940; color: white; width: 100%; ">Beli Reksadana</a> -->
     </div>

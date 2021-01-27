@@ -3,14 +3,14 @@
         <a mat-icon-button aria-label="Example icon button with a vertical three dot icon">
             <mat-icon>chevron_left</mat-icon>
         </a>
-        <h1 style="flex-basis: 90%; text-align: center;;" class="headFont">Portofolio Baru</h1>
+        <h1 style="flex-basis: 90%; text-align: center;;" class="headFont">Beli Reksadana</h1>
     </div>
     <div class="jflex-column padding-beauty  center-cross-axis">
-        <h1 style="font-weight: 300;">Iphone 12 Pro Baru</h1>
+        <h1 style="font-weight: 300;">{{namaPlan}}</h1>
         <mat-card class="box-outline litle-space" style="width: 100%;">
             <div class=" jflex-row stretch">
                 <div><strong>Profil Resiko</strong></div>
-                <div >Agresif</div>
+                <div >{{tipe_resiko}}</div>
             </div>
         </mat-card>
         
@@ -18,47 +18,34 @@
             <table style="width: 100%;">
                 <thead>
                     <th colspan="2"><strong>Profil Resiko</strong></th>
-                    <th><strong>Alokasi</strong></th>
+                    <th style="text-align: center;"><strong>Alokasi (%)</strong></th>
                     <th></th>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr  *ngFor="let alokasi of detail_resiko; let i = index" [attr.data-index]="i">
                         <td colspan="2">
                             <div class="jflex-column">
-                                <div class="font-green"><strong>Pasar Uang</strong></div>
-                                <div>Manulife Pasar Uang II</div>
+                                <div class="font-green"><strong>{{alokasi.nama_plan}}</strong></div>
+                                <div></div>
                             </div>
                         </td>
-                        <td>10%</td>
-                        <td>  <a mat-button class="green-button">Pilih</a></td> 
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <div class="jflex-column">
-                                <div class="font-green"><strong>Pasar Uang</strong></div>
-                                <div>Manulife Pasar Uang II</div>
-                            </div>
+                        <td>
+                            <div class="jflex-row center-main-axis">
+                                <button (click)="decreasePercentage(i)" mat-mini-fab style="padding: 0; width: 30px; height: 30px; background-color: #6ED940;"><mat-icon style="font-size: small;">chevron_left</mat-icon></button>
+                                <input type="number" style="width: 40px; margin: 0px 10px;" min="0" max="100" [ngModel]="detail_resiko[i].percentage">
+                                <button (click)="increasePercentage(i)" mat-mini-fab style="padding: 0; width: 30px; height: 30px; background-color: #6ED940;"><mat-icon style="font-size: small;">chevron_right</mat-icon></button>    
+                            </div> 
                         </td>
-                        <td>10%</td>
-                        <td>  <a mat-button class="green-button">Pilih</a></td> 
+                        <td>  <button mat-button class="green-button" (click)="goToListReksadana(detail_resiko[i].id_jenis_reksadana)">Pilih</button></td> 
                     </tr>
-                    <tr>
-                        <td colspan="2">
-                            <div class="jflex-column">
-                                <div class="font-green"><strong>Pasar Uang</strong></div>
-                                <div>Manulife Pasar Uang II</div>
-                            </div>
-                        </td>
-                        <td>10%</td>
-                        <td><a mat-button class="green-button">Pilih</a></td> 
-                    </tr>
+                  
                 </tbody>
             </table>
         </mat-card>
         <mat-card class="box-outline litle-space" style="width: 100%;">
             <div class="jflex-column stretch">
                 <div><strong>Rekomendasi Pembelian</strong></div>
-                <h3 class="font-green" style="margin-bottom: 0;"><strong>Rp 2,000,000</strong></h3>
+                <h3 class="font-green" style="margin-bottom: 0;"><strong>{{rekomendasiPembelian |currency:'Rp ':true:'1.0-2'}}</strong></h3>
             </div>
         </mat-card>
         <mat-card class="box-outline litle-space" style="width: 100%;">
@@ -66,15 +53,15 @@
             <mat-form-field appearance="standard" style="width: 100%;">
                 <mat-label>Masukan Nominal</mat-label>
                 <input type="number"  matInput>
-              </mat-form-field>
+            </mat-form-field>
         </mat-card>
         <mat-card class="box-outline litle-space" style="width: 100%;">
             <div><strong>Kode Promo</strong></div>
             <mat-form-field appearance="standard" style="width: 100%;">
                 <mat-label></mat-label>
                 <input type="text"  matInput>
-              </mat-form-field>
-              <a mat-button class="green-button" href="financial-planner/promo-kode">Pilih</a>
+            </mat-form-field>
+            <a mat-button class="green-button" href="financial-planner/promo-kode">Pilih</a>
         </mat-card>
     </div>
     

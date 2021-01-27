@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
   constructor(private checkSession: CheckSessionService) { }
 
   ngOnInit(): void {
-    this.checkSession.checkSession();
+    //this.checkSession.checkSession();
   }
 }
 

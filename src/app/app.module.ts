@@ -71,6 +71,7 @@ import { PromoDetailComponent } from './components/promo-detail/promo-detail.com
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { NgxWebstorageModule, SessionStorageService } from 'ngx-webstorage';
 import { PlannerDetailPortfolioComponent } from './components/planner-detail-portfolio/planner-detail-portfolio.component';
+import { PlannerListReksadanaComponent } from './components/planner-list-reksadana/planner-list-reksadana.component';
 
 @NgModule({
   declarations: [
@@ -80,6 +81,7 @@ import { PlannerDetailPortfolioComponent } from './components/planner-detail-por
     PromoDetailComponent,
     LoginPageComponent,
     PlannerDetailPortfolioComponent,
+    PlannerListReksadanaComponent,
 
 
   ],

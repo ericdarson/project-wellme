@@ -9,6 +9,8 @@ import {environment} from 'src/environments/environment'
 })
 export class PlannerService {
   idDetail:number|null=null;
+  namaPlannerDetail:string|null=null;
+  rekomendasiPembelian:number|null=null;
   httpOptions:any={
     headers:new HttpHeaders({
       'Content-Type':'application/json',
@@ -29,9 +31,30 @@ export class PlannerService {
   }
   simulasiPlannerRequest:any={};
   kategori:string="";
-  
+  idJenisReksadana:number|null=null;
+
+  setIdJenisReksadana(num:number):void{
+    this.idJenisReksadana=num;
+  }
+  getIdJenisReksadana():number|null{
+return this.idJenisReksadana;
+  }
+
   constructor(private http:HttpClient) {
-    
+  }
+  
+  setNamaPlannerDetail(nama:string|null):void{
+    this.namaPlannerDetail=nama;
+  }
+  getNamaPlannerDetail():string|null{
+    return this.namaPlannerDetail;
+  }
+
+  setRekomendasiPembelian(num:number|null):void{
+    this.rekomendasiPembelian=num;
+  }
+  getRekomendasiPembelian():number|null{
+    return this.rekomendasiPembelian;
   }
   resetVariable():void{
     this.kategori="";
@@ -52,63 +75,68 @@ export class PlannerService {
   }
   
   insertPlanner():Observable<any>{
-      const url=environment.insertPlannerUrl;
-      
-      return this.http.post(url,this.insertRequest,this.httpOptions);
-    }
+    const url=environment.insertPlannerUrl;
     
-    getPlannerDetail():Observable<any>{
-      const url=environment.plannerDetailUrl+'/'+this.idDetail;
-      
-      return this.http.get(url,this.httpOptions);
-    }
+    return this.http.post(url,this.insertRequest,this.httpOptions);
+  }
+  
+  getPlannerDetail():Observable<any>{
+    const url=environment.plannerDetailUrl+'/'+this.idDetail;
     
-    setIdDetail(idDetail:number):void{
-      
-      this.idDetail=idDetail;
-    }
-    getIdDetail():number|null{
-
-      return this.idDetail;
-    }
+    return this.http.get(url,this.httpOptions);
+  }
+  
+  setIdDetail(idDetail:number):void{
     
-    getInsertRequest():any{
-      return this.insertRequest
+    this.idDetail=idDetail;
+  }
+  getIdDetail():number|null{
+    
+    return this.idDetail;
+  }
+  
+  getInsertRequest():any{
+    return this.insertRequest
+  }
+  
+  isRequestValid():boolean{
+    if(this.insertRequest.nama_plan!=""&&this.insertRequest.goal_amount!=""&&this.insertRequest.periodic!=""&&this.insertRequest.kategori!=""&&this.insertRequest.due_date!=""){
+      return true;
     }
-
-    isRequestValid():boolean{
-      if(this.insertRequest.nama_plan!=""&&this.insertRequest.goal_amount!=""&&this.insertRequest.periodic!=""&&this.insertRequest.kategori!=""&&this.insertRequest.due_date!=""){
-        return true;
-      }
-      else{
-        return false;
-      }
-    }
-    setKategori(kategori:string):void{
-    this.insertRequest.kategori=String(kategori);
-
-    }
-
-    setRequest(nama_plan:string,goal_amount:string,periodic:string,dueDate:string){
-      this.insertRequest.nama_plan=String(nama_plan);
-      this.insertRequest.goal_amount=String(goal_amount);
-      this.insertRequest.periodic=String(periodic);
-      this.insertRequest.due_date=String(dueDate);
-    }
-
-    getSimulasiPlanner():Observable<any>{
-      const url=environment.simulasiPlannerUrl;
-      this.simulasiPlannerRequest={};
-      this.simulasiPlannerRequest={
-        target:String(this.insertRequest.goal_amount),
-        due_date:this.insertRequest.due_date,
-        periodic:this.insertRequest.periodic
-      };
-      console.log(this.simulasiPlannerRequest);
-      return this.http.post(url,this.simulasiPlannerRequest,this.httpOptions);
-    }
-    getPorfileResiko():Observable<any>{
-      const url=environment.profileResikoUrl;
-      return this.http.get(url,this.httpOptions);
+    else{
+      return false;
     }
   }
+  setKategori(kategori:string):void{
+    this.insertRequest.kategori=String(kategori);
+    
+  }
+  
+  setRequest(nama_plan:string,goal_amount:string,periodic:string,dueDate:string){
+    this.insertRequest.nama_plan=String(nama_plan);
+    this.insertRequest.goal_amount=String(goal_amount);
+    this.insertRequest.periodic=String(periodic);
+    this.insertRequest.due_date=String(dueDate);
+  }
+  
+  getSimulasiPlanner():Observable<any>{
+    const url=environment.simulasiPlannerUrl;
+    this.simulasiPlannerRequest={};
+    this.simulasiPlannerRequest={
+      target:String(this.insertRequest.goal_amount),
+      due_date:this.insertRequest.due_date,
+      periodic:this.insertRequest.periodic
+    };
+    console.log(this.simulasiPlannerRequest);
+    return this.http.post(url,this.simulasiPlannerRequest,this.httpOptions);
+  }
+  getPorfileResiko():Observable<any>{
+    const url=environment.profileResikoUrl;
+    return this.http.get(url,this.httpOptions);
+  }
+
+  getListReksadana(idJenis:number):Observable<any>{
+    const url=environment.listReksadanaPlannerUrl+'/'+idJenis;
+    return this.http.get(url,this.httpOptions);
+  }
+}
