@@ -9,9 +9,20 @@ import { PlannerService } from 'src/app/services/planner.service';
   styleUrls: ['./planner-detail-portfolio.component.css']
 })
 export class PlannerDetailPortfolioComponent implements OnInit {
-
-  constructor(private router:Router,private plannerService:PlannerService,private location:Location) { }
+  plannerId:number|null;
+  constructor(private router:Router,private plannerService:PlannerService,private location:Location) {}
+ 
   ngOnInit(): void {
+    this.checkState();
+  }
+
+
+  checkState():void{
+    this.plannerId=this.plannerService.getIdDetail();
+    if(this.plannerId==null)
+    {
+      this.router.navigate(['/financial-planner/planner-list']);
+    }
   }
 
   goBack():void{

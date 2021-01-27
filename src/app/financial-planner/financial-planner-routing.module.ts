@@ -8,8 +8,10 @@ import { KonfirmasiTransaksiComponent } from '../components/konfirmasi-transaksi
 import { PilihTargetComponent } from '../components/pilih-target/pilih-target.component';
 import { PinComponent } from '../components/pin/pin.component';
 import { PlannerDetailPortfolioComponent } from '../components/planner-detail-portfolio/planner-detail-portfolio.component';
+import { PlannerListReksadanaComponent } from '../components/planner-list-reksadana/planner-list-reksadana.component';
 import { PortofolioBaruComponent } from '../components/portofolio-baru/portofolio-baru.component';
 import { ProductDetailComponent } from '../components/product-detail/product-detail.component';
+import { ProductComponent } from '../components/product/product.component';
 import { PromoKodeComponent } from '../components/promo-kode/promo-kode.component';
 import { SimulasiPlannerComponent } from '../components/simulasi-planner/simulasi-planner.component';
 import { SummaryPlannerComponent } from '../components/summary-planner/summary-planner.component';
@@ -33,7 +35,8 @@ const routes: Routes = [
       { path: 'detail-portofolio', component:PortofolioBaruComponent},
       { path: 'simulasi-planner', component:SimulasiPlannerComponent},
       { path: 'detail-transaksi',component:DetailTransaksiComponent},
-      { path: 'kode-pin',component:PinComponent}
+      { path: 'kode-pin',component:PinComponent},
+      { path: 'list-reksadana',component:PlannerListReksadanaComponent}
     ]
   }
 ];

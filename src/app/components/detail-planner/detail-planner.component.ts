@@ -27,6 +27,8 @@ export class DetailPlannerComponent implements OnInit {
   getDetail():void{
     this.plannerService.getPlannerDetail().subscribe(response=>{
       this.plan=response.output_schema;
+      this.plannerService.setNamaPlannerDetail(this.plan.nama_plan);
+      this.plannerService.setRekomendasiPembelian(this.plan.rekomendasi_pembelian);
       this.distributeImage(this.plan.gambar,this.plan.puzzle_sequence,this.plan.category,this.plan.current_amount,this.plan.target_plan);
 
     },(error)=>{

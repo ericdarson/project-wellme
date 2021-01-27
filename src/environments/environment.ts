@@ -15,6 +15,7 @@ export const environment = {
   checkSessionUrl: 'http://10.8.0.3:8080/check-session-web',
   simulasiPlannerUrl:'http://10.8.0.3:8090/simulasi-planner',
   profileResikoUrl:'http://10.8.0.3:8084/financial-planner/resiko',
+  listReksadanaPlannerUrl:'http://10.8.0.3:8085/financial-planner/products',
 };
 
 /*
