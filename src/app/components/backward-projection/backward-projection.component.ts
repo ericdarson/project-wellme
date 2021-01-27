@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PopupSyaratKetentuanComponent } from '../../popup/popup-syarat-ketentuan/popup-syarat-ketentuan.component';
 import { PopupTutorialBackwardComponent } from '../../popup/popup-tutorial-backward/popup-tutorial-backward.component';
 import { BackwardProjectionListReksadana } from '../../models/BackwardProjectionListReksadana'
+import { BackwardProjectionListReksadanaService } from '../../services/backward-projection-list-reksadana.service'
+
 @Component({
   selector: 'app-backward-projection',
   templateUrl: './backward-projection.component.html',
@@ -15,32 +17,23 @@ export class BackwardProjectionComponent implements OnInit {
   skCheck :boolean = false
   selectedId :string = ""
 
-  constructor(public dialog: MatDialog,private router : Router,private route : ActivatedRoute) { }
+  constructor(public dialog: MatDialog,private router : Router,private route : ActivatedRoute, private service : BackwardProjectionListReksadanaService) { }
 
   ngOnInit(): void {
-    this.listReksadana = [
+    this.listReksadana = [];
+    this.service.getListJenis().subscribe(response=>{
+      console.log(response)
+      if (response.error_schema.error_code=="BIT-00-000")
       {
-        id:"1",
-        nama:"nama",
-        selected:false
-      },{
-        id:"2",
-        nama:"nama2",
-        selected:false
-      },{
-        id:"2",
-        nama:"nama2",
-        selected:false
-      },{
-        id:"2",
-        nama:"nama2",
-        selected:false
-      },{
-        id:"2",
-        nama:"nama2",
-        selected:false
-      },
-    ]
+        response.output_schema.forEach((element: { id_jenis_reksadana: string; jenis_reksadana: string;}) => {
+          let single = new BackwardProjectionListReksadana()
+          single.id = element.id_jenis_reksadana;
+          single.nama = element.jenis_reksadana;
+          single.selected = false
+          this.listReksadana.push(single)
+        });
+      }
+    })
   }
 
   openSKPopup():void{

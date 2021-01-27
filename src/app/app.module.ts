@@ -72,7 +72,6 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 import { NgxWebstorageModule, SessionStorageService } from 'ngx-webstorage';
 import { PlannerDetailPortfolioComponent } from './components/planner-detail-portfolio/planner-detail-portfolio.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -89,6 +88,7 @@ import { PlannerDetailPortfolioComponent } from './components/planner-detail-por
     BrowserAnimationsModule,
     AppRoutingModule,
     SharedModule,
+    HttpClientModule,
   ],
   providers: [Globals,MatDatepickerModule,CurrencyPipe,ScrollDispatcher,SessionStorageService],
   bootstrap: [AppComponent]
