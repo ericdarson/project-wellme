@@ -2,6 +2,10 @@ import { Injectable } from '@angular/core';
 import {HttpClient,HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {environment} from 'src/environments/environment'
+import { InsertPlannerRequest } from '../models/insert-planner-request';
+import { PlannerKonfirmasi } from '../models/planner-konfirmasi';
+import { PlannerReksadana } from '../models/planner-reksadana';
+import { PlannerBeliState } from '../models/planner-beli-state';
 
 
 @Injectable({
@@ -11,6 +15,7 @@ export class PlannerService {
   idDetail:number|null=null;
   namaPlannerDetail:string|null=null;
   rekomendasiPembelian:number|null=null;
+  jenisReksadanaPembelian:string;
   httpOptions:any={
     headers:new HttpHeaders({
       'Content-Type':'application/json',
@@ -22,7 +27,9 @@ export class PlannerService {
       'Token':'B905AB43ABF8BB33F532FAB977C1B80A'
     })
   }
-  insertRequest:any={
+  plannerKonfirmasi:PlannerKonfirmasi[]=[];
+  
+  insertRequest:InsertPlannerRequest={
     nama_plan:"",
     goal_amount:"",
     periodic:"",
@@ -32,14 +39,31 @@ export class PlannerService {
   simulasiPlannerRequest:any={};
   kategori:string="";
   idJenisReksadana:number|null=null;
-
+  
+  plannerBeliState:PlannerBeliState;
+  setPlannerBeliState(p:PlannerBeliState):void{
+    this.plannerBeliState=p;
+  }
+  getPlannerBeliState():PlannerBeliState|null{
+    if(this.plannerBeliState==null||this.plannerBeliState==undefined){
+      return null;
+    }else{
+      return this.plannerBeliState;
+    }
+  }
+  setJenisReksadanaPembelian(jenis:string):void{
+    this.jenisReksadanaPembelian=jenis;
+  }
+  getJenisReksadanaPembelian():string{
+    return this.jenisReksadanaPembelian;
+  }
   setIdJenisReksadana(num:number):void{
     this.idJenisReksadana=num;
   }
   getIdJenisReksadana():number|null{
-return this.idJenisReksadana;
+    return this.idJenisReksadana;
   }
-
+  
   constructor(private http:HttpClient) {
   }
   
@@ -49,7 +73,7 @@ return this.idJenisReksadana;
   getNamaPlannerDetail():string|null{
     return this.namaPlannerDetail;
   }
-
+  
   setRekomendasiPembelian(num:number|null):void{
     this.rekomendasiPembelian=num;
   }
@@ -134,9 +158,60 @@ return this.idJenisReksadana;
     const url=environment.profileResikoUrl;
     return this.http.get(url,this.httpOptions);
   }
-
+  
   getListReksadana(idJenis:number):Observable<any>{
     const url=environment.listReksadanaPlannerUrl+'/'+idJenis;
     return this.http.get(url,this.httpOptions);
+  }
+  
+  addKonfirmasiPembelian(reksadana:PlannerReksadana)
+  {
+    var konfirmasi:PlannerKonfirmasi;
+    konfirmasi={
+      id_jenis_reksadana:this.idJenisReksadana==null?0:this.idJenisReksadana,
+      biaya_pembelian:reksadana.biaya_pembelian,
+      id_produk:reksadana.id_jenis_reksadana,
+      jenis_reksadana:this.jenisReksadanaPembelian,
+      minimum_amount:reksadana.minimum_amount,
+      nama_produk:reksadana.nama_jenis_reksadana,
+      nominal:0
+    };
+    this.searchKonfirmasi();
+    
+    this.plannerKonfirmasi.push(konfirmasi);
+  }
+  
+  searchKonfirmasi():void{
+    var index:number;
+    var exist:boolean=false;
+    var keepgoing:boolean=true;
+    this.plannerKonfirmasi.forEach((element,key) => {
+      
+      if(keepgoing){
+        if(element.id_jenis_reksadana==this.idJenisReksadana)
+        {
+          exist=true;
+          index=key;
+          keepgoing=false;
+          exist==true?this.plannerKonfirmasi.splice(index,1):null;
+        }
+      }
+      
+    });
+    
+    
+    
+  }
+  getKonfirmasiByIdJenis(idJenis:number):PlannerKonfirmasi|null{
+    
+    for (let i = 0; i < this.plannerKonfirmasi.length; i++) {
+      if(idJenis==this.plannerKonfirmasi[i].id_jenis_reksadana)
+      {
+        return this.plannerKonfirmasi[i];
+      }
+      
+    }
+    
+    return null;
   }
 }

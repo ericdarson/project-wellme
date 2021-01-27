@@ -10,7 +10,7 @@
         <mat-card class="box-outline litle-space" style="width: 100%;">
             <div class=" jflex-row stretch">
                 <div><strong>Profil Resiko</strong></div>
-                <div >{{tipe_resiko}}</div>
+                <div >{{plannerResiko.tipe_resiko}}</div>
             </div>
         </mat-card>
         
@@ -19,7 +19,7 @@
                 <div><strong>Profil Resiko</strong></div>
                 <div><strong>Alokasi</strong></div>
             </div>
-            <div class=" jflex-row stretch litle-space" *ngFor="let resiko of detail_resiko">
+            <div class=" jflex-row stretch litle-space" *ngFor="let resiko of plannerResiko.detail_resiko">
                 <div class="font-green">{{resiko.nama_plan}}</div>
                 <div class="font-green"><strong>{{resiko.percentage}} %</strong></div>
             </div>

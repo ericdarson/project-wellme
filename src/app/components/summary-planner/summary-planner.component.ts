@@ -1,6 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { PlannerResiko } from 'src/app/models/planner-resiko';
 import { PlannerService } from 'src/app/services/planner.service';
 
 @Component({
@@ -9,8 +10,9 @@ import { PlannerService } from 'src/app/services/planner.service';
   styleUrls: ['./summary-planner.component.css']
 })
 export class SummaryPlannerComponent implements OnInit {
-  tipe_resiko:string;
-  detail_resiko:any;
+  plannerResiko:PlannerResiko;
+  
+  
   constructor(private plannerService:PlannerService,private route:Router,private location:Location) { }
 
   ngOnInit(): void {
@@ -30,8 +32,8 @@ export class SummaryPlannerComponent implements OnInit {
 
   getProfileResiko():void{
     this.plannerService.getPorfileResiko().subscribe(response=>{
-      this.tipe_resiko=response.output_schema.tipe_resiko;
-      this.detail_resiko=response.output_schema.detail_resiko;
+      this.plannerResiko=response.output_schema;
+      
     })
   }
   insertPlanner():void{

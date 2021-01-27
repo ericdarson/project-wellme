@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RouteConfigLoadEnd, Router } from '@angular/router';
+import { PlannerList } from 'src/app/models/planner-list';
+import { ResponseApi } from 'src/app/models/ResponseApi';
 import { PlannerService } from 'src/app/services/planner.service';
 
 @Component({
@@ -12,7 +14,7 @@ shimmering:string="block";
 listDisplay:string="hidden";
 notFound:string="hidden";
 display:string="block";
-  listPlanner:any;
+  listPlanner:PlannerList[];
   listPlannerDisplay:any;
   constructor(private router:Router,private plannerService:PlannerService) { }
 
@@ -27,7 +29,7 @@ display:string="block";
   }
 
   getListPlanner():void{
-    this.plannerService.getPlannerList().subscribe(response=>{
+    this.plannerService.getPlannerList().subscribe((response:ResponseApi)=>{
       console.log(response);
       this.listPlanner=response.output_schema.list_planner;
       this.listPlanner.forEach((element:any) => {
