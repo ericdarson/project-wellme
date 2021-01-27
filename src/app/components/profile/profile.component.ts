@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from 'src/app/services/profile.service';
+import { ProfileMaster } from '../../models/ProfileMaster';
+import { ResponseApi } from '../../models/ResponseApi';
 
 @Component({
   selector: 'app-profile',
@@ -10,14 +12,23 @@ export class ProfileComponent implements OnInit {
 
   buttonShowRekening : boolean = false
 
+  profileMaster : ProfileMaster;
+  norek : string;
+
   constructor(private profileService : ProfileService) { }
 
   ngOnInit(): void {
-    this.profileService.getProfile().subscribe(response=>{
+    this.profileService.getProfile().subscribe((response:ResponseApi)=>{
       console.log(response)
      if (response.error_schema.error_message.indonesian=="BERHASIL")
      {
-        console.log(response.output_schema)
+        this.profileMaster = response.output_schema.detail_profile
+        console.log(this.profileMaster)
+        console.log(this.profileMaster.email)
+        
+        console.log(this.profileMaster.noRekBCA)
+        this.norek = this.profileMaster.noRekBCA
+        console.log(this.norek)
      }
      else{
         console.log("gagal get profile")

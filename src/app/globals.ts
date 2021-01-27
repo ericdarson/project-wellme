@@ -9,5 +9,8 @@ export class Globals {
     INVALID_PARM_CODE_RETURN : string = 'BIT-17-002'
 
     
+    profileResiko :string[] =[
+        ""
+    ]
 
 }
