@@ -1,117 +1,143 @@
 <div class="master-component">
 
     <h1 class="flex-center" style="margin-bottom: 2em;"><b>Profile</b></h1>
-    <div class="flex-center" style="margin-bottom: 1em;">
-        <div class="profile-name">
-            Jlius Suweno
-        </div>
-    </div>
-    <div style="padding-left: 1em; padding-right: 1em; padding-top: 2em;padding-bottom: 2em;">
-        <div class="profile-item-box" style="padding: 1em;">
-            <div class="flex width-full" style="justify-content: space-between;">
-                <div>
-                    <b>
-                        Profil Resiko
-                    </b>
-                </div>
-                <div>
-                    Aggresif
-                </div>
+    <div *ngIf="showProfile">
+        <div class="flex-center" style="margin-bottom: 1em;">
+            <div class="profile-name">
+                {{profileMaster.nama}}
             </div>
         </div>
-        <div class="profile-item-box" style="padding: 1em;">
-            <div class="flex width-full" style="justify-content: space-between;">
-                <div>
-                    <b>
-                        BCA ID
-                    </b>
-                </div>
-                <div>
-                    Aggresif
-                </div>
-            </div>
-        </div>
-        <div class="profile-item-box" style="padding: 1em;">
-            <div class="flex width-full" style="justify-content: space-between;">
-                <div>
-                    <b>
-                        Email
-                    </b>
-                </div>
-                <div>
-                    Aggresif
-                </div>
-            </div>
-        </div>
-        <div class="profile-item-box" style="padding: 1em;">
-            <div class="flex width-full" style="justify-content: space-between; margin-bottom: 1em;">
-                <div>
-                    <b>
-                        SBN Online
-                    </b>
-                </div>
-                <div>
-                    Aggresif
-                </div>
-            </div>
-            <div style="height: 1px; background-color: #6ED940; margin-bottom: 1em;"></div>
-            <div class="flex width-full" style="justify-content: space-between; ">
-                <div>
-                    <div>SID</div>
-                    <div><b>IDD0190l21321210</b></div>
-                </div>
-                <div class="profile-button clickable">
-                    <b> Lihat Info</b>
-                </div>
-            </div>
-        </div>
-        <div class="profile-item-box" style="padding: 1em;">
-            <div class="flex width-full" style="justify-content: space-between;">
-                <div style="align-self: center;">
-                    <b >
-                        Rekening
-                    </b>
-                </div>
-                <div class="profile-button clickable" (click)="buttonShowRekClicked()">
-                    <div class="flex" *ngIf="!this.buttonShowRekening">
-                        <b style="align-self: center;">Show</b>
-                        <mat-icon>expand_more</mat-icon>
+        <div  style="padding-left: 1em; padding-right: 1em; padding-top: 2em;padding-bottom: 2em;">
+            <div class="profile-item-box" style="padding: 1em;">
+                <div class="flex width-full" style="justify-content: space-between;">
+                    <div>
+                        <b>
+                            Profil Resiko
+                        </b>
                     </div>
-                    <div class="flex" *ngIf="this.buttonShowRekening">
-                        <b style="align-self: center;">Hide</b>
-                        <mat-icon>expand_less</mat-icon>
+                    <div>
+                        {{profileMaster.profileResiko}}
                     </div>
                 </div>
             </div>
-            <div *ngIf="this.buttonShowRekening" style="margin-top:1em ;">
+            <div class="profile-item-box" style="padding: 1em;">
+                <div class="flex width-full" style="justify-content: space-between;">
+                    <div>
+                        <b>
+                            BCA ID
+                        </b>
+                    </div>
+                    <div>
+                        {{profileMaster.bcaId}}
+                    </div>
+                </div>
+            </div>
+            <div class="profile-item-box" style="padding: 1em;">
+                <div class="flex width-full" style="justify-content: space-between;">
+                    <div>
+                        <b>
+                            Email
+                        </b>
+                    </div>
+                    <div>
+                        {{profileMaster.email}}
+                    </div>
+                </div>
+            </div>
+            <div class="profile-item-box" style="padding: 1em;">
+                <div class="flex width-full" style="justify-content: space-between; margin-bottom: 1em;">
+                    <div>
+                        <b>
+                            SBN Online
+                        </b>
+                    </div>
+                    <div>
+                        Aggresif
+                    </div>
+                </div>
                 <div style="height: 1px; background-color: #6ED940; margin-bottom: 1em;"></div>
-                <div>
-                    Rekening Reksadana
+                <div class="flex width-full" style="justify-content: space-between; ">
+                    <div>
+                        <div>SID</div>
+                        <div><b>{{profileMaster.sid}}</b></div>
+                    </div>
+                    <div class="profile-button clickable">
+                        <b> Lihat Info</b>
+                    </div>
                 </div>
-                <div>
-                    <b>
-                       123455678
-                    </b>
+            </div>
+            <div class="profile-item-box" style="padding: 1em;">
+                <div class="flex width-full" style="justify-content: space-between;">
+                    <div style="align-self: center;">
+                        <b >
+                            Rekening
+                        </b>
+                    </div>
+                    <div class="profile-button clickable" (click)="buttonShowRekClicked()">
+                        <div class="flex" *ngIf="!this.buttonShowRekening">
+                            <b style="align-self: center;">Show</b>
+                            <mat-icon>expand_more</mat-icon>
+                        </div>
+                        <div class="flex" *ngIf="this.buttonShowRekening">
+                            <b style="align-self: center;">Hide</b>
+                            <mat-icon>expand_less</mat-icon>
+                        </div>
+                    </div>
                 </div>
-                <div style="height: 1px; background-color: #6ED940; margin-bottom: 1em; margin-top:1em ;"></div>
-                <div>
-                    Rekening Reksadana
-                </div>
-                <div>
-                    <b>
-                       123455678
-                    </b>
-                </div>
-                <div style="height: 1px; background-color: #6ED940; margin-bottom: 1em; margin-top:1em ;"></div>
-                <div>
-                    Rekening Reksadana
-                </div>
-                <div>
-                    <b>
-                       123455678
-                    </b>
+                <div *ngIf="this.buttonShowRekening" style="margin-top:1em ;">
+                    <div style="height: 1px; background-color: #6ED940; margin-bottom: 1em;"></div>
+                    <div>
+                        Rekening Reksadana
+                    </div>
+                    <div>
+                        <b>
+                            {{profileMaster.noRekBCA}}
+                        </b>
+                    </div>
+                    <div style="height: 1px; background-color: #6ED940; margin-bottom: 1em; margin-top:1em ;"></div>
+                    <div>
+                        Rekening BCA ID
+                    </div>
+                    <div>
+                        <b>
+                            {{profileMaster.noRekBCA}}
+                        </b>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <div *ngIf="shimmering">
+        <div style="margin-bottom: 1em;">
+            <div class="row">
+                <div class="col-md-6 mx-auto">
+                    <ngx-shimmer-loading [shape]="'rect'" [width]="'100%'" [height]="'50px'"></ngx-shimmer-loading>
+                </div>
+            </div>
+        </div>
+        <div style="padding-left: 1em; padding-right: 1em; padding-top: 2em;padding-bottom: 2em;">
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <ngx-shimmer-loading [shape]="'rect'" [width]="'100%'" [height]="'50px'" ></ngx-shimmer-loading>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <ngx-shimmer-loading [shape]="'rect'" [width]="'100%'" [height]="'50px'" ></ngx-shimmer-loading>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <ngx-shimmer-loading [shape]="'rect'" [width]="'100%'" [height]="'50px'" ></ngx-shimmer-loading>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <ngx-shimmer-loading [shape]="'rect'" [width]="'100%'" [height]="'50px'" ></ngx-shimmer-loading>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
 </div>

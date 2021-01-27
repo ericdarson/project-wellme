@@ -1,11 +1,15 @@
 export const environment = {
   production: true,
-  loginUrl:'http://localhost:8083/login',
-  profileUrl:'http://localhost:8083/getProfile',
+  loginUrl:'http://10.8.0.3:8080/login-web',
+  profileUrl:'http://10.8.0.3:8096/profile',
   plannerDetailUrl:'http://10.8.0.3:8083/financial-planner/details',
   plannerListUrl:'http://10.8.0.3:8090/list-planner',
   deletePlannerUrl:'http://localhost:8083/deletePlanner',
-  insertPlannerUrl:'http://localhost:8083/insertPlanner',
+  insertPlannerUrl:'http://10.8.0.3:8090/planner',
   getJenisReksadanaUrl:'http://localhost:8083/reksadana',
   getReksadanaUrl:'http://localhost:8083/products',
+  checkSessionUrl: 'http://10.8.0.3:8080/check-session-web',
+  simulasiPlannerUrl:'http://10.8.0.3:8090/simulasi-planner',
+  profileResikoUrl:'http://10.8.0.3:8084/financial-planner/resiko',
+  listReksadanaPlannerUrl:'http://10.8.0.3:8085/financial-planner/products',
 };

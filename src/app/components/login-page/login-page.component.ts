@@ -11,9 +11,10 @@ import { LoginService } from 'src/app/services/login.service';
 export class LoginPageComponent implements OnInit {
 
   bca_id : string;
-  hide :boolean=false;
+  hide :boolean=true;
   password : string;
   message : string;
+  isLoading : boolean = false;
   constructor(private router : Router, private session :LocalStorageService, private loginservice : LoginService) {
 
    }
@@ -22,18 +23,23 @@ export class LoginPageComponent implements OnInit {
   }
 
   loginClicked(){
+    this.isLoading = true
     this.loginservice.login(this.bca_id,this.password).subscribe(response=>{
       console.log(response)
      if (response.output_schema.detail_login.message=="SUKSES")
      {
+       this.isLoading = false
        this.session.store("bca_id",this.bca_id);
        this.session.store("token",response.output_schema.detail_login.token);
        this.message="";
        this.router.navigate(['/index'])
      }
      else{
-      this.message=response.output_schema.detail_login.message;
+        this.isLoading = false
+        this.message=response.output_schema.detail_login.message;
      }
+    },error=>{
+      this.isLoading = false
     })
   }
 
