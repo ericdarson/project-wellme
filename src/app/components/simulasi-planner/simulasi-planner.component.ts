@@ -2,6 +2,8 @@ import { Location } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Chart } from 'chart.js';
+import { PlannerSimulasi } from 'src/app/models/planner-simulasi';
+import { ResponseApi } from 'src/app/models/ResponseApi';
 import { PlannerService } from 'src/app/services/planner.service';
 
 @Component({
@@ -22,6 +24,7 @@ export class SimulasiPlannerComponent implements OnInit,AfterViewInit  {
   public context: CanvasRenderingContext2D|null;
   ctx:CanvasRenderingContext2D;
   plannerRequest:any;
+  simulasiPlanner:PlannerSimulasi
   simulationChart:any={
     labels:[],
     nominalTanpaInvestasi:[],
@@ -172,9 +175,10 @@ export class SimulasiPlannerComponent implements OnInit,AfterViewInit  {
       nominalTanpaInvestasi:[],
       nominalInvestasi:[],
     };
-    this.plannerService.getSimulasiPlanner().subscribe(response=>{
-      this.nominalYangHarusDitabung=response.output_schema.nominal_per_periode;
-      var detail_chart=response.output_schema.detail_chart;
+    this.plannerService.getSimulasiPlanner().subscribe((response:ResponseApi)=>{
+      this.simulasiPlanner=response.output_schema;
+      this.nominalYangHarusDitabung=this.simulasiPlanner.nominal_per_periode;
+      var detail_chart=this.simulasiPlanner.detail_chart;
       detail_chart.forEach((element:any) => {
          this.simulationChart.labels.push(element.date);
          this.simulationChart.nominalTanpaInvestasi.push(element.nominal_tanpa_investasi);
@@ -187,13 +191,26 @@ export class SimulasiPlannerComponent implements OnInit,AfterViewInit  {
     chart = new Chart(this.ctx, {
       type: 'bar',
       options: {
+        
         responsive: true,
         title: {
           display: true,
           text: 'Simulasi Investasi'
         },
+        scales:
+        {
+          xAxes:[{
+            ticks:{
+                display: true,
+                autoSkip: true,
+                maxTicksLimit: 12
+            }
+        }]
+        }
       },
+
       data: {
+        
         labels: this.simulationChart.labels,
         datasets: [
           {

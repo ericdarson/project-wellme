@@ -3,13 +3,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PlannerService } from 'src/app/services/planner.service';
 import { CurrencyPipe, Location } from '@angular/common';
 import { observable } from 'rxjs';
+import { ResponseApi } from 'src/app/models/ResponseApi';
+import { PlannerDetail } from 'src/app/models/planner-detail';
 @Component({
   selector: 'app-detail-planner',
   templateUrl: './detail-planner.component.html',
   styleUrls: ['./detail-planner.component.css']
 })
 export class DetailPlannerComponent implements OnInit {
-  plan:any;
+  plan:PlannerDetail;
   id:any;
   imageSequence:string[]=[];
   imgSrcSequence:string[]=["","","","","","","","",""];
@@ -25,7 +27,7 @@ export class DetailPlannerComponent implements OnInit {
   }
   
   getDetail():void{
-    this.plannerService.getPlannerDetail().subscribe(response=>{
+    this.plannerService.getPlannerDetail().subscribe((response:ResponseApi)=>{
       this.plan=response.output_schema;
       this.plannerService.setNamaPlannerDetail(this.plan.nama_plan);
       this.plannerService.setRekomendasiPembelian(this.plan.rekomendasi_pembelian);
