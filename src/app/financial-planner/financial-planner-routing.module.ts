@@ -28,7 +28,7 @@ const routes: Routes = [
       { path:'detail-planner', component:DetailPlannerComponent},
       { path:'detail-portfolio', component:PlannerDetailPortfolioComponent},
       { path:'beli-reksadana', component:BeliReksadanaComponent},
-      { path:'promo-kode', component:PromoKodeComponent},
+      { path:'promo', component:PromoKodeComponent},
       { path:'product-detail', component:ProductDetailComponent},
       { path:'konfirmasi-transaksi', component:KonfirmasiTransaksiComponent},
       { path: 'pilih-target', component: PilihTargetComponent},

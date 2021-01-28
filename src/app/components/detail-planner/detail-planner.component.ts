@@ -5,6 +5,7 @@ import { CurrencyPipe, Location } from '@angular/common';
 import { observable } from 'rxjs';
 import { ResponseApi } from 'src/app/models/ResponseApi';
 import { PlannerDetail } from 'src/app/models/planner-detail';
+import { PlannerPembelianService } from 'src/app/services/planner-pembelian.service';
 @Component({
   selector: 'app-detail-planner',
   templateUrl: './detail-planner.component.html',
@@ -15,13 +16,17 @@ export class DetailPlannerComponent implements OnInit {
   id:any;
   imageSequence:string[]=[];
   imgSrcSequence:string[]=["","","","","","","","",""];
-  constructor(private location: Location,private plannerService:PlannerService, private router:Router) { }
+  constructor(private location: Location,private plannerService:PlannerService, private router:Router,private plannerPembelianService:PlannerPembelianService) { }
   
   ngOnInit(): void {
     this.id=this.plannerService.getIdDetail();
+    
     if(this.id==undefined||this.id==null)
     {
       this.router.navigate(['/financial-planner/']);
+    }
+    else{
+      this.plannerPembelianService.setIdDetail(this.id);
     }
     this.getDetail();
   }
@@ -31,6 +36,9 @@ export class DetailPlannerComponent implements OnInit {
       this.plan=response.output_schema;
       this.plannerService.setNamaPlannerDetail(this.plan.nama_plan);
       this.plannerService.setRekomendasiPembelian(this.plan.rekomendasi_pembelian);
+      
+      this.plannerPembelianService.setNamaPlannerDetail(this.plan.nama_plan);
+      this.plannerPembelianService.setRekomendasiPembelian(this.plan.rekomendasi_pembelian);
       this.distributeImage(this.plan.gambar,this.plan.puzzle_sequence,this.plan.category,this.plan.current_amount,this.plan.target_plan);
 
     },(error)=>{

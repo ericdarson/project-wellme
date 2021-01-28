@@ -72,6 +72,8 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 import { NgxWebstorageModule, SessionStorageService } from 'ngx-webstorage';
 import { PlannerDetailPortfolioComponent } from './components/planner-detail-portfolio/planner-detail-portfolio.component';
 import { PlannerListReksadanaComponent } from './components/planner-list-reksadana/planner-list-reksadana.component';
+import { SyaratKetentuanPembelianComponent } from './popup/syarat-ketentuan-pembelian/syarat-ketentuan-pembelian.component';
+import { InformasiProdukComponent } from './popup/informasi-produk/informasi-produk.component';
 
 @NgModule({
   declarations: [
@@ -82,6 +84,8 @@ import { PlannerListReksadanaComponent } from './components/planner-list-reksada
     LoginPageComponent,
     PlannerDetailPortfolioComponent,
     PlannerListReksadanaComponent,
+    SyaratKetentuanPembelianComponent,
+    InformasiProdukComponent,
 
 
   ],

@@ -1,77 +1,78 @@
 <div class="jflex-column" style="height: 100%;">
     <div class="jflex-row" style="padding-top:20px;">
-        <a mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+        <a (click)="goBack()" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
             <mat-icon>chevron_left</mat-icon>
         </a>
         <h1 style="flex-basis: 90%; text-align: center;;" class="headFont">Beli Reksadana</h1>
     </div>
-    <div class="jflex-column padding-beauty  center-cross-axis "  style="height:90%;"  >
+    <div class="jflex-column padding-beauty  center-cross-axis scroll "  style="height:90%; overflow: scroll;"  >
         <h1>Konfirmasi</h1>
         <mat-card class="box-outline litle-space" style="width: 100%;">
+            
             <table style="width: 100%;">
                 <thead>
                     <th>Jenis Reksadana</th>
                     <th>Alokasi</th>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>
+                <tbody *ngIf="plannerBeliState">
+                    <tr *ngFor="let reksadana of plannerBeliState.pembelian">
+                        <td *ngIf="reksadana.id_produk">
                             <div class="jflex-column">
-                                <h3 class="font-green"><strong>Pasar uang</strong></h3>
-                                <p>Nama Reksadana Yang Dibeli</p>
+                                <h3 class="font-green"><strong>{{reksadana.nama_plan}}</strong></h3>
+                                <p>{{reksadana.nama_produk}}</p>
                             </div>
                         </td>
-                        <td>
-                            <h3 class="font-green"><strong>Rp 1,000,000</strong></h3>
+                        <td *ngIf="reksadana.percentage&&plannerBeliState.nominal_pembelian">
+                            <h3 class="font-green"><strong>{{reksadana.percentage/100*plannerBeliState.nominal_pembelian| currency :'Rp ':true:'1.0'}}</strong></h3>
                         </td>
                     </tr>
-                    <tr>
-                        <td>
-                            <div class="jflex-column">
-                                <h3 class="font-green"><strong>Pasar uang</strong></h3>
-                                <p>Nama Reksadana Yang Dibeli</p>
-                            </div>
-                        </td>
-                        <td>
-                            <h3 class="font-green"><strong>Rp 1,000,000</strong></h3>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="jflex-column">
-                                <h3 class="font-green"><strong>Pasar uang</strong></h3>
-                                <p>Nama Reksadana Yang Dibeli</p>
-                            </div>
-                        </td>
-                        <td>
-                            <h3 class="font-green"><strong>Rp 1,000,000</strong></h3>
-                        </td>
-                    </tr>
-                    <tr>
+                    
+                    <tr *ngIf="plannerBeliState.kode_promo">
                         <td>
                             <div class="jflex-column">
                                 <h3><strong>Promo</strong></h3>
-                                <h2 class="font-green"><strong>CB100RB</strong></h2>
+                                <h2 class="font-green"><strong>{{plannerBeliState.kode_promo}}</strong></h2>
                             </div>
                         </td>
                         <td>
-                            <h3 class="font-green"><strong>Rp 1,000,000</strong></h3>
+                            <h3 class="font-green"><strong>{{plannerBeliState.cashback| currency :'Rp ':true:'1.0'}}</strong></h3>
                         </td>
                     </tr>
+                    <tr *ngIf="biayaPembelian">
+                        <td>
+                            <div class="jflex-column">
+                                <h3><strong>Biaya Pembelian</strong></h3>
+                            </div>
+                        </td>
+                        <td>
+                            <h3 class="font-green"><strong>{{biayaPembelian | currency :'Rp ':true:'1.0'}}</strong></h3>
+                        </td>
+                    </tr>
+                    <tr *ngIf="totalTransaksi">
+                        <td>
+                            <div class="jflex-column">
+                                <h3><strong>Total</strong></h3>
+                            </div>
+                        </td>
+                        <td>
+                            <h3 class="font-green"><strong>{{totalTransaksi | currency :'Rp ':true:'1.0'}}</strong></h3>
+                        </td>
+                    </tr>
+                    
                 </tbody>
             </table>
         </mat-card>
         <div>
-            <span><strong>Lihat Detail&nbsp;</strong> <a  class="font-green pointer" (click)="openSKPopup()">Informasi Produk</a></span>
+            <span><strong>Lihat Detail&nbsp;</strong><a  class="font-green pointer" (click)="openIPPopup()">Informasi Produk</a></span>
         </div>  
         <div>
-          <input type="checkbox">&nbsp;  <span><strong>Saya Sudah Baca&nbsp;</strong> <a class="font-green" >Syarat dan Ketentuan</a></span>
+          <input type="checkbox" [(ngModel)]="snkChecked">&nbsp;  <span><strong>Saya Sudah Baca&nbsp;</strong> <a class="font-green" (click)="openSKPopup()">Syarat dan Ketentuan</a></span>
         </div>  
     </div>
     
     <div class=" jflex-column padding-beauty center-cross-axis background-green">
             
-        <a href="financial-planner/kode-pin" mat-raised-button style="background-color: #6ED940; color: white; width: 80%; ">Beli Reksadana</a>
+        <a [disabled]="!snkChecked" routerLink="/financial-planner/kode-pin" mat-raised-button class="button-active">Beli Reksadana</a>
     </div>
     
 </div>

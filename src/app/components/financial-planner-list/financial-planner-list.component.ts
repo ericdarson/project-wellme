@@ -39,10 +39,16 @@ display:string="block";
       });
       if(this.listPlanner==[])
       {
-        this.notFound="block";
+        this.notFound="jflex-column";
         this.listPlannerDisplay="hidden";
       }
     },(error)=>{
+      var err=error.error.error_schema.error_code;
+      if(err=="BIT-17-004")
+      {
+        this.notFound="jflex-column";
+        this.listPlannerDisplay="hidden";
+      }
       console.log('err-->',error);
     })
   }
