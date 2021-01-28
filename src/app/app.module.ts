@@ -93,6 +93,6 @@ import { PlannerListReksadanaComponent } from './components/planner-list-reksada
     HttpClientModule,
   ],
   providers: [Globals,MatDatepickerModule,CurrencyPipe,ScrollDispatcher,SessionStorageService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

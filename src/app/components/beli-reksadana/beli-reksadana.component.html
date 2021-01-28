@@ -1,6 +1,6 @@
 <div class="jflex-column" style="height: 100%;">
     <div class="jflex-row" style="padding-top:20px;">
-        <a mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+        <a (click)="goBack()" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
             <mat-icon>chevron_left</mat-icon>
         </a>
         <h1 style="flex-basis: 90%; text-align: center;;" class="headFont">Beli Reksadana</h1>
@@ -10,7 +10,7 @@
         <mat-card class="box-outline litle-space" style="width: 100%;">
             <div class=" jflex-row stretch">
                 <div><strong>Profil Resiko</strong></div>
-                <div >{{tipe_resiko}}</div>
+                <div >{{plannerResiko.tipe_resiko}}</div>
             </div>
         </mat-card>
         
@@ -22,23 +22,27 @@
                     <th></th>
                 </thead>
                 <tbody>
-                    <tr  *ngFor="let alokasi of detail_resiko; let i = index" [attr.data-index]="i">
+                    <tr  *ngFor="let alokasi of plannerResiko.detail_resiko; let i = index" [attr.data-index]="i">
                         <td colspan="2">
                             <div class="jflex-column">
                                 <div class="font-green"><strong>{{alokasi.nama_plan}}</strong></div>
-                                <div></div>
+                                <div *ngIf="plannerBeliState.pembelian[i].nama_produk">{{plannerBeliState.pembelian[i].nama_produk}}</div>
                             </div>
                         </td>
                         <td>
                             <div class="jflex-row center-main-axis">
                                 <button (click)="decreasePercentage(i)" mat-mini-fab style="padding: 0; width: 30px; height: 30px; background-color: #6ED940;"><mat-icon style="font-size: small;">chevron_left</mat-icon></button>
-                                <input type="number" style="width: 40px; margin: 0px 10px;" min="0" max="100" [ngModel]="detail_resiko[i].percentage">
+                                <input type="number" style="width: 40px; margin: 0px 10px;" min="0" max="100" [ngModel]="plannerBeliState.pembelian[i].percentage">
                                 <button (click)="increasePercentage(i)" mat-mini-fab style="padding: 0; width: 30px; height: 30px; background-color: #6ED940;"><mat-icon style="font-size: small;">chevron_right</mat-icon></button>    
                             </div> 
                         </td>
-                        <td>  <button mat-button class="green-button" (click)="goToListReksadana(detail_resiko[i].id_jenis_reksadana)">Pilih</button></td> 
+                        <td>  <button mat-button class="green-button" (click)="goToListReksadana(plannerResiko.detail_resiko[i])">Pilih</button></td> 
                     </tr>
-                  
+                  <tr>
+                     <td colspan="2"><div></div></td>
+                     <td> <div style="color:red; text-align: center;" [ngClass]="errorClassPercentage">{{errorMessagePercentage}}</div></td>
+                     <td><div></div></td>
+                  </tr>
                 </tbody>
             </table>
         </mat-card>
@@ -52,8 +56,10 @@
             <div><strong>Nominal Pembelian</strong></div>
             <mat-form-field appearance="standard" style="width: 100%;">
                 <mat-label>Masukan Nominal</mat-label>
-                <input type="number"  matInput>
+                <input type="number" [min]="0"  matInput>
+               
             </mat-form-field>
+            <span style="color:red" [ngClass]="errorClassNominalPembelian">{{errorMessageNominalPembelian}}</span>
         </mat-card>
         <mat-card class="box-outline litle-space" style="width: 100%;">
             <div><strong>Kode Promo</strong></div>
@@ -62,13 +68,15 @@
                 <input type="text"  matInput>
             </mat-form-field>
             <a mat-button class="green-button" href="financial-planner/promo-kode">Pilih</a>
+            <span style="color:red" [ngClass]="errorClassKodePromo">{{errorMessageKodePromo}}</span>
         </mat-card>
+       
     </div>
     
     
     
     
     <div class="background-green jflex-row padding-beauty center-main-axis">
-        <a href="financial-planner/konfirmasi-transaksi" mat-raised-button style="background-color: #6ED940; color: white; width: 80%; "><strong>Beli Reksadana</strong></a>
+        <a  mat-raised-button style="background-color: #6ED940; color: white; width: 80%; "><strong>Beli Reksadana</strong></a>
     </div>
 </div>
