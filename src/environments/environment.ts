@@ -18,7 +18,7 @@ export const environment = {
   listReksadanaPlannerUrl:'http://10.8.0.5:8085/financial-planner/products',
   promoPlannerUrl:'http://10.8.0.5:8093/promo',
   promoUrl : 'http://10.8.0.5:8093/promo',
-
+  BackwaardProjectionUrl:'http://10.8.0.5:8081',
 };
 
 /*

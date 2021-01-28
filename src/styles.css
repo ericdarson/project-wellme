@@ -82,6 +82,9 @@ body { margin: 0; font-family: Quicksand, "Helvetica Neue", sans-serif; }
 .text-wellme-color{
     color: #309F00;
 }
+.text-wellme-red{
+    color: #FF0000
+}
 
 .font-12{
     font-size: 12px;
