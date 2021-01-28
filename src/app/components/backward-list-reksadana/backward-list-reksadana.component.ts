@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CurrencyPipe, Location } from '@angular/common';
+import { BackwardProjectionListReksadanaService } from '../../services/backward-projection-list-reksadana.service'
+import { BackwardProjectionListProdukRekadana } from '../../models/BackwardProjectionListProdukReskadana'
 
 @Component({
   selector: 'app-backward-list-reksadana',
@@ -9,81 +11,35 @@ import { CurrencyPipe, Location } from '@angular/common';
 })
 export class BackwardListReksadanaComponent implements OnInit {
 
-  tempVar : any[]
-  constructor(private router : Router, private location:Location,private route: ActivatedRoute) { }
-
+  tempVar : BackwardProjectionListProdukRekadana[] = [];
+  constructor(private router : Router, private location:Location,private route: ActivatedRoute, private service: BackwardProjectionListReksadanaService) { }
+  idJenis:string;
+  
   ngOnInit(): void {
-
-    const temp =[
+    this.route.paramMap.subscribe(params => {
+      this.idJenis = params.get("id")!
+    });
+    
+    this.service.getAllProduk(this.idJenis).subscribe(response=>{
+      console.log(response)
+      if (response.error_schema.error_code=="BIT-00-000")
       {
-        id: "1",
-        nama : "Danaa kas 1",
-        nab : 12341,
-        kinerja : "1234%",
-        kategori : "Pasar Uang",
-      },
-      {
-        id: "2",
-        nama : "Danaa kas 2",
-        nab : 12342,
-        kinerja : "1234%",
-        kategori : "Pasar Uang",
-      },
-      {
-        id: "3",
-        nama : "Danaa kas 3",
-        nab : 12343,
-        kinerja : "1234%",
-        kategori : "Pasar Uang",
-      },
-      {
-        id: "4",
-        nama : "Danaa kas 4",
-        nab : 12344,
-        kinerja : "1234%",
-        kategori : "Pasar Uang",
-      },
-      {
-        id: "5",
-        nama : "Danaa kas 5",
-        nab : 12344,
-        kinerja : "1234%",
-        kategori : "Pasar Uang",
-      },
-      {
-        id: "6",
-        nama : "Danaa kas 6",
-        nab : 12344,
-        kinerja : "1234%",
-        kategori : "Pasar Uang",
-      },
-      {
-        id: "7",
-        nama : "Danaa kas 7",
-        nab : 12344,
-        kinerja : "1234%",
-        kategori : "Pasar Uang",
-      },
-      {
-        id: "8",
-        nama : "Danaa kas 8",
-        nab : 12344,
-        kinerja : "1234%",
-        kategori : "Pasar Uang",
-      },
-
-    ]
-    this.tempVar = temp
+        response.output_schema.forEach((element:BackwardProjectionListProdukRekadana) => {
+          this.tempVar.push(element)
+        });
+      }
+    })
   }
 
 
-  goToPembelianPage(idReksadana : string){
+  goToPembelianPage(item : BackwardProjectionListProdukRekadana){
     console.log(this.router.url)
-    this.router.navigate(['../backward-pembelian',idReksadana], {relativeTo: this.route})
+    this.service.setTglChart(item.max_backward_date)
+    this.router.navigate(['../../backward-pembelian',item.id_produk], {relativeTo: this.route})
   }
 
   goBack(){
-    this.router.navigate(['../home'], {relativeTo: this.route})
+    this.router.navigate(['../../home'], {relativeTo: this.route})
   }
 
 }

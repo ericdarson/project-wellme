@@ -11,20 +11,20 @@
     </div>
 
     <div class="row flex">
-        <div *ngFor="let reksa of this.tempVar" class="col-md-6" (click)="goToPembelianPage(reksa.id)">
+        <div *ngFor="let reksa of this.tempVar" class="col-md-6" (click)="goToPembelianPage(reksa)">
             <div class=" profile-item-box p-3">
                 <div class="text-wellme-color font-18">
                     <b>{{reksa.nama}}</b>
                 </div>
                 <div class="font-12">
-                    {{reksa.kategori}}
+                    Pasar Uang
                 </div>
                 <div style="margin-top: 1em;">
                     <div>
                         <b>Kinerja 1 Tahun</b>
                     </div>
                     <div>
-                        {{reksa.kinerja}}
+                        {{reksa.kinerja_satu_bulan}}
                     </div>
                     <div class="flex" style="justify-content: space-between;margin-top: 1em;">
                         <div>
