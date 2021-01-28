@@ -22,12 +22,14 @@ export class BackwardTutorialComponent implements OnInit {
     'assets/img/tutorial-3.png',
     'assets/img/tutorial-4.png'
   ];
-
+  idJenis :string;
 
   constructor(private activeRoute : ActivatedRoute, private location : Location,private router : Router) { }
-
+    
   ngOnInit(): void {
-  
+    this.activeRoute.paramMap.subscribe(params => {
+      this.idJenis = params.get("id")!
+    });
 
     this.imageBackgroundArray = [
       'assets/img/tutorial-1.png',
@@ -107,6 +109,6 @@ export class BackwardTutorialComponent implements OnInit {
   }
 
   clickExitButton(){
-    this.router.navigate(['../backward-list-reksadana'],{relativeTo:this.activeRoute})
+    this.router.navigate(['../../backward-list-reksadana/'+this.idJenis],{relativeTo:this.activeRoute})
   }
 }

@@ -15,11 +15,11 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component:BackwardProjectionComponent},
-      { path: 'backward-list-reksadana', component:BackwardListReksadanaComponent},
+      { path: 'backward-list-reksadana/:id', component:BackwardListReksadanaComponent},
       { path: 'backward-pembelian/:id', component:BackwardPembelianComponent},
       { path: 'backward-simulasi/:id', component:BackwardSimulasiComponent},
       { path: 'backward-result', component:BackwardResultComponent},
-      { path: 'backward-tutorial', component:BackwardTutorialComponent},
+      { path: 'backward-tutorial/:id', component:BackwardTutorialComponent},
     ]
   }
 ];
