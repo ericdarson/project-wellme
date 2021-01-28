@@ -1,8 +1,10 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PlannerBeliState } from 'src/app/models/planner-beli-state';
+import { element } from 'protractor';
+import { PlannerBeliState, StatePembelian } from 'src/app/models/planner-beli-state';
 import { PlannerResiko } from 'src/app/models/planner-resiko';
+import { PlannerPembelianService } from 'src/app/services/planner-pembelian.service';
 import { PlannerService } from 'src/app/services/planner.service';
 
 @Component({
@@ -16,6 +18,7 @@ export class BeliReksadanaComponent implements OnInit {
   tipe_resiko:string="";
   namaPlan:string|null;
   plannerBeliState:PlannerBeliState={
+    nominal_pembelian:0,
     pembelian:[{
       id_jenis_reksadana:0,nama_plan:""
     }]
@@ -27,7 +30,7 @@ export class BeliReksadanaComponent implements OnInit {
   errorClassPercentage:string="hidden";
   errorClassNominalPembelian:string="hidden";
   errorClassKodePromo:string="hidden";
-  constructor(private router:Router,private plannerService:PlannerService,private location:Location,private route : ActivatedRoute) {}
+  constructor(private router:Router,private plannerService:PlannerPembelianService,private location:Location,private route : ActivatedRoute) {}
   
   ngOnInit(): void {
     this.checkState();
@@ -78,6 +81,10 @@ export class BeliReksadanaComponent implements OnInit {
     this.plannerService.setJenisReksadanaPembelian(detail.nama_plan);
     this.router.navigate(['../list-reksadana'] ,{relativeTo: this.route});
   }
+  goToPromo():void{
+    this.plannerService.setPlannerBeliState(this.plannerBeliState);
+    this.router.navigate(['../promo'] ,{relativeTo: this.route});
+  }
   
   syncBeliState():void{
     
@@ -92,16 +99,180 @@ export class BeliReksadanaComponent implements OnInit {
         this.plannerBeliState.pembelian[key].id_produk=reksadana.id_produk;
         this.plannerBeliState.pembelian[key].nama_produk=reksadana.nama_produk;
         this.plannerBeliState.pembelian[key].minimum_pembelian=reksadana.minimum_amount;
+        this.plannerBeliState.pembelian[key].biaya_pembelian=reksadana.biaya_pembelian;
       }
     });
   }
-//TODO: Validate Form and Confirmation
-  goToConfirmationPage()
+  //TODO: Validate Form and Confirmation
+  async goToConfirmationPage()
   {
-
+    this.resetFormPembelian();
+    if(await this.isRequestPembelianValid()==true)
+    {
+      this.plannerService.setPlannerBeliState(this.plannerBeliState);
+      this.router.navigate(['../konfirmasi-transaksi'],{relativeTo:this.route});
+    }
   }
+  
+  async isRequestPembelianValid():Promise<boolean>{
+    var promoValid=true;
+    var valid=false;
+    if(this.plannerBeliState.kode_promo!=undefined)
+    {
+      promoValid=await this.isPromoValid(this.plannerBeliState.kode_promo);
+    }
+    var nominalValid=this.isNominalValid()
+    if(promoValid==true&&nominalValid==true)
+    {
+      valid=true;
+    }
+    return valid;
+  }
+  
+  
+  async isPromoValid(kode:string):Promise<boolean>{
+    var isValid=await this.plannerService.isPromoValid(kode);
+    if(isValid==false)
+    {
+      this.errorClassKodePromo="block";
+      this.errorMessageKodePromo="Kode Promo Tidak Valid";
+    }
+    else{
+      var num=this.plannerService.getMinimumTransactionPromo();
+      if(num!=undefined)
+      {
+        if(this.plannerBeliState.nominal_pembelian==undefined?0:this.plannerBeliState.nominal_pembelian<num)
+        {
+          isValid=false;
+          this.errorClassKodePromo="block";
+          this.errorMessageKodePromo="Minimal Transaksi Untuk Menggunakan Kode Promo Ini Adalah Rp "+num;    
+        }
+      }
+    }
 
-  isRequestPembelianValid(){
+    return isValid;
+  }
+  
+  isPercentageValid():boolean{
+    var percentage=0;
     
+    var bool=false;
+    var isValid=true;
+    for (let i = 0; i < this.plannerBeliState.pembelian.length; i++) {
+      var element=this.plannerBeliState.pembelian[i];
+      
+      if(element.percentage!=undefined&&element.percentage!=null)
+      {
+        percentage=Number(percentage)+Number(element.percentage)
+      
+        if(element.percentage!=0&&element.id_produk==undefined)
+        {
+         
+          bool=true;
+        }
+      }
+    
+      
+    }
+    if(percentage!=100||bool==true)
+    {
+     
+      isValid=false;
+      if(percentage!=100)
+      {
+        this.errorClassPercentage="block";
+        this.errorMessagePercentage="Persentase Tidak 100%";
+      }
+      if(bool==true){
+        this.errorClassPercentage="block";
+        if(percentage!=100)
+        {
+          this.errorMessagePercentage+=' dan ';
+        }
+        this.errorMessagePercentage+="Persentase Yang Lebih Dari 0% Harus Memiliki Produk yang Dibeli";
+        
+      }
+    }
+    else{
+      this.errorMessagePercentage="";
+    }
+
+    return isValid;
+  }
+  
+  isNominalValid():boolean{
+    var totalMinimumPembelian:number=0;
+    var isNominalValid=true;
+    var isMinPembelianValid:boolean=true;
+    var isAmountValid=true;
+    if(this.isPercentageValid()==true)
+    { 
+      for (let i = 0; i < this.plannerBeliState.pembelian.length; i++) {
+        var element=this.plannerBeliState.pembelian[i];
+        if(element.minimum_pembelian!=undefined)
+        {
+          totalMinimumPembelian= Number(totalMinimumPembelian)+Number(element.minimum_pembelian);
+        }        
+      }
+      
+      
+      if(this.plannerBeliState.nominal_pembelian!=undefined)
+      {
+        
+        if(this.plannerBeliState.nominal_pembelian<0)
+        {
+          
+          isAmountValid=false;
+        }
+        if(this.plannerBeliState.nominal_pembelian<totalMinimumPembelian)
+        {
+          isMinPembelianValid=false;
+        }
+      }
+      else{
+        isAmountValid=false;
+      }
+      
+      if(isAmountValid==false||isMinPembelianValid==false)
+      {
+        
+        isNominalValid=false;
+        if(isAmountValid==false)
+        {
+          
+          this.errorClassNominalPembelian="block";
+          this.errorMessageNominalPembelian="Nominal Pembelian Tidak Kosong atau Minus (-)"
+        }
+        if(isMinPembelianValid==false)
+        {
+          if(!isAmountValid)
+          {
+            this.errorMessageNominalPembelian+=" dan ";
+          }
+          this.errorClassNominalPembelian="block";
+          this.errorMessageNominalPembelian+="Minimum Pembelian Anda adalah "+totalMinimumPembelian;
+        }
+      }
+      else{
+        this.errorMessageNominalPembelian="";
+      }
+      
+      return isNominalValid;
+      
+      
+    }
+    else{
+      isNominalValid=false;
+    }
+    return isNominalValid;
+  }
+  
+  resetFormPembelian():void{
+    this.errorClassKodePromo="hidden";
+    this.errorClassNominalPembelian="hidden";
+    this.errorClassPercentage="hidden";
+    this.errorMessageKodePromo="";
+    this.errorMessageNominalPembelian="";
+    this.errorMessagePercentage="";
   }
 }

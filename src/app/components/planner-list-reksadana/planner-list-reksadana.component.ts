@@ -4,6 +4,7 @@ import { CurrencyPipe, Location } from '@angular/common';
 import { PlannerService } from 'src/app/services/planner.service';
 import { ResponseApi } from 'src/app/models/ResponseApi';
 import { PlannerReksadana } from 'src/app/models/planner-reksadana';
+import { PlannerPembelianService } from 'src/app/services/planner-pembelian.service';
 
 @Component({
   selector: 'app-planner-list-reksadana',
@@ -16,7 +17,7 @@ export class PlannerListReksadanaComponent implements OnInit {
   idJenis:number|null;
   listReksadana:PlannerReksadana[]=[];
   namaJenisReksadana:string;
-  constructor(private router : Router, private location:Location,private route: ActivatedRoute,private plannerService:PlannerService) { }
+  constructor(private router : Router, private location:Location,private route: ActivatedRoute,private plannerService:PlannerPembelianService) { }
 
   ngOnInit(): void {
     this.checkState();

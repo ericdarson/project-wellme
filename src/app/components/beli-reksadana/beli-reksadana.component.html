@@ -56,7 +56,7 @@
             <div><strong>Nominal Pembelian</strong></div>
             <mat-form-field appearance="standard" style="width: 100%;">
                 <mat-label>Masukan Nominal</mat-label>
-                <input type="number" [min]="0"  matInput>
+                <input type="number" [min]="0"  matInput [(ngModel)]="plannerBeliState.nominal_pembelian">
                
             </mat-form-field>
             <span style="color:red" [ngClass]="errorClassNominalPembelian">{{errorMessageNominalPembelian}}</span>
@@ -65,9 +65,9 @@
             <div><strong>Kode Promo</strong></div>
             <mat-form-field appearance="standard" style="width: 100%;">
                 <mat-label></mat-label>
-                <input type="text"  matInput>
+                <input type="text"  matInput [(ngModel)]="plannerBeliState.kode_promo">
             </mat-form-field>
-            <a mat-button class="green-button" href="financial-planner/promo-kode">Pilih</a>
+            <a mat-button class="green-button" (click)="goToPromo()">Pilih</a>
             <span style="color:red" [ngClass]="errorClassKodePromo">{{errorMessageKodePromo}}</span>
         </mat-card>
        
@@ -77,6 +77,6 @@
     
     
     <div class="background-green jflex-row padding-beauty center-main-axis">
-        <a  mat-raised-button style="background-color: #6ED940; color: white; width: 80%; "><strong>Beli Reksadana</strong></a>
+        <a (click)="goToConfirmationPage()" mat-raised-button style="background-color: #6ED940; color: white; width: 80%; "><strong>Beli Reksadana</strong></a>
     </div>
 </div>
