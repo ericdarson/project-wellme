@@ -58,14 +58,14 @@
         <div class="col-md-7">
             <div class="profile-item-box p-3">
                 <div class="text-wellme-color font-18">
-                    <b>Batavia Dana Kas Maxima</b>
+                    <b>{{ detailProduk.nama_produk }}</b>
                 </div>
                 <div style="margin-top: 1em;">
                     <div>
                     Kinerja 1 Tahun
                     </div>
-                    <div class="text-wellme-color">
-                        <b>+0.33%</b>
+                    <div [ngClass]="detailProduk.cagr_one_year>=0?'text-wellme-color':'text-wellme-red'">
+                        <b>{{ detailProduk.cagr_one_year > 0?'+':'' }}{{ detailProduk.cagr_one_year.toFixed(2) }}%</b>
                     </div>
                     <div class="flex" style="justify-content: space-between;margin-top: 1em;align-items: center;">
                         <div>
@@ -73,7 +73,7 @@
                                 NAB/ Unit
                             </div>
                             <div class="text-wellme-color">
-                                <b>{{1500 | currency : 'Rp '}}</b>
+                                <b>{{detailProduk.nab | currency : 'Rp '}}</b>
                             </div>
                         </div>
                         
@@ -85,10 +85,10 @@
         <div class="col-md-5">
             <div class="profile-item-box text-center p-3">
                 <div>Ubah Tanggal Beli</div>
-                <input matInput [matDatepicker]="picker" style="visibility: hidden;width: 100%;" [(ngModel)]="dateNow">
+                <input matInput [matDatepicker]="picker" style="visibility: hidden;width: 100%;" [(ngModel)]="dateSelected" [max]="dateNow" [min]="dateMin" (dateChange)="dateChange()" >
                 <mat-datepicker #picker ></mat-datepicker>
                 <button mat-button class="pilih-button width-full " (click)="picker.open()">  
-                    <b>{{dateNow | date:'dd MMMM YYYY'}} </b>    
+                    <b>{{dateSelected | date:'dd MMMM YYYY'}} </b>    
                 </button>
             </div>
         </div>
@@ -105,6 +105,7 @@
                     <span style="color: #6ED940;" matPrefix><b>Rp</b> &nbsp;</span>
                     <input matInput type="text" (change)="transformAmount($event)" [(ngModel)]="formattedAmount"  />
                 </mat-form-field>
+                <p>Minimum Pembelian : {{ detailProduk.minimal_pembelian | currency : 'Rp '}}</p>
             </div>
         </div>
     </div>
@@ -112,7 +113,7 @@
 
     <div class="row">
         <div class="col-md-12">
-            <button mat-button  class="button-fill clickable text-center width-full" style="padding: 1em;" (click)="goToSimulasiPage(reksaId)">
+            <button [disabled]="!checkDisable()" [ngClass]="checkDisable() ? 'button-fill':'button-fill-disabled'" mat-button  class="button-fill clickable text-center width-full" style="padding: 1em;" (click)="goToSimulasiPage()">
                 <div>
                     <b>Simulasi</b>
                 </div>

@@ -16,9 +16,9 @@ const routes: Routes = [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component:BackwardProjectionComponent},
       { path: 'backward-list-reksadana/:id', component:BackwardListReksadanaComponent},
-      { path: 'backward-pembelian/:id', component:BackwardPembelianComponent},
-      { path: 'backward-simulasi/:id', component:BackwardSimulasiComponent},
-      { path: 'backward-result', component:BackwardResultComponent},
+      { path: 'backward-pembelian/:id/:tgl-chart', component:BackwardPembelianComponent},
+      { path: 'backward-simulasi/:id/:date', component:BackwardSimulasiComponent},
+      { path: 'backward-result/:id/:date', component:BackwardResultComponent},
       { path: 'backward-tutorial/:id', component:BackwardTutorialComponent},
     ]
   }

@@ -7,6 +7,7 @@ import { Chart } from 'chart.js';
 import { BackwardProjectionListReksadanaService } from '../../services/backward-projection-list-reksadana.service'
 import { BackwardProjectionDetailProduk } from '../../models/BackwardProjectionDetailProduk'
 import { BackwardProjetionDailyNab } from '../../models/BackwardProjectionDetailProduk'
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-backward-pembelian',
@@ -28,21 +29,36 @@ export class BackwardPembelianComponent implements OnInit {
   listlabel:string[] = []
   nabs:number[] = []
   chart:Chart;
+  tglChart:string;
   
+  dateMin :Date;
   dateNow :Date;
+  dateSelected :Date;
+  latest_date:string;
+  desiredValue:number=0;
+
   constructor(private service:BackwardProjectionListReksadanaService, private location: Location,private currencyPipe : CurrencyPipe,private router : Router,private route: ActivatedRoute) {
-    this.route.paramMap.subscribe(params => {
-      this.reksaId = params.get('id')!
-    });
+    
   }
 
   ngOnInit(): void {
-    this.dateNow = new Date();
+    this.route.paramMap.subscribe(params => {
+      this.reksaId = params.get('id')!
+      this.tglChart = params.get('tgl-chart')!
+      let newDate = moment(this.tglChart, 'DD-MM-YYYY')
+      let tglChart = newDate.format('MM-DD-YYYY');
+      this.dateMin = new Date(tglChart);
+      this.dateSelected = new Date(tglChart);
+      this.dateNow = new Date();
+    });
+
+    this.detailProduk = new BackwardProjectionDetailProduk();
+    
     this.context = this.myCanvas.nativeElement.getContext('2d'); 
 
     this.ctx=this.context==null?new CanvasRenderingContext2D():this.context;
-    
-    this.service.getDetailProduk(this.reksaId).subscribe(response=>{
+    this.latest_date = moment(this.dateSelected).format("DD-MM-yyyy");
+    this.service.getDetailProduk(this.reksaId, this.latest_date).subscribe(response=>{
       console.log(response)
       if (response.error_schema.error_code=="BIT-00-000")
       {
@@ -52,6 +68,18 @@ export class BackwardPembelianComponent implements OnInit {
     })
   }
 
+  dateChange(){
+    this.latest_date = moment(this.dateSelected).format("DD-MM-yyyy");
+    this.service.getDetailProduk(this.reksaId, this.latest_date).subscribe(response=>{
+      console.log(response)
+      if (response.error_schema.error_code=="BIT-00-000")
+      {
+        this.detailProduk = response.output_schema;
+        this.redrawChart()
+      }
+    })
+  }
+  
   redrawChartAwal(){
     if(this.detailProduk != null) {
       console.log(this.detailProduk)
@@ -65,15 +93,10 @@ export class BackwardPembelianComponent implements OnInit {
       else if (this.oneYearRangeSelected)
        tempData = this.detailProduk.one_year_daily_nab;
       
-      let totaldata:number = tempData.length
-      let kelipatan:number = Math.round(totaldata/12)
-      if (kelipatan<1) kelipatan = 1 ;
       this.listlabel = []
       this.nabs = []
       tempData.forEach((obj,index) => {
-        //if((index+1)%kelipatan==0){
-          this.listlabel.push(obj.datestring)
-        //}
+        this.listlabel.push(obj.datestring)
         this.nabs.push(obj.nab_daily)
       });
        
@@ -174,10 +197,12 @@ export class BackwardPembelianComponent implements OnInit {
     this.redrawChart()
   }
 
-  formattedAmount :string;
+  formattedAmount :string = "";
   temp :any
   transformAmount(element:any){
     this.formattedAmount= this.formattedAmount.replace(/[^0-9]/g, "")
+    this.desiredValue= +this.formattedAmount;
+
     console.log(this.formattedAmount)
     this.temp = this.currencyPipe.transform(this.formattedAmount, ' ');
     if(this.temp!=null){
@@ -186,8 +211,13 @@ export class BackwardPembelianComponent implements OnInit {
     element.target.value = this.formattedAmount;
   }
 
-  goToSimulasiPage(idReksadana : string){
-    this.router.navigate(['../../backward-simulasi',idReksadana],{relativeTo:this.route})
+  checkDisable(){
+    return this.desiredValue >= +this.detailProduk.minimal_pembelian;
+  }
+
+  goToSimulasiPage(){
+    this.service.setNominal(this.desiredValue);
+    this.router.navigate(['../../../backward-simulasi/'+this.reksaId+"/"+this.latest_date],{relativeTo:this.route})
   }
 
 

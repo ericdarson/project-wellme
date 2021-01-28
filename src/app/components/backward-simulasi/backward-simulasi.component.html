@@ -21,7 +21,7 @@
                         Nominal Pembelian
                     </div>
                     <div class="text-wellme-color">
-                        <b>{{200000 | currency : 'Rp '}}</b>
+                        <b>{{this.nominalPembelian | currency : 'Rp '}}</b>
                     </div>
                     <div class="flex mt-4" style="justify-content: space-between;align-items: center;">
                         <div>
@@ -29,7 +29,7 @@
                                 NAB/ Unit
                             </div>
                             <div class="text-wellme-color">
-                                <b>{{1500 | currency : 'Rp '}}</b>
+                                <b>{{this.simulationStartData.starting_nab | currency : 'Rp '}}</b>
                             </div>
                         </div>
                         <div>
@@ -37,7 +37,7 @@
                                 Total Unit NAB
                             </div>
                             <div class="text-wellme-color">
-                                <b>30</b>&nbsp;
+                                <b>{{ this.simulationStartData.jumlah_unit | number:'1.4' }}</b>&nbsp;
                                 <b>Unit</b>
                             </div>
                         </div>
@@ -59,7 +59,7 @@
                         </mat-form-field>
                     </div>
                     <div>
-                        <button mat-button class="pilih-button width-full ">  
+                        <button [disabled]="checkDisable()" mat-button class="pilih-button width-full " (click)="doSimulation()">  
                             <b>Terapkan </b>    
                         </button>
                     </div>
@@ -102,7 +102,7 @@
                     NAB/ Unit Beli
                 </div>
                 <div class="text-wellme-color">
-                    <b>{{1566.08 | currency : 'Rp '}}</b>
+                    <b>{{this.simulationStartData.starting_nab | currency : 'Rp '}}</b>
                 </div>
             </div>
             <div class="flex" style="justify-content: space-between; align-items: center;">
@@ -110,7 +110,7 @@
                     NAB/ Unit Simulasi
                 </div>
                 <div class="text-wellme-color">
-                    <b>{{2000.08 | currency : 'Rp '}}</b>
+                    <b>{{this.nabaftersimulasi | currency : 'Rp '}}</b>
                 </div>
             </div>
             <div class="flex" style="justify-content: space-between; align-items: center;">
@@ -118,7 +118,7 @@
                     Tanggal Beli
                 </div>
                 <div class="text-wellme-color">
-                    <b>21 Dec 15</b>
+                    <b>{{ this.simulationStartData.start_datestring }}</b>
                 </div>
             </div>
             <div class="flex" style="justify-content: space-between; align-items: center;">
@@ -126,7 +126,7 @@
                     Tanggal Durasi Investasi
                 </div>
                 <div class="text-wellme-color">
-                    <b>28 Dec 15</b>
+                    <b>{{ this.simulationDateAfter }}</b>
                 </div>
             </div>
             <div class="flex" style="justify-content: space-between; align-items: center;">
@@ -134,11 +134,11 @@
                     Total Investasi Anda Setelah
                 </div>
                 <div class="text-wellme-color">
-                    <b>7 Hari</b>
+                    <b>{{ this.durasiinvestasi }} Hari</b>
                 </div>
             </div>
             <div class="width-full text-center font-24 text-wellme-color" style="margin-top: 1em; margin-bottom: 1em;">
-                <b>{{1566.08 | currency : 'Rp '}}</b>
+                <b>{{this.nabaftersimulasi * this.simulationStartData.jumlah_unit | currency : 'Rp ' :'symbol':'1.2'}}</b>
             </div>
             <button mat-button class="pilih-button width-full " (click)="goToBackwardResult()">  
                 <b>Lihat Proyeksi</b>    
@@ -149,7 +149,7 @@
    
     <div class="row mt-4">
         <div class="col-md-12 text-center">
-            <button mat-button class="button-fill clickable text-center" style="padding: 1em; width: 50%;" (click)="selectHari()">
+            <button mat-button class="button-fill clickable text-center"  style="padding: 1em; width: 50%;" (click)="selesai()">
                 <div>
                     <b>Selesai</b>
                 </div>

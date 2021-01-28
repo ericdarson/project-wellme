@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CurrencyPipe, Location } from '@angular/common';
 import { BackwardProjectionListReksadanaService } from '../../services/backward-projection-list-reksadana.service'
 import { BackwardProjectionListProdukRekadana } from '../../models/BackwardProjectionListProdukReskadana'
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-backward-list-reksadana',
@@ -34,8 +35,9 @@ export class BackwardListReksadanaComponent implements OnInit {
 
   goToPembelianPage(item : BackwardProjectionListProdukRekadana){
     console.log(this.router.url)
-    this.service.setTglChart(item.max_backward_date)
-    this.router.navigate(['../../backward-pembelian',item.id_produk], {relativeTo: this.route})
+    let newDate = moment(item.max_backward_date, 'DD MMM YY')
+    let tglChart = newDate.format('DD-MM-YYYY');
+    this.router.navigate(['../../backward-pembelian',item.id_produk,tglChart], {relativeTo: this.route})
   }
 
   goBack(){

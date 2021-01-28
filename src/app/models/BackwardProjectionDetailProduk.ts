@@ -1,24 +1,24 @@
 export class BackwardProjectionDetailProduk {
-    id_produk:string;
-    nama_produk:string;
-    cagr_one_week:Float64Array;
-    cagr_one_month:Float64Array;
-    cagr_three_months:Float64Array;
-    cagr_one_year:Float64Array;
-    nab:Float64Array;
-    expense_ratio:Float64Array;
-    aum:Float64Array;
-    manager_investasi:string;
-    resiko:string;
-    minimal_pembelian:string;
-    bank_kustodian:string
-    bank_penampung:string;
-    system_date:string;
-    system_date_string:string;
-    one_week_daily_nab:BackwardProjetionDailyNab[];
-    one_month_daily_nab:BackwardProjetionDailyNab[];
-    three_months_daily_nab:BackwardProjetionDailyNab[];
-    one_year_daily_nab:BackwardProjetionDailyNab[];
+    id_produk:string="Loading Data";
+    nama_produk:string="Loading Data";
+    cagr_one_week:number=0;
+    cagr_one_month:number=0;
+    cagr_three_months:number=0;
+    cagr_one_year:number=0;
+    nab:number=0;
+    expense_ratio:number=0;
+    aum:number=0;
+    manager_investasi:string="Loading Data";
+    resiko:string="Loading Data";
+    minimal_pembelian:string="Loading Data";
+    bank_kustodian:string="Loading Data";
+    bank_penampung:string="Loading Data";
+    system_date:string="Loading Data";
+    system_date_string:string="Loading Data";
+    one_week_daily_nab:BackwardProjetionDailyNab[]=[];
+    one_month_daily_nab:BackwardProjetionDailyNab[]=[];
+    three_months_daily_nab:BackwardProjetionDailyNab[]=[];
+    one_year_daily_nab:BackwardProjetionDailyNab[]=[];
 }
 
 export class BackwardProjetionDailyNab {
