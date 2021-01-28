@@ -1,9 +1,10 @@
 export class ProfileMaster {
-    bcaId:string;
+    bca_id:string;
     email:string;
     nama:string;
-    noRekBCA:string;
-    profileResiko:string;
+    no_rekening_bca:string;
+    profile_resiko:string;
     sid : string;
+    total_investasi : string;
 }
 

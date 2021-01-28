@@ -45,6 +45,7 @@ import { NgxShimmerLoadingModule } from  'ngx-shimmer-loading';
 import { NgxWebstorageModule, SessionStorageService } from 'ngx-webstorage';
 
 import {ReactiveFormsModule} from '@angular/forms'
+import { ClipboardModule } from '@angular/cdk/clipboard';
 @NgModule({
   declarations: [
    
@@ -95,7 +96,8 @@ import {ReactiveFormsModule} from '@angular/forms'
     NgxShimmerLoadingModule,
     
     NgxWebstorageModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ClipboardModule
   ],
   imports: [
     CommonModule,
@@ -156,7 +158,8 @@ import {ReactiveFormsModule} from '@angular/forms'
     NgxShimmerLoadingModule, 
     
     NgxWebstorageModule.forRoot(),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ClipboardModule
   ],
 })
 export class SharedModule { 

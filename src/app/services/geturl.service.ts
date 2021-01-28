@@ -22,6 +22,7 @@ export class GeturlService implements OnInit{
       this.session.retrieve("token") == null  || this.session.retrieve("bca_id") == null||
       this.session.retrieve("token") == undefined  || this.session.retrieve("bca_id") == undefined
     ){
+      console.log("logout")
       this.logout();
     }
   }
@@ -32,7 +33,13 @@ export class GeturlService implements OnInit{
   }
 
   getProfileUrl(){
+    this.checkUserLogin()
     return environment.profileUrl;
+  }
+
+  getPromoUrl(){
+    this.checkUserLogin()
+    return environment.promoUrl;
   }
 
   logout(){

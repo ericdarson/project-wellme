@@ -12,7 +12,7 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'list', pathMatch: 'full' },
       { path:'list', component:PromoListComponent},
-      { path:'detail/:id', component:PromoDetailComponent}
+      { path:'detail', component:PromoDetailComponent}
       
     ]
   }
