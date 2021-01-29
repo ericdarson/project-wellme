@@ -58,7 +58,7 @@
                    
                 </div>
         
-                <div class="row">
+                <div *ngIf="!this.isNotStart" class="row">
                     <div class="col-xl-12">
                         <mat-progress-bar
                             color="#6ED940"
@@ -72,12 +72,17 @@
                     </div>        
                 </div> 
                 <div class="jflex-row center-main-axis">
-                    <button mat-raised-button class="btn-active" [disabled]="">Klaim Hadiah</button>
+                    <button *ngIf="!this.isNotStart" mat-raised-button class="btn-active" [disabled]="this.isProgress" (click)="claimPrize()">Klaim Hadiah</button>
+                    <button *ngIf="this.isNotStart" mat-raised-button class="btn-active" (click)="startPromo()">Mulai Objective!</button>
                 </div>
                 
             </div>
+            <div *ngIf="isNotFound && !isLoading" class="text-center">
+                <img src="assets/img/promo-nothing.png">
+                <h2 class="font-green" style="text-align: center;"><strong>Tidak ada item yang bisa dicari :(</strong></h2>
+                <p class="font-green" style="text-align: center;"> Ayo selesaikan objectives dan dapatkan berbagai macam Promo Menarik</p>     
+            </div> 
         </div>
-       
     </div>
     
 </div>

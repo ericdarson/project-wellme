@@ -50,6 +50,52 @@ export class PromoService {
       return this.http.get(url,httpOptions);
   }
 
+  klaimPromo(kode_promo :string):Observable<any>{
+    const url= this.getUrl.getKlaimPromoUrl();
+    var bca_id = this.session.retrieve("bca_id")
+    var token = this.session.retrieve("token")
+    var httpOptions={
+      headers:new HttpHeaders({
+        'Content-Type':'application/json',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS, GET, PUT',
+        'Access-Control-Allow-Origin': '*',
+        'Identity':'ERICIMPOSTORNYA',
+        'Bca-Id': String(bca_id),
+        'Token':String(token),
+      })
+    }
+    var kodepromo : any
+    kodepromo={
+      kode_promo:kode_promo
+    };
+
+    return this.http.put(url,kodepromo,httpOptions);
+  }
+
+  activatedPromo(kode_promo :string):Observable<any>{
+    const url= this.getUrl.getActivedPromoUrl();
+    var bca_id = this.session.retrieve("bca_id")
+    var token = this.session.retrieve("token")
+    var httpOptions={
+      headers:new HttpHeaders({
+        'Content-Type':'application/json',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS, GET, PUT',
+        'Access-Control-Allow-Origin': '*',
+        'Identity':'ERICIMPOSTORNYA',
+        'Bca-Id': String(bca_id),
+        'Token':String(token),
+      })
+    }
+    var kodepromo : any
+    kodepromo={
+      kode_promo:kode_promo
+    };
+
+    return this.http.post(url,kodepromo,httpOptions);
+  }
+
   selectPromo(promo : Objectives){
     this.selectedObjective = promo
     this.encryptedObject = encodeURIComponent(CryptoJS.AES.encrypt(JSON.stringify(this.selectedObjective), this.secretKey).toString());
@@ -58,8 +104,40 @@ export class PromoService {
 
   getSelectedPromo() : Objectives{
     var deData= CryptoJS.AES.decrypt(decodeURIComponent(this.session.retrieve("SelectedPromo")), this.secretKey); 
-    this.selectedObjective = JSON.parse(deData.toString(CryptoJS.enc.Utf8));
+
+    try {
+      this.selectedObjective = JSON.parse(deData.toString(CryptoJS.enc.Utf8));
+    } catch(e) {
+      this.selectedObjective = {
+              kode_promo:"-1",
+              title : "-1",
+              subtitle :  "-1" ,
+              description :  "-1" ,
+              current_amount :  1 ,
+              target_akumulasi : 1  ,
+              cashback :  "-1" ,
+              date_available : "-1",
+      }
+    }
+
+    // try {
+    //   this.selectedObjective = JSON.parse(deData.toString(CryptoJS.enc.Utf8));
+    // } catch (e) {
+    //    this.selectedObjective = {
+    //       kode_promo:"-1",
+    //       title : "-1",
+    //       subtitle :  "-1" ,
+    //       description :  "-1" ,
+    //       current_amount :  1 ,
+    //       target_akumulasi : 1  ,
+    //       cashback :  "-1" ,
+    //       date_available : "-1",
+    //    }
+    // }
+    // this.selectedObjective = JSON.parse(deData.toString(CryptoJS.enc.Utf8));
+    console.log(this.selectedObjective)
     return this.selectedObjective
+    
   }
 
 }

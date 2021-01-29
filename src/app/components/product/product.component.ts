@@ -2,20 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { ProductType } from '../../models/product-type';
 import { ResponseApi } from '../../models/ResponseApi';
 import { BackwardProjectionListReksadanaService } from '../../services/backward-projection-list-reksadana.service';
+import { FailedToLoadComponent } from '../failed-to-load/failed-to-load.component';
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrls: ['./product.component.css']
+  styleUrls: ['./product.component.css'],
 })
 export class ProductComponent implements OnInit {
   isLoading : boolean=false;
   productTypes : ProductType[];
+  isFailedToLoad : boolean=false;
 
   constructor(private backwardService : BackwardProjectionListReksadanaService) { }
   x : number =3;
-  ngOnInit(): void {
-    this.getAllReksadanaType()
+  ngOnInit(): void {  
   }
 
 
@@ -32,7 +33,10 @@ export class ProductComponent implements OnInit {
       else{
         console.log(response)
         this.isLoading=false;
+        this.isFailedToLoad = true;
       }
+     },(error)=>{
+        this.isFailedToLoad = true;
      })
   }
   

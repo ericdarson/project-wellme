@@ -46,9 +46,10 @@ import { NgxWebstorageModule, SessionStorageService } from 'ngx-webstorage';
 
 import {ReactiveFormsModule} from '@angular/forms'
 import { ClipboardModule } from '@angular/cdk/clipboard';
+import { FailedToLoadComponent } from '../components/failed-to-load/failed-to-load.component';
 @NgModule({
   declarations: [
-   
+    FailedToLoadComponent,
   ],
   exports: [
     CommonModule,
@@ -97,7 +98,8 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
     
     NgxWebstorageModule,
     ReactiveFormsModule,
-    ClipboardModule
+    ClipboardModule,
+    FailedToLoadComponent,
   ],
   imports: [
     CommonModule,

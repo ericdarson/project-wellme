@@ -9,12 +9,13 @@ import { ResponseApi } from '../../models/ResponseApi';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  shimmering:boolean=true;
+  shimmering:boolean=false;
   listDisplay:string="hidden";
   notFound:string="hidden";
   display:string="block";
   showProfile: boolean= false;
   buttonShowRekening : boolean = false
+  isFailedToLoad : boolean =false;
 
   profileMaster : ProfileMaster;
 
@@ -31,22 +32,32 @@ export class ProfileComponent implements OnInit {
   }
 
   getProfile(){
+    this.isFailedToLoad = false;
+    this.shimmering = true;
     this.profileService.getProfile().subscribe((response:ResponseApi)=>{
       if (response.error_schema.error_message.indonesian=="BERHASIL")
       {
          this.profileMaster = response.output_schema.detail_profile
-         console.log(this.profileMaster)
-         console.log(this.profileMaster.email)
          this.shimmering=false;
          this.showProfile = true
+         this.isFailedToLoad = false;
       }
       else{
         this.notFound="block";
         this.shimmering=false;
         this.showProfile = false
+        this.isFailedToLoad = true;
          console.log("gagal get profile")
       }
+     },error=>{
+        this.isFailedToLoad = true;
      })
   }
+
+  
+  retryClicked(){
+    this.getProfile()
+  }
+
 
 }

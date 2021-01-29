@@ -74,6 +74,7 @@ import { PlannerDetailPortfolioComponent } from './components/planner-detail-por
 import { PlannerListReksadanaComponent } from './components/planner-list-reksadana/planner-list-reksadana.component';
 import { SyaratKetentuanPembelianComponent } from './popup/syarat-ketentuan-pembelian/syarat-ketentuan-pembelian.component';
 import { InformasiProdukComponent } from './popup/informasi-produk/informasi-produk.component';
+import { FailedToLoadComponent } from './components/failed-to-load/failed-to-load.component';
 
 @NgModule({
   declarations: [
