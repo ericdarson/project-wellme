@@ -9,10 +9,10 @@
                 <b>Saldo Investasi</b>
             </div>
             <div *ngIf="!isLoading" class="flex mt-2" >
-                <div *ngIf="profileMaster.total_investasi !=null && profileMaster.total_investasi != ''" class="font-20">
+                <div *ngIf="profileMaster.total_investasi !=null" class="font-20">
                     <b>{{profileMaster.total_investasi | currency : 'Rp '}}</b>
                 </div>
-                <div *ngIf="profileMaster.total_investasi ==null || profileMaster.total_investasi == ''" class="font-20">
+                <div *ngIf="profileMaster.total_investasi ==null" class="font-20">
                     <b>Rp -</b>
                 </div>
             </div>
@@ -46,7 +46,7 @@
                     </div>
                 </div>
                 <div class="text-center mt-3">
-                    <button mat-button class="pilih-button" >Buat Target</button>
+                    <button mat-button class="pilih-button" routerLink="../../financial-planner">Buat Target</button>
                 </div>
             </div>
         </div>
@@ -72,7 +72,7 @@
                     </div>
                 </div>
                 <div class="text-center mt-3">
-                    <button mat-button class="pilih-button">Mulai Belajar</button>
+                    <button mat-button class="pilih-button" routerLink="../../backward-projection">Mulai Belajar</button>
                 </div>
             </div>
         </div>
@@ -97,7 +97,7 @@
                     </div>
                 </div>
                 <div class="text-center mt-3">
-                    <button mat-button class="pilih-button" >Cek Promo</button>
+                    <button mat-button class="pilih-button" routerLink="../../promo">Cek Promo</button>
                 </div>
             </div>
         </div>
@@ -116,16 +116,16 @@
                                 Reksadana
                             </b>
                         </div>
-                        <div *ngIf="profileMaster.total_investasi !=null && profileMaster.total_investasi != ''" class="font-20">
+                        <div *ngIf="profileMaster.total_investasi !=null" class="font-20">
                             {{profileMaster.total_investasi | currency : 'Rp '}}
                         </div>
-                        <div *ngIf="profileMaster.total_investasi ==null || profileMaster.total_investasi == ''" class="font-20">
+                        <div *ngIf="profileMaster.total_investasi ==null" class="font-20">
                             Rp-
                         </div>
                     </div>
                     <div class="flex" style="align-items: center;">
                         <circle-progress
-                        [percent]="profileMaster.total_investasi !=null && profileMaster.total_investasi != '' ? 100 : 0"
+                        [percent]="profileMaster.total_investasi !=null && profileMaster.total_investasi != 0 ? 100 : 0"
                         [radius]="50"
                         [showSubtitle]="false"
                         [renderOnClick]="false"

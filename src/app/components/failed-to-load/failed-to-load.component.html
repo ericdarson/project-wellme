@@ -1,12 +1,13 @@
 <div class="container">
     <div class="row" style="justify-content: center;">
-        <div class="col-md-12 text-center">
-            <div>
+        <div class="col-md-12 flex" >
+            <div style="align-self:center">
                 <div class="font-32" style="line-height: 32px;">
                     <b>Failed to Get Data!</b>
                 </div>
-                <button mat-button class="button-fill mt-5" (click)="buttonClicked()">Retry</button>
+                <button mat-button class="button-fill mt-5" (click)="buttonClicked()">{{buttonText}}</button>
             </div>
+            <img src="assets/icon/failed-to-load-icon.png" class="img-fluid">
         </div>
     </div>
 </div>

@@ -5,6 +5,6 @@ export class ProfileMaster {
     no_rekening_bca:string;
     profile_resiko:string;
     sid : string;
-    total_investasi : string;
+    total_investasi : number;
 }
 

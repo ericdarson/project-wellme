@@ -9,6 +9,8 @@ import { EventEmitter } from '@angular/core';
 export class FailedToLoadComponent implements OnInit {
   @Output()
   onButtonClicked: EventEmitter<any> = new EventEmitter<any>();
+  @Input()
+  buttonText: string;
 
   constructor() { }
 
