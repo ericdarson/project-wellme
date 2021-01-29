@@ -57,14 +57,14 @@
         <div class="col-md-7">
             <div class="profile-item-box p-3">
                 <div class="text-wellme-color font-18">
-                    <ngx-shimmer-loading *ngIf="isLoading" [shape]="'rectangle'" [width]="'100%'" [height]="'3em'"></ngx-shimmer-loading>
+                    <ngx-shimmer-loading *ngIf="isLoading" [shape]="'rect'" [width]="'100%'" [height]="'3em'"></ngx-shimmer-loading>
                     <b *ngIf="!isLoading" >{{ detailProduk.nama_produk }}</b>
                 </div>
                 <div style="margin-top: 1em;">
                     <div>
                     Kinerja 1 Tahun
                     </div>
-                    <ngx-shimmer-loading *ngIf="isLoading" [shape]="'rectangle'" [width]="'20%'" [height]="'3em'"></ngx-shimmer-loading>
+                    <ngx-shimmer-loading *ngIf="isLoading" [shape]="'rect'" [width]="'20%'" [height]="'3em'"></ngx-shimmer-loading>
                     <div *ngIf="!isLoading" [ngClass]="detailProduk.cagr_one_year>=0?'text-wellme-color':'text-wellme-red'">
                         <b>{{ detailProduk.cagr_one_year > 0?'+':'' }}{{ detailProduk.cagr_one_year.toFixed(2) }}%</b>
                     </div>
@@ -73,7 +73,7 @@
                             <div>
                                 NAB/ Unit
                             </div>
-                            <ngx-shimmer-loading *ngIf="isLoading" [shape]="'rectangle'" [width]="'100%'" [height]="'3em'"></ngx-shimmer-loading>
+                            <ngx-shimmer-loading *ngIf="isLoading" [shape]="'rect'" [width]="'100%'" [height]="'3em'"></ngx-shimmer-loading>
                             <div *ngIf="!isLoading" class="text-wellme-color">
                                 <b>{{detailProduk.nab | currency : 'Rp '}}</b>
                             </div>
@@ -107,7 +107,7 @@
                     <span style="color: #6ED940;" matPrefix><b>Rp</b> &nbsp;</span>
                     <input autocomplete=false matInput type="text" (change)="transformAmount($event)" [(ngModel)]="formattedAmount"  />
                 </mat-form-field>
-                <p *ngIf="isLoading"><ngx-shimmer-loading  [shape]="'rectangle'" [width]="'30%'" [height]="'2em'"></ngx-shimmer-loading></p>
+                <p *ngIf="isLoading"><ngx-shimmer-loading [shape]="'rect'" [width]="'30%'" [height]="'2em'"></ngx-shimmer-loading></p>
                 <p *ngIf="!isLoading" >Minimum Pembelian : {{ detailProduk.minimal_pembelian | currency : 'Rp '}}</p>
             </div>
         </div>
