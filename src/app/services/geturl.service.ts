@@ -42,6 +42,16 @@ export class GeturlService implements OnInit{
     return environment.promoUrl;
   }
 
+  getKlaimPromoUrl(){
+    this.checkUserLogin()
+    return environment.claimPromoUrl;
+  }
+
+  getActivedPromoUrl(){
+    this.checkUserLogin()
+    return environment.activedPromoUrl;
+  }
+
   logout(){
     this.session.clear('token');
     this.session.clear('bca_id');

@@ -19,6 +19,9 @@ export const environment = {
   promoPlannerUrl:'http://10.8.0.5:8093/promo',
   promoUrl : 'http://10.8.0.5:8093/promo',
   BackwaardProjectionUrl:'http://10.8.0.5:8081',
+  claimPromoUrl : 'http://10.8.0.5:8093/promo/claim',
+  
+  activedPromoUrl : 'http://10.8.0.5:8093/promo/activate/',
 };
 
 /*

@@ -1,4 +1,4 @@
-<div class="jflex-column container" style="height: 100%;">
+<div  class="jflex-column container" style="height: 100%;">
     <div class="row flex" style="justify-content: center;align-items: center;">
         <div class="col-xl-8">
             <div class="flex" style="padding-top:20px; justify-content: space-between;">
@@ -21,131 +21,139 @@
                 </div>
                
             </div>
-        
+            
+            <div *ngIf="this.isFailedToLoad" class="mt-5">
+                <div class="row" style="justify-content: center;">
+                    <div class="col-md-6">
+                        <app-failed-to-load (onButtonClicked)="retryClicked()"></app-failed-to-load>
+                    </div>
+                </div>
+            </div>
            
-            <div *ngIf="isObjectiveActive" class="scroll">
-                <div *ngIf="!isLoading" class="row">
-                    <div *ngFor="let objective of listObjectives; let i = index" class="col-xl-6">
-                        <mat-card class="box-outline padding-beauty clickable" (click)="goToObjectiveDetail(objective)" style="margin-bottom: 10px;  background:#CCEDBE;border-radius: 10px; ">  
-                            <div class="jflex-column stretch">
-                                <div class="jflex-row stretch" style="align-items: flex-end; margin-bottom: 20px;">
-                                    <img src="assets/img/img_promo_objectives.png" width="170px">
-                                    <div *ngIf="objective.current_amount == objective.target_akumulasi" class="font-green jflex-row center-cross-axis"><mat-icon>check_circle_outline</mat-icon><strong>Completed!</strong></div>
-                                    <div *ngIf="objective.current_amount >= 0" class="jflex-row center-cross-axis"><strong>On Progress</strong></div>
-                                    <div *ngIf="objective.current_amount == -1" class="jflex-row center-cross-axis"><strong>Available</strong></div>
-                                </div>
-                                <span><h1 class="font-green" style="max-width: 300px;"><strong>{{objective.title}}</strong></h1></span>
-                                <div class="jflex-row stretch">
-                                    <div class="jflex-column">
-                                        <div class="flex">
-                                            <mat-icon class="font-18" style="color: #6ED940;">access_time</mat-icon>
-                                            <div>Available Until: {{objective.date_available | date :'dd MMM YY'}}</div> 
+            <div *ngIf="!this.isFailedToLoad">
+                <div *ngIf="isObjectiveActive" class="scroll">
+                    <div *ngIf="!isLoading" class="row ">
+                        <div *ngFor="let objective of listObjectives; let i = index" class="col-xl-6">
+                            <mat-card class="box-outline padding-beauty clickable" (click)="goToObjectiveDetail(objective)" style="margin-bottom: 10px;  background:#CCEDBE;border-radius: 10px; ">  
+                                <div class="jflex-column stretch">
+                                    <div class="jflex-row stretch" style="align-items: flex-end; margin-bottom: 20px;">
+                                        <img src="assets/img/img_promo_objectives.png" width="170px">
+                                        <div *ngIf="objective.current_amount == objective.target_akumulasi" class="font-green jflex-row center-cross-axis"><mat-icon>check_circle_outline</mat-icon><strong>Completed!</strong></div>
+                                        <div *ngIf="objective.current_amount >= 0 && objective.current_amount != objective.target_akumulasi" class="jflex-row center-cross-axis"><strong>On Progress</strong></div>
+                                        <div *ngIf="objective.current_amount == -1" class="jflex-row center-cross-axis"><strong>Available</strong></div>
+                                    </div>
+                                    <span><h1 class="font-green" style="max-width: 300px;"><strong>{{objective.title}}</strong></h1></span>
+                                    <div class="jflex-row stretch">
+                                        <div class="jflex-column">
+                                            <div class="flex">
+                                                <mat-icon class="font-18" style="color: #6ED940;">access_time</mat-icon>
+                                                <div>Available Until: {{objective.date_available | date :'dd MMM YY'}}</div> 
+                                            </div>
+                                            <p style="max-width: 300px;" *ngIf="objective.description != '' && objective.description != null">{{objective.subtitle}}</p> 
+                                            <p style="max-width: 300px;" *ngIf="objective.description == '' || objective.description == null">-</p>       
                                         </div>
-                                        <p style="max-width: 300px;" *ngIf="objective.description != '' && objective.description != null">{{objective.subtitle}}</p> 
-                                        <p style="max-width: 300px;" *ngIf="objective.description == '' || objective.description == null">-</p>       
-                                    </div>
-                                    <div>
-                                        <img src="assets/img/icon-objective.png">
+                                        <div>
+                                            <img src="assets/img/icon-objective.png" class="img-fluid">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </mat-card>
+                            </mat-card>
+                        </div>
+                    </div>
+                    <div *ngIf="(listObjectives == null || listObjectives.length == 0) && !isLoading" class="jflex-column padding-beauty center-main-axis center-cross-axis" >
+                        <img src="assets/img/promo-nothing.png">
+                        <h2 class="font-green" style="text-align: center;"><strong>Tidak ada item yang bisa dicari :(</strong></h2>
+                        <p class="font-green" style="text-align: center;"> Ayo selesaikan objectives dan dapatkan berbagai macam Promo Menarik</p>     
+                    </div>
+                    <div *ngIf="isLoading" class="row">
+                        <div *ngFor="let x of [1,2,3,4,5,6]; let i = index" class="col-xl-6 mt-3">
+                            <ngx-shimmer-loading [shape]="'rect'" [width]="'100%'" [height]="'200px'"></ngx-shimmer-loading>
+                        </div>
                     </div>
                 </div>
-                <div *ngIf="(listObjectives == null || listObjectives.length == 0) && !isLoading" class="jflex-column padding-beauty center-main-axis center-cross-axis" >
-                    <img src="assets/img/promo-nothing.png">
-                    <h2 class="font-green" style="text-align: center;"><strong>Tidak ada item yang bisa dicari :(</strong></h2>
-                    <p class="font-green" style="text-align: center;"> Ayo selesaikan objectives dan dapatkan berbagai macam Promo Menarik</p>     
+                <div *ngIf="isPromotionActive" class="scroll">
+                    <div *ngIf="!isLoading" class="row">
+                        <div *ngFor="let promotion of listPromotions; let i = index" class="col-xl-6">
+                            <mat-card class="box-outline padding-beauty little-space" style="margin-bottom: 10px; border-radius: 10px; ">
+                    
+                                <div class="jflex-column stretch">
+                                    <span class="font-green jflex-row" style="align-items: flex-end; margin-bottom: 20px;"><img src="assets/img/img_promo.png" style="width: 170px; height: auto;"></span>
+                                    <span><h1><strong>{{promotion.title}}</strong></h1></span>
+                                    <div class="flex">
+                                        <mat-icon class="font-18" style="color: #6ED940;">access_time</mat-icon>
+                                        <div>Available Until: {{promotion.date_available | date :'dd MMM YY'}}</div> 
+                                    </div>
+                                    <p *ngIf="promotion.description != '' && promotion.description != null">{{promotion.subtitle}}</p> 
+                                    <p  *ngIf="promotion.description == '' || promotion.description == null">-</p>
+                                    <div class="jflex-row stretch center-cross-axis">
+                                        <div class="jflex-column">
+                                            <p>Kode Promo:</p>
+                                            <h1><strong>{{promotion.kode_promo}}</strong></h1>
+                                        </div>
+                                        <div>
+                                            <button mat-button class="pilih-button py-1 px-4" (click)="copyCodeClicked(promotion.kode_promo)">Salin Kode</button>
+                                        </div>
+                                    </div>    
+                                </div>
+                            </mat-card>
+                        </div>
+                    </div>
+                    <div *ngIf="(listPromotions == null || listPromotions.length == 0 ) && !isLoading" class="jflex-column padding-beauty center-main-axis center-cross-axis" >
+                        <img src="assets/img/promo-nothing.png">
+                        <h2 class="font-green" style="text-align: center;"><strong>Tidak ada item yang bisa dicari :(</strong></h2>
+                        <p class="font-green" style="text-align: center;"> Ayo selesaikan objectives dan dapatkan berbagai macam Promo Menarik</p>     
+                    </div>
+                    <div *ngIf="isLoading" class="row ">
+                        <div *ngFor="let x of [1,2,3,4,5,6]; let i = index" class="col-xl-6 mt-3">
+                            <ngx-shimmer-loading [shape]="'rect'" [width]="'100%'" [height]="'200px'"></ngx-shimmer-loading>
+                        </div>
+                    </div>
                 </div>
-                <div *ngIf="isLoading" class="row">
-                    <div *ngFor="let x of [1,2,3,4,5,6]; let i = index" class="col-xl-6">
-                        <ngx-shimmer-loading [shape]="'rect'" [width]="'100%'" [height]="'200px'"></ngx-shimmer-loading>
+                <div *ngIf="isHistoryActive" class="scroll">
+                    <div *ngIf="!isLoading" class="row" style="justify-content: center;">
+                        <div *ngFor="let history of listHistories; let i = index" class="col-xl-11" >
+                            <mat-card *ngIf="history.type == 'Objectives'" class="box-outline padding-beauty little-space" style="margin-bottom: 10px;  background:#CCEDBE; border-radius: 10px; ">
+                                <div class="jflex-column stretch">
+                                    <div class="font-green jflex-row stretch" style="align-items: flex-end; margin-bottom: 20px;">
+                                        <img src="assets/img/img_promo_objectives_history.png" style="width: 170px; height: auto;">
+                                        <div class="font-green jflex-row center-cross-axis"><mat-icon>check_circle_outline</mat-icon><strong>Terpakai!</strong></div>
+                                    </div>
+                                    <span><h1><strong>{{history.title}}</strong></h1></span>
+                                    <div class="jflex-row stretch center-cross-axis">
+                                        <div class="jflex-column">
+                                            <p>Available Until: {{history.end_date | date :'dd MMM YY'}}</p>
+                                        </div>
+                                    </div>    
+                                </div>
+                            </mat-card>
+                            <mat-card *ngIf="history.type == 'Promotions'" class="box-outline padding-beauty little-space" style="margin-bottom: 10px;border-radius: 10px; ">
+                                <div class="jflex-column stretch">
+                                    <div class="font-green jflex-row stretch" style="align-items: flex-end; margin-bottom: 20px;">
+                                        <img src="assets/img/img_promo.png" style="width: 170px; height: auto;">
+                                        <div class="font-green jflex-row center-cross-axis"><mat-icon>check_circle_outline</mat-icon><strong>Terpakai!</strong></div>
+                                    </div>
+                                    <span><h1><strong>{{history.title}}</strong></h1></span>
+                                    <div class="jflex-row stretch center-cross-axis">
+                                        <div class="jflex-column">
+                                            <p>Kode Promo: <strong>{{history.kode_promo}}</strong></p>
+                                        </div>
+                                    </div>    
+                                </div>
+                            </mat-card>
+                        </div>
+                    </div>
+                    <div *ngIf="(listHistories == null || listHistories.length == 0)  && !isLoading" class="jflex-column padding-beauty center-main-axis center-cross-axis" >
+                        <img src="assets/img/promo-nothing.png">
+                        <h2 class="font-green" style="text-align: center;"><strong>Tidak ada item yang bisa dicari :(</strong></h2>
+                        <p class="font-green" style="text-align: center;"> Ayo selesaikan objectives dan dapatkan berbagai macam Promo Menarik</p>     
+                    </div>
+                    <div *ngIf="isLoading" class="row" style="justify-content: center;">
+                        <div *ngFor="let x of [1,2,3,4,5,6]; let i = index" class="col-xl-11 mt-3">
+                            <ngx-shimmer-loading [shape]="'rect'" [width]="'100%'" [height]="'200px'"></ngx-shimmer-loading>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div *ngIf="isPromotionActive" class="scroll">
-                <div *ngIf="!isLoading" class="row">
-                    <div *ngFor="let promotion of listPromotions; let i = index" class="col-xl-6">
-                        <mat-card class="box-outline padding-beauty little-space" style="margin-bottom: 10px; border-radius: 10px; ">
-                
-                            <div class="jflex-column stretch">
-                                <span class="font-green jflex-row" style="align-items: flex-end; margin-bottom: 20px;"><img src="assets/img/img_promo.png" style="width: 170px; height: auto;"></span>
-                                <span><h1><strong>{{promotion.title}}</strong></h1></span>
-                                <div class="flex">
-                                    <mat-icon class="font-18" style="color: #6ED940;">access_time</mat-icon>
-                                    <div>Available Until: {{promotion.date_available | date :'dd MMM YY'}}</div> 
-                                </div>
-                                <p *ngIf="promotion.description != '' && promotion.description != null">{{promotion.subtitle}}</p> 
-                                <p  *ngIf="promotion.description == '' || promotion.description == null">-</p>
-                                <div class="jflex-row stretch center-cross-axis">
-                                    <div class="jflex-column">
-                                        <p>Kode Promo:</p>
-                                        <h1><strong>{{promotion.kode_promo}}</strong></h1>
-                                    </div>
-                                    <div>
-                                        <button mat-button class="pilih-button py-1 px-4" (click)="copyCodeClicked(promotion.kode_promo)">Salin Kode</button>
-                                    </div>
-                                </div>    
-                            </div>
-                        </mat-card>
-                    </div>
-                </div>
-                <div *ngIf="(listPromotions == null || listPromotions.length == 0 ) && !isLoading" class="jflex-column padding-beauty center-main-axis center-cross-axis" >
-                    <img src="assets/img/promo-nothing.png">
-                    <h2 class="font-green" style="text-align: center;"><strong>Tidak ada item yang bisa dicari :(</strong></h2>
-                    <p class="font-green" style="text-align: center;"> Ayo selesaikan objectives dan dapatkan berbagai macam Promo Menarik</p>     
-                </div>
-                <div *ngIf="isLoading" class="row">
-                    <div *ngFor="let x of [1,2,3,4,5,6]; let i = index" class="col-xl-6">
-                        <ngx-shimmer-loading [shape]="'rect'" [width]="'100%'" [height]="'200px'"></ngx-shimmer-loading>
-                    </div>
-                </div>
-            </div>
-            <div *ngIf="isHistoryActive" class="scroll">
-                <div *ngIf="!isLoading" class="row" style="justify-content: center;">
-                    <div *ngFor="let history of listHistories; let i = index" class="col-xl-11" >
-                        <mat-card *ngIf="history.type == 'Objectives'" class="box-outline padding-beauty little-space" style="margin-bottom: 10px;  background:#CCEDBE; border-radius: 10px; ">
-                            <div class="jflex-column stretch">
-                                <div class="font-green jflex-row stretch" style="align-items: flex-end; margin-bottom: 20px;">
-                                    <img src="assets/img/img_promo_objectives_history.png" style="width: 170px; height: auto;">
-                                    <div class="font-green jflex-row center-cross-axis"><mat-icon>check_circle_outline</mat-icon><strong>Terpakai!</strong></div>
-                                </div>
-                                <span><h1><strong>{{history.title}}</strong></h1></span>
-                                <div class="jflex-row stretch center-cross-axis">
-                                    <div class="jflex-column">
-                                        <p>Available Until: {{history.end_date | date :'dd MMM YY'}}</p>
-                                    </div>
-                                </div>    
-                            </div>
-                        </mat-card>
-                        <mat-card *ngIf="history.type == 'Promotions'" class="box-outline padding-beauty little-space" style="margin-bottom: 10px;border-radius: 10px; ">
-                            <div class="jflex-column stretch">
-                                <div class="font-green jflex-row stretch" style="align-items: flex-end; margin-bottom: 20px;">
-                                    <img src="assets/img/img_promo.png" style="width: 170px; height: auto;">
-                                    <div class="font-green jflex-row center-cross-axis"><mat-icon>check_circle_outline</mat-icon><strong>Terpakai!</strong></div>
-                                </div>
-                                <span><h1><strong>{{history.title}}</strong></h1></span>
-                                <div class="jflex-row stretch center-cross-axis">
-                                    <div class="jflex-column">
-                                        <p>Kode Promo: <strong>{{history.kode_promo}}</strong></p>
-                                    </div>
-                                </div>    
-                            </div>
-                        </mat-card>
-                    </div>
-                </div>
-                <div *ngIf="(listHistories == null || listHistories.length == 0)  && !isLoading" class="jflex-column padding-beauty center-main-axis center-cross-axis" >
-                    <img src="assets/img/promo-nothing.png">
-                    <h2 class="font-green" style="text-align: center;"><strong>Tidak ada item yang bisa dicari :(</strong></h2>
-                    <p class="font-green" style="text-align: center;"> Ayo selesaikan objectives dan dapatkan berbagai macam Promo Menarik</p>     
-                </div>
-                <div *ngIf="isLoading" class="row">
-                    <div *ngFor="let x of [1,2,3,4,5,6]; let i = index" class="col-xl-11">
-                        <ngx-shimmer-loading [shape]="'rect'" [width]="'100%'" [height]="'200px'"></ngx-shimmer-loading>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
     
@@ -202,3 +210,4 @@
         </div>
     </mat-card> -->
 </div>
+

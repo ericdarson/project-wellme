@@ -23,6 +23,7 @@ export class PromoListComponent implements OnInit {
   isHistoryActive : boolean= false;
   isLoading : boolean = false;
   isNotFound : boolean = false;
+  isFailedToLoad : boolean = false;
 
   promoResponse : PromotionResponse;
   constructor(private promoService : PromoService,private router : Router,
@@ -30,6 +31,8 @@ export class PromoListComponent implements OnInit {
   
   ngOnInit(): void {
     this.getPromo()
+
+    
   }
   
   toggleBtn(num:number):void{
@@ -52,15 +55,22 @@ export class PromoListComponent implements OnInit {
   }
 
   getPromo(){
+    this.isFailedToLoad = false;
     this.isLoading = true;
     this.promoService.getPromo().subscribe( (response: ResponseApi)=>{
-      this.promoResponse = response.output_schema
-      this.listObjectives = this.promoResponse.objectives
-      this.listPromotions = this.promoResponse.promotions
-      this.listHistories = this.promoResponse.history
-      console.log(this.promoResponse)
       this.isLoading = false;
+      if (response.error_schema.error_message.indonesian=="BERHASIL")
+      {
+        this.promoResponse = response.output_schema
+        this.listObjectives = this.promoResponse.objectives
+        this.listPromotions = this.promoResponse.promotions
+        this.listHistories = this.promoResponse.history
+        
+      }else{
+        this.isFailedToLoad = true;
+      }
     },(error)=>{
+      this.isFailedToLoad = true;
       this.isLoading = false;
     })
   }
@@ -83,6 +93,10 @@ export class PromoListComponent implements OnInit {
   goToObjectiveDetail(objectives : Objectives){
     this.promoService.selectPromo(objectives)
     this.router.navigate(['../detail'], {relativeTo: this.route});
+  }
+
+  retryClicked(){
+    this.getPromo();
   }
   
 }

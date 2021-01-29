@@ -9,6 +9,7 @@ import { ProfileComponent } from '../components/profile/profile.component';
 import { ProductComponent } from '../components/product/product.component';
 import { MoreComponent } from '../components/more/more.component';
 import { NewsComponent } from '../components/news/news.component';
+import { FailedToLoadComponent } from '../components/failed-to-load/failed-to-load.component';
 
 
 @NgModule({
@@ -19,6 +20,8 @@ import { NewsComponent } from '../components/news/news.component';
     ProductComponent,
     MoreComponent,
     NewsComponent,
+    
+  
   ],
   imports: [
     IndexRoutingModule,

@@ -1,12 +1,78 @@
-<div class="master-component">
-
+<div *ngIf="!this.isFailedToLoad" class="master-component">
     <h1 class="flex-center" style="margin-bottom: 2em;"><b>Products</b></h1>
-    <div class="flex-center" style="margin-bottom: 1em;">
+    <div class="flex-center" style="margin-bottom: 2em;">
         <div class="profile-name">
             Pilih Kategori
         </div>
     </div>
-    <div *ngIf="!isLoading" style="padding-left: 1em; padding-right: 1em; padding-top: 2em;padding-bottom: 2em;">
+    <div class="row" style="justify-content: center;">
+        <div class="profile-item-box" style="padding: 1em; width: 70%;">
+            <div class="flex" style="justify-content: space-between;">
+                <div class="width-full">
+                    <div class="text-wellme-color">
+                        <b>
+                            Reksadana
+                        </b>
+                    </div>
+                    <div class="font-12">
+                        Investasi Dana Terjangkau
+                    </div>
+                    <div class="wellme-button clickable font-12" style="margin-top: 2em;">
+                        <b>Lihat Produk</b>
+                    </div>
+                </div>
+                <div>
+                    <img src="/assets/icon/icon-kategori-1.png" alt="Wellme" width="200" height="100">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="justify-content: center;">
+        <div class="profile-item-box" style="padding: 1em; width: 70%;">
+            <div class="flex" style="justify-content: space-between;">
+                <div class="width-full">
+                    <div class="text-wellme-color">
+                        <b>
+                            Obligasi
+                        </b>
+                    </div>
+                    <div class="font-12">
+                        Investasi Berpendapatan Tetap
+                    </div>
+                    <div class="wellme-button clickable font-12" style="margin-top: 2em;">
+                        <b>Lihat Produk</b>
+                    </div>
+                </div>
+                <div>
+                    <img src="/assets/icon/icon-kategori-2.png" alt="Wellme" width="200" height="100">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="justify-content: center;">
+        <div class="profile-item-box" style="padding: 1em; width: 70%;">
+            <div class="flex" style="justify-content: space-between;">
+                <div class="width-full">
+                    <div class="text-wellme-color">
+                        <b>
+                            Asuransi
+                        </b>
+                    </div>
+                    <div class="font-12">
+                        Perlindungan Jiwa,
+                        Kesehatan, dan Harta Benda
+                    </div>
+                    <div class="wellme-button clickable font-12" style="margin-top: 2em;">
+                        <b>Lihat Produk</b>
+                    </div>
+                </div>
+                <div>
+                    <img src="/assets/icon/icon-kategori-3.png" alt="Wellme" width="200" height="100">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div *ngIf="!isLoading" style="padding-left: 1em; padding-right: 1em; padding-top: 2em;padding-bottom: 2em;">
         <div *ngFor="let type of productTypes" class="flex width-full" style="justify-content: center;">
             <div class="profile-item-box" style="padding: 1em; width: 70%;">
                 <div class="flex" style="justify-content: space-between;">
@@ -29,8 +95,8 @@
                 </div>
             </div>
         </div>  
-    </div>
-    <div *ngIf="isLoading" style="padding-left: 1em; padding-right: 1em; padding-top: 2em;padding-bottom: 2em;">
+    </div> -->
+    <!-- <div *ngIf="isLoading" style="padding-left: 1em; padding-right: 1em; padding-top: 2em;padding-bottom: 2em;">
         <div class="row mb-3">
             <div class="col-md-8 mx-auto">
                 <ngx-shimmer-loading [shape]="'rect'" [width]="'100%'" [height]="'100px'" ></ngx-shimmer-loading>
@@ -51,5 +117,5 @@
                 <ngx-shimmer-loading [shape]="'rect'" [width]="'100%'" [height]="'100px'" ></ngx-shimmer-loading>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>
