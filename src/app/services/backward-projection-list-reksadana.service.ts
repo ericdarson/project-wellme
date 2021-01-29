@@ -21,10 +21,17 @@ const httpOptions={
 export class BackwardProjectionListReksadanaService {
   datepipe: DatePipe
   jenisreksa:string="";
+  namaProduk:string="";
   constructor(private http:HttpClient, private cookieService:CookieService) { }
 
   ngOnInit() {
 
+  }
+  getNamaProduk(){
+    return this.namaProduk;
+  }
+  setNamaProduk(val:string){
+    this.namaProduk = val;;
   }
 
   setJenisReksadana(val:string){

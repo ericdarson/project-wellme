@@ -250,6 +250,7 @@ export class BackwardPembelianComponent implements OnInit {
     this.service.setNabSimulation(null);
     //console.log(this.service.getNabSimulation())
     this.service.setNominal(this.desiredValue);
+    this.service.setNamaProduk(this.detailProduk.nama_produk);
     this.router.navigate(['../../../backward-simulasi/'+this.reksaId+"/"+this.latest_date],{relativeTo:this.route})
   }
 
