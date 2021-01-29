@@ -3,18 +3,11 @@
 
 html, body { height: 100%; }
 
-body { margin: 0; font-family: Quicksand, "Helvetica Neue", sans-serif; }
-@media screen and (max-width: 1000px) {
-    .centering{
-      width: auto !important;
-      margin:0px !important;
-    }
-  }
 .centering{
     width: 768px !important;
     margin-right: auto;
     margin-left: auto;
-    
+  
 }
 
 
