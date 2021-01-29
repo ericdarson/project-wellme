@@ -27,7 +27,8 @@ export class PinComponent implements OnInit {
   totalPromo:number=0;
   snkChecked:boolean=false;
   pinMD5:string;
-  
+  wrongPinMessage:string;
+  wrongPinClass:Boolean=false;
   
   goBack()
   {
@@ -63,7 +64,24 @@ export class PinComponent implements OnInit {
        }
        console.log(strings);
       this.pinMD5=md5.appendStr(strings).end().toString();
-      this.plannerService.doPembelian(this.pinMD5);
+      var pembelian=this.plannerService.doPembelian(this.pinMD5);
+      if(pembelian!=null)
+      {
+        this.wrongPinClass=false;
+        this.wrongPinMessage="";
+        pembelian.subscribe((response:any)=>{
+          this.plannerService.clearLocalStorage("plannerBeliState");
+          this.plannerService.clearLocalStorage("plannerKonfirmasi");
+         this.router.navigate(['../detail-transaksi'],{relativeTo:this.route})
+        },(error:any)=>{
+          console.log(error);
+          if(error.error.error_schema.error_message.english=="WRONG PIN"){
+           this.wrongPinClass=true;
+           this.wrongPinMessage="Pin yang Anda Masukan Salah" 
+          }
+        })
+      }
+
     }
   }
   

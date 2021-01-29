@@ -1,4 +1,4 @@
 export class PlannerProduct {
-    id_products:number;
+    id_produk:number;
     nominal:number;
 }
