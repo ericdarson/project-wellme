@@ -1,5 +1,6 @@
-<div class="jflex-column" style="height: 100%;">
-    <div class="jflex-row" style="padding-top:20px;">
+<div class="jflex-column container" style="height: 100%; min-width: 400px; width: 70%;">
+    <div class="jflex-row center-main-axis" style="padding-top:20px;">
+        
         <a mat-icon-button aria-label="Example icon button with a vertical three dot icon">
             <mat-icon>chevron_left</mat-icon>
         </a>
@@ -11,10 +12,10 @@
         <p class="font-green"  style="text-align: center;"> Ayo selesaikan objectives dan dapatkan berbagai macam Promo Menarik</p>
         
     </div>
-    <div class="background-green padding-beauty scroll" [ngClass]="listPlannerDisplay" style="height: 90%; overflow: auto;">
-        <div *ngFor="let plan of listPlanner" (click)="portofolioClicked(plan)">
-        <mat-card class="box-outline padding-beauty" style="margin-bottom: 10px; cursor: pointer;" >
-            <div class="jflex-row stretch">
+    <div class="row background-green padding-beauty scroll" [ngClass]="listPlannerDisplay" style="height: 90%; overflow: auto;">
+        <div class="col-md-12" *ngFor="let plan of listPlanner" (click)="portofolioClicked(plan)">
+        <mat-card class="box-outline row padding-beauty" style="margin-bottom: 10px; cursor: pointer;" >
+            <div class="jflex-row col-md-12 stretch">
                 <div class="jflex-column stretch">
                     <span><strong>{{plan.nama_plan}}</strong></span>
                     <span class="percentage-list">{{plan.current/plan.target*100>100?100:plan.current/plan.target*100 | number:'1.0-0'}} %</span>
@@ -92,7 +93,7 @@
         </div>
         
     </div>
-    <div class="background-green jflex-row padding-beauty center-main-axis">
+    <div class="background-green jflex-row row padding-beauty center-main-axis">
         <a mat-raised-button href="financial-planner/pilih-target" style="background-color: #6ED940; color: white; width: 80%; ">Tambah Portofolio</a>
     </div>
 </div>
