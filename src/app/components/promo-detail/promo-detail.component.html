@@ -9,53 +9,70 @@
                 <img src="assets/icon/well-me-logo-small.png" style="padding-right: 10px;" width="107" height="33">
             </div>
             <div *ngIf="!isNotFound && !isLoading" class="padding-beauty" style="height: 90%; overflow: auto;">
-                <mat-card class="box-outline padding-beauty little-space" [ngClass]="promoStatus">
-                    
+                <mat-card class="box-outline padding-beauty little-space" [ngClass]="promoStatus">     
                     <div class="jflex-column stretch">
-                        <div class="font-green jflex-row stretch" style="align-items: flex-end; margin-bottom: 20px;">
+                        <div class=" jflex-row stretch" style="align-items: flex-end; margin-bottom: 20px;">
                             <img src="assets/img/img_promo_objectives.png" style="width: 170px; height: auto;">
-                            <div class="font-green jflex-row center-cross-axis"><mat-icon>check_circle_outline</mat-icon><strong>Completed!</strong></div>
+                            <div *ngIf="this.isComplete" class="font-green jflex-row center-cross-axis"><mat-icon>check_circle_outline</mat-icon><strong>Completed!</strong></div>
+                            <div *ngIf="this.isProgress" class="font-18 jflex-row center-cross-axis"><strong>On Progress</strong></div>
+                            <div *ngIf="this.isNotStart" class="font-18 jflex-row center-cross-axis"><strong>Available</strong></div>
                         </div>
-                        <span><h1 class="font-green" style="max-width: 300px;"><strong>Beli Reksadana Dapet Cashback</strong></h1></span>
+                        <span><h1 class="font-green" style="max-width: 300px;"><strong>{{objective.title}}</strong></h1></span>
                         <div class="jflex-row stretch">
                             <div class="jflex-column">
-                                <span class="jflex-row center-cross-axis"><mat-icon style="font-size:15pt;color: #6ED940;">access_time</mat-icon> Available Until: 20 December 2021</span>
-                                <p style="max-width: 300px;">Beli Reksadana Obligasi Minimal Rp500,000 dan Dapatkan Cashback Rp100,000</p>        
+                                <span class="jflex-row center-cross-axis"><mat-icon style="font-size:15pt;color: #6ED940;">access_time</mat-icon> Available Until: {{objective.date_available | date : 'dd MMM YY'}}</span>
+                                <p style="max-width: 300px;">{{objective.subtitle}}</p>        
                             </div>
-                            <div>
+                            <div *ngIf="this.isProgress || this.isNotStart">
                                 <img src="assets/img/icon-promo-detail.png" class="img-fluid">
+                            </div>
+                            <div *ngIf="this.isComplete">
+                                <img src="assets/img/icon-objective.png" class="img-fluid">
                             </div>
                         </div>
                     </div>
                 </mat-card>
                 <p>{{objective.description}}</p>
-                <div class="jflex-row center-main-axis center-cross-axis little-space" style="justify-content: space-around;">
-                    <div class="jflex-column center-cross-axis stretch" style="padding:10px; width: 100px; height: 100px; border: #6ED940 1px solid; border-radius: 10%;">
-                        <mat-icon style="color: #6ED940;">card_giftcard</mat-icon>
-                        <span>Reward</span>
-                        <span><strong>Rp50,000</strong></span>
-        
+                <div class="row " style="justify-content: space-around;">
+                    <div class="col-xl-4 my-4" >
+                        <div class="text-center" style="padding:10px; border: #6ED940 1px solid; border-radius: 10%;">
+                            <mat-icon style="color: #6ED940;">card_giftcard</mat-icon>
+                            <div>Reward</div>
+                            <div><strong>{{objective.cashback | currency : 'Rp'}}</strong></div>
+                        </div>
                     </div>
-                    <div class="jflex-column center-cross-axis stretch" style="padding:10px; width: 100px; height: 100px; border: #6ED940 1px solid; border-radius: 10%;">
-                        <mat-icon style="color: #6ED940;">check_box</mat-icon>
-                        <span>Task</span>
-                        <span><strong>Rp500,000</strong></span>
-        
+                    <div class="col-xl-4 my-4" >
+                        <div class="text-center" style="padding:10px; border: #6ED940 1px solid; border-radius: 10%;">
+                            <mat-icon style="color: #6ED940;">check_box</mat-icon>
+                            <div>Task</div>
+                            <div><strong>{{objective.target_akumulasi | currency : 'Rp'}}</strong></div>
+                        </div>
                     </div>
-                    <div class="jflex-column center-cross-axis stretch" style="padding:10px; width: 100px; height: 100px; border: #6ED940 1px solid; border-radius: 10%;">
-                        <mat-icon style="color: #6ED940;">access_time</mat-icon>
-                        <span>Deadline</span>
-                        <span><strong>24 Dec 20</strong></span>
-        
+                    <div class="col-xl-4 my-4" >
+                        <div class="text-center" style="padding:10px; border: #6ED940 1px solid; border-radius: 10%;">
+                            <mat-icon style="color: #6ED940;">access_time</mat-icon>
+                            <div>Deadline</div>
+                            <div><strong> {{objective.date_available | date : 'dd MMM YY'}}</strong></div>
+                        </div>
                     </div>
                    
                 </div>
         
-                <div class="jflex-column little-space center-cross-axis center-main-axis">
-                    <p style="width: 100%;"><ngb-progressbar style="background-color:#6ED940" type="success" [height]="'50px'"  textType="white" [value]="25"><strong>2,000,000/25,000,000</strong></ngb-progressbar></p>
+                <div class="row">
+                    <div class="col-xl-12">
+                        <mat-progress-bar
+                            color="#6ED940"
+                            mode="determinate"
+                            style="height: 50px;"
+                            [value]="this.currentProgress">
+                        </mat-progress-bar>
+                        <div class="text-center font-18" style="position:relative; top: -35px; color: white;">
+                            <b>{{objective.current_amount}}/{{objective.target_akumulasi}}</b>
+                        </div>
+                    </div>        
                 </div> 
                 <div class="jflex-row center-main-axis">
-                    <button mat-raised-button class="btn-active" disabled>Klaim Hadiah</button>
+                    <button mat-raised-button class="btn-active" [disabled]="">Klaim Hadiah</button>
                 </div>
                 
             </div>

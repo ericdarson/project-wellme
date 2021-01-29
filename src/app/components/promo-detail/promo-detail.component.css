@@ -28,15 +28,24 @@
  .btn-non-active{
    background-color: white; color:#6ED940 ; width: 200px; border: #6ED940 2px solid; 
  }
- .card-objectives{
-    
- }
+
  .little-space{
      margin-bottom: 10px;
  }
- .promo-box{
+ .promo-box-on-progress{
     margin-bottom: 10px;  background:#CCEDBE;
+
  }
+
+
  .promo-box-complete{
     margin-bottom: 10px;  background:white;
  }
+
+ ::ng-deep .mat-progress-bar-fill::after {
+   background-color: #309F00;;
+}
+
+::ng-deep .mat-progress-bar-buffer {
+   background: #6ED940;
+}
