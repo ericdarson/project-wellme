@@ -231,7 +231,6 @@ export class BackwardPembelianComponent implements OnInit {
     if(this.formattedAmount.substr(-3)[0] == '.'){
       this.formattedAmount = this.formattedAmount.substr(0,this.formattedAmount.length-3);
     }
-    console.log("Format: " + this.formattedAmount);
     this.formattedAmount= this.formattedAmount.replace(/[^0-9]/g, "")
     this.desiredValue= +this.formattedAmount;
 
