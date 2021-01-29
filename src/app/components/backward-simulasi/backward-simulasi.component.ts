@@ -12,6 +12,8 @@ import * as moment from 'moment';
   styleUrls: ['./backward-simulasi.component.css']
 })
 export class BackwardSimulasiComponent implements OnInit {
+  isLoading = true;
+  namaProduk: string="";
   lamaInvestasi : number=0;
   hariSelected: boolean = true;
   mingguSelected: boolean = false;
@@ -38,14 +40,18 @@ export class BackwardSimulasiComponent implements OnInit {
     console.log("Jenis Reksa : " + jenisreksa)
     if(jenisreksa == "null" || jenisreksa == ""){
       console.log("redirecting")
-      //this.router.navigate(["../../index"]);
+      this.router.navigate(["../../index"]);
     }
-
+    this.namaProduk = this.service.getNamaProduk();
+    if(this.namaProduk == ""){
+      this.router.navigate(["../../index"]);
+    }
+    
     this.route.paramMap.subscribe(params => {
       this.idproduk = params.get('id')!
       this.simulationdate = params.get('date')!
     });
-
+    
     this.service.startSimulation(this.simulationdate, this.idproduk).subscribe(response=>{
       console.log(response)
       if (response.error_schema.error_code=="BIT-00-000")
@@ -69,7 +75,7 @@ export class BackwardSimulasiComponent implements OnInit {
 
           let startDate = new Date(formattedStartDate);
 
-          this.durasiinvestasi  = date.getDate() - startDate.getDate();
+          this.durasiinvestasi  = (date.getTime() - startDate.getTime())  / 1000 / 60 / 60 / 24;
         }else{
 
           this.nabaftersimulasi = this.simulationStartData.starting_nab;
@@ -81,6 +87,7 @@ export class BackwardSimulasiComponent implements OnInit {
       }else if (response.error_schema.error_code=="BIT-10-001"){
         this.location.back()
       }
+      this.isLoading = false;
     });
   }
   doSimulation(){
@@ -101,6 +108,7 @@ export class BackwardSimulasiComponent implements OnInit {
     console.log(date)
     let datestring = moment(date).format("DD-MM-yyyy");
     let datestringtampil = moment(date).format("DD MMM YY");
+    this.isLoading = true;
     this.service.forwardSimulation(datestring, this.idproduk).subscribe(response=>{
       console.log(response)
       if (response.error_schema.error_code=="BIT-00-000")
@@ -113,6 +121,7 @@ export class BackwardSimulasiComponent implements OnInit {
       }else if (response.error_schema.error_code=="BIT-10-001"){
         this.location.back()
       }
+      this.isLoading = false;
     });
   }
 
@@ -148,6 +157,7 @@ export class BackwardSimulasiComponent implements OnInit {
     this.service.setNabSimulation(null);
     this.service.setDateSimulationString(null);
     this.service.setJenisReksadana("");
+    this.service.setNamaProduk("");
     console.log("redirecting")
       this.router.navigate(["../../index"]);
   }
