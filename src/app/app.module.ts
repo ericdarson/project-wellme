@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import {MatIconModule} from '@angular/material/icon';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule, HttpUrlEncodingCodec } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import { Globals } from './globals';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -72,6 +72,7 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 import { NgxWebstorageModule, SessionStorageService } from 'ngx-webstorage';
 import { PlannerDetailPortfolioComponent } from './components/planner-detail-portfolio/planner-detail-portfolio.component';
 import { PlannerListReksadanaComponent } from './components/planner-list-reksadana/planner-list-reksadana.component';
+import { CookieService } from 'ngx-cookie-service';
 import { SyaratKetentuanPembelianComponent } from './popup/syarat-ketentuan-pembelian/syarat-ketentuan-pembelian.component';
 import { InformasiProdukComponent } from './popup/informasi-produk/informasi-produk.component';
 
@@ -96,7 +97,7 @@ import { InformasiProdukComponent } from './popup/informasi-produk/informasi-pro
     SharedModule,
     HttpClientModule,
   ],
-  providers: [Globals,MatDatepickerModule,CurrencyPipe,ScrollDispatcher,SessionStorageService],
-  bootstrap: [AppComponent],
+  providers: [Globals,MatDatepickerModule,CurrencyPipe,ScrollDispatcher,SessionStorageService,CookieService],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
