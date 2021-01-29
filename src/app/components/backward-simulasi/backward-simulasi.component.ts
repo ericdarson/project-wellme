@@ -34,6 +34,13 @@ export class BackwardSimulasiComponent implements OnInit {
   constructor(private service: BackwardProjectionListReksadanaService, private location: Location,private router : Router,private route : ActivatedRoute) { }
 
   ngOnInit(): void {
+    let jenisreksa = ""+this.service.getJenisReksadana()
+    console.log("Jenis Reksa : " + jenisreksa)
+    if(jenisreksa == "null" || jenisreksa == ""){
+      console.log("redirecting")
+      //this.router.navigate(["../../index"]);
+    }
+
     this.route.paramMap.subscribe(params => {
       this.idproduk = params.get('id')!
       this.simulationdate = params.get('date')!
@@ -45,9 +52,31 @@ export class BackwardSimulasiComponent implements OnInit {
       {
         this.simulationStartData = response.output_schema;
         this.nominalPembelian = +this.service.getNominal();
-        this.nabaftersimulasi = this.simulationStartData.starting_nab;
-        this.simulationDateAfter = this.simulationStartData.start_datestring;
-        this.simulationDateRequest = this.simulationStartData.start_date;
+        let temp = this.service.getNabSimulation();
+        if(temp+"" != "null"){
+    
+          this.nabaftersimulasi = +this.service.getNabSimulation();
+          this.simulationDateAfter = this.service.getDateSimulationString();
+          this.simulationDateRequest = this.service.getDateSimulation();
+
+          let newDate = moment(this.simulationDateRequest, 'DD-MM-YYYY')
+          let formattedDate = newDate.format('MM-DD-YYYY');
+
+          let date = new Date(formattedDate);
+
+          let newstartDate = moment(this.simulationdate, 'DD-MM-YYYY')
+          let formattedStartDate = newstartDate.format('MM-DD-YYYY');
+
+          let startDate = new Date(formattedStartDate);
+
+          this.durasiinvestasi  = date.getDate() - startDate.getDate();
+        }else{
+
+          this.nabaftersimulasi = this.simulationStartData.starting_nab;
+          this.simulationDateAfter = this.simulationStartData.start_datestring;
+          this.simulationDateRequest = this.simulationStartData.start_date;
+        }
+
         console.log(this.nominalPembelian)
       }else if (response.error_schema.error_code=="BIT-10-001"){
         this.location.back()
@@ -55,20 +84,20 @@ export class BackwardSimulasiComponent implements OnInit {
     });
   }
   doSimulation(){
-    this.durasiinvestasi += this.lamaInvestasi;
     
     let newDate = moment(this.simulationDateRequest, 'DD-MM-YYYY')
     let formattedDate = newDate.format('MM-DD-YYYY');
-
+    let olddate = new Date(formattedDate);
     let date = new Date(formattedDate);
     if (this.hariSelected)
       date.setDate(date.getDate() + this.lamaInvestasi);
     else if (this.bulanSelected)
       date.setMonth(date.getMonth() + this.lamaInvestasi);
     else
-      date.setMonth(date.getMonth() + 12*this.lamaInvestasi);
-    
-      this.lamaInvestasi = 0;
+      date.setDate(date.getDate() + 7*this.lamaInvestasi);
+
+    this.durasiinvestasi += (date.getTime() - olddate.getTime())  / 1000 / 60 / 60 / 24;
+    this.lamaInvestasi = 0;
     console.log(date)
     let datestring = moment(date).format("DD-MM-yyyy");
     let datestringtampil = moment(date).format("DD MMM YY");
@@ -109,9 +138,17 @@ export class BackwardSimulasiComponent implements OnInit {
   }
 
   goToBackwardResult(){
+    this.service.setDateSimulation(this.simulationDateRequest);
+    this.service.setNabSimulation(this.nabaftersimulasi);
+    this.service.setDateSimulationString(this.simulationDateAfter);
     this.router.navigate(['../../../backward-result/'+this.idproduk+'/'+this.simulationDateRequest],{relativeTo:this.route})
   }
   selesai(){
-    this.router.navigate([''])
+    this.service.setDateSimulation(null);
+    this.service.setNabSimulation(null);
+    this.service.setDateSimulationString(null);
+    this.service.setJenisReksadana("");
+    console.log("redirecting")
+      this.router.navigate(["../../index"]);
   }
 }

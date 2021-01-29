@@ -17,6 +17,8 @@ export class BackwardProjectionComponent implements OnInit {
   isDisabled:boolean = true
   skCheck :boolean = false
   selectedId :string = ""
+  selectedJenis:string = ""
+  isLoading:boolean = true;
 
   constructor(public dialog: MatDialog,private router : Router,private route : ActivatedRoute, private service : BackwardProjectionListReksadanaService) { }
 
@@ -33,6 +35,7 @@ export class BackwardProjectionComponent implements OnInit {
           single.selected = false
           this.listReksadana.push(single)
         });
+        this.isLoading = false
       }
     })
   }
@@ -57,6 +60,7 @@ export class BackwardProjectionComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      this.service.setJenisReksadana(this.selectedJenis);
       console.log('The dialog was closed ' + result);
       if(result){
         this.router.navigate(['../backward-tutorial/'+this.selectedId], {relativeTo: this.route})
@@ -77,6 +81,7 @@ export class BackwardProjectionComponent implements OnInit {
     );
     item.selected = true;
     this.selectedId = item.id;
+    this.selectedJenis = item.nama;
   }
 
   setClass(item: BackwardProjectionListJenisReksadana){

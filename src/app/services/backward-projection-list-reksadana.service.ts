@@ -20,10 +20,43 @@ const httpOptions={
 
 export class BackwardProjectionListReksadanaService {
   datepipe: DatePipe
+  jenisreksa:string="";
   constructor(private http:HttpClient, private cookieService:CookieService) { }
 
   ngOnInit() {
 
+  }
+
+  setJenisReksadana(val:string){
+    this.jenisreksa = val;
+  }
+
+  getJenisReksadana(){
+    return this.jenisreksa;
+  }
+
+  setNabSimulation(val:any){
+    this.cookieService.set("nabsimulation",val);
+  }
+
+  getNabSimulation(){
+    return this.cookieService.get("nabsimulation");
+  }
+
+  setDateSimulation(val:any){
+    this.cookieService.set("datesimulation",val);
+  }
+
+  getDateSimulationString(){
+    return this.cookieService.get("datesimulationstring");
+  }
+
+  setDateSimulationString(val:any){
+    this.cookieService.set("datesimulationstring",val);
+  }
+
+  getDateSimulation(){
+    return this.cookieService.get("datesimulation");
   }
 
   getListJenis():Observable<ResponseApi> {

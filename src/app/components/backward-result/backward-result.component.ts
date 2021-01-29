@@ -22,12 +22,20 @@ export class BackwardResultComponent implements OnInit {
   oneYearRangeSelected : boolean =false
   reksaId :string
   simulationdate :string
-  resultData:BackwardProjectionResult;
+  resultData:BackwardProjectionResult = new BackwardProjectionResult();
   chart:Chart;
+  jenisreksa:string;
 
-  constructor(private service: BackwardProjectionListReksadanaService,private location : Location, private route : ActivatedRoute) { }
+  constructor(private service: BackwardProjectionListReksadanaService,private location : Location, private route : ActivatedRoute, private router : Router) { }
 
   ngOnInit(): void {
+    this.jenisreksa = ""+this.service.getJenisReksadana()
+    console.log("Jenis Reksa : " + this.jenisreksa)
+    if(this.jenisreksa == "null" || this.jenisreksa == ""){
+      console.log("redirecting")
+      this.router.navigate(["../../index"]);
+    }
+
     this.route.paramMap.subscribe(params => {
       this.reksaId = params.get('id')!
       this.simulationdate = params.get('date')!
