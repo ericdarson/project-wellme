@@ -9,6 +9,12 @@
             Pilih Kategori
         </div>
     </div>
+    <!-- start shimerring -->
+    <div class ='item-box' *ngIf="isLoading">
+        <ngx-shimmer-loading [shape]="'rectangle'" [width]="'100%'" [height]="'150px'"></ngx-shimmer-loading>
+    </div>
+    <!-- end shimerring -->
+
     <div *ngFor="let reksadana of listReksadana; let i = index" >
         <div class="clickable flex" [ngClass]="setClass(reksadana)" style="padding: 2em;align-items: center;" (click)="choose(reksadana)">
             <div class="width-full font-32">

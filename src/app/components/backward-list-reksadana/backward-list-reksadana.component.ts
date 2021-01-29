@@ -11,12 +11,20 @@ import * as moment from 'moment';
   styleUrls: ['./backward-list-reksadana.component.css']
 })
 export class BackwardListReksadanaComponent implements OnInit {
-
+  jenisreksa:string;
+  isLoading:boolean = true;
   tempVar : BackwardProjectionListProdukRekadana[] = [];
   constructor(private router : Router, private location:Location,private route: ActivatedRoute, private service: BackwardProjectionListReksadanaService) { }
   idJenis:string;
   
   ngOnInit(): void {
+    this.jenisreksa = ""+this.service.getJenisReksadana()
+    console.log("Jenis Reksa : " + this.jenisreksa)
+    if(this.jenisreksa == "null" || this.jenisreksa == ""){
+      console.log("redirecting")
+      this.router.navigate(["../../index"]);
+    }
+
     this.route.paramMap.subscribe(params => {
       this.idJenis = params.get("id")!
     });
@@ -28,6 +36,7 @@ export class BackwardListReksadanaComponent implements OnInit {
         response.output_schema.forEach((element:BackwardProjectionListProdukRekadana) => {
           this.tempVar.push(element)
         });
+        this.isLoading = false;
       }
     })
   }

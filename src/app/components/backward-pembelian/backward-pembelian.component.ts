@@ -36,12 +36,20 @@ export class BackwardPembelianComponent implements OnInit {
   dateSelected :Date;
   latest_date:string;
   desiredValue:number=0;
+  isLoading:boolean = true;
 
   constructor(private service:BackwardProjectionListReksadanaService, private location: Location,private currencyPipe : CurrencyPipe,private router : Router,private route: ActivatedRoute) {
     
   }
 
   ngOnInit(): void {
+    let jenisreksa = ""+this.service.getJenisReksadana()
+    console.log("Jenis Reksa : " + jenisreksa)
+    if(jenisreksa == "null" || jenisreksa == ""){
+      console.log("redirecting")
+      this.router.navigate(["../../index"]);
+    }
+
     this.route.paramMap.subscribe(params => {
       this.reksaId = params.get('id')!
       this.tglChart = params.get('tgl-chart')!
@@ -65,11 +73,15 @@ export class BackwardPembelianComponent implements OnInit {
         this.detailProduk = response.output_schema;
         this.redrawChartAwal()
       }
+
+      this.isLoading = false;
     })
   }
 
   dateChange(){
     this.latest_date = moment(this.dateSelected).format("DD-MM-yyyy");
+    this.isLoading = true;
+    this.redrawChartKosong();
     this.service.getDetailProduk(this.reksaId, this.latest_date).subscribe(response=>{
       console.log(response)
       if (response.error_schema.error_code=="BIT-00-000")
@@ -77,6 +89,7 @@ export class BackwardPembelianComponent implements OnInit {
         this.detailProduk = response.output_schema;
         this.redrawChart()
       }
+      this.isLoading = false;
     })
   }
   
@@ -135,6 +148,21 @@ export class BackwardPembelianComponent implements OnInit {
         }
       });
     }
+  }
+
+  redrawChartKosong(){
+      this.chart.data.datasets = [
+        {
+          type: 'line',
+          label: 'NAB',
+          data: [],
+          backgroundColor: '#6ED940',
+          borderColor: '#6ED940',
+          fill: false,
+        },
+      ]
+      this.chart.data.labels = [];
+      this.chart.update();
   }
 
   redrawChart(){
@@ -200,6 +228,10 @@ export class BackwardPembelianComponent implements OnInit {
   formattedAmount :string = "";
   temp :any
   transformAmount(element:any){
+    if(this.formattedAmount.substr(-3)[0] == '.'){
+      this.formattedAmount = this.formattedAmount.substr(0,this.formattedAmount.length-3);
+    }
+    console.log("Format: " + this.formattedAmount);
     this.formattedAmount= this.formattedAmount.replace(/[^0-9]/g, "")
     this.desiredValue= +this.formattedAmount;
 
@@ -216,6 +248,8 @@ export class BackwardPembelianComponent implements OnInit {
   }
 
   goToSimulasiPage(){
+    this.service.setNabSimulation(null);
+    //console.log(this.service.getNabSimulation())
     this.service.setNominal(this.desiredValue);
     this.router.navigate(['../../../backward-simulasi/'+this.reksaId+"/"+this.latest_date],{relativeTo:this.route})
   }
