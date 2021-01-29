@@ -55,8 +55,14 @@ export class BeliReksadanaComponent implements OnInit {
       this.router.navigate(['/financial-planner/planner-list']);
     }
     else{
+      var pbs=this.plannerService.getPlannerBeliState();
+      this.plannerBeliState=pbs!=null?pbs:this.plannerBeliState;
+      console.log(pbs);
+      
       this.getProfileResiko();
       this.namaPlan=this.plannerService.getNamaPlannerDetail();
+
+      console.log(this.namaPlan);
       this.rekomendasiPembelian=this.plannerService.getRekomendasiPembelian();
       if(this.namaPlan==null||this.rekomendasiPembelian==null)
       {
@@ -67,9 +73,11 @@ export class BeliReksadanaComponent implements OnInit {
   
   increasePercentage(num:number):void{
     this.plannerBeliState.pembelian[num].percentage=Number(this.plannerBeliState.pembelian[num].percentage)+5>=100?100:Number(this.plannerBeliState.pembelian[num].percentage)+5;
+    this.plannerService.setPlannerBeliState(this.plannerBeliState);
   }
   decreasePercentage(num:number):void{
     this.plannerBeliState.pembelian[num].percentage=Number(this.plannerBeliState.pembelian[num].percentage)-5<0?0:Number(this.plannerBeliState.pembelian[num].percentage)-5;
+    this.plannerService.setPlannerBeliState(this.plannerBeliState);
   }
   
   goBack():void{
@@ -100,6 +108,7 @@ export class BeliReksadanaComponent implements OnInit {
         this.plannerBeliState.pembelian[key].nama_produk=reksadana.nama_produk;
         this.plannerBeliState.pembelian[key].minimum_pembelian=reksadana.minimum_amount;
         this.plannerBeliState.pembelian[key].biaya_pembelian=reksadana.biaya_pembelian;
+        this.plannerService.setPlannerBeliState(this.plannerBeliState);
       }
     });
   }
@@ -119,7 +128,8 @@ export class BeliReksadanaComponent implements OnInit {
     var valid=false;
     if(this.plannerBeliState.kode_promo!=undefined)
     {
-      promoValid=await this.isPromoValid(this.plannerBeliState.kode_promo);
+      if(this.plannerBeliState.kode_promo!="")
+      {promoValid=await this.isPromoValid(this.plannerBeliState.kode_promo);}
     }
     var nominalValid=this.isNominalValid()
     if(promoValid==true&&nominalValid==true)
@@ -149,7 +159,7 @@ export class BeliReksadanaComponent implements OnInit {
         }
       }
     }
-
+    
     return isValid;
   }
   
@@ -157,33 +167,37 @@ export class BeliReksadanaComponent implements OnInit {
     var percentage=0;
     
     var bool=false;
+    var kosong=false;
     var isValid=true;
+    var percentageValid=false;
     for (let i = 0; i < this.plannerBeliState.pembelian.length; i++) {
       var element=this.plannerBeliState.pembelian[i];
       
       if(element.percentage!=undefined&&element.percentage!=null)
       {
         percentage=Number(percentage)+Number(element.percentage)
-      
+        
         if(element.percentage!=0&&element.id_produk==undefined)
         {
-         
+          
           bool=true;
         }
+        if(element.percentage==0&&element.id_produk!=undefined)
+        {
+          
+          kosong=true;
+        }
+        if(element.percentage<0)
+        {
+          percentageValid=true;
+        }
       }
-    
+      
       
     }
-    if(percentage!=100||bool==true)
+    if(percentage!=100||bool==true||kosong==true||percentageValid==true)
     {
-     
-      isValid=false;
-      if(percentage!=100)
-      {
-        this.errorClassPercentage="block";
-        this.errorMessagePercentage="Persentase Tidak 100%";
-      }
-      if(bool==true){
+        if(bool==true){
         this.errorClassPercentage="block";
         if(percentage!=100)
         {
@@ -192,11 +206,37 @@ export class BeliReksadanaComponent implements OnInit {
         this.errorMessagePercentage+="Persentase Yang Lebih Dari 0% Harus Memiliki Produk yang Dibeli";
         
       }
+      isValid=false;
+      if(percentage!=100)
+      {
+        this.errorClassPercentage="block";
+        this.errorMessagePercentage="Persentase Tidak 100%";
+      }
+
+      if(kosong==true){
+        this.errorClassPercentage="block";
+        if(percentage!=100||bool==true)
+        {
+          this.errorMessagePercentage+=' dan ';
+        }
+        this.errorMessagePercentage+="Produk yang Dipilih Tidak Boleh Memiliki Persentase 0%";
+        
+      }
+
+      if(percentageValid==true){
+        this.errorClassPercentage="block";
+        if(percentage!=100||bool==true||kosong==true)
+        {
+          this.errorMessagePercentage+=' dan ';
+        }
+        this.errorMessagePercentage+="Persentase tidak boleh minus";
+        
+      }
     }
     else{
       this.errorMessagePercentage="";
     }
-
+    
     return isValid;
   }
   
@@ -274,5 +314,9 @@ export class BeliReksadanaComponent implements OnInit {
     this.errorMessageKodePromo="";
     this.errorMessageNominalPembelian="";
     this.errorMessagePercentage="";
+  }
+
+  saveState(){
+    this.plannerService.setPlannerBeliState(this.plannerBeliState);
   }
 }

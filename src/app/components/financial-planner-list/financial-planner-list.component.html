@@ -17,7 +17,7 @@
             <div class="jflex-row stretch">
                 <div class="jflex-column stretch">
                     <span><strong>{{plan.nama_plan}}</strong></span>
-                    <span class="percentage-list">{{plan.current/plan.target*100 | number:'1.0-0'}} %</span>
+                    <span class="percentage-list">{{plan.current/plan.target*100>100?100:plan.current/plan.target*100 | number:'1.0-0'}} %</span>
                     <span class="target">Target:&nbsp;{{plan.target |currency:'Rp ':true:'1.0-2'}}</span>
                 </div>
                 <div class="jflex-column">

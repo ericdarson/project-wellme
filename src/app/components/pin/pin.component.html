@@ -17,6 +17,9 @@
         </div>
 
     </div>
+    <div *ngIf="wrongPinClass" class="jflex-row center-main-axis">
+        <span style="text-align: center; color: red;">{{wrongPinMessage}}</span>
+    </div>
     <div class="jflex-column padding-beauty  center-cross-axis "  style="height:40%;"  >
         <div class="jflex-row">
             <button class="pin-button" (click)="buttonPressed(1)">1</button>

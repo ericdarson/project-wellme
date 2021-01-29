@@ -9,6 +9,12 @@ import { PlannerBeliState } from '../models/planner-beli-state';
 import { ResponseApi } from '../models/ResponseApi';
 import { ifStmt } from '@angular/compiler/src/output/output_ast';
 import { PlannerPromo } from '../models/planner-promo';
+import { PlannerBeliReskadana } from '../models/planner-beli-reskadana';
+import {PlannerProduct} from '../models/planner-product';
+import { PercentPipe } from '@angular/common';
+import { request } from 'http';
+import { LocalStorageService } from 'ngx-webstorage';
+var CryptoJS = require("crypto-js");
 @Injectable({
   providedIn: 'root'
 })
@@ -17,6 +23,7 @@ export class PlannerPembelianService {
   namaPlannerDetail:string|null=null;
   rekomendasiPembelian:number|null=null;
   jenisReksadanaPembelian:string;
+  requestPembelian:PlannerBeliReskadana;
   httpOptions:any={
     headers:new HttpHeaders({
       'Content-Type':'application/json',
@@ -40,26 +47,30 @@ export class PlannerPembelianService {
   simulasiPlannerRequest:any={};
   kategori:string="";
   idJenisReksadana:number|null=null;
-  
+  encryptedObject:String;
   plannerBeliState:PlannerBeliState;
-  constructor(private http:HttpClient) {
+  secretKey:string="aoiw3jtq3p4t8jawefimeifpq32jcf";
+  constructor(private http:HttpClient,private localStorage:LocalStorageService) {
   }
   setNamaPlannerDetail(nama:string|null):void{
+    this.setLocalStorage("namaPlannerDetail",nama);
     this.namaPlannerDetail=nama;
+   
   }
   getNamaPlannerDetail():string|null{
-    return this.namaPlannerDetail;
+    return this.getLocalStorage("namaPlannerDetail");
   }
   getPorfileResiko():Observable<any>{
     const url=environment.profileResikoUrl;
     return this.http.get(url,this.httpOptions);
   }
-    
+  
   setRekomendasiPembelian(num:number|null):void{
+    this.setLocalStorage("rekomendasiPembelian",num);
     this.rekomendasiPembelian=num;
   }
   getRekomendasiPembelian():number|null{
-    return this.rekomendasiPembelian;
+    return this.getLocalStorage("rekomendasiPembelian");
   }
   addKonfirmasiPembelian(reksadana:PlannerReksadana)
   {
@@ -76,6 +87,7 @@ export class PlannerPembelianService {
     this.searchKonfirmasi();
     
     this.plannerKonfirmasi.push(konfirmasi);
+    this.setLocalStorage("plannerKonfirmasi",this.plannerKonfirmasi);
   }
   
   searchKonfirmasi():void{
@@ -91,6 +103,7 @@ export class PlannerPembelianService {
           index=key;
           keepgoing=false;
           exist==true?this.plannerKonfirmasi.splice(index,1):null;
+          this.setLocalStorage("plannerKonfirmasi",this.plannerKonfirmasi);
         }
       }
       
@@ -114,13 +127,19 @@ export class PlannerPembelianService {
   
   
   async isRequestPembelianValid():Promise<boolean>{
+    var pbs=this.getPlannerBeliState()
+    if(pbs!=null)
+    {
+      this.plannerBeliState=pbs;
+    }
     var promoValid=true;
     var valid=false;
     if(this.plannerBeliState!=undefined)
     {
       if(this.plannerBeliState.kode_promo!=undefined)
       {
-        promoValid=await this.isPromoValid(this.plannerBeliState.kode_promo);
+        if(this.plannerBeliState.kode_promo!="")
+        {promoValid=await this.isPromoValid(this.plannerBeliState.kode_promo);}
       }
       var nominalValid=this.isNominalValid()
       if(promoValid==true&&nominalValid==true)
@@ -128,11 +147,11 @@ export class PlannerPembelianService {
         valid=true;
       }      
     }
-
+    
     return valid;
   }
   
-
+  
   getMinimumTransactionPromo():number|undefined{
     return this.plannerBeliState.minimum_transaction;
   }
@@ -226,14 +245,18 @@ export class PlannerPembelianService {
   async isPromoValid(kode:string){
     var response= await this.getPromoList().toPromise();
     var exist:boolean=false;
-    response.output_schema.promotions.forEach((element:PlannerPromo) => {
-      if(element.kode_promo==kode)
-      {
-        this.plannerBeliState.cashback=element.cashback;
-        this.plannerBeliState.minimum_transaction=element.minimum_transaction;
-        exist=true;
-      }
-    });
+    if(response.output_schema.promotions!=null){
+      response.output_schema.promotions.forEach((element:PlannerPromo) => {
+        if(element.kode_promo==kode)
+        {
+          this.plannerBeliState.cashback=element.cashback;
+          this.plannerBeliState.minimum_transaction=element.minimum_transaction;
+          this.setLocalStorage("plannerBeliState",this.plannerBeliState);
+          exist=true;
+        }
+      });
+      
+    }
     
     console.log("RESPONSE: ",response);
     console.log(exist);
@@ -241,47 +264,161 @@ export class PlannerPembelianService {
   }
   
   setIdDetail(idDetail:number):void{
-    
     this.idDetail=idDetail;
+    this.clearLocalStorage("plannerBeliState"); 
+    this.setLocalStorage("idDetail",idDetail);
   }
   getIdDetail():number|null{
-    
-    return this.idDetail;
+    console.log(this.getLocalStorage("idDetail"));
+    return this.getLocalStorage("idDetail");
   }
   setPlannerPromo(kode:string):void
   {
     this.plannerBeliState.kode_promo=kode;
+    this.setLocalStorage("plannerBeliState",this.plannerBeliState);
   }
   setPlannerBeliState(p:PlannerBeliState):void{
     this.plannerBeliState=p;
+    this.setLocalStorage("plannerBeliState",this.plannerBeliState);
   }
   getPlannerBeliState():PlannerBeliState|null{
-    if(this.plannerBeliState==null||this.plannerBeliState==undefined){
-      return null;
-    }else{
-      return this.plannerBeliState;
-    }
+   return this.getLocalStorage("plannerBeliState");
   }
   setJenisReksadanaPembelian(jenis:string):void{
     this.jenisReksadanaPembelian=jenis;
+    this.setLocalStorage("jenisReksadanaPembelian",this.jenisReksadanaPembelian);
   }
   getJenisReksadanaPembelian():string{
-    return this.jenisReksadanaPembelian;
+    return this.getLocalStorage("jenisReksadanaPembelian");
+    
   }
   setIdJenisReksadana(num:number):void{
     this.idJenisReksadana=num;
+    this.setLocalStorage("idJenisReksadana",this.idJenisReksadana);
   }
   getIdJenisReksadana():number|null{
-    return this.idJenisReksadana;
+    return this.getLocalStorage("idJenisReksadana");
   }
   getListReksadana(idJenis:number):Observable<any>{
     const url=environment.listReksadanaPlannerUrl+'/'+idJenis;
     return this.http.get(url,this.httpOptions);
   }
-
-
-  doPembelian(pinMd5:string):any
-  {
-    return "";
+  
+  
+  doPembelian(pinMd5:string):any{
+    const url=environment.plannerPembelianUrl;
+    if(this.preparePembelianRequest())
+    {
+      console.log(this.requestPembelian);
+      var httpOptions:any={
+        headers:new HttpHeaders({
+          'Content-Type':'application/json',
+          'Access-Control-Allow-Headers': 'Content-Type',
+          'Access-Control-Allow-Methods': 'POST, OPTIONS, GET, PUT,DELETE',
+          'Access-Control-Allow-Origin': '*',
+          'Identity': 'ERICIMPOSTORNYA',
+          'Bca-id':'jeje',
+          'Token':'A905AB43ABF8BB33F532FAB977C1B80A',
+          'Pin':pinMd5
+        })
+      }
+      
+      return this.http.post(url,this.requestPembelian,httpOptions);
+    }
+    return null;
+    //return this.http.post(url,this.requestPembelian,this.httpOptions);
   }
+  
+  preparePembelianRequest():boolean{
+    var pbs=this.getPlannerBeliState();
+
+    if(pbs==null)
+    {
+      return false;
+    }
+    else{
+      this.plannerBeliState=pbs;
+    }
+
+
+    var idDetail=this.getIdDetail();
+
+    if(idDetail==null)
+    {
+      return false;
+    }
+    else{
+      this.idDetail=idDetail;
+    }
+
+    var reksadana:PlannerProduct[]=[];
+    var productReady:boolean=false;
+    var requestReady:boolean=false;
+    console.log(this.plannerBeliState);
+    for (let i = 0; i < this.plannerBeliState.pembelian.length; i++) {
+      if(this.plannerBeliState.pembelian[i].id_produk!=undefined&&this.plannerBeliState.nominal_pembelian!=undefined&&this.plannerBeliState.pembelian[i].percentage!=undefined){
+        var num:number|undefined=this.plannerBeliState.pembelian[i].id_produk==undefined?0:this.plannerBeliState.pembelian[i].id_produk;
+        var id:number=num!=undefined?num:0;
+        var p:number|undefined=this.plannerBeliState.pembelian[i].percentage;
+        var percentage:number=p!=undefined?p:0;
+        productReady=true;
+        reksadana.push({
+          id_produk:Number(id),
+          nominal:this.plannerBeliState.nominal_pembelian*percentage/100
+        });
+      }
+      
+    }
+    if(this.idDetail!=null)
+    {
+    
+      requestReady=true;
+      this.requestPembelian={
+        id_plan:Number(this.idDetail),
+        kode_promo:this.plannerBeliState.kode_promo!=undefined?this.plannerBeliState.kode_promo:"",
+        products:reksadana
+      };
+    }
+    console.log('product:',productReady,'request: ',requestReady);
+    if(productReady==true&&requestReady==true)
+    {
+      return true;
+    }
+    else{
+      return false;
+    }
+    
+  }
+  
+  setLocalStorage(key:string,object:any):boolean{
+    this.encryptedObject = encodeURIComponent(CryptoJS.AES.encrypt(JSON.stringify(object), this.secretKey).toString());
+    try {
+      this.localStorage.store(key,this.encryptedObject);
+      return true;  
+    } catch (error) {
+      return false;
+    }
+    
+    
+    
+  }
+  getLocalStorage(key:string):any{
+    var retrievedObject
+    var deData= CryptoJS.AES.decrypt(decodeURIComponent(this.localStorage.retrieve(key)), this.secretKey); 
+    try {
+      retrievedObject = JSON.parse(deData.toString(CryptoJS.enc.Utf8));
+      return retrievedObject;
+    } catch (e) {
+      console.log(e)
+      return null;
+    }
+    
+  }
+  clearLocalStorage(key:string)
+  {
+    this.localStorage.clear(key)
+  }
+
+
+
 }

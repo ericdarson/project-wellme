@@ -32,7 +32,7 @@
                         <td>
                             <div class="jflex-row center-main-axis">
                                 <button (click)="decreasePercentage(i)" mat-mini-fab style="padding: 0; width: 30px; height: 30px; background-color: #6ED940;"><mat-icon style="font-size: small;">chevron_left</mat-icon></button>
-                                <input type="number" style="width: 40px; margin: 0px 10px;" min="0" max="100" [ngModel]="plannerBeliState.pembelian[i].percentage">
+                                <input type="number" style="width: 40px; margin: 0px 10px;" min="0" max="100" [(ngModel)]="plannerBeliState.pembelian[i].percentage" (change)="saveState()">
                                 <button (click)="increasePercentage(i)" mat-mini-fab style="padding: 0; width: 30px; height: 30px; background-color: #6ED940;"><mat-icon style="font-size: small;">chevron_right</mat-icon></button>    
                             </div> 
                         </td>
@@ -56,7 +56,7 @@
             <div><strong>Nominal Pembelian</strong></div>
             <mat-form-field appearance="standard" style="width: 100%;">
                 <mat-label>Masukan Nominal</mat-label>
-                <input type="number" [min]="0"  matInput [(ngModel)]="plannerBeliState.nominal_pembelian">
+                <input type="number" [min]="0"  matInput [(ngModel)]="plannerBeliState.nominal_pembelian" (change)="saveState()">
                
             </mat-form-field>
             <span style="color:red" [ngClass]="errorClassNominalPembelian">{{errorMessageNominalPembelian}}</span>
@@ -65,7 +65,7 @@
             <div><strong>Kode Promo</strong></div>
             <mat-form-field appearance="standard" style="width: 100%;">
                 <mat-label></mat-label>
-                <input type="text"  matInput [(ngModel)]="plannerBeliState.kode_promo">
+                <input type="text"  matInput [(ngModel)]="plannerBeliState.kode_promo" (change)="saveState()">
             </mat-form-field>
             <a mat-button class="green-button" (click)="goToPromo()">Pilih</a>
             <span style="color:red" [ngClass]="errorClassKodePromo">{{errorMessageKodePromo}}</span>
