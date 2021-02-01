@@ -18,6 +18,8 @@ export class BackwardSimulasiComponent implements OnInit {
   hariSelected: boolean = true;
   mingguSelected: boolean = false;
   bulanSelected: boolean = false;
+  isFailedToLoad: boolean = false;
+  isFailedToLoadSimulation: boolean = false;
 
   nominalPembelian: number = 0;
   
@@ -51,44 +53,8 @@ export class BackwardSimulasiComponent implements OnInit {
       this.idproduk = params.get('id')!
       this.simulationdate = params.get('date')!
     });
-    
-    this.service.startSimulation(this.simulationdate, this.idproduk).subscribe(response=>{
-      console.log(response)
-      if (response.error_schema.error_code=="BIT-00-000")
-      {
-        this.simulationStartData = response.output_schema;
-        this.nominalPembelian = +this.service.getNominal();
-        let temp = this.service.getNabSimulation();
-        if(temp+"" != "null"){
-    
-          this.nabaftersimulasi = +this.service.getNabSimulation();
-          this.simulationDateAfter = this.service.getDateSimulationString();
-          this.simulationDateRequest = this.service.getDateSimulation();
 
-          let newDate = moment(this.simulationDateRequest, 'DD-MM-YYYY')
-          let formattedDate = newDate.format('MM-DD-YYYY');
-
-          let date = new Date(formattedDate);
-
-          let newstartDate = moment(this.simulationdate, 'DD-MM-YYYY')
-          let formattedStartDate = newstartDate.format('MM-DD-YYYY');
-
-          let startDate = new Date(formattedStartDate);
-
-          this.durasiinvestasi  = (date.getTime() - startDate.getTime())  / 1000 / 60 / 60 / 24;
-        }else{
-
-          this.nabaftersimulasi = this.simulationStartData.starting_nab;
-          this.simulationDateAfter = this.simulationStartData.start_datestring;
-          this.simulationDateRequest = this.simulationStartData.start_date;
-        }
-
-        console.log(this.nominalPembelian)
-      }else if (response.error_schema.error_code=="BIT-10-001"){
-        this.location.back()
-      }
-      this.isLoading = false;
-    });
+    this.retryClicked();
   }
   doSimulation(){
     
@@ -109,6 +75,7 @@ export class BackwardSimulasiComponent implements OnInit {
     let datestring = moment(date).format("DD-MM-yyyy");
     let datestringtampil = moment(date).format("DD MMM YY");
     this.isLoading = true;
+    this.isFailedToLoadSimulation = false;
     this.service.forwardSimulation(datestring, this.idproduk).subscribe(response=>{
       console.log(response)
       if (response.error_schema.error_code=="BIT-00-000")
@@ -118,10 +85,12 @@ export class BackwardSimulasiComponent implements OnInit {
         this.simulationDateAfter = datestringtampil;
         this.simulationDateRequest = datestring;
         console.log(this.nominalPembelian)
-      }else if (response.error_schema.error_code=="BIT-10-001"){
-        this.location.back()
       }
       this.isLoading = false;
+      this.isFailedToLoadSimulation = false;
+    }, error=>{
+      this.isLoading = false;
+      this.isFailedToLoadSimulation = true;
     });
   }
 
@@ -160,5 +129,48 @@ export class BackwardSimulasiComponent implements OnInit {
     this.service.setNamaProduk("");
     console.log("redirecting")
       this.router.navigate(["../../index"]);
+  }
+  retryClicked(){
+    this.service.startSimulation(this.simulationdate, this.idproduk).subscribe(response=>{
+      console.log(response)
+      if (response.error_schema.error_code=="BIT-00-000")
+      {
+        this.simulationStartData = response.output_schema;
+        this.nominalPembelian = +this.service.getNominal();
+        let temp = this.service.getNabSimulation();
+        if(temp+"" != "null"){
+    
+          this.nabaftersimulasi = +this.service.getNabSimulation();
+          this.simulationDateAfter = this.service.getDateSimulationString();
+          this.simulationDateRequest = this.service.getDateSimulation();
+
+          let newDate = moment(this.simulationDateRequest, 'DD-MM-YYYY')
+          let formattedDate = newDate.format('MM-DD-YYYY');
+
+          let date = new Date(formattedDate);
+
+          let newstartDate = moment(this.simulationdate, 'DD-MM-YYYY')
+          let formattedStartDate = newstartDate.format('MM-DD-YYYY');
+
+          let startDate = new Date(formattedStartDate);
+
+          this.durasiinvestasi  = (date.getTime() - startDate.getTime())  / 1000 / 60 / 60 / 24;
+        }else{
+
+          this.nabaftersimulasi = this.simulationStartData.starting_nab;
+          this.simulationDateAfter = this.simulationStartData.start_datestring;
+          this.simulationDateRequest = this.simulationStartData.start_date;
+        }
+
+        console.log(this.nominalPembelian)
+      }else if (response.error_schema.error_code=="BIT-10-001"){
+        this.location.back()
+      }
+      this.isLoading = false;
+      this.isFailedToLoad = false;
+    }, error=>{
+      this.isLoading = false;
+      this.isFailedToLoad = true;
+    });
   }
 }

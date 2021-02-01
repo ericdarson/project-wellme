@@ -25,6 +25,8 @@ export class BackwardResultComponent implements OnInit {
   resultData:BackwardProjectionResult = new BackwardProjectionResult();
   chart:Chart;
   jenisreksa:string;
+  isFailedToLoad:boolean = false;
+  isLoading:boolean = true;
 
   constructor(private service: BackwardProjectionListReksadanaService,private location : Location, private route : ActivatedRoute, private router : Router) { }
 
@@ -41,17 +43,7 @@ export class BackwardResultComponent implements OnInit {
       this.simulationdate = params.get('date')!
     });
 
-    this.service.projectionResult(this.simulationdate, this.reksaId).subscribe(response=>{
-      console.log(response)
-      if (response.error_schema.error_code=="BIT-00-000")
-      {
-        this.resultData = response.output_schema;
-        this.initChart();
-
-      }else if (response.error_schema.error_code=="BIT-10-001"){
-        this.location.back()
-      }
-    });
+    this.retryClicked();
   }
 
   initChart(){
@@ -154,5 +146,25 @@ export class BackwardResultComponent implements OnInit {
     this.oneYearRangeSelected  = true
     this.oneMonthRangeSelected= this.threeMonthRangeSelected = this.oneWeekRangeSelected = false
     this.updateChart();
+  }
+  retryClicked(){
+    this.isFailedToLoad = false;
+    this.isLoading = true;
+    this.service.projectionResult(this.simulationdate, this.reksaId).subscribe(response=>{
+      console.log(response)
+      if (response.error_schema.error_code=="BIT-00-000")
+      {
+        this.resultData = response.output_schema;
+        this.initChart();
+
+      }else if (response.error_schema.error_code=="BIT-10-001"){
+        this.location.back()
+      }
+      this.isFailedToLoad = false;
+      this.isLoading = false;
+    },error=>{
+      this.isFailedToLoad = true;
+      this.isLoading = false;
+    });
   }
 }

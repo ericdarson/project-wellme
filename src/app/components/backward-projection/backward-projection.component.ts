@@ -19,25 +19,13 @@ export class BackwardProjectionComponent implements OnInit {
   selectedId :string = ""
   selectedJenis:string = ""
   isLoading:boolean = true;
+  isFailedToLoad:boolean = false;
 
   constructor(public dialog: MatDialog,private router : Router,private route : ActivatedRoute, private service : BackwardProjectionListReksadanaService) { }
 
   ngOnInit(): void {
     this.listReksadana = [];
-    this.service.getListJenis().subscribe(response=>{
-      console.log(response)
-      if (response.error_schema.error_code=="BIT-00-000")
-      {
-        response.output_schema.forEach((element:BackwardProjectionListJenisReksadanaResponse) => {
-          let single = new BackwardProjectionListJenisReksadana()
-          single.id = element.id_jenis_reksadana;
-          single.nama = element.jenis_reksadana;
-          single.selected = false
-          this.listReksadana.push(single)
-        });
-        this.isLoading = false
-      }
-    })
+    this.retryClicked();
   }
 
   openSKPopup():void{
@@ -102,5 +90,27 @@ export class BackwardProjectionComponent implements OnInit {
     }else{
       return true
     }
+  }
+
+  retryClicked(){
+    this.isLoading = true;
+    this.isFailedToLoad = false;
+    this.service.getListJenis().subscribe(response=>{
+      console.log(response)
+      if (response.error_schema.error_code=="BIT-00-000")
+      {
+        response.output_schema.forEach((element:BackwardProjectionListJenisReksadanaResponse) => {
+          let single = new BackwardProjectionListJenisReksadana()
+          single.id = element.id_jenis_reksadana;
+          single.nama = element.jenis_reksadana;
+          single.selected = false
+          this.listReksadana.push(single)
+        });
+        this.isLoading = false
+        this.isFailedToLoad = false;
+      }
+    }, error=>{
+      this.isFailedToLoad = true;
+    })
   }
 }
