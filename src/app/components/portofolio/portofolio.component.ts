@@ -23,17 +23,17 @@ export class PortofolioComponent implements OnInit {
   getProfile(){
     this.isLoading =true
     this.profileService.getProfile().subscribe((response:ResponseApi)=>{
-      console.log(response)
+      // console.log(response)
       if (response.error_schema.error_message.indonesian=="BERHASIL")
       {
          this.profileMaster = response.output_schema.detail_profile
-         console.log(this.profileMaster)
-         console.log(this.profileMaster.email)
+        //  console.log(this.profileMaster)
+        //  console.log(this.profileMaster.email)
          this.isLoading=false;
       }
       else{
         this.isLoading=false;
-         console.log("gagal get profile")
+        //  console.log("gagal get profile")
       }
      })
   }

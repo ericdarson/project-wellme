@@ -17,12 +17,12 @@ export class GeturlService implements OnInit{
   } 
 
   checkUserLogin(){
-    console.log("masuk check user login")
+    // console.log("masuk check user login")
     if(this.session.retrieve("token") == "" || this.session.retrieve("bca_id") == ""||
       this.session.retrieve("token") == null  || this.session.retrieve("bca_id") == null||
       this.session.retrieve("token") == undefined  || this.session.retrieve("bca_id") == undefined
     ){
-      console.log("logout")
+      // console.log("logout")
       this.logout();
     }
   }
