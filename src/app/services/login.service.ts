@@ -28,7 +28,7 @@ export class LoginService {
     const md5 = new Md5();
     password=md5.appendStr(password).end().toString();
     const request={
-      bcaId:bca_id,
+      bca_id:bca_id,
       password:password
     }
     return this.http.post(url,request,httpOptions);

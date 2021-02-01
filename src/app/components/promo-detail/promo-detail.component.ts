@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResponseApi } from 'src/app/models/ResponseApi';
 import { Objectives } from '../../models/Promotion';
+import { GeturlService } from '../../services/geturl.service';
 import { PromoService } from '../../services/promo.service';
 
 @Component({
@@ -21,7 +22,7 @@ export class PromoDetailComponent implements OnInit {
   isNotStart : boolean= false;
   currentProgress : number;
 
-  constructor(private route : ActivatedRoute ,private router :Router,private promoService : PromoService) { 
+  constructor(private route : ActivatedRoute ,private router :Router,private promoService : PromoService,private sharedService :GeturlService) { 
     
   }
 
@@ -44,7 +45,11 @@ export class PromoDetailComponent implements OnInit {
         alert("Gagal Klaim Hadiah!")
       }
     },(error)=>{
-      this.isLoading = false;
+      if(error.status = 403){
+        this.sharedService.logout()
+      }else{
+        this.isLoading = false;
+      }
     })
   }
 
@@ -58,10 +63,14 @@ export class PromoDetailComponent implements OnInit {
         this.promoService.selectPromo(this.objective)
         this.detectChange()
       }else{
-        alert("Gagal Klaim Hadiah!")
+        alert("Gagal Memulai Objective!")
       }
     },(error)=>{
-      this.isLoading = false;
+      if(error.status = 403){
+        this.sharedService.logout()
+      }else{
+        this.isLoading = false;
+      }
     })
   }
 

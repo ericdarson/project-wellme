@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import {  Objectives, PromotionResponse, Promotions,History } from '../../models/Promotion';
 import { ResponseApi } from '../../models/ResponseApi';
+import { GeturlService } from '../../services/geturl.service';
 import { PromoService } from '../../services/promo.service';
 
 @Component({
@@ -27,7 +28,7 @@ export class PromoListComponent implements OnInit {
 
   promoResponse : PromotionResponse;
   constructor(private promoService : PromoService,private router : Router,
-    private clipboard: Clipboard,private _snackBar: MatSnackBar, private route :ActivatedRoute ) { }
+    private clipboard: Clipboard,private _snackBar: MatSnackBar, private route :ActivatedRoute,private sharedService : GeturlService ) { }
   
   ngOnInit(): void {
     this.getPromo()
@@ -70,8 +71,12 @@ export class PromoListComponent implements OnInit {
         this.isFailedToLoad = true;
       }
     },(error)=>{
-      this.isFailedToLoad = true;
-      this.isLoading = false;
+      if(error.status = 403){
+        this.sharedService.logout()
+      }else{
+        this.isFailedToLoad = true;
+        this.isLoading = false;
+      }
     })
   }
   

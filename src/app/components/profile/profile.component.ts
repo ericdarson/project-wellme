@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProfileService } from 'src/app/services/profile.service';
 import { ProfileMaster } from '../../models/ProfileMaster';
 import { ResponseApi } from '../../models/ResponseApi';
+import { GeturlService } from '../../services/geturl.service';
 
 @Component({
   selector: 'app-profile',
@@ -20,7 +21,7 @@ export class ProfileComponent implements OnInit {
   profileMaster : ProfileMaster;
 
 
-  constructor(private profileService : ProfileService) { }
+  constructor(private profileService : ProfileService,private sharedService :GeturlService) { }
 
   ngOnInit(): void {
     this.getProfile()
@@ -50,7 +51,11 @@ export class ProfileComponent implements OnInit {
          console.log("gagal get profile")
       }
      },error=>{
-        this.isFailedToLoad = true;
+        if(error.status = 403){
+          this.sharedService.logout()
+        }else{
+          this.isFailedToLoad = true;
+        }
      })
   }
 

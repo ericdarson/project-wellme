@@ -1,4 +1,4 @@
-<div class="master-component container">
+<div *ngIf="!this.isFailedToLoad" class="master-component container">
 
     <img src="../../../assets/icon/well-me-logo.png" alt="Wellme" width="100" height="30">
 
@@ -23,11 +23,10 @@
             </div>
         </div>
     </div>
-   
-    <div class="row flex" style="    margin-right: -15px !important;
-    margin-left: -15px !important;">
+    <div class="row flex" style="margin-right: -15px !important;
+    margin-left: -15px !important; ">
         <div class="col-xl-4">
-            <div class="profile-item-box p-3">
+            <div class="profile-item-box p-3" style="min-height: 180px;">
                 <div class="flex">
                     <div>
                         <div class="text-wellme-color font-14">
@@ -46,14 +45,14 @@
                         <mat-icon class="clickable text-wellme-color" style="font-size: 55px;" [inline]="true">list_alt</mat-icon>
                     </div>
                 </div>
-                <div class="text-center mt-3">
+                <div class="text-center mt-4">
                     <button mat-button class="pilih-button" routerLink="../../financial-planner">Buat Target</button>
                 </div>
             </div>
         </div>
         
         <div class="col-xl-4">
-            <div class="profile-item-box p-3">
+            <div class="profile-item-box p-3"  style="min-height: 180px;">
                 <div class="flex">
                     <div>
                         <div class="text-wellme-color font-14">
@@ -72,13 +71,13 @@
                         <mat-icon class="clickable text-wellme-color" style="font-size: 55px;" [inline]="true">calculate</mat-icon>
                     </div>
                 </div>
-                <div class="text-center mt-3">
+                <div class="text-center mt-4">
                     <button mat-button class="pilih-button" routerLink="../../backward-projection">Mulai Belajar</button>
                 </div>
             </div>
         </div>
         <div class="col-xl-4">
-            <div class="profile-item-box p-3 ">
+            <div class="profile-item-box p-3 "  style="min-height: 180px;">
                 <div class="flex">
                     <div>
                         <div class="text-wellme-color font-14">
@@ -185,4 +184,12 @@
         </div>
     </div>
     
+</div>
+
+<div *ngIf="this.isFailedToLoad" class="master-component">
+    <div class="row" style="justify-content: center;">
+        <div class="col-md-10">
+            <app-failed-to-load [buttonText]="'Retry'" (onButtonClicked)="retryClicked()"></app-failed-to-load>
+        </div>
+    </div>
 </div>

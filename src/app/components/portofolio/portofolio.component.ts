@@ -4,6 +4,7 @@ import { MediaChange, MediaObserver  } from '@angular/flex-layout';
 import { ProfileService } from '../../services/profile.service';
 import { ProfileMaster } from '../../models/ProfileMaster';
 import { ResponseApi } from '../../models/ResponseApi';
+import { GeturlService } from '../../services/geturl.service';
 
 @Component({
   selector: 'app-portofolio',
@@ -13,8 +14,9 @@ import { ResponseApi } from '../../models/ResponseApi';
 export class PortofolioComponent implements OnInit {
   isLoading : boolean = false;
   profileMaster : ProfileMaster;
+  isFailedToLoad : boolean =false;
 
-  constructor(private profileService : ProfileService ) { }
+  constructor(private profileService : ProfileService ,private sharedService :GeturlService) { }
 
   ngOnInit(): void {
     this.getProfile();
@@ -22,6 +24,7 @@ export class PortofolioComponent implements OnInit {
 
   getProfile(){
     this.isLoading =true
+    this.isFailedToLoad = false
     this.profileService.getProfile().subscribe((response:ResponseApi)=>{
       // console.log(response)
       if (response.error_schema.error_message.indonesian=="BERHASIL")
@@ -33,9 +36,21 @@ export class PortofolioComponent implements OnInit {
       }
       else{
         this.isLoading=false;
+        this.isFailedToLoad = true;
         //  console.log("gagal get profile")
       }
+     },error=>{
+      if(error.status = 403){
+        this.sharedService.logout()
+      }else{
+        this.isLoading=false;
+        this.isFailedToLoad = true;
+      }
      })
+  }
+
+  retryClicked(){
+    this.getProfile()
   }
 
 }

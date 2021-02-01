@@ -21,7 +21,7 @@ export class CheckSessionService {
       var token=this.session.retrieve("token")==undefined||this.session.retrieve("token")==null?"":this.session.retrieve("token")
       
       if(bca_id == "" ){
-        this.router.navigate(['/'])
+        this.router.navigate(['/login'])
       }else{
         var httpOptions={
           headers:new HttpHeaders({
@@ -30,7 +30,7 @@ export class CheckSessionService {
             'Access-Control-Allow-Methods': 'POST, OPTIONS, GET, PUT',
             'Access-Control-Allow-Origin': '*',
             'Identity':'ERICIMPOSTORNYA',
-            'Bcaid': String(bca_id),
+            'bca-id': String(bca_id),
             'token':String(token),
           })
         };
@@ -38,9 +38,7 @@ export class CheckSessionService {
         this.http.post(url,{},httpOptions).subscribe((response:any) =>{
           console.log(response)
           if(response.output_schema.session.message=="SUKSES"){
-            this.session.store("username",response.output_schema.session.username);
             this.session.store("token",response.output_schema.session.new_token);
-            this.router.navigate(['/index'])
           }
           else{
             this.router.navigate(['/login'])
