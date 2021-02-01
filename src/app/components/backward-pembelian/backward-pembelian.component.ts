@@ -37,7 +37,8 @@ export class BackwardPembelianComponent implements OnInit {
   latest_date:string;
   desiredValue:number=0;
   isLoading:boolean = true;
-
+  isFailedToLoad:boolean = false;
+  isFailedToLoadDate:boolean = false;
   constructor(private service:BackwardProjectionListReksadanaService, private location: Location,private currencyPipe : CurrencyPipe,private router : Router,private route: ActivatedRoute) {
     
   }
@@ -66,22 +67,14 @@ export class BackwardPembelianComponent implements OnInit {
 
     this.ctx=this.context==null?new CanvasRenderingContext2D():this.context;
     this.latest_date = moment(this.dateSelected).format("DD-MM-yyyy");
-    this.service.getDetailProduk(this.reksaId, this.latest_date).subscribe(response=>{
-      console.log(response)
-      if (response.error_schema.error_code=="BIT-00-000")
-      {
-        this.detailProduk = response.output_schema;
-        this.redrawChartAwal()
-      }
-
-      this.isLoading = false;
-    })
+    this.retryClicked();
   }
 
   dateChange(){
     this.latest_date = moment(this.dateSelected).format("DD-MM-yyyy");
     this.isLoading = true;
     this.redrawChartKosong();
+    this.isFailedToLoadDate = false;
     this.service.getDetailProduk(this.reksaId, this.latest_date).subscribe(response=>{
       console.log(response)
       if (response.error_schema.error_code=="BIT-00-000")
@@ -90,6 +83,10 @@ export class BackwardPembelianComponent implements OnInit {
         this.redrawChart()
       }
       this.isLoading = false;
+      this.isFailedToLoadDate = false;
+    }, error=>{
+      this.isLoading = false;
+      this.isFailedToLoadDate = true;
     })
   }
   
@@ -254,5 +251,25 @@ export class BackwardPembelianComponent implements OnInit {
     this.router.navigate(['../../../backward-simulasi/'+this.reksaId+"/"+this.latest_date],{relativeTo:this.route})
   }
 
+  retryClicked(){
+    this.isLoading = true;
+    this.isFailedToLoad = false;
+    this.service.getDetailProduk(this.reksaId, this.latest_date).subscribe(response=>{
+      console.log(response)
+      if (response.error_schema.error_code=="BIT-00-000")
+      {
+        this.detailProduk = response.output_schema;
+        this.redrawChartAwal()
+      }
 
+      this.isLoading = false;
+      this.isFailedToLoad = false;
+    }, error=>{
+      this.isLoading = false;
+      this.isFailedToLoad = true;
+      console.log("INFO");
+      console.log(this.isLoading);
+      console.log(this.isFailedToLoad);
+    })
+  }
 }

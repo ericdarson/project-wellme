@@ -1,4 +1,18 @@
 <div class="master-component container centering">
+
+        <div *ngIf="isFailedToLoad" class="row" style="justify-content: center;">
+            <div class="col-md-10">
+                <app-failed-to-load [buttonText]="'Retry'" (onButtonClicked)="retryClicked()"></app-failed-to-load>
+            </div>
+        </div>
+
+        <div *ngIf="isFailedToLoadDate" class="row" style="justify-content: center;">
+            <div class="col-md-10">
+                <app-failed-to-load [buttonText]="'Retry'" (onButtonClicked)="dateChange()"></app-failed-to-load>
+            </div>
+        </div>
+
+    <div *ngIf ="!isFailedToLoad && !isFailedToLoadDate">
     <div class="jflex-row" style="padding-top:20px;">
         <mat-icon class="clickable" (click)="back()">chevron_left</mat-icon>
         <h1 style="text-align: center;" class="width-full headFont"><b>Backward Projection</b></h1>
@@ -9,9 +23,13 @@
            Pembelian
         </div>
     </div>
+    </div>
+
     <div style="width: 100%" >
         <canvas id="line" #line></canvas><br>
     </div>
+
+    <div *ngIf="!isFailedToLoad && !isFailedToLoadDate">
     <div class="row">
         <div class="col-md-12">
             <mat-grid-list  cols="4">
@@ -123,5 +141,6 @@
             </button>
         </div>
     </div>
-    
+    </div>
 </div>
+

@@ -13,6 +13,7 @@ import * as moment from 'moment';
 export class BackwardListReksadanaComponent implements OnInit {
   jenisreksa:string;
   isLoading:boolean = true;
+  isFailedToLoad:boolean = false;
   tempVar : BackwardProjectionListProdukRekadana[] = [];
   constructor(private router : Router, private location:Location,private route: ActivatedRoute, private service: BackwardProjectionListReksadanaService) { }
   idJenis:string;
@@ -29,16 +30,7 @@ export class BackwardListReksadanaComponent implements OnInit {
       this.idJenis = params.get("id")!
     });
     
-    this.service.getAllProduk(this.idJenis).subscribe(response=>{
-      console.log(response)
-      if (response.error_schema.error_code=="BIT-00-000")
-      {
-        response.output_schema.forEach((element:BackwardProjectionListProdukRekadana) => {
-          this.tempVar.push(element)
-        });
-        this.isLoading = false;
-      }
-    })
+    this.retryClicked();
   }
 
 
@@ -53,4 +45,22 @@ export class BackwardListReksadanaComponent implements OnInit {
     this.router.navigate(['../../home'], {relativeTo: this.route})
   }
 
+  retryClicked(){
+    this.isFailedToLoad = false;
+    this.isLoading = true;
+    this.service.getAllProduk(this.idJenis).subscribe(response=>{
+      console.log(response)
+      if (response.error_schema.error_code=="BIT-00-000")
+      {
+        response.output_schema.forEach((element:BackwardProjectionListProdukRekadana) => {
+          this.tempVar.push(element)
+        });
+      }
+      this.isLoading = false;
+      this.isFailedToLoad = false;
+    }, error=>{
+      this.isLoading = false;
+      this.isFailedToLoad = true;
+    })
+  }
 }

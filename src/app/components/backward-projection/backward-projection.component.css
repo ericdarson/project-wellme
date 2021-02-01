@@ -1,4 +1,7 @@
-
+.item-shimmer{
+    box-sizing: border-box;
+    margin-bottom: 1em;
+}
 .item-box{
     background: #FFFFFF;
     border: 1px solid rgba(0, 0, 0, 0.5);
