@@ -16,6 +16,7 @@ export class DetailPlannerComponent implements OnInit {
   id:any;
   imageSequence:string[]=[];
   imgSrcSequence:string[]=["","","","","","","","",""];
+  loader:boolean=true;
   constructor(private location: Location,private plannerService:PlannerService, private router:Router,private plannerPembelianService:PlannerPembelianService) { }
   
   ngOnInit(): void {
@@ -26,6 +27,7 @@ export class DetailPlannerComponent implements OnInit {
       this.router.navigate(['/financial-planner/']);
     }
     else{
+
       this.plannerPembelianService.setIdDetail(this.id);
     }
     this.getDetail();
@@ -33,7 +35,10 @@ export class DetailPlannerComponent implements OnInit {
   
   getDetail():void{
     this.plannerService.getPlannerDetail().subscribe((response:ResponseApi)=>{
+     this.loader=false;
       this.plan=response.output_schema;
+      console.log(this.plan);
+      this.plannerPembelianService.setLocalStorage('plannerDetail',this.plan);
       this.plannerService.setNamaPlannerDetail(this.plan.nama_plan);
       this.plannerService.setRekomendasiPembelian(this.plan.rekomendasi_pembelian);
       

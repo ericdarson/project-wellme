@@ -8,6 +8,7 @@ import { KonfirmasiTransaksiComponent } from '../components/konfirmasi-transaksi
 import { PilihTargetComponent } from '../components/pilih-target/pilih-target.component';
 import { PinComponent } from '../components/pin/pin.component';
 import { PlannerDetailPortfolioComponent } from '../components/planner-detail-portfolio/planner-detail-portfolio.component';
+import { PlannerEditComponent } from '../components/planner-edit/planner-edit.component';
 import { PlannerListReksadanaComponent } from '../components/planner-list-reksadana/planner-list-reksadana.component';
 import { PortofolioBaruComponent } from '../components/portofolio-baru/portofolio-baru.component';
 import { ProductDetailComponent } from '../components/product-detail/product-detail.component';
@@ -36,7 +37,8 @@ const routes: Routes = [
       { path: 'simulasi-planner', component:SimulasiPlannerComponent},
       { path: 'detail-transaksi',component:DetailTransaksiComponent},
       { path: 'kode-pin',component:PinComponent},
-      { path: 'list-reksadana',component:PlannerListReksadanaComponent}
+      { path: 'list-reksadana',component:PlannerListReksadanaComponent},
+      { path: 'edit',component:PlannerEditComponent},
     ]
   }
 ];

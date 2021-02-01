@@ -1,4 +1,4 @@
-<div class="jflex-column" style="height: 100%;">
+<div class="jflex-column container" style="height: 100%;">
     <div class="jflex-row" style="padding-top:20px;">
         <a mat-icon-button aria-label="Example icon button with a vertical three dot icon">
             <mat-icon>chevron_left</mat-icon>
@@ -6,7 +6,7 @@
         <h1 style="flex-basis: 90%; text-align: center;;" class="headFont">Beli Reksadana</h1>
     </div>
     <div class="jflex-column padding-beauty  center-cross-axis "  style="height:90%;"  >
-        <h1>Konfirmasi</h1>
+        <h1>Detail Transaksi</h1>
         <mat-card class="box-outline litle-space" style="width: 100%;">
             <div class="jflex-column">
                 <p style="margin-bottom:0;">Tipe Transaksi</p>
@@ -14,38 +14,38 @@
             </div>
             <div class="jflex-column">
                 <p style="margin-bottom:0;">Nominal Pembelian</p>
-                <h3 class="font-green"><strong>Rp 9,000,000</strong></h3>
+                <h3 class="font-green"><strong>{{detailTransaksi.total_pembelian|currency:'Rp ':true:'1.0'}}</strong></h3>
             </div>
             
             <div class="jflex-column">
                 <p style="margin-bottom:0;">Nominal Biaya Pembelian</p>
-                <h3 class="font-green"><strong>Rp 1,000,000 (0%)</strong></h3>
+                <h3 class="font-green"><strong>{{detailTransaksi.total_biaya|currency:'Rp ':true:'1.0'}} ({{detailTransaksi.total_pembelian/detailTransaksi.total_pembelian|number:'1.0'}}%)</strong></h3>
             </div>
             <div class="jflex-column">
                 <p style="margin-bottom:0;">Nominal Total Pembelian</p>
-                <h3 class="font-green"><strong>Rp 10,000,000</strong></h3>
+                <h3 class="font-green"><strong>{{detailTransaksi.total_pembelian+detailTransaksi.total_biaya|currency:'Rp ':true:'1.0'}}</strong></h3>
             </div>
             
             <div class="jflex-column">
                 <p style="margin-bottom:0;">Rekening Dana</p>
-                <h3 class="font-green"><strong>10700521322</strong></h3>
+                <h3 class="font-green"><strong>{{detailTransaksi.nomor_rekening}}</strong></h3>
             </div>
             
             <div class="jflex-column">
                 <p style="margin-bottom:0;">Waktu Transaksi</p>
-                <h3 class="font-green"><strong>21/12/2020 18:20</strong></h3>
+                <h3 class="font-green"><strong>{{detailTransaksi.waktu_transaksi}}</strong></h3>
             </div>
             
             <div class="jflex-column">
                 <p style="margin-bottom:0;">Nomor Referensi</p>
-                <h3 class="font-green"><strong>W13501293582FS</strong></h3>
+                <h3 class="font-green"><strong>{{detailTransaksi.kode_transaksi}}</strong></h3>
             </div>
         </mat-card>
     </div>
     
     <div class=" jflex-column padding-beauty center-cross-axis background-green">
             
-        <a href="/beli-reksadana" mat-raised-button style="background-color: #6ED940; color: white; width: 80%; ">Tutup</a>
+        <button (click)="goToListPlanner()" mat-raised-button style="background-color: #6ED940; color: white; width: 80%; ">Tutup</button>
     </div>
     
 </div>

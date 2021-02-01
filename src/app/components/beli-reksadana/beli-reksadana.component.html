@@ -1,27 +1,46 @@
-<div class="jflex-column" style="height: 100%;">
-    <div class="jflex-row" style="padding-top:20px;">
+<div class="jflex-column container" style="height: 100%;">
+    <div class="jflex-row" style="padding-top:20px;" *ngIf="loader==false">
         <a (click)="goBack()" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
             <mat-icon>chevron_left</mat-icon>
         </a>
         <h1 style="flex-basis: 90%; text-align: center;;" class="headFont">Beli Reksadana</h1>
     </div>
+    <div class="jflex-row center-cross-axis row" style="padding-top:20px;" *ngIf="loader==true">
+        <div *ngIf="loader==true"><ngx-shimmer-loading [shape]="'circle'" [width]="'50px'" [height]="'50px'" ></ngx-shimmer-loading></div>
+        <div *ngIf="loader==true" style="flex-basis: 90%;" class="jflex-row center-main-axis"><ngx-shimmer-loading [shape]="'rect'" [width]="'200px'" [height]="'32px'" ></ngx-shimmer-loading></div>
+    </div>
     <div class="jflex-column padding-beauty  center-cross-axis">
-        <h1 style="font-weight: 300;">{{namaPlan}}</h1>
+        <h1 style="font-weight: 300;" *ngIf="loader==false">{{namaPlan}}</h1>
+        <div class="row" *ngIf="loader==true"><ngx-shimmer-loading [shape]="'rect'" [height]="'32px'" class="col-md-3"></ngx-shimmer-loading></div>
         <mat-card class="box-outline litle-space" style="width: 100%;">
-            <div class=" jflex-row stretch">
-                <div><strong>Profil Resiko</strong></div>
-                <div >{{plannerResiko.tipe_resiko}}</div>
+            <div class=" jflex-row stretch row" style="padding-left: 30px; padding-right: 30px;">
+                <div *ngIf="loader==false"><strong>Profil Resiko</strong></div>
+                <div *ngIf="loader==false">{{plannerResiko.tipe_resiko}}</div>
+                <ngx-shimmer-loading [shape]="'rect'" [height]="'32px'" class="col-md-4" *ngIf="loader==true"></ngx-shimmer-loading>
+                <ngx-shimmer-loading [shape]="'rect'" [height]="'32px'" class="col-md-4" *ngIf="loader==true"></ngx-shimmer-loading>
             </div>
         </mat-card>
         
         <mat-card class="box-outline litle-space" style="width: 100%;">
             <table style="width: 100%;">
                 <thead>
-                    <th colspan="2"><strong>Profil Resiko</strong></th>
-                    <th style="text-align: center;"><strong>Alokasi (%)</strong></th>
-                    <th></th>
+                    <th colspan="2" *ngIf="loader==false"><strong>Profil Resiko</strong></th>
+                    <th style="text-align: center;" *ngIf="loader==false"><strong>Alokasi (%)</strong></th>
+                    <th *ngIf="loader==false"></th>
+                    
+                    <th colspan="2" *ngIf="loader==true"><ngx-shimmer-loading [shape]="'rect'" [height]="'32px'" class="col-md-12" *ngIf="loader==true"></ngx-shimmer-loading></th>
+                    <th  *ngIf="loader==true"><ngx-shimmer-loading [shape]="'rect'" [height]="'32px'" class="col-md-12" *ngIf="loader==true"></ngx-shimmer-loading></th>
+                    <th *ngIf="loader==true"></th>
                 </thead>
-                <tbody>
+                <tbody *ngIf="loader==true">
+                    <tr *ngFor="let i of [1,2,3]">
+                        <td colspan="2"><ngx-shimmer-loading [shape]="'rect'" [height]="'32px'" class="col-md-12" *ngIf="loader==true"></ngx-shimmer-loading></td>
+                        <td><ngx-shimmer-loading [shape]="'rect'" [height]="'32px'" class="col-md-12" *ngIf="loader==true"></ngx-shimmer-loading></td>
+                        <td><ngx-shimmer-loading [shape]="'rect'" [height]="'32px'" class="col-md-6" *ngIf="loader==true"></ngx-shimmer-loading></td>
+
+                    </tr>
+                </tbody>
+                <tbody *ngIf="loader==false">
                     <tr  *ngFor="let alokasi of plannerResiko.detail_resiko; let i = index" [attr.data-index]="i">
                         <td colspan="2">
                             <div class="jflex-column">
@@ -38,9 +57,10 @@
                         </td>
                         <td>  <button mat-button class="green-button" (click)="goToListReksadana(plannerResiko.detail_resiko[i])">Pilih</button></td> 
                     </tr>
+         
                   <tr>
                      <td colspan="2"><div></div></td>
-                     <td> <div style="color:red; text-align: center;" [ngClass]="errorClassPercentage">{{errorMessagePercentage}}</div></td>
+                     <td> <div *ngIf="loader==false" style="color:red; text-align: center;" [ngClass]="errorClassPercentage">{{errorMessagePercentage}}</div></td>
                      <td><div></div></td>
                   </tr>
                 </tbody>
@@ -48,27 +68,34 @@
         </mat-card>
         <mat-card class="box-outline litle-space" style="width: 100%;">
             <div class="jflex-column stretch">
-                <div><strong>Rekomendasi Pembelian</strong></div>
-                <h3 class="font-green" style="margin-bottom: 0;"><strong>{{rekomendasiPembelian |currency:'Rp ':true:'1.0-2'}}</strong></h3>
+                <div *ngIf="loader==false"><strong>Rekomendasi Pembelian</strong></div>
+                <div *ngIf="loader==true" class="row"><ngx-shimmer-loading  [shape]="'rect'" [height]="'32px'" class="col-md-5" *ngIf="loader==true"></ngx-shimmer-loading></div>
+                <h3 class="font-green" style="margin-bottom: 0;" *ngIf="loader==false"><strong>{{rekomendasiPembelian |currency:'Rp ':true:'1.0-2'}}</strong></h3>
+                <div *ngIf="loader==true" class="row"><ngx-shimmer-loading  [shape]="'rect'" [height]="'32px'" class="col-md-4" *ngIf="loader==true"></ngx-shimmer-loading></div>
             </div>
         </mat-card>
         <mat-card class="box-outline litle-space" style="width: 100%;">
-            <div><strong>Nominal Pembelian</strong></div>
+            <div *ngIf="loader==false"><strong>Nominal Pembelian</strong></div>
+            <div *ngIf="loader==true" class="row"><ngx-shimmer-loading  [shape]="'rect'" [height]="'32px'" class="col-md-4" *ngIf="loader==true"></ngx-shimmer-loading></div>
             <mat-form-field appearance="standard" style="width: 100%;">
-                <mat-label>Masukan Nominal</mat-label>
-                <input type="number" [min]="0"  matInput [(ngModel)]="plannerBeliState.nominal_pembelian" (change)="saveState()">
-               
+                <mat-label *ngIf="loader==false">Masukan Nominal</mat-label>
+                <div *ngIf="loader==true" class="row"><ngx-shimmer-loading  [shape]="'rect'" [height]="'32px'" class="col-md-5" *ngIf="loader==true"></ngx-shimmer-loading></div>
+                <input *ngIf="loader==false" type="number" [min]="0"  matInput [(ngModel)]="plannerBeliState.nominal_pembelian" (change)="saveState()">
+                <div *ngIf="loader==true" class="row"><ngx-shimmer-loading  [shape]="'rect'" [height]="'32px'" class="col-md-4" *ngIf="loader==true"></ngx-shimmer-loading></div>
             </mat-form-field>
-            <span style="color:red" [ngClass]="errorClassNominalPembelian">{{errorMessageNominalPembelian}}</span>
+            <span *ngIf="loader==false" style="color:red" [ngClass]="errorClassNominalPembelian">{{errorMessageNominalPembelian}}</span>
         </mat-card>
         <mat-card class="box-outline litle-space" style="width: 100%;">
-            <div><strong>Kode Promo</strong></div>
-            <mat-form-field appearance="standard" style="width: 100%;">
+            <div *ngIf="loader==false"><strong>Kode Promo</strong></div>
+            <div *ngIf="loader==true" class="row"><ngx-shimmer-loading  [shape]="'rect'" [height]="'32px'" class="col-md-5" *ngIf="loader==true"></ngx-shimmer-loading></div>
+            <mat-form-field appearance="standard" style="width: 100%;" *ngIf="loader==false">
                 <mat-label></mat-label>
                 <input type="text"  matInput [(ngModel)]="plannerBeliState.kode_promo" (change)="saveState()">
             </mat-form-field>
-            <a mat-button class="green-button" (click)="goToPromo()">Pilih</a>
-            <span style="color:red" [ngClass]="errorClassKodePromo">{{errorMessageKodePromo}}</span>
+            <div *ngIf="loader==true" class="row"><ngx-shimmer-loading  [shape]="'rect'" [height]="'32px'" class="col-md-4" *ngIf="loader==true"></ngx-shimmer-loading></div>
+            <a mat-button class="green-button" (click)="goToPromo()" *ngIf="loader==false">Pilih</a>
+            <div *ngIf="loader==true" class="row"><ngx-shimmer-loading  [shape]="'rect'" [height]="'32px'" class="col-md-3" *ngIf="loader==true"></ngx-shimmer-loading></div>
+            <span *ngIf="loader==false" style="color:red" [ngClass]="errorClassKodePromo">{{errorMessageKodePromo}}</span>
         </mat-card>
        
     </div>
@@ -77,6 +104,7 @@
     
     
     <div class="background-green jflex-row padding-beauty center-main-axis">
-        <a (click)="goToConfirmationPage()" mat-raised-button style="background-color: #6ED940; color: white; width: 80%; "><strong>Beli Reksadana</strong></a>
+        <div *ngIf="loader==true" class="row"><ngx-shimmer-loading  [shape]="'rect'" [height]="'32px'" class="col-md-12" *ngIf="loader==true"></ngx-shimmer-loading></div>
+        <a *ngIf="loader==false" (click)="goToConfirmationPage()" mat-raised-button style="background-color: #6ED940; color: white; width: 80%; "><strong>Beli Reksadana</strong></a>
     </div>
 </div>

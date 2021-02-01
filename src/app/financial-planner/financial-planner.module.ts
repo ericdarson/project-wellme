@@ -17,6 +17,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FinancialPlannerComponent } from './financial-planner.component';
 import { DetailTransaksiComponent } from '../components/detail-transaksi/detail-transaksi.component';
 import { PinComponent } from '../components/pin/pin.component';
+import { PlannerProductComponent } from '../components/planner-product/planner-product.component';
+import {MatBottomSheet, MatBottomSheetModule, MatBottomSheetRef} from '@angular/material/bottom-sheet';
+import { PlannerListReksadanaComponent } from '../components/planner-list-reksadana/planner-list-reksadana.component';
+import { PlannerEditComponent } from '../components/planner-edit/planner-edit.component';
+import { PlannerEditTargetComponent } from '../components/planner-edit-target/planner-edit-target.component';
+import { PlannerEditDataPlannerComponent } from '../components/planner-edit-data-planner/planner-edit-data-planner.component';
 
 @NgModule({
   declarations: [
@@ -32,12 +38,21 @@ import { PinComponent } from '../components/pin/pin.component';
     KonfirmasiTransaksiComponent,
     FinancialPlannerComponent,
     DetailTransaksiComponent,
-    PinComponent
+    PinComponent,
+    PlannerProductComponent,
+    PlannerEditComponent,
+    PlannerEditTargetComponent,
+    PlannerEditDataPlannerComponent,
   ],
   imports: [
     CommonModule,
     FinancialPlannerRoutingModule,
-    SharedModule
+    SharedModule,
+    MatBottomSheetModule,
+
+  ],
+  entryComponents: [
+    PlannerProductComponent
   ]
 })
 export class FinancialPlannerModule { }

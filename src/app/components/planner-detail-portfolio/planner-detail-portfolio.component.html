@@ -1,9 +1,9 @@
-<div class="jflex-column" style="height: 100%;">
+<div class="jflex-column container" style="height: 100%;">
     <div class="jflex-row" style="padding-top:20px;">
         <a mat-icon-button aria-label="Example icon button with a vertical three dot icon" (click)="goBack()">
             <mat-icon>chevron_left</mat-icon>
         </a>
-        <h1 style="text-align: center;" class="width-full headFont">Macbook Baru</h1>
+        <h1 style="text-align: center;" class="width-full headFont">{{plan.nama_plan}}</h1>
     </div>
     <div class="jflex-column padding-beauty  center-cross-axis">
 
@@ -11,11 +11,17 @@
            <div class="jflex-row stretch">
                <div class="jflex-column">
                     <div>Nilai Tabungan</div>
-                    <h1><strong>Rp 10,000,000</strong></h1>
+                    <h1><strong>{{plan.current_amount |currency:'Rp ':true:'1.0'}}</strong></h1>
                </div>
            </div>
         </mat-card>
-    <div class="jflex-row little-space" style="width:100%; justify-content:space-evenly; flex-wrap: wrap;">
+        <div class="jflex-column padding-beauty center-main-axis center-cross-axis" style="height:90%" *ngIf="plan.portfolio==null">
+            <img src="assets/img/list-planner-nothing.png">
+            <h2 class="font-green"  style="text-align: center;"><strong>Reksadana Kamu Masih Kosong</strong></h2>
+            <p class="font-green"  style="text-align: center;">Yuk segera membeli reksadana agar bisa mencapai keinginan mu!</p>
+            
+        </div>
+    <div class="jflex-row little-space" style="width:100%; justify-content:space-evenly;" *ngIf="plan.portfolio!=null">
         <mat-card class="box-outline litle-space padding-beauty" style="width:300px;">
             <div class="jflex-column">
 

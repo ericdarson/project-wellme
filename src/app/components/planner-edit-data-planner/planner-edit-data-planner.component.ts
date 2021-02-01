@@ -6,11 +6,11 @@ import { PlannerService } from 'src/app/services/planner.service';
 import {NgForm} from '@angular/forms'
 import * as moment from 'moment';
 @Component({
-  selector: 'app-portofolio-baru',
-  templateUrl: './portofolio-baru.component.html',
-  styleUrls: ['./portofolio-baru.component.css']
+  selector: 'app-planner-edit-data-planner',
+  templateUrl: './planner-edit-data-planner.component.html',
+  styleUrls: ['./planner-edit-data-planner.component.css']
 })
-export class PortofolioBaruComponent implements OnInit {
+export class PlannerEditDataPlannerComponent implements OnInit {
   id:number|null;
   periodic:string="";
   dateMin = new Date();
@@ -111,4 +111,5 @@ export class PortofolioBaruComponent implements OnInit {
     }
     return null
   }
+
 }

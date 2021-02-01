@@ -1,6 +1,6 @@
-<div class="jflex-column" style="height: 100%;">
+<div class="jflex-column container" style="height: 100%;">
     <div class="jflex-row" style="padding-top:20px;">
-        <a mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+        <a (click)="goBack()" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
             <mat-icon>chevron_left</mat-icon>
         </a>
         <h1 style="flex-basis: 90%; text-align: center;;" class="headFont">Beli Reksadana</h1>
@@ -15,8 +15,12 @@
             <span [ngClass]="activeStatus[4]"></span>
             <span [ngClass]="activeStatus[5]"></span>
         </div>
-
+        <div class="jflex-row center-main-axis center-cross-axis" style="flex-basis: 90%;" *ngIf="loader==true">
+            <mat-spinner [diameter]="40" class="mat-spinner-color"></mat-spinner>
+        </div>
     </div>
+    
+    
     <div *ngIf="wrongPinClass" class="jflex-row center-main-axis">
         <span style="text-align: center; color: red;">{{wrongPinMessage}}</span>
     </div>
@@ -37,17 +41,17 @@
             <button class="pin-button" (click)="buttonPressed(9)">9</button>
         </div>
         <div class="jflex-row">
-            <div class="pin-button" style="border: 0px;"></div>
+            <button class="pin-button" (click)="buttonPressed(-2)">CLEAR</button>
             <button class="pin-button" (click)="buttonPressed(0)">0</button>
             <button class="pin-button" (click)="buttonPressed(-1)"><mat-icon class="font-green">backspace</mat-icon></button>
             
         </div>
-        
+       
 
     </div>    
-    <div class=" jflex-column padding-beauty center-cross-axis background-green">
+    <!-- <div class=" jflex-column padding-beauty center-cross-axis background-green">
             
         <a href="/beli-reksadana" mat-raised-button style="background-color: #6ED940; color: white; width: 80%; ">Tutup</a>
-    </div>
+    </div> -->
     
 </div>

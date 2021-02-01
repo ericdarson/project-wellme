@@ -6,6 +6,8 @@ import { ResponseApi } from 'src/app/models/ResponseApi';
 import { PlannerReksadana } from 'src/app/models/planner-reksadana';
 import { PlannerPembelianService } from 'src/app/services/planner-pembelian.service';
 
+import { PlannerProductComponent } from '../planner-product/planner-product.component';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 @Component({
   selector: 'app-planner-list-reksadana',
   templateUrl: './planner-list-reksadana.component.html',
@@ -17,12 +19,18 @@ export class PlannerListReksadanaComponent implements OnInit {
   idJenis:number|null;
   listReksadana:PlannerReksadana[]=[];
   namaJenisReksadana:string;
-  constructor(private router : Router, private location:Location,private route: ActivatedRoute,private plannerService:PlannerPembelianService) { }
+  loader=true;
+  constructor(private router : Router, private location:Location,private route: ActivatedRoute,private plannerService:PlannerPembelianService, private bottomSheet: MatBottomSheet) { }
 
   ngOnInit(): void {
     this.checkState();
+    
   }
 
+  openBottomSheet(reksa:any): void {
+    this.plannerService.setLocalStorage("detail-reksadana",reksa);
+    this.bottomSheet.open(PlannerProductComponent);
+  }
   goBack(){
 this.location.back();
   }
@@ -36,7 +44,10 @@ this.location.back();
     }
     else{
       this.plannerService.getListReksadana(this.idJenis).subscribe((response:ResponseApi)=>{
+        
         this.listReksadana=response.output_schema;
+        console.log(this.listReksadana);
+        this.loader=false;
       })
     }
   }

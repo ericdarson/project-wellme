@@ -8,4 +8,35 @@
 
 ::ng-deep .progress-bar {
     background-color: #6ED940 !important;
+    position: absolute !important ;
+    text-align: center !important;
+    line-height: 50px !important; /* line-height should be equal to bar height */
+    overflow: hidden !important;
+    color: #000 !important;
+    right: 0;
+    left: 0;
+    top: 0;
+  }
+::ng-deep .progress {
+    position: relative;
+  }
+::ng-deep .text-white{
+    position: relative;
+    text-align: center;
+    line-height: 50px; /* line-height should be equal to bar height */
+    overflow: hidden;
+    color: #000;
+    right: 0;
+    left: 0;
+    top: 0;
+}
+::ng-deep  .progress-bar{
+    position: absolute;
+    text-align: center;
+    line-height: 50px; /* line-height should be equal to bar height */
+    overflow: hidden;
+    color: #000;
+    right: 0;
+    left: 0;
+    top: 0;
   }

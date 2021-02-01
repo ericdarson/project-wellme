@@ -76,6 +76,10 @@ import { CookieService } from 'ngx-cookie-service';
 import { SyaratKetentuanPembelianComponent } from './popup/syarat-ketentuan-pembelian/syarat-ketentuan-pembelian.component';
 import { InformasiProdukComponent } from './popup/informasi-produk/informasi-produk.component';
 import { FailedToLoadComponent } from './components/failed-to-load/failed-to-load.component';
+import { PlannerProductComponent } from './components/planner-product/planner-product.component';
+import { PlannerEditComponent } from './components/planner-edit/planner-edit.component';
+import { PlannerEditTargetComponent } from './components/planner-edit-target/planner-edit-target.component';
+import { PlannerEditDataPlannerComponent } from './components/planner-edit-data-planner/planner-edit-data-planner.component';
 
 @NgModule({
   declarations: [
@@ -88,6 +92,9 @@ import { FailedToLoadComponent } from './components/failed-to-load/failed-to-loa
     PlannerListReksadanaComponent,
     SyaratKetentuanPembelianComponent,
     InformasiProdukComponent,
+
+
+
 
 
   ],
