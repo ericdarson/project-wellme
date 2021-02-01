@@ -22,6 +22,7 @@ export class PromoKodeComponent implements OnInit {
   promoKode:string;
   displayClass:string="flex";
   notFoundClass:String="hidden";
+  loader:boolean=true;
   constructor(private router : Router, private location:Location,private route: ActivatedRoute,private plannerService:PlannerPembelianService) { }
   
   ngOnInit(): void {
@@ -40,10 +41,12 @@ export class PromoKodeComponent implements OnInit {
     else{
       this.plannerService.getPromoList().subscribe((response:ResponseApi)=>{
         this.promoList=response.output_schema.promotions;
+        this.loader=false;
       },
       error=>{
         this.notFoundClass="flex";
         this.displayClass="hidden";
+        this.loader=false;
       }
       )
     }

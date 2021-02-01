@@ -350,7 +350,14 @@ export class PlannerPembelianService {
     else{
       this.idDetail=idDetail;
     }
-
+var nominal_pembelian:number;
+    if(this.plannerBeliState.nominal_pembelian)
+    {
+      nominal_pembelian=this.plannerBeliState.nominal_pembelian;
+    }
+    else{
+      return false;
+    }
     var reksadana:PlannerProduct[]=[];
     var productReady:boolean=false;
     var requestReady:boolean=false;
@@ -375,6 +382,7 @@ export class PlannerPembelianService {
       requestReady=true;
       this.requestPembelian={
         id_plan:Number(this.idDetail),
+        total_beli:nominal_pembelian,
         kode_promo:this.plannerBeliState.kode_promo!=undefined?this.plannerBeliState.kode_promo:"",
         products:reksadana
       };

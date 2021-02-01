@@ -1,0 +1,26 @@
+<div class="jflex-column padding-beauty  center-cross-axis ">
+        
+    <mat-card class="box-outline litle-space" style="width: 100%;">
+        <div class="jflex-column">
+            <h1 class="font-green">{{reksadana.nama_jenis_reksadana}}</h1>
+            <!-- <p>Pasar Uang, 21 December</p> -->
+            <p>Kinerja 1 Bulan</p>
+            <h2 *ngIf="reksadana.kinerja_satu_bulan>=0" class="font-green">+{{reksadana.kinerja_satu_bulan}} %</h2><h2 *ngIf="reksadana.kinerja_satu_bulan<0" style="color:red">-{{reksadana.kinerja_satu_bulan}} %</h2>      
+            <p>NAB/Unit</p>
+            <h2 class="font-green">{{reksadana.nab|currency:'Rp ':true:'1.0'}}</h2>
+            <p>Biaya Pembelian</p>
+            <h2 class="font-green">{{reksadana.biaya_pembelian}}%</h2>
+            <p>Minimum Pembelian</p>
+            <h2>{{reksadana.minimum_amount|currency:'Rp ':true:'1.0'}}</h2>
+
+        </div>
+    </mat-card>
+    <div class="jflex-column litle-space" style="width: 100%;">
+        <a href="{{reksadana.url_fund_fact}}" mat-raised-button class="green-button litle-space" style="padding-top: 10px; padding-bottom: 10px; color: black; font-weight: 1000; margin-bottom:10px !important;">Download Popektus</a>
+        <a href="{{reksadana.url_prospektus}}" mat-raised-button class="green-button " style="padding-top: 10px; padding-bottom: 10px; color: black; font-weight: 1000;">Download Fund fact Sheet</a>
+        
+    </div>
+    <div>
+        <span><strong>Baca</strong>&nbsp;<a class="font-green pointer" (click)="openSKPopup()">Disclaimer</a></span>
+    </div>  
+</div>

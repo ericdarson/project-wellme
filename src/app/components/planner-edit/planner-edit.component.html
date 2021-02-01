@@ -1,0 +1,58 @@
+<div class="jflex-column container" style="height: 100%;">
+    <div class="jflex-row" style="padding-top:20px;">
+        <a (click)="goBack()" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+            <mat-icon>chevron_left</mat-icon>
+        </a>
+        <h1 style="flex-basis: 90%; text-align: center;;" class="headFont">Portofolio Baru</h1>
+    </div>
+    <div class="jflex-column padding-beauty  center-cross-axis " style="height:90%;">
+        
+        <div class="jflex-row center-cross-axis center-main-axis little-space">
+            <svg width="80" height="80" viewBox="0 0 72 73" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 30px;">
+                <path d="M64.471 8.56106C40.0182 -4.6461 16.6877 2.40426 8.07907 7.58033C-1.23789 20.4933 -0.910964 44.5211 6.44452 65.4434C11.0213 68.7125 41.5873 77.2121 65.2883 65.4434C76.0109 37.9829 69.2112 16.08 64.471 8.56106Z" stroke="#6ED940" stroke-width="2" [ngStyle]="{'fill':' white'}"/>
+                <path d="M36.5 18L21 33.5517V49.2713C21 49.9564 21.2722 50.6135 21.7566 51.0979C22.2411 51.5824 22.8982 51.8546 23.5833 51.8546H32.625V38.9379H40.375V51.8546H49.4167C50.1018 51.8546 50.7589 51.5824 51.2434 51.0979C51.7278 50.6135 52 49.9564 52 49.2713V33.4613L36.5 18Z"  [ngStyle]="{'fill':' #6ED940'}"/>
+            </svg>
+            <h1>Mac Book Baru</h1>
+        </div>
+        <mat-card class="box-outline litle-space padding-beauty" style="width: 100%;">
+            <div class=" jflex-row stretch litle-space row" style="padding-left: 30px;">
+                <div class="jflex-column little-space">
+                    <div><b>Total Target</b></div>
+                    <div><h2 class="font-green"><b>Rp 24,000,000</b></h2></div>
+                </div>
+            </div>
+            <div class=" jflex-row stretch litle-space row" style="padding-left: 30px;">
+                <div class="jflex-column little-space">
+                    <div><b>Tanggal Target Dibuat</b></div>
+                    <div><h2 class="font-green"><b>December 20</b></h2></div>
+                </div>
+            </div>
+            
+            <div class=" jflex-row stretch litle-space row" style="padding-left: 30px;">
+                <div class="jflex-column little-space">
+                    <div><b>Tanggal Target Tujuan</b></div>
+                    <div><h2 class="font-green"><b>December 21</b></h2></div>
+                </div>
+            </div>
+            
+            
+            <div class=" jflex-row stretch litle-space row" style="padding-left: 30px;">
+                <div class="jflex-column little-space">
+                    <div><b>Total Tabungan/ Bulan</b></div>
+                    <div><h2 class="font-green"><b>Rp 2,000,000</b></h2></div>
+                </div>
+            </div>
+            
+            
+        </mat-card>
+    </div>
+    
+    
+    
+    
+    <div class=" jflex-column padding-beauty center-cross-axis">
+        
+        <button mat-button  class="litle-space box-outline" style="background-color: white; color: #6ED940; border: 2px solid #6ED940; width: 100%; margin-bottom: 10px !important;">Hapus Target</button>
+        <button routerLink="/financial-planner/beli-reksadana" mat-button style="background-color: #6ED940; color: white; width: 100%; ">Edit Detail Target</button>
+    </div>
+</div>

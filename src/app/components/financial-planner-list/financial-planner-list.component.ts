@@ -16,6 +16,7 @@ notFound:string="hidden";
 display:string="block";
   listPlanner:PlannerList[];
   listPlannerDisplay:any;
+  loader=true;
   constructor(private router:Router,private plannerService:PlannerService) { }
 
   ngOnInit(): void {
@@ -30,6 +31,7 @@ display:string="block";
 
   getListPlanner():void{
     this.plannerService.getPlannerList().subscribe((response:ResponseApi)=>{
+      this.loader=false;
       console.log(response);
       this.listPlanner=response.output_schema.list_planner;
       this.listPlanner.forEach((element:any) => {

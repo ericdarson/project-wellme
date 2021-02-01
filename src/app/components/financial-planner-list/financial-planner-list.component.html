@@ -1,5 +1,9 @@
-<div class="jflex-column container" style="height: 100%; min-width: 400px; width: 70%;">
-    <div class="jflex-row center-main-axis" style="padding-top:20px;">
+<div class="jflex-column container" style="">
+    <div class="jflex-row center-cross-axis row" style="padding-top:20px;" *ngIf="loader==true">
+        <div *ngIf="loader==true"><ngx-shimmer-loading [shape]="'circle'" [width]="'50px'" [height]="'50px'" ></ngx-shimmer-loading></div>
+        <div *ngIf="loader==true" style="flex-basis: 90%;" class="jflex-row center-main-axis"><ngx-shimmer-loading [shape]="'rect'" [width]="'200px'" [height]="'32px'" ></ngx-shimmer-loading></div>
+    </div>
+    <div class="jflex-row center-main-axis" style="padding-top:20px;"  *ngIf="loader==false">
         
         <a mat-icon-button aria-label="Example icon button with a vertical three dot icon">
             <mat-icon>chevron_left</mat-icon>
@@ -37,47 +41,8 @@
             
         </mat-card>
         </div>
-        <div [ngClass]="shimmering">
-            <mat-card class="box-outline padding-beauty" style="margin-bottom: 10px; cursor: pointer;" >
-                <div class="jflex-row stretch">
-                    <div class="jflex-column stretch">
-                        <span><strong><ngx-shimmer-loading [shape]="'rect'" [width]="'100px'" [height]="'14px'"></ngx-shimmer-loading></strong></span>
-                        <span class="percentage-list"><ngx-shimmer-loading [shape]="'rect'" [width]="'200px'" [height]="'50px'"></ngx-shimmer-loading></span>
-                        <span class="target"><ngx-shimmer-loading [shape]="'rect'" [width]="'100px'" [height]="'14px'"></ngx-shimmer-loading></span>
-                    </div>
-                    <div class="jflex-column">
-                        <ngx-shimmer-loading [shape]="'circle'" [width]="'100px'" [height]="'100px'"></ngx-shimmer-loading>
-                    </div>
-                </div>
-                
-            </mat-card>
-            <mat-card class="box-outline padding-beauty" style="margin-bottom: 10px; cursor: pointer;" >
-                <div class="jflex-row stretch">
-                    <div class="jflex-column stretch">
-                        <span><strong><ngx-shimmer-loading [shape]="'rect'" [width]="'100px'" [height]="'14px'"></ngx-shimmer-loading></strong></span>
-                        <span class="percentage-list"><ngx-shimmer-loading [shape]="'rect'" [width]="'200px'" [height]="'50px'"></ngx-shimmer-loading></span>
-                        <span class="target"><ngx-shimmer-loading [shape]="'rect'" [width]="'100px'" [height]="'14px'"></ngx-shimmer-loading></span>
-                    </div>
-                    <div class="jflex-column">
-                        <ngx-shimmer-loading [shape]="'circle'" [width]="'100px'" [height]="'100px'"></ngx-shimmer-loading>
-                    </div>
-                </div>
-                
-            </mat-card>
-            <mat-card class="box-outline padding-beauty" style="margin-bottom: 10px; cursor: pointer;" >
-                <div class="jflex-row stretch">
-                    <div class="jflex-column stretch">
-                        <span><strong><ngx-shimmer-loading [shape]="'rect'" [width]="'100px'" [height]="'14px'"></ngx-shimmer-loading></strong></span>
-                        <span class="percentage-list"><ngx-shimmer-loading [shape]="'rect'" [width]="'200px'" [height]="'50px'"></ngx-shimmer-loading></span>
-                        <span class="target"><ngx-shimmer-loading [shape]="'rect'" [width]="'100px'" [height]="'14px'"></ngx-shimmer-loading></span>
-                    </div>
-                    <div class="jflex-column">
-                        <ngx-shimmer-loading [shape]="'circle'" [width]="'100px'" [height]="'100px'"></ngx-shimmer-loading>
-                    </div>
-                </div>
-                
-            </mat-card>
-            <mat-card class="box-outline padding-beauty" style="margin-bottom: 10px; cursor: pointer;" >
+        <div [ngClass]="shimmering" style="width: 100%;">
+            <mat-card class="box-outline padding-beauty" style="margin-bottom: 10px; cursor: pointer; width: 100%;" *ngFor="let i of [1,2,3,4,5]">
                 <div class="jflex-row stretch">
                     <div class="jflex-column stretch">
                         <span><strong><ngx-shimmer-loading [shape]="'rect'" [width]="'100px'" [height]="'14px'"></ngx-shimmer-loading></strong></span>

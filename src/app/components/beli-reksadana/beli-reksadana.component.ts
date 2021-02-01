@@ -30,6 +30,7 @@ export class BeliReksadanaComponent implements OnInit {
   errorClassPercentage:string="hidden";
   errorClassNominalPembelian:string="hidden";
   errorClassKodePromo:string="hidden";
+  loader:boolean=true;
   constructor(private router:Router,private plannerService:PlannerPembelianService,private location:Location,private route : ActivatedRoute) {}
   
   ngOnInit(): void {
@@ -43,6 +44,7 @@ export class BeliReksadanaComponent implements OnInit {
       this.plannerResiko=response.output_schema;
       
       this.plannerBeliState.pembelian=response.output_schema.detail_resiko;
+      this.loader=false;
       this.syncBeliState();
       
     })
@@ -55,14 +57,11 @@ export class BeliReksadanaComponent implements OnInit {
       this.router.navigate(['/financial-planner/planner-list']);
     }
     else{
+      
       var pbs=this.plannerService.getPlannerBeliState();
       this.plannerBeliState=pbs!=null?pbs:this.plannerBeliState;
-      console.log(pbs);
-      
       this.getProfileResiko();
       this.namaPlan=this.plannerService.getNamaPlannerDetail();
-
-      console.log(this.namaPlan);
       this.rekomendasiPembelian=this.plannerService.getRekomendasiPembelian();
       if(this.namaPlan==null||this.rekomendasiPembelian==null)
       {
@@ -197,7 +196,7 @@ export class BeliReksadanaComponent implements OnInit {
     }
     if(percentage!=100||bool==true||kosong==true||percentageValid==true)
     {
-        if(bool==true){
+      if(bool==true){
         this.errorClassPercentage="block";
         if(percentage!=100)
         {
@@ -212,7 +211,7 @@ export class BeliReksadanaComponent implements OnInit {
         this.errorClassPercentage="block";
         this.errorMessagePercentage="Persentase Tidak 100%";
       }
-
+      
       if(kosong==true){
         this.errorClassPercentage="block";
         if(percentage!=100||bool==true)
@@ -222,7 +221,7 @@ export class BeliReksadanaComponent implements OnInit {
         this.errorMessagePercentage+="Produk yang Dipilih Tidak Boleh Memiliki Persentase 0%";
         
       }
-
+      
       if(percentageValid==true){
         this.errorClassPercentage="block";
         if(percentage!=100||bool==true||kosong==true)
@@ -315,7 +314,7 @@ export class BeliReksadanaComponent implements OnInit {
     this.errorMessageNominalPembelian="";
     this.errorMessagePercentage="";
   }
-
+  
   saveState(){
     this.plannerService.setPlannerBeliState(this.plannerBeliState);
   }

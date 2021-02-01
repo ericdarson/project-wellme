@@ -1,41 +1,58 @@
-<div class="jflex-column" style="height: 100%;">
-    <div class="jflex-row" style="padding-top:20px;">
+<div class="jflex-column container" style="height: 100%;">
+    <div class="jflex-row" style="padding-top:20px;" *ngIf="loader==false">
         <a mat-icon-button aria-label="Example icon button with a vertical three dot icon" (click)="goBack()">
             <mat-icon>chevron_left</mat-icon>
         </a>
         <h1 style="flex-basis: 90%; text-align: center;;" class="headFont">{{plan.nama_plan}}</h1>
     </div>
+    <div class="jflex-row center-cross-axis row" style="padding-top:20px;" *ngIf="loader==true">
+        <div *ngIf="loader==true"><ngx-shimmer-loading [shape]="'circle'" [width]="'50px'" [height]="'50px'" ></ngx-shimmer-loading></div>
+        <div *ngIf="loader==true" style="flex-basis: 90%;" class="jflex-row center-main-axis"><ngx-shimmer-loading [shape]="'rect'" [width]="'200px'" [height]="'32px'" ></ngx-shimmer-loading></div>
+    </div>
     <div class="jflex-column padding-beauty  center-cross-axis ">
 
         <mat-card class="box-outline litle-space" style="width: 100%;">
-           <div class="jflex-row stretch">
-               <div class="jflex-column">
-                    <div>{{plan.nama_plan}}</div>
-                    <h1 class="font-green">{{plan.target_plan |currency:'Rp ':true:'1.0-2'}}</h1>
-                    <div>Deadline: {{plan.due_date}}</div>
+           <div class="jflex-row stretch center-cross-axis">
+               <div class="jflex-column" style="width: 100%;">
+                    <div *ngIf="loader==false">{{plan.nama_plan}}</div>
+                    <div *ngIf="loader==true" class="row" style="width: 100%;"><ngx-shimmer-loading [shape]="'rect'" class="col-md-4" [height]="'14px'" ></ngx-shimmer-loading></div>
+                    <h1 class="font-green" *ngIf="loader==false"><b>{{plan.target_plan |currency:'Rp ':true:'1.0-2'}}</b></h1>
+                    <div *ngIf="loader==true" class="row"><ngx-shimmer-loading [shape]="'rect'" class="col-md-8" [height]="'32px'" ></ngx-shimmer-loading></div>
+                    <div *ngIf="loader==false">Deadline: {{plan.due_date}}</div>
+                    <div *ngIf="loader==true" class="row"><ngx-shimmer-loading [shape]="'rect'" class="col-md-5" [height]="'14px'" ></ngx-shimmer-loading></div>
                </div>
                <div class="jflex-column center-main-axis center-cross-axis">
                    <a mat-icon-button>
-                    <mat-icon>delete</mat-icon>
+                    <mat-icon style="color: #6ED940;" *ngIf="loader==false">edit</mat-icon>
+                    
                    </a>
+                   <div *ngIf="loader==true"><ngx-shimmer-loading [shape]="'circle'" [width]="'50px'" [height]="'50px'" ></ngx-shimmer-loading></div>
                </div>
            </div>
         </mat-card>
     <div class="jflex-column little-space">
-        <div class="jflex-row">
+        
+        <div class="jflex-row" *ngIf="loader==false">
             <img style="width: 100px; height: 100px;" src="{{imgSrcSequence[0]}}">
             <img style="width: 100px; height: 100px;" src="{{imgSrcSequence[1]}}">
             <img style="width: 100px; height: 100px;" src="{{imgSrcSequence[2]}}">
         </div>
-        <div class="jflex-row">
+        <div class="jflex-row" *ngIf="loader==false">
             <img style="width: 100px; height: 100px;" src="{{imgSrcSequence[3]}}">
             <img style="width: 100px; height: 100px;" src="{{imgSrcSequence[4]}}">
             <img style="width: 100px; height: 100px;" src="{{imgSrcSequence[5]}}">
         </div>
-        <div class="jflex-row">
+        <div class="jflex-row" *ngIf="loader==false">
             <img style="width: 100px; height: 100px;" src="{{imgSrcSequence[6]}}">
             <img style="width: 100px; height: 100px;" src="{{imgSrcSequence[7]}}">
             <img style="width: 100px; height: 100px;" src="{{imgSrcSequence[8]}}">
+        </div>
+        <div class="jflex-column" *ngIf="loader==true">
+            <div class="jflex-row" *ngFor="let i of [1,2,3]">
+            <ngx-shimmer-loading [shape]="'square'" [height]="'100px'" [width]="'100px'" ></ngx-shimmer-loading>
+            <ngx-shimmer-loading [shape]="'square'" [height]="'100px'" [width]="'100px'" ></ngx-shimmer-loading>
+            <ngx-shimmer-loading [shape]="'square'" [height]="'100px'" [width]="'100px'" ></ngx-shimmer-loading>
+            </div>
         </div>
  
         
@@ -43,14 +60,28 @@
      
     </div>
     <div class="jflex-column little-space center-cross-axis center-main-axis">
-        <p style="width: 90%;"><ngb-progressbar style="background-color: #B7EC9F;"  [height]="'50px'" textType="white" [value]="plan.current_amount/plan.target_plan*100>100?100:plan.current_amount/plan.target_plan*100" [showValue]="true"></ngb-progressbar></p>    
-        <h1><strong>{{plan.current_amount |currency:' ':true:'1.0-2'}}/{{plan.target_plan |currency:' ':true:'1.0-2'}}</strong></h1>
+        <h2 style="text-align: center; width: 100%;"><b *ngIf="loader==false">{{plan.current_amount/plan.target_plan*100>100?100:plan.current_amount/plan.target_plan*100 |number:'1.0-0'}}%</b>
+            <b *ngIf="loader==true">
+                <div class="jflex-row center-main-axis"><ngx-shimmer-loading [shape]="'rect'" [width]="'100px'" [height]="'32px'" ></ngx-shimmer-loading></div>
+            </b>
+        </h2>
+        <p style="width: 93%;"><ngb-progressbar *ngIf="loader==false" style="background-color: #B7EC9F;"  [height]="'50px'" textType="white" [value]="plan.current_amount/plan.target_plan*100>100?100:plan.current_amount/plan.target_plan*100" [showValue]="true"></ngb-progressbar>
+            
+        </p>    
+        <div *ngIf="loader==true" class="jflex-row center-main-axis"><ngx-shimmer-loading [shape]="'rect'" [width]="'93%'" [height]="'50px'" ></ngx-shimmer-loading></div>
+        <h1><strong *ngIf="!loader">{{plan.current_amount |currency:' ':true:'1.0-2'}}/{{plan.target_plan |currency:' ':true:'1.0-2'}}</strong></h1>
+        <div style="width: 100%;" class="row" *ngIf="loader">
+            <ngx-shimmer-loading [shape]="'rect'" class="col-md-12" [width]="'100%'" [height]="'50px'" ></ngx-shimmer-loading>
+        </div>
     </div> 
     
     
     
     <div class=" jflex-column padding-beauty center-cross-axis">
-        <a routerLink="/financial-planner/detail-portfolio" mat-raised-button style="background-color: #6ED940; color: white; width: 100%; ">Lihat Detail</a>
+        <div style="width: 100%;" class="row" *ngIf="loader">
+            <ngx-shimmer-loading [shape]="'rect'" class="col-md-12" [width]="'100%'" [height]="'50px'" ></ngx-shimmer-loading>
+        </div>
+        <a *ngIf="!loader" routerLink="/financial-planner/detail-portfolio" mat-raised-button style="background-color: #6ED940; color: white; width: 100%; ">Lihat Detail</a>
         <!-- <a mat-button  class="litle-space box-outline" style="background-color: white; color: #6ED940; border: 2px solid #6ED940; width: 100%; ">Jual Reksadana</a>
         <a href="financial-planner/beli-reksadana" mat-raised-button style="background-color: #6ED940; color: white; width: 100%; ">Beli Reksadana</a> -->
     </div>

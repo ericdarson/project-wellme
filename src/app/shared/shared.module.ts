@@ -43,7 +43,7 @@ import {ScrollingModule , ScrollDispatcher} from '@angular/cdk/scrolling';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxShimmerLoadingModule } from  'ngx-shimmer-loading';
 import { NgxWebstorageModule, SessionStorageService } from 'ngx-webstorage';
-
+import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet';
 import {ReactiveFormsModule} from '@angular/forms'
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { FailedToLoadComponent } from '../components/failed-to-load/failed-to-load.component';
@@ -100,6 +100,7 @@ import { FailedToLoadComponent } from '../components/failed-to-load/failed-to-lo
     ReactiveFormsModule,
     ClipboardModule,
     FailedToLoadComponent,
+
   ],
   imports: [
     CommonModule,
@@ -161,7 +162,8 @@ import { FailedToLoadComponent } from '../components/failed-to-load/failed-to-lo
     
     NgxWebstorageModule.forRoot(),
     ReactiveFormsModule,
-    ClipboardModule
+    ClipboardModule,
+
   ],
 })
 export class SharedModule { 
