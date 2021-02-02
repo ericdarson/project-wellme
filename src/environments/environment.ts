@@ -21,7 +21,8 @@ export const environment = {
   BackwaardProjectionUrl:'http://10.8.0.5:8081',
   claimPromoUrl : 'http://10.8.0.5:8093/promo/claim',
   activedPromoUrl : 'http://10.8.0.5:8093/promo/activate/',
-  plannerPembelianUrl:'http://10.8.0.5:8085/financial-planner/pembelian/'
+  plannerPembelianUrl:'http://10.8.0.5:8085/financial-planner/pembelian/',
+  updatePlannerUrl:'http://10.8.0.5:8090/planner'
 };
 
 /*

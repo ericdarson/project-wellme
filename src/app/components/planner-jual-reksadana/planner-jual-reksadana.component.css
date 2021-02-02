@@ -1,0 +1,10 @@
+.button-active{
+    background-color: #6ED940; color: white; width: 80%; 
+}
+.button-active:disabled{
+    background-color:  rgba(110, 217, 64, 0.5); color: white; width: 80%; 
+    cursor: not-allowed;
+}
+.little-space{
+    margin-bottom: 10px;;
+}

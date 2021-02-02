@@ -1,0 +1,37 @@
+<div class="jflex-column container" style="height: 100%;">
+    <div class="jflex-row" style="padding-top:20px;">
+        <a mat-icon-button aria-label="Example icon button with a vertical three dot icon" (click)="goBack()">
+            <mat-icon>chevron_left</mat-icon>
+        </a>
+        <h1 style="flex-basis: 90%; text-align: center;;" class="headFont">Jual Reksadana</h1>
+    </div>
+
+    <div class="jflex-column padding-beauty  center-cross-axis " style="height:90%">
+
+        <mat-card class="box-outline litle-space" style="width: 100%;">
+           <div class="jflex-row stretch center-cross-axis">
+               <div class="jflex-column" style="width: 100%;">
+                    <div>Dana investasi yang di Cairkan</div>
+                    <h1 class="font-green"><b>{{totalAsset|currency:'Rp ':true:'1.0'}}</b></h1>
+               </div>
+           </div>
+        </mat-card>
+     
+        <div class="jflex-column" style="width: 100%;"> 
+            <div class="jflex-row stretch" *ngFor="let reksadana of plannerDetail.portfolio">
+                <div *ngIf="reksadana.status=='Unit'">{{reksadana.nama_produk}}</div>
+                <div *ngIf="reksadana.status=='Unit'"><b>{{reksadana.jumlah_unit}} Unit</b></div>
+            </div>                 
+        </div>
+    </div>
+
+    <div class="jflex-row center-main-axis center-cross-axis">
+        <input type="checkbox" [(ngModel)]="snkChecked">&nbsp;  <span><strong>Saya Sudah Baca&nbsp;</strong> <a class="font-green" (click)="openSKPopup()">Syarat dan Ketentuan</a></span>
+    </div>  
+    
+    <div class=" jflex-column padding-beauty center-cross-axis">
+        
+        <button mat-button  class="litle-space box-outline" style="background-color: white; color: #6ED940; border: 2px solid #6ED940; width: 100%; margin-bottom: 10px !important;">Batalkan Transaksi</button>
+        <button [disabled]="!snkChecked" routerLink="/financial-planner/pin-jual" mat-button class="button-active"  style="width: 100%">Jual Reksadana</button>
+    </div>
+</div>

@@ -10,5 +10,5 @@ export class PlannerDetail {
     due_date:string;
     rekomendasi_pembelian:number;
     portfolio:PlannerPortfolio[];
-    
+    periodic:string;
 }
