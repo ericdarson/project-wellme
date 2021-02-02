@@ -6,7 +6,7 @@
         <h1 style="flex-basis: 90%; text-align: center;;" class="headFont">Portofolio Baru</h1>
     </div>
     <form [formGroup]="portfolioForm" (submit)="onSubmit()">
-        <div class="jflex-column padding-beauty  center-cross-axis " style="">
+        <div class="jflex-column padding-beauty  center-cross-axis ">
             <h1 style="font-weight: 300;">Gadget</h1>
             
             <mat-card class="box-outline litle-space" style="width: 100%;">
@@ -22,7 +22,7 @@
                 <mat-form-field appearance="standard" style="width: 100%;" >
                     <mat-label>Masukan target</mat-label>
                     <input type="number"  matInput formControlName="target">
-                    <mat-error *ngIf="portfolioForm.controls['target'].invalid">Target Tidak Boleh Kosong</mat-error>
+                    <mat-error *ngIf="portfolioForm.controls['target'].invalid">Target Tidak Valid</mat-error>
                 </mat-form-field>
             </mat-card>
             <mat-card class="box-outline litle-space" style="width: 100%;">

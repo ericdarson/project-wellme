@@ -6,14 +6,14 @@
         <h1 style="text-align: center;" class="width-full headFont">{{plan.nama_plan}}</h1>
     </div>
     <div class="jflex-column padding-beauty  center-cross-axis">
-
+        
         <mat-card class="box-outline litle-space" style="width: 100%;">
-           <div class="jflex-row stretch">
-               <div class="jflex-column">
+            <div class="jflex-row stretch">
+                <div class="jflex-column">
                     <div>Nilai Tabungan</div>
                     <h1><strong>{{plan.current_amount |currency:'Rp ':true:'1.0'}}</strong></h1>
-               </div>
-           </div>
+                </div>
+            </div>
         </mat-card>
         <div class="jflex-column padding-beauty center-main-axis center-cross-axis" style="height:90%" *ngIf="plan.portfolio==null">
             <img src="assets/img/list-planner-nothing.png">
@@ -21,108 +21,64 @@
             <p class="font-green"  style="text-align: center;">Yuk segera membeli reksadana agar bisa mencapai keinginan mu!</p>
             
         </div>
-    <div class="jflex-row little-space" style="width:100%; justify-content:space-evenly;" *ngIf="plan.portfolio!=null">
-        <mat-card class="box-outline litle-space padding-beauty" style="width:300px;">
-            <div class="jflex-column">
-
-                <div class="jflex-row">
-                    <strong>Alokasi Kamu</strong>
+        <div class="jflex-row row little-space stretch" style="width:100%; justify-content:space-between; flex-wrap: wrap;" *ngIf="plan.portfolio!=null">
+            <mat-card class="box-outline litle-space padding-beauty col-lg-5" *ngFor="let portfolioJenis of portfolio; let i = index" [attr.data-index]="i">
+                <div class="jflex-column">
                     
-                </div>
-
-                <mat-list style="margin-bottom: 10px;">
-                    <mat-divider style="stroke: #6ED940; color: #6ED940; background-color: #6ED940; width: 90%; left:5%;"></mat-divider>
-                </mat-list>
-                <div class="jflex-column">
-                    <div class="jflex-row little-space" >
-                        <strong class="font-green">Pasar Uang</strong>
+                    <div class="jflex-row">
+                        <strong>Alokasi Kamu</strong>
+                        
                     </div>
-                    <table>
-                        <tr><td>Alokasi</td><td><strong class="font-green">7%</strong></td><td><strong class="font-green">1,750,000</strong></td></tr>
-                        <tr><td>Rekomendasi</td><td><strong class="font-green">10%</strong></td><td><strong class="font-green">1,750,000</strong></td></tr>
-                    </table>
-                </div>
-                <mat-list style="margin-bottom: 10px;">
-                    <mat-divider style="stroke: #6ED940; color: #6ED940; background-color: #6ED940; width: 90%; left:5%;"></mat-divider>
-                </mat-list>
-                <div class="jflex-column">
-                    <div class="jflex-row litle-space" >
-                        <strong class="">List Produk Kamu</strong>
-                    </div>
-                    <table>
-                        <tr><td>Manulif Dana Kas II</td><td><strong class="font-green">750,000</strong></td></tr>
-                        <tr><td>750,000</td></tr>
-                    </table>
-                </div>
-                <mat-list style="margin-bottom: 10px;">
-                    <mat-divider style="stroke: #6ED940; color: #6ED940; background-color: #6ED940; width: 90%; left:5%;"></mat-divider>
-                </mat-list>
-                <div class="jflex-column">
-                    <table>
-                        <tr><td>Manulif Dana Kas II</td><td><strong class="font-green">750,000</strong></td></tr>
-                        <tr><td>750,000</td></tr>
-                    </table>
-                </div>
-            </div>
-         </mat-card>
-         <mat-card class="box-outline litle-space padding-beauty" style="width:300px;">
-            <div class="jflex-column">
-
-                <div class="jflex-row">
-                    <strong>Alokasi Kamu</strong>
                     
-                </div>
-
-                <mat-list style="margin-bottom: 10px;">
-                    <mat-divider style="stroke: #6ED940; color: #6ED940; background-color: #6ED940; width: 90%; left:5%;"></mat-divider>
-                </mat-list>
-                <div class="jflex-column">
-                    <div class="jflex-row little-space" >
-                        <strong class="font-green">Pasar Uang</strong>
+                    <mat-list style="margin-bottom: 10px;">
+                        <mat-divider style="stroke: #6ED940; color: #6ED940; background-color: #6ED940; width: 90%; left:5%;"></mat-divider>
+                    </mat-list>
+                    <div class="jflex-column">
+                        <div class="jflex-row little-space" >
+                            <strong class="font-green">{{jenisReksadana[i]}}</strong>
+                        </div>
+                        <table>
+                            <tr><td>Alokasi</td><td><strong class="font-green">{{alokasiRekomendasi[i].alokasiPercentage | number:'1.2' }}%</strong></td><td><strong class="font-green">{{alokasiRekomendasi[i].alokasiAmount |currency:' ':true:'1.0'}}</strong></td></tr>
+                            <tr><td>Rekomendasi</td><td><strong class="font-green">{{alokasiRekomendasi[i].rekomendasiPercentage | number:'1.2' }}%</strong></td><td><strong class="font-green">{{alokasiRekomendasi[i].rekomendasiAmount |currency:' ':true:'1.0'}}</strong></td></tr>
+                        </table>
                     </div>
-                    <table>
-                        <tr><td>Alokasi</td><td><strong class="font-green">7%</strong></td><td><strong class="font-green">1,750,000</strong></td></tr>
-                        <tr><td>Rekomendasi</td><td><strong class="font-green">10%</strong></td><td><strong class="font-green">1,750,000</strong></td></tr>
-                    </table>
-                </div>
-                <mat-list style="margin-bottom: 10px;">
-                    <mat-divider style="stroke: #6ED940; color: #6ED940; background-color: #6ED940; width: 90%; left:5%;"></mat-divider>
-                </mat-list>
-                <div class="jflex-column">
-                    <div class="jflex-row litle-space" >
-                        <strong class="">List Produk Kamu</strong>
+                    <mat-list style="margin-bottom: 10px;">
+                        <mat-divider style="stroke: #6ED940; color: #6ED940; background-color: #6ED940; width: 90%; left:5%;"></mat-divider>
+                    </mat-list>
+                    <div class="jflex-column">
+                        <div class="jflex-row litle-space" >
+                            <strong class="">List Produk Kamu</strong>
+                        </div>
                     </div>
-                    <table>
-                        <tr><td>Manulif Dana Kas II</td><td><strong class="font-green">750,000</strong></td></tr>
-                        <tr><td>750,000</td></tr>
-                    </table>
+                    <div *ngFor="let portfolioDetail of portfolioJenis">
+                        <mat-list style="margin-bottom: 10px;">
+                            <mat-divider style="stroke: #6ED940; color: #6ED940; background-color: #6ED940; width: 90%; left:5%;"></mat-divider>
+                        </mat-list>
+                        <div class="jflex-column">
+                            <table>
+                                <tr><td>{{portfolioDetail.nama_produk}}</td><td><strong class="font-green">{{portfolioDetail.asset|currency:'Rp ':true:'1.0'}}</strong></td></tr>
+                                <tr><td>{{portfolioDetail.status}}</td></tr>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-                <mat-list style="margin-bottom: 10px;">
-                    <mat-divider style="stroke: #6ED940; color: #6ED940; background-color: #6ED940; width: 90%; left:5%;"></mat-divider>
-                </mat-list>
-                <div class="jflex-column">
-                    <table>
-                        <tr><td>Manulif Dana Kas II</td><td><strong class="font-green">750,000</strong></td></tr>
-                        <tr><td>750,000</td></tr>
-                    </table>
-                </div>
-            </div>
-         </mat-card>
-    </div>
-     
+            </mat-card>
+            
+        </div>
+        
     </div>
     <div class="jflex-row little-space center-cross-axis center-main-axis">
         <div class="jflex-colum">
-
-
+            
+            
         </div>
     </div> 
     
     
     
     <div class=" jflex-column padding-beauty center-cross-axis">
-       
-        <a mat-button  class="litle-space box-outline" style="background-color: white; color: #6ED940; border: 2px solid #6ED940; width: 100%; ">Jual Reksadana</a>
+        
+        <a mat-button routerLink="/financial-planner/jual-semua"  class="litle-space box-outline" style="background-color: white; color: #6ED940; border: 2px solid #6ED940; width: 100%; ">Jual Reksadana</a>
         <a routerLink="/financial-planner/beli-reksadana" mat-button style="background-color: #6ED940; color: white; width: 100%; ">Beli Reksadana</a>
     </div>
 </div>

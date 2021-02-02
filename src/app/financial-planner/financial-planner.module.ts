@@ -23,6 +23,10 @@ import { PlannerListReksadanaComponent } from '../components/planner-list-reksad
 import { PlannerEditComponent } from '../components/planner-edit/planner-edit.component';
 import { PlannerEditTargetComponent } from '../components/planner-edit-target/planner-edit-target.component';
 import { PlannerEditDataPlannerComponent } from '../components/planner-edit-data-planner/planner-edit-data-planner.component';
+import { PlannerEditSuccessComponent } from '../components/planner-edit-success/planner-edit-success.component';
+import { PlannerJualReksadanaComponent } from '../components/planner-jual-reksadana/planner-jual-reksadana.component';
+import { PlannerPinJualReksadanaComponent } from '../components/planner-pin-jual-reksadana/planner-pin-jual-reksadana.component';
+import { PlannerDetailTransaksiJualComponent } from '../components/planner-detail-transaksi-jual/planner-detail-transaksi-jual.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +47,10 @@ import { PlannerEditDataPlannerComponent } from '../components/planner-edit-data
     PlannerEditComponent,
     PlannerEditTargetComponent,
     PlannerEditDataPlannerComponent,
+    PlannerEditSuccessComponent,
+    PlannerJualReksadanaComponent,
+    PlannerPinJualReksadanaComponent,
+    PlannerDetailTransaksiJualComponent,
   ],
   imports: [
     CommonModule,

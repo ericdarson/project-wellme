@@ -1,10 +1,14 @@
 import { DatePipe, formatDate, Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PlannerService } from 'src/app/services/planner.service';
 import {NgForm} from '@angular/forms'
 import * as moment from 'moment';
+import { PlannerDetail } from 'src/app/models/planner-detail';
+import { PlannerUpdateRequest } from 'src/app/models/planner-update-request';
+import { MatDialog } from '@angular/material/dialog';
+import { PlannerEditSuccessComponent } from '../planner-edit-success/planner-edit-success.component';
 @Component({
   selector: 'app-planner-edit-data-planner',
   templateUrl: './planner-edit-data-planner.component.html',
@@ -14,15 +18,21 @@ export class PlannerEditDataPlannerComponent implements OnInit {
   id:number|null;
   periodic:string="";
   dateMin = new Date();
-  constructor(private location:Location,private plannerService:PlannerService,private route:Router) { }
+  plannerDetail:PlannerDetail;
+  plannerEditRequest:PlannerUpdateRequest;
   portfolioForm:any;
   monthlyDisabled:boolean=false;
   yearlyDisabled:boolean=false;
+  idDetail:number;
+  status:boolean=true;
+  masterPeriodic:string;
+  
+  constructor(private dialog:MatDialog,private location:Location,private plannerService:PlannerService,private router:Router,private route:ActivatedRoute) { }
   ngOnInit(): void {
     this.checkState();
     this.portfolioForm = new FormGroup({
       nama_portfolio: new FormControl('', [Validators.required]),
-      target: new FormControl('',[Validators.required]),
+      target: new FormControl('',[Validators.required,Validators.min(0)]),
       durasi_target: new FormControl('',[Validators.required,this.dateValidator.bind(this)]),
       periodic: new FormControl('',Validators.required)
     });
@@ -32,36 +42,35 @@ export class PlannerEditDataPlannerComponent implements OnInit {
 
 
   checkState():void{
-    var kategori=this.plannerService.getInsertRequest().kategori;
+    this.plannerEditRequest=this.plannerService.getLocalStorage("plannerEdit");
+    this.idDetail=this.plannerService.getLocalStorage("idDetail");
+    if(this.plannerEditRequest==null||this.idDetail==null)
+    {
+      this.router.navigate(['../'],{relativeTo:this.route});
+    }
+    var kategori=this.plannerEditRequest.kategori;
     if(kategori=="")
     { 
-      this.route.navigate(['/financial-planner/pilih-target']);
+      this.router.navigate(['/financial-planner/']);
     }
   }
 
   isFilled():void{
-    if(this.plannerService.isRequestValid())
-    {
-      var plannerRequest=this.plannerService.getInsertRequest();
-      
-      var periodic=plannerRequest.periodic=="Weekly"?"Mingguan":plannerRequest.periodic=="Monthly"?"Bulanan":"Tahunan";
-      var momentvar=moment(plannerRequest.due_date,'DD-MM-YYYY');
-      
+      var periodic=this.plannerEditRequest.periodic=="Weekly"?"Mingguan":this.plannerEditRequest.periodic=="Monthly"?"Bulanan":"Tahunan";
+      var momentvar=moment(this.plannerEditRequest.due_date,'DD-MM-YYYY');
+      console.log("Edit Due Date: ",this.plannerEditRequest.due_date);
       console.log(momentvar.format('YYYY-MM-DD'));
-      
       this.portfolioForm.setValue({
-        nama_portfolio:plannerRequest.nama_plan,
-        target:plannerRequest.goal_amount,
+        nama_portfolio:this.plannerEditRequest.nama_plan,
+        target:this.plannerEditRequest.goal_amount,
         durasi_target:momentvar.format('YYYY-MM-DD'),
         periodic:periodic
 
       });
       this.periodic=periodic;
-      // this.portfolioForm.cotrols['nama_portfolio'].value=plannerRequest.nama_plan;
-      // this.portfolioForm.cotrols['target'].value=plannerRequest.goal_amount;
-      // this.portfolioForm.cotrols['durasi_target'].value=new Date(plannerRequest.due_date).toISOString;
-      // this.portfolioForm.cotrols['periodic'].value=plannerRequest.periodic;
-    }
+      this.masterPeriodic=periodic;
+      this.portfolioForm.controls['periodic'].value=this.masterPeriodic;
+   
   }
 
   goBack(){
@@ -72,8 +81,17 @@ export class PlannerEditDataPlannerComponent implements OnInit {
       var periodic=this.periodic=="Mingguan"?"Weekly":this.periodic=="Bulanan"?"Monthly":"Yearly";
       var date=new Date(this.portfolioForm.controls['durasi_target'].value);
       var dateString=formatDate(date,'dd-MM-yyyy','en-Us');      
-      this.plannerService.setRequest(this.portfolioForm.controls['nama_portfolio'].value,this.portfolioForm.controls['target'].value,periodic,dateString);
-      this.route.navigate(['/financial-planner/simulasi-planner']);
+      this.plannerEditRequest.nama_plan=this.portfolioForm.controls['nama_portfolio'].value;
+      this.plannerEditRequest.goal_amount=Number(this.portfolioForm.controls['target'].value);
+      this.plannerEditRequest.periodic=periodic;
+      this.plannerEditRequest.due_date=dateString;
+      this.plannerService.updatePlanner(this.plannerEditRequest,this.idDetail).subscribe(response=>{
+        this.plannerService.clearLocalStorage("plannerEdit");
+        this.openSuccessPopup();
+      },(error:any)=>{
+        this.status=false;
+        console.log("err -->",error);
+      });
     }
   }
 
@@ -106,10 +124,30 @@ export class PlannerEditDataPlannerComponent implements OnInit {
           this.monthlyDisabled=false;
           this.yearlyDisabled=false;          
         }
+        if(this.masterPeriodic!="")
+        {
+          this.portfolioForm.controls['periodic'].value=this.masterPeriodic;
+          this.periodic=this.masterPeriodic;
+          this.masterPeriodic="";
+
+        }
+
+        
       }
       
     }
     return null
   }
+  
+  openSuccessPopup():void{
+    const dialogRef = this.dialog.open(PlannerEditSuccessComponent, {
+      height:'500px',
+      width: '400px',
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      
+      this.router.navigate(['../'],{relativeTo:this.route});
+    });
+  }
 }

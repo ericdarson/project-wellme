@@ -6,14 +6,14 @@
         <h1 style="flex-basis: 90%; text-align: center;;" class="headFont">Portofolio Baru</h1>
     </div>
     <form [formGroup]="portfolioForm" (submit)="onSubmit()">
-        <div class="jflex-column padding-beauty  center-cross-axis " style="">
+        <div class="jflex-column padding-beauty  center-cross-axis ">
             <h1 style="font-weight: 300;">Gadget</h1>
             
             <mat-card class="box-outline litle-space" style="width: 100%;">
                 <div><strong>Nama Portofolio</strong></div>
                 <mat-form-field appearance="standard" style="width: 100%;">
                     <mat-label>Masukan Nama Portfolio</mat-label>
-                    <input  matInput formControlName="nama_portfolio">
+                    <input  matInput formControlName="nama_portfolio" >
                     <mat-error *ngIf="portfolioForm.controls['nama_portfolio'].invalid">Nama Portfolio Tidak Boleh Kosong</mat-error>
                 </mat-form-field>
             </mat-card>
@@ -21,8 +21,8 @@
                 <div><strong>Total Target yang Harus Terkumpul</strong></div>
                 <mat-form-field appearance="standard" style="width: 100%;" >
                     <mat-label>Masukan target</mat-label>
-                    <input type="number"  matInput formControlName="target">
-                    <mat-error *ngIf="portfolioForm.controls['target'].invalid">Target Tidak Boleh Kosong</mat-error>
+                    <input type="number"  matInput formControlName="target" >
+                    <mat-error *ngIf="portfolioForm.controls['target'].invalid">Target Tidak Valid</mat-error>
                 </mat-form-field>
             </mat-card>
             <mat-card class="box-outline litle-space" style="width: 100%;">
@@ -41,7 +41,7 @@
                     <div class="font-green"><strong>{{portfolioForm.controls['periodic'].value}}</strong></div>
                 </div>
             </mat-card>
-            <mat-button-toggle-group name="fontStyle" style="width: 100%;" formControlName="periodic" [ngModel]="periodic">
+            <mat-button-toggle-group name="fontStyle" style="width: 100%;" formControlName="periodic" [(ngModel)]="periodic">
                 <mat-button-toggle style="width: 33.3%;" value="Mingguan"><strong>Mingguan</strong></mat-button-toggle>
                 <mat-button-toggle style="width: 33.3%;" value="Bulanan" [disabled]="monthlyDisabled"><strong>Bulanan</strong></mat-button-toggle>
                 <mat-button-toggle style="width: 33.34%;" value="Tahunan" [disabled]="yearlyDisabled"><strong>Tahunan</strong></mat-button-toggle>
@@ -51,9 +51,10 @@
         
         
         
-        
+        <div class="jflex-row center-main-axis little-space" style="color: red;" *ngIf="status==false">Gagal Mengupdate Planner</div>
         <div class="background-green jflex-row padding-beauty center-main-axis">
-            <button type="submit" [disabled]="!portfolioForm.valid" href="financial-planner/simulasi-planner" mat-raised-button class="button-active">Lanjut</button>
+
+            <button type="submit" [disabled]="!portfolioForm.valid" mat-raised-button class="button-active">Lanjut</button>
         </div>
     </form>
 </div>

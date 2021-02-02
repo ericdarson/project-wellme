@@ -5,4 +5,7 @@ export class PlannerPortfolio {
     nama_produk:string;
     nab:number;
     jumlah_unit:number;
+    asset:number;
+    status:string;
+    biaya_penjualan:number;
 }

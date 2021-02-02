@@ -7,7 +7,9 @@ import { PlannerKonfirmasi } from '../models/planner-konfirmasi';
 import { PlannerReksadana } from '../models/planner-reksadana';
 import { PlannerBeliState } from '../models/planner-beli-state';
 import { ResponseApi } from '../models/ResponseApi';
-
+import { LocalStorageService } from 'ngx-webstorage';
+import { PlannerUpdateRequest } from '../models/planner-update-request';
+var CryptoJS = require("crypto-js");
 
 @Injectable({
   providedIn: 'root'
@@ -37,12 +39,13 @@ export class PlannerService {
     due_date:"",
     kategori:""
   }
+  encryptedObject:String;
   simulasiPlannerRequest:any={};
   kategori:string="";
   idJenisReksadana:number|null=null;
-  
+  secretKey:string="aoiw3jtq3p4t8jawefimeifpq32jcf";
   plannerBeliState:PlannerBeliState;
-  constructor(private http:HttpClient) {
+  constructor(private http:HttpClient,private localStorage:LocalStorageService) {
   }
   
   setNamaPlannerDetail(nama:string|null):void{
@@ -144,6 +147,44 @@ export class PlannerService {
   }
   
 
+  setLocalStorage(key:string,object:any):boolean{
+    this.encryptedObject = encodeURIComponent(CryptoJS.AES.encrypt(JSON.stringify(object), this.secretKey).toString());
+    try {
+      this.localStorage.store(key,this.encryptedObject);
+      return true;  
+    } catch (error) {
+      return false;
+    }
+    
+    
+    
+  }
+  getLocalStorage(key:string):any{
+    var retrievedObject
+    var deData= CryptoJS.AES.decrypt(decodeURIComponent(this.localStorage.retrieve(key)), this.secretKey); 
+    try {
+      retrievedObject = JSON.parse(deData.toString(CryptoJS.enc.Utf8));
+      return retrievedObject;
+    } catch (e) {
+      console.log(e)
+      return null;
+    }
+    
+  }
+  clearLocalStorage(key:string)
+  {
+    this.localStorage.clear(key)
+  }
+
+
+  updatePlanner(editRequest:PlannerUpdateRequest,idPlan:number):Observable<any>{
+    const url=environment.updatePlannerUrl+'/'+idPlan;
+    return this.http.put(url,editRequest,this.httpOptions);
+  }
+  deletePlanner(idPlan:number):Observable<any>{
+    const url=environment.updatePlannerUrl+'/'+idPlan;
+    return this.http.delete(url,this.httpOptions);
+  }
 
 
 }

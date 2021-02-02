@@ -8,8 +8,14 @@ import { KonfirmasiTransaksiComponent } from '../components/konfirmasi-transaksi
 import { PilihTargetComponent } from '../components/pilih-target/pilih-target.component';
 import { PinComponent } from '../components/pin/pin.component';
 import { PlannerDetailPortfolioComponent } from '../components/planner-detail-portfolio/planner-detail-portfolio.component';
+import { PlannerDetailTransaksiJualComponent } from '../components/planner-detail-transaksi-jual/planner-detail-transaksi-jual.component';
+import { PlannerEditDataPlannerComponent } from '../components/planner-edit-data-planner/planner-edit-data-planner.component';
+import { PlannerEditSuccessComponent } from '../components/planner-edit-success/planner-edit-success.component';
+import { PlannerEditTargetComponent } from '../components/planner-edit-target/planner-edit-target.component';
 import { PlannerEditComponent } from '../components/planner-edit/planner-edit.component';
+import { PlannerJualReksadanaComponent } from '../components/planner-jual-reksadana/planner-jual-reksadana.component';
 import { PlannerListReksadanaComponent } from '../components/planner-list-reksadana/planner-list-reksadana.component';
+import { PlannerPinJualReksadanaComponent } from '../components/planner-pin-jual-reksadana/planner-pin-jual-reksadana.component';
 import { PortofolioBaruComponent } from '../components/portofolio-baru/portofolio-baru.component';
 import { ProductDetailComponent } from '../components/product-detail/product-detail.component';
 import { ProductComponent } from '../components/product/product.component';
@@ -39,6 +45,13 @@ const routes: Routes = [
       { path: 'kode-pin',component:PinComponent},
       { path: 'list-reksadana',component:PlannerListReksadanaComponent},
       { path: 'edit',component:PlannerEditComponent},
+      { path: 'edit-target',component:PlannerEditTargetComponent},
+      { path: 'edit-detail',component:PlannerEditDataPlannerComponent},
+      { path: 'edit-success',component:PlannerEditSuccessComponent},
+      { path: 'jual-semua',component:PlannerJualReksadanaComponent},
+      { path: 'pin-jual',component:PlannerPinJualReksadanaComponent},
+      { path: 'detail-transaksi-jual',component:PlannerDetailTransaksiJualComponent}
+      
     ]
   }
 ];

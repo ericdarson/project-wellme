@@ -22,7 +22,7 @@ export class PortofolioBaruComponent implements OnInit {
     this.checkState();
     this.portfolioForm = new FormGroup({
       nama_portfolio: new FormControl('', [Validators.required]),
-      target: new FormControl('',[Validators.required]),
+      target: new FormControl('',[Validators.required,Validators.min(0)]),
       durasi_target: new FormControl('',[Validators.required,this.dateValidator.bind(this)]),
       periodic: new FormControl('',Validators.required)
     });

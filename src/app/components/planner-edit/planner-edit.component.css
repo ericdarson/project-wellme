@@ -1,3 +1,18 @@
 .little-space{
     margin-bottom: 10px;
 }
+.btn-hapus{
+    background-color:white; 
+    color: #6ED940;
+    border: 2px solid #6ED940;
+    width: 100%;
+    margin-bottom: 10px !important;
+}
+.btn-hapus:disabled{
+    background-color: #cccccc;
+    color:#adadad;
+    border: 2px solid #cccccc;
+    width: 100%;
+    margin-bottom: 10px !important;
+
+}
