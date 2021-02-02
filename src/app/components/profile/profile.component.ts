@@ -51,9 +51,11 @@ export class ProfileComponent implements OnInit {
          console.log("gagal get profile")
       }
      },error=>{
-        if(error.status = 403 || error.status =="403"){
+        console.log(error.status)
+        if(error.status == 403 || error.status =="403"){
           this.sharedService.logout()
         }else{
+          console.log("masuk sana")
           this.isFailedToLoad = true;
         }
      })

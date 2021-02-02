@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { GeturlService } from './geturl.service';
 
 @Injectable({
   providedIn: 'root'
@@ -41,12 +42,18 @@ export class CheckSessionService {
             this.session.store("token",response.output_schema.session.new_token);
           }
           else{
-            this.router.navigate(['/login'])
+            this.logout()
           }
         },error=>{
-          this.router.navigate(['/login'])
+
         })
       }
+  }
+
+  logout(){
+    this.session.clear('token');
+    this.session.clear('bca_id');
+    this.router.navigate(['/login'])
   }
 
 

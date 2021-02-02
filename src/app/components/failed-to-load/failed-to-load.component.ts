@@ -11,10 +11,21 @@ export class FailedToLoadComponent implements OnInit {
   onButtonClicked: EventEmitter<any> = new EventEmitter<any>();
   @Input()
   buttonText: string;
+  @Input()
+  descText: string;
+  @Input()
+  image: string;
 
   constructor() { }
 
   ngOnInit(): void {
+    if(this.descText==''|| this.descText==null || this.descText == undefined){
+      this.descText ="Gagal Memuat Data!"
+    }
+    if(this.image==''|| this.image==null || this.image == undefined){
+      this.image ="assets/icon/failed-to-load-icon.png"
+    }
+
   }
 
   buttonClicked(){

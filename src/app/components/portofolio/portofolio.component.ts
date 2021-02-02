@@ -40,7 +40,7 @@ export class PortofolioComponent implements OnInit {
         //  console.log("gagal get profile")
       }
      },error=>{
-      if(error.status = 403){
+      if(error.status == 403){
         this.sharedService.logout()
       }else{
         this.isLoading=false;

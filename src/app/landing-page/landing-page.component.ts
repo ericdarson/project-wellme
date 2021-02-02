@@ -35,4 +35,8 @@ export class LandingPageComponent implements OnInit {
     });
   }
 
+  goToBottom(){
+    window.scrollTo(0,document.body.scrollHeight);
+  }
+
 }
