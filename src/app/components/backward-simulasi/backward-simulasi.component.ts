@@ -128,7 +128,7 @@ export class BackwardSimulasiComponent implements OnInit {
     this.service.setJenisReksadana("");
     this.service.setNamaProduk("");
     console.log("redirecting")
-      this.router.navigate(["../../index"]);
+      this.router.navigate(["../backward-projection",{relativeTo:this.route}]);
   }
   retryClicked(){
     this.service.startSimulation(this.simulationdate, this.idproduk).subscribe(response=>{
