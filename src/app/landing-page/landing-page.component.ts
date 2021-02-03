@@ -35,8 +35,8 @@ export class LandingPageComponent implements OnInit {
     });
   }
 
-  goToBottom(){
-    window.scrollTo(0,document.body.scrollHeight);
+  scroll(el: HTMLElement) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
 }
