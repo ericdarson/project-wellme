@@ -19,7 +19,9 @@ export class BackwardSimulasiComponent implements OnInit {
   mingguSelected: boolean = false;
   bulanSelected: boolean = false;
   isFailedToLoad: boolean = false;
+  errorStatus : number;
   isFailedToLoadSimulation: boolean = false;
+  errorStatusSimulation : number;
 
   nominalPembelian: number = 0;
   
@@ -89,6 +91,7 @@ export class BackwardSimulasiComponent implements OnInit {
       this.isLoading = false;
       this.isFailedToLoadSimulation = false;
     }, error=>{
+      this.errorStatusSimulation = error.status
       this.isLoading = false;
       this.isFailedToLoadSimulation = true;
     });
@@ -169,8 +172,25 @@ export class BackwardSimulasiComponent implements OnInit {
       this.isLoading = false;
       this.isFailedToLoad = false;
     }, error=>{
+      this.errorStatus = error.status
       this.isLoading = false;
       this.isFailedToLoad = true;
     });
+  }
+
+  errorButtonClicked(){
+    if(this.errorStatus == 403){
+      this.router.navigate(['/'])
+    }else{
+      this.retryClicked();
+    }
+  }
+
+  errorButtonSimulationClicked(){
+    if(this.errorStatus == 403){
+      this.router.navigate(['/'])
+    }else{
+      this.doSimulation();
+    }
   }
 }

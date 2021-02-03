@@ -25,7 +25,7 @@
             <div *ngIf="this.isFailedToLoad" class="mt-5">
                 <div class="row" style="justify-content: center;">
                     <div class="col-md-6">
-                        <app-failed-to-load [buttonText]="'Retry'" (onButtonClicked)="retryClicked()"></app-failed-to-load>
+                        <app-failed-to-load [errorStatus]="this.errorStatus" (onButtonClicked)="errorButtonClicked()"></app-failed-to-load>
                     </div>
                 </div>
             </div>
@@ -38,9 +38,9 @@
                                 <div class="jflex-column stretch">
                                     <div class="jflex-row stretch" style="align-items: flex-end; margin-bottom: 20px;">
                                         <img src="assets/img/img_promo_objectives.png" width="170px">
-                                        <div *ngIf="objective.current_amount == objective.target_akumulasi" class="font-green jflex-row center-cross-axis"><mat-icon>check_circle_outline</mat-icon><strong>Completed!</strong></div>
-                                        <div *ngIf="objective.current_amount >= 0 && objective.current_amount != objective.target_akumulasi" class="jflex-row center-cross-axis"><strong>On Progress</strong></div>
-                                        <div *ngIf="objective.current_amount == -1" class="jflex-row center-cross-axis"><strong>Available</strong></div>
+                                        <div *ngIf="+objective.current_amount >= +objective.target_akumulasi" class="font-green jflex-row center-cross-axis"><mat-icon>check_circle_outline</mat-icon><strong>Completed!</strong></div>
+                                        <div *ngIf="+objective.current_amount >= 0 && +objective.current_amount < +objective.target_akumulasi" class="jflex-row center-cross-axis"><strong>On Progress</strong></div>
+                                        <div *ngIf="+objective.current_amount == -1" class="jflex-row center-cross-axis"><strong>Available</strong></div>
                                     </div>
                                     <span><h1 class="font-green" style="max-width: 300px;"><strong>{{objective.title}}</strong></h1></span>
                                     <div class="jflex-row stretch">

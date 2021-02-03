@@ -15,6 +15,7 @@ export class LoginPageComponent implements OnInit {
   password : string;
   message : string;
   isLoading : boolean = false;
+  isWrongPass : boolean =false
   constructor(private router : Router, private session :LocalStorageService, private loginservice : LoginService) {
 
    }
@@ -33,13 +34,18 @@ export class LoginPageComponent implements OnInit {
        this.session.store("token",response.output_schema.detail_login.token);
        this.message="";
        this.router.navigate(['/index'])
+       this.isWrongPass = false;
+     }else if(response.output_schema.detail_login.message=="USERNAME ATAU PASSWORD SALAH"){
+        this.isWrongPass = true;
+        this.isLoading = false;
      }
      else{
-        this.isLoading = false
-        this.message=response.output_schema.detail_login.message;
+        this.isLoading = false;
+        this.isWrongPass = false;
      }
     },error=>{
-      this.isLoading = false
+      this.isLoading = false;
+      this.isWrongPass = false;
     })
   }
 

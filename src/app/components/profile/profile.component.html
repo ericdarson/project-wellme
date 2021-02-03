@@ -147,7 +147,7 @@
 <div *ngIf="this.isFailedToLoad" class="master-component">
     <div class="row" style="justify-content: center;">
         <div class="col-md-10">
-            <app-failed-to-load [buttonText]="'Ulangi'" (onButtonClicked)="retryClicked()"></app-failed-to-load>
+            <app-failed-to-load [errorStatus]="this.errorStatus" (onButtonClicked)="errorButtonClicked()"></app-failed-to-load>
         </div>
     </div>
 </div>

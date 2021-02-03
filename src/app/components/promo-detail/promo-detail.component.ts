@@ -45,7 +45,7 @@ export class PromoDetailComponent implements OnInit {
         alert("Gagal Klaim Hadiah!")
       }
     },(error)=>{
-      if(error.status = 403){
+      if(error.status == 403){
         this.sharedService.logout()
       }else{
         this.isLoading = false;
@@ -66,7 +66,7 @@ export class PromoDetailComponent implements OnInit {
         alert("Gagal Memulai Objective!")
       }
     },(error)=>{
-      if(error.status = 403){
+      if(error.status == 403){
         this.sharedService.logout()
       }else{
         this.isLoading = false;
@@ -76,21 +76,25 @@ export class PromoDetailComponent implements OnInit {
 
   detectChange(){
     this.objective = this.promoService.getSelectedPromo();
+    console.log(this.objective)
     if(this.objective == null || this.objective == undefined || this.objective.kode_promo == "-1"){
       this.isNotFound = true;
       this.isLoading = false;
     }else{
-      if(this.objective.current_amount==-1){
+      if(+this.objective.current_amount==-1){
+        console.log("not start")
         this.isNotStart = true;
         this.isComplete = this.isProgress = false;
         this.promoStatus="promo-box-on-progress"
-      }else if(this.objective.current_amount == this.objective.target_akumulasi){
+      }else if(+this.objective.current_amount >= +this.objective.target_akumulasi){
+        console.log("complete")
         this.isComplete = true;
         this.isNotStart = this.isProgress = false;
         this.promoStatus="promo-box-complete"
-      }else if(this.objective.current_amount >= 0){
+      }else if(+this.objective.current_amount >= 0){
+        console.log("progress")
         this.isProgress = true;
-        this.isNotStart = this.isComplete = false;
+        this.isNotStart = this.isComplete = false; 
         this.promoStatus="promo-box-on-progress"
       }
       this.currentProgress = (this.objective.current_amount/this.objective.target_akumulasi)*100

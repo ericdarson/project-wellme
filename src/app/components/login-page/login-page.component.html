@@ -22,6 +22,9 @@
                                 <mat-icon matSuffix class="clickable" (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                             </mat-form-field>
                         </div> 
+                        <div *ngIf="isWrongPass" class="flex mb-2" style="justify-content:flex-end;color:red;">
+                            Username atau Password Salah
+                        </div> 
                         <div class="flex hover-wellme clickable" style="justify-content:flex-end;">
                             Forgot Password?
                         </div>   

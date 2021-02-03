@@ -28,9 +28,9 @@
 
 <div>
     <div>
-        <ngb-carousel #ngcarousel (slide)="slideActivate($event)" [activeId]="'0'" [interval]="0" style="height: 100%;">
+        <ngb-carousel #ngcarousel (slide)="slideActivate($event)" [activeId]="'0'" [interval]="0" style="min-height: 400px; min-width: 600px;">
             <ng-template ngbSlide *ngFor="let image of imageBackgroundArray; let i = index" id="{{i}}">
-                <div *ngIf="page==0" class="button-fill component-middle-small p-4">
+                <div *ngIf="this.showFirstPage" class="button-fill component-middle-small p-4">
                     <div>
                         Selamat datang
                         di Backward Projection!
@@ -39,15 +39,17 @@
                         tekan tombol lanjut
                     </div>
                     <div class="mt-4 flex" style="justify-content: space-between;">
-                        <button mat-button class="lanjut-button" (click)="clickNextButton()" >Lanjut</button>
+                        <button mat-button class="exit-button" (click)="clickNextButton()" >Lanjut</button>
                         <button mat-button class="exit-button text-wellme-color" (click)="clickExitButton()" >Keluar</button>
                     </div>
                 </div>
+                <div class="close-button">
+                    <mat-icon class="clickable" style="    font-size: 3em;">close</mat-icon>
+                </div>
                <div class="font-18 bg-wellme full-image">
-                    <img class="img-fluid full-image" src="{{image}}">
+                    <img class="img-fluid full-image" style="min-height: 400px; min-width: 600px;"  src="{{image}}">
               </div>
             </ng-template>
         </ngb-carousel>
     </div>
-    
 </div>

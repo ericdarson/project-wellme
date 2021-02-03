@@ -35,14 +35,9 @@ export class CheckSessionService {
             'token':String(token),
           })
         };
-        console.log(httpOptions)
         this.http.post(url,{},httpOptions).subscribe((response:any) =>{
-          console.log(response)
           if(response.output_schema.session.message=="SUKSES"){
             this.session.store("token",response.output_schema.session.new_token);
-          }
-          else{
-            this.logout()
           }
         },error=>{
 
@@ -53,6 +48,7 @@ export class CheckSessionService {
   logout(){
     this.session.clear('token');
     this.session.clear('bca_id');
+    this.session.clear("dialogTutorialBackward")
     this.router.navigate(['/login'])
   }
 

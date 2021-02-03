@@ -6,6 +6,7 @@ import { PopupTutorialBackwardComponent } from '../../popup/popup-tutorial-backw
 import { BackwardProjectionListJenisReksadana } from '../../models/BackwardProjectionListJenisReksadana'
 import { BackwardProjectionListJenisReksadanaResponse } from '../../models/BackwardProjectionListJenisReksadana'
 import { BackwardProjectionListReksadanaService } from '../../services/backward-projection-list-reksadana.service'
+import { LocalStorageService } from 'ngx-webstorage';
 
 @Component({
   selector: 'app-backward-projection',
@@ -20,18 +21,26 @@ export class BackwardProjectionComponent implements OnInit {
   selectedJenis:string = ""
   isLoading:boolean = true;
   isFailedToLoad:boolean = false;
+  errorStatus : number;
+  showTutorDialog: boolean =true;
 
-  constructor(public dialog: MatDialog,private router : Router,private route : ActivatedRoute, private service : BackwardProjectionListReksadanaService) { }
+  constructor(public dialog: MatDialog,private router : Router,private route : ActivatedRoute,
+     private service : BackwardProjectionListReksadanaService,private localStorage: LocalStorageService) { }
 
   ngOnInit(): void {
     this.listReksadana = [];
+    if(this.localStorage.retrieve("dialogTutorialBackward")!=null || this.localStorage.retrieve("dialogTutorialBackward") != undefined){
+      this.showTutorDialog = !this.localStorage.retrieve("dialogTutorialBackward")
+    }
+   
     this.retryClicked();
+
   }
 
   openSKPopup():void{
     const dialogRef = this.dialog.open(PopupSyaratKetentuanComponent, {
       height:'400px',
-      width: '300px',
+      width: '350px',
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -41,22 +50,30 @@ export class BackwardProjectionComponent implements OnInit {
   }
 
   openTutorialBackward():void{
-    const dialogRef = this.dialog.open(PopupTutorialBackwardComponent, {
-      height:'350px',
-      width: '350px',
-      disableClose: true 
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
+    if(this.showTutorDialog){
+      const dialogRef = this.dialog.open(PopupTutorialBackwardComponent, {
+        height:'350px',
+        width: '350px',
+        disableClose: true 
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        this.service.setJenisReksadana(this.selectedJenis);
+        console.log('The dialog was closed ' + result);
+        if(result){
+          this.router.navigate(['../backward-tutorial/'+this.selectedId], {relativeTo: this.route})
+        }else{
+          this.router.navigate(['../backward-list-reksadana/'+this.selectedId], {relativeTo: this.route})
+        }
+      });
+    }else{
       this.service.setJenisReksadana(this.selectedJenis);
-      console.log('The dialog was closed ' + result);
-      if(result){
-        this.router.navigate(['../backward-tutorial/'+this.selectedId], {relativeTo: this.route})
-      }else{
-        this.router.navigate(['../backward-list-reksadana/'+this.selectedId], {relativeTo: this.route})
-      }
-    });
+      this.router.navigate(['../backward-list-reksadana/'+this.selectedId], {relativeTo: this.route})
+    }
+    
   }
+
+
 
   setSk(checked: boolean) {
     this.skCheck = checked
@@ -110,7 +127,16 @@ export class BackwardProjectionComponent implements OnInit {
         this.isFailedToLoad = false;
       }
     }, error=>{
+      this.errorStatus = error.status
       this.isFailedToLoad = true;
     })
+  }
+
+  errorButtonClicked(){
+    if(this.errorStatus == 403){
+      this.router.navigate(['/'])
+    }else{
+      this.retryClicked();
+    }
   }
 }

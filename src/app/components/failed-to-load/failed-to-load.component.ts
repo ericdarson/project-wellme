@@ -7,23 +7,26 @@ import { EventEmitter } from '@angular/core';
   styleUrls: ['./failed-to-load.component.css']
 })
 export class FailedToLoadComponent implements OnInit {
+  image : string;
+  buttonText : string;
+  descText : string;
+
   @Output()
   onButtonClicked: EventEmitter<any> = new EventEmitter<any>();
   @Input()
-  buttonText: string;
-  @Input()
-  descText: string;
-  @Input()
-  image: string;
+  errorStatus: number;
 
   constructor() { }
 
   ngOnInit(): void {
-    if(this.descText==''|| this.descText==null || this.descText == undefined){
-      this.descText ="Gagal Memuat Data!"
-    }
-    if(this.image==''|| this.image==null || this.image == undefined){
-      this.image ="assets/icon/failed-to-load-icon.png"
+    if(this.errorStatus == 403){
+      this.image = "assets/img/error_page_403.png"
+      this.buttonText = "Menu Utama"
+      this.descText = "Akses Terbatas Mohon Kembali ke Menu Utama"
+    }else{
+      this.image = "assets/icon/failed-to-load-icon.png"
+      this.buttonText = "Muat Ulang"
+      this.descText = "Koneksi Error Mohon Coba Lagi"
     }
 
   }

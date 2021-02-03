@@ -25,6 +25,7 @@ export class PromoListComponent implements OnInit {
   isLoading : boolean = false;
   isNotFound : boolean = false;
   isFailedToLoad : boolean = false;
+  errorStatus : number;
 
   promoResponse : PromotionResponse;
   constructor(private promoService : PromoService,private router : Router,
@@ -71,12 +72,9 @@ export class PromoListComponent implements OnInit {
         this.isFailedToLoad = true;
       }
     },(error)=>{
-      if(error.status = 403){
-        this.sharedService.logout()
-      }else{
-        this.isFailedToLoad = true;
-        this.isLoading = false;
-      }
+      this.errorStatus= error.status
+      this.isFailedToLoad = true; 
+      this.isLoading =false
     })
   }
   
@@ -100,8 +98,12 @@ export class PromoListComponent implements OnInit {
     this.router.navigate(['../detail'], {relativeTo: this.route});
   }
 
-  retryClicked(){
-    this.getPromo();
+  errorButtonClicked(){
+    if(this.errorStatus == 403){
+      this.router.navigate(['/'])
+    }else{
+      this.getPromo();
+    }
   }
   
 }
