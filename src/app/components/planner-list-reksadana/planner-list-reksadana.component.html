@@ -1,4 +1,4 @@
-<div class="jflex-column container" style="height: 100%;">
+<div *ngIf="!isFailedToLoad" class="jflex-column container" style="height: 100%;">
     <div class="jflex-row" style="padding-top:20px;">
         <mat-icon class="clickable" (click)="goBack()">chevron_left</mat-icon>
         <h1 style="text-align: center;" class="width-full headFont"><b>Financial Planner</b></h1>
@@ -18,6 +18,14 @@
         </div>
     </div>
     <!-- End Shimering-->
+
+    <div class="jflex-column padding-beauty center-main-axis center-cross-axis" style="height:90%" *ngIf="notFound">
+        <img src="assets/img/list-planner-nothing.png">
+        <h2 class="font-green"  style="text-align: center;"><strong>Reksadana Tidak Ditemukan</strong></h2>
+        <p class="font-green"  style="text-align: center;">Silahkan pilih kategori reksadana lain</p>
+        
+    </div>
+
     <div class="row flex" *ngIf="!loader">
         <div *ngFor="let reksa of listReksadana" class="col-md-6">
             <div class=" profile-item-box p-3 pointer">
@@ -60,4 +68,12 @@
         </div>
     </div>
     
+</div>
+
+<div *ngIf="this.isFailedToLoad" class="master-component" style="width: 80%; height: 60%;">
+    <div class="row" style="justify-content: center;">
+        <div class="col-md-10">
+            <app-failed-to-load [buttonText]="'Retry'" (onButtonClicked)="retryClicked()"></app-failed-to-load>
+        </div>
+    </div>
 </div>

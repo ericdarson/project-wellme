@@ -8,6 +8,7 @@ import { PlannerPembelianService } from 'src/app/services/planner-pembelian.serv
 
 import { PlannerProductComponent } from '../planner-product/planner-product.component';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { GeturlService } from 'src/app/services/geturl.service';
 @Component({
   selector: 'app-planner-list-reksadana',
   templateUrl: './planner-list-reksadana.component.html',
@@ -20,19 +21,21 @@ export class PlannerListReksadanaComponent implements OnInit {
   listReksadana:PlannerReksadana[]=[];
   namaJenisReksadana:string;
   loader=true;
-  constructor(private router : Router, private location:Location,private route: ActivatedRoute,private plannerService:PlannerPembelianService, private bottomSheet: MatBottomSheet) { }
-
+  isFailedToLoad :boolean=false;
+  notFound:boolean=false;
+  constructor(private router : Router, private location:Location,private route: ActivatedRoute,private plannerService:PlannerPembelianService, private bottomSheet: MatBottomSheet,private sharedService:GeturlService) { }
+  
   ngOnInit(): void {
     this.checkState();
     
   }
-
+  
   openBottomSheet(reksa:any): void {
     this.plannerService.setLocalStorage("detail-reksadana",reksa);
     this.bottomSheet.open(PlannerProductComponent);
   }
   goBack(){
-this.location.back();
+    this.location.back();
   }
   checkState():void{
     this.plannerId=this.plannerService.getIdDetail();
@@ -48,15 +51,31 @@ this.location.back();
         this.listReksadana=response.output_schema;
         console.log(this.listReksadana);
         this.loader=false;
-      })
+      },error=>{
+        if(error.status == 403){
+          this.sharedService.logout()
+        }else if(error.status==404){
+          this.loader=false;
+          this.notFound=true;
+        }else
+        {
+          //this.isLoading=false;
+          this.isFailedToLoad = true;
+        }
+      });
     }
   }
-
+  
   addKonfirmasi(reksadana:PlannerReksadana):void{
     
     this.plannerService.addKonfirmasiPembelian(reksadana);
     this.router.navigate(['../beli-reksadana'],{relativeTo:this.route})
-
+    
+  }
+  retryClicked(){
+    this.loader=true;
+    this.isFailedToLoad = false;
+    this.checkState();
   }
   
 }

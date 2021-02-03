@@ -141,8 +141,8 @@ export class PlannerEditDataPlannerComponent implements OnInit {
   
   openSuccessPopup():void{
     const dialogRef = this.dialog.open(PlannerEditSuccessComponent, {
-      height:'500px',
-      width: '400px',
+      height:'360px',
+      width: '360px',
     });
 
     dialogRef.afterClosed().subscribe(result => {

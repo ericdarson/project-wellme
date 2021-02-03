@@ -21,6 +21,7 @@ export class PlannerJualReksadanaComponent implements OnInit {
   idDetail:number;
   snkChecked:boolean=false;
   requestPenjualan:PlannerRequestJual[]=[];
+  totalBiayaPenjualan:number=0;
   constructor(private dialog:MatDialog,private location:Location,private plannerService:PlannerService,private router:Router,private route:ActivatedRoute) { }
   
   ngOnInit(): void {
@@ -39,14 +40,16 @@ export class PlannerJualReksadanaComponent implements OnInit {
       for (let i = 0; i < this.plannerDetail.portfolio.length; i++) {
         if(this.plannerDetail.portfolio[i].status=="Unit")
         {
+          this.totalBiayaPenjualan=Number(this.totalAsset)+Number((this.plannerDetail.portfolio[i].biaya_penjualan/100)*this.plannerDetail.portfolio[i].asset);
           this.totalAsset=Number(this.totalAsset)+Number(this.plannerDetail.portfolio[i].asset);
           this.requestPenjualan.push({
-            id_plan:this.idDetail,
+            id_plan:Number(this.idDetail),
             id_produk:Number(this.plannerDetail.portfolio[i].id_produk),
-            jumlah_unit:this.plannerDetail.portfolio[i].jumlah_unit
+            jumlah_unit:Number(this.plannerDetail.portfolio[i].jumlah_unit)
           })
         }
       }
+      this.totalAsset=Number(this.totalAsset)-Number(this.totalBiayaPenjualan);
       this.plannerService.setLocalStorage("plannerJual",this.requestPenjualan);
     }
     
@@ -67,4 +70,8 @@ export class PlannerJualReksadanaComponent implements OnInit {
     });
   }
   
+  cancelingTransaction(){
+    this.plannerService.clearLocalStorage("plannerJual");
+    this.router.navigate(['../'],{relativeTo:this.route});
+  }
 }

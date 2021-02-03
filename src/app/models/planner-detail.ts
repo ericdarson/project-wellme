@@ -11,4 +11,5 @@ export class PlannerDetail {
     rekomendasi_pembelian:number;
     portfolio:PlannerPortfolio[];
     periodic:string;
+    creation_date:string;
 }

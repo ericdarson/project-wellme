@@ -14,7 +14,7 @@ import { Md5 } from 'ts-md5';
 })
 export class PinComponent implements OnInit {
   
-  constructor(public dialog: MatDialog,private router:Router,private plannerService:PlannerPembelianService,private location:Location,private route : ActivatedRoute){ }
+  constructor(public dialog: MatDialog,private router:Router,private plannerService:PlannerPembelianService,private location:Location,private route : ActivatedRoute){}
   pin:number[]=[]
   activeStatus:string[]=["dot","dot","dot","dot","dot","dot"];
   ngOnInit(): void {
@@ -76,19 +76,26 @@ export class PinComponent implements OnInit {
         this.wrongPinClass=false;
         this.wrongPinMessage="";
         pembelian.subscribe((response:any)=>{
+          if(response.error_schema.error_message.english=="INSUFFICIENT BALANCE"){
+            this.wrongPinClass=true;
+            this.wrongPinMessage="Saldo Anda Tidak Cukup" 
+          }
+          else{
           this.plannerService.clearLocalStorage("plannerBeliState");
           this.plannerService.clearLocalStorage("plannerKonfirmasi");
           this.plannerService.setLocalStorage("detailTransaksi",response.output_schema);
           this.loader=false;
-          this.router.navigate(['../detail-transaksi'],{relativeTo:this.route}
-          
-          )
+          this.router.navigate(['../detail-transaksi'],{relativeTo:this.route})};
         },(error:any)=>{
           this.loader=false;
           console.log(error);
           if(error.error.error_schema.error_message.english=="WRONG PIN"){
             this.wrongPinClass=true;
             this.wrongPinMessage="Pin yang Anda Masukan Salah" 
+          }
+          else{
+            this.wrongPinClass=true;
+            this.wrongPinMessage="Gagal Membeli Reksadana" 
           }
         })
       }

@@ -1,4 +1,4 @@
-<div class="jflex-column" style="height: 100%;">
+<div *ngIf="!isFailedToLoad" class="jflex-column" style="height: 100%;">
     <div class="jflex-row" style="padding-top:20px;">
         <a (click)="goBack()" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
             <mat-icon>chevron_left</mat-icon>
@@ -6,7 +6,7 @@
         <h1 style="flex-basis: 85%; text-align: center;;" class="headFont"><strong>Kode Promo</strong></h1>
         <img src="assets/icon/well-me-logo-small.png" style="padding-right: 10px;" width="107" height="33">
     </div>
-    <div [ngClass]="notFoundClass" class="jflex-column padding-beauty center-main-axis center-cross-axis" style="height:90%">
+    <div *ngIf="promoList.length==0" class="jflex-column padding-beauty center-main-axis center-cross-axis" style="height:90%">
         <img src="assets/img/list-planner-nothing.png">
         <h2 class="font-green"><strong>Tidak ada item yang bisa dicari :(</strong></h2>
         <p class="font-green"> Ayo selesaikan objectives dan dapatkan berbagai macam Promo Menarik</p>
@@ -45,5 +45,13 @@
         
 
         
+    </div>
+</div>
+
+<div *ngIf="this.isFailedToLoad" class="master-component" style="width: 80%; height: 60%;">
+    <div class="row" style="justify-content: center;">
+        <div class="col-md-10">
+            <app-failed-to-load [buttonText]="'Retry'" (onButtonClicked)="retryClicked()"></app-failed-to-load>
+        </div>
     </div>
 </div>

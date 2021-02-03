@@ -51,6 +51,19 @@ export class PlannerPembelianService {
   plannerBeliState:PlannerBeliState;
   secretKey:string="aoiw3jtq3p4t8jawefimeifpq32jcf";
   constructor(private http:HttpClient,private localStorage:LocalStorageService) {
+    var bca_id = this.localStorage.retrieve("bca_id")
+    var token = this.localStorage.retrieve("token")
+    this.httpOptions={
+      headers:new HttpHeaders({
+        'Content-Type':'application/json',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS, GET, PUT,DELETE',
+        'Access-Control-Allow-Origin': '*',
+        'Identity': 'ERICIMPOSTORNYA',
+        'Bca-id':String(bca_id),
+        'Token':String(token)
+      })
+    }
   }
   setNamaPlannerDetail(nama:string|null):void{
     this.setLocalStorage("namaPlannerDetail",nama);
@@ -61,6 +74,7 @@ export class PlannerPembelianService {
     return this.getLocalStorage("namaPlannerDetail");
   }
   getPorfileResiko():Observable<any>{
+    this.updateHeader();
     const url=environment.profileResikoUrl;
     return this.http.get(url,this.httpOptions);
   }
@@ -238,6 +252,7 @@ export class PlannerPembelianService {
     
   }
   getPromoList():Observable<any>{
+    this.updateHeader();
     const url=environment.promoPlannerUrl;
     
     return this.http.get(url,this.httpOptions);
@@ -300,28 +315,32 @@ export class PlannerPembelianService {
     return this.getLocalStorage("idJenisReksadana");
   }
   getListReksadana(idJenis:number):Observable<any>{
+    this.updateHeader();
     const url=environment.listReksadanaPlannerUrl+'/'+idJenis;
     return this.http.get(url,this.httpOptions);
   }
   
   
   doPembelian(pinMd5:string):any{
+    this.updateHeader();
     const url=environment.plannerPembelianUrl;
     if(this.preparePembelianRequest())
     {
       console.log(this.requestPembelian);
-      var httpOptions:any={
-        headers:new HttpHeaders({
-          'Content-Type':'application/json',
-          'Access-Control-Allow-Headers': 'Content-Type',
-          'Access-Control-Allow-Methods': 'POST, OPTIONS, GET, PUT,DELETE',
-          'Access-Control-Allow-Origin': '*',
-          'Identity': 'ERICIMPOSTORNYA',
-          'Bca-id':'jeje',
-          'Token':'A905AB43ABF8BB33F532FAB977C1B80A',
-          'Pin':pinMd5
-        })
-      }
+    var bca_id = this.localStorage.retrieve("bca_id")
+    var token = this.localStorage.retrieve("token")
+    var httpOptions={
+      headers:new HttpHeaders({
+        'Content-Type':'application/json',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS, GET, PUT,DELETE',
+        'Access-Control-Allow-Origin': '*',
+        'Identity': 'ERICIMPOSTORNYA',
+        'Bca-id':String(bca_id),
+        'Token':String(token),
+        'Pin':pinMd5
+      })
+    }
       
       return this.http.post(url,this.requestPembelian,httpOptions);
     }
@@ -329,6 +348,35 @@ export class PlannerPembelianService {
     //return this.http.post(url,this.requestPembelian,this.httpOptions);
   }
   
+  doPenjualan(pinMd5:string):any{
+    this.updateHeader();
+    const url=environment.plannerPenjualanUrl;
+    var body=this.getLocalStorage("plannerJual");
+    if(body!=null)
+    {
+      
+      var bca_id = this.localStorage.retrieve("bca_id")
+      var token = this.localStorage.retrieve("token")
+      var httpOptions={
+        headers:new HttpHeaders({
+          'Content-Type':'application/json',
+          'Access-Control-Allow-Headers': 'Content-Type',
+          'Access-Control-Allow-Methods': 'POST, OPTIONS, GET, PUT,DELETE',
+          'Access-Control-Allow-Origin': '*',
+          'Identity': 'ERICIMPOSTORNYA',
+          'Bca-id':String(bca_id),
+          'Token':String(token),
+          'Pin':pinMd5
+        })
+      }
+      
+      return this.http.post(url,body,httpOptions);
+    }
+    return null;
+    //return this.http.post(url,this.requestPembelian,this.httpOptions);
+  }
+
+
   preparePembelianRequest():boolean{
     var pbs=this.getPlannerBeliState();
 
@@ -427,6 +475,21 @@ var nominal_pembelian:number;
     this.localStorage.clear(key)
   }
 
-
+  updateHeader():void
+  {
+    var bca_id = this.localStorage.retrieve("bca_id")
+    var token = this.localStorage.retrieve("token")
+    this.httpOptions={
+      headers:new HttpHeaders({
+        'Content-Type':'application/json',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS, GET, PUT,DELETE',
+        'Access-Control-Allow-Origin': '*',
+        'Identity': 'ERICIMPOSTORNYA',
+        'Bca-id':String(bca_id),
+        'Token':String(token)
+      })
+    }
+  }
 
 }

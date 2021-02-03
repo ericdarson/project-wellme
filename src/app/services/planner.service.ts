@@ -19,17 +19,7 @@ export class PlannerService {
   namaPlannerDetail:string|null=null;
   rekomendasiPembelian:number|null=null;
   jenisReksadanaPembelian:string;
-  httpOptions:any={
-    headers:new HttpHeaders({
-      'Content-Type':'application/json',
-      'Access-Control-Allow-Headers': 'Content-Type',
-      'Access-Control-Allow-Methods': 'POST, OPTIONS, GET, PUT,DELETE',
-      'Access-Control-Allow-Origin': '*',
-      'Identity': 'ERICIMPOSTORNYA',
-      'Bca-id':'jeje',
-      'Token':'A905AB43ABF8BB33F532FAB977C1B80A'
-    })
-  }
+  httpOptions:any;
   plannerKonfirmasi:PlannerKonfirmasi[]=[];
   
   insertRequest:InsertPlannerRequest={
@@ -46,6 +36,19 @@ export class PlannerService {
   secretKey:string="aoiw3jtq3p4t8jawefimeifpq32jcf";
   plannerBeliState:PlannerBeliState;
   constructor(private http:HttpClient,private localStorage:LocalStorageService) {
+    var bca_id = this.localStorage.retrieve("bca_id")
+    var token = this.localStorage.retrieve("token")
+    this.httpOptions={
+      headers:new HttpHeaders({
+        'Content-Type':'application/json',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS, GET, PUT,DELETE',
+        'Access-Control-Allow-Origin': '*',
+        'Identity': 'ERICIMPOSTORNYA',
+        'Bca-id':String(bca_id),
+        'Token':String(token)
+      })
+    }
   }
   
   setNamaPlannerDetail(nama:string|null):void{
@@ -74,18 +77,21 @@ export class PlannerService {
     this.idDetail=null;
   }
   getPlannerList():Observable<any>{
+    this.updateHeader();
     const url=environment.plannerListUrl;
     
     return this.http.get(url,this.httpOptions);
   }
- 
+  
   insertPlanner():Observable<any>{
+    this.updateHeader();
     const url=environment.insertPlannerUrl;
     
     return this.http.post(url,this.insertRequest,this.httpOptions);
   }
   
   getPlannerDetail():Observable<any>{
+    this.updateHeader();
     const url=environment.plannerDetailUrl+'/'+this.idDetail;
     
     return this.http.get(url,this.httpOptions);
@@ -116,7 +122,7 @@ export class PlannerService {
     this.insertRequest.kategori=String(kategori);
     
   }
-
+  
   
   setRequest(nama_plan:string,goal_amount:string,periodic:string,dueDate:string){
     this.insertRequest.nama_plan=String(nama_plan);
@@ -126,6 +132,7 @@ export class PlannerService {
   }
   
   getSimulasiPlanner():Observable<any>{
+    this.updateHeader();
     const url=environment.simulasiPlannerUrl;
     this.simulasiPlannerRequest={};
     this.simulasiPlannerRequest={
@@ -137,16 +144,18 @@ export class PlannerService {
     return this.http.post(url,this.simulasiPlannerRequest,this.httpOptions);
   }
   getPorfileResiko():Observable<any>{
+    this.updateHeader();
     const url=environment.profileResikoUrl;
     return this.http.get(url,this.httpOptions);
   }
   
   getListReksadana(idJenis:number):Observable<any>{
+    this.updateHeader();
     const url=environment.listReksadanaPlannerUrl+'/'+idJenis;
     return this.http.get(url,this.httpOptions);
   }
   
-
+  
   setLocalStorage(key:string,object:any):boolean{
     this.encryptedObject = encodeURIComponent(CryptoJS.AES.encrypt(JSON.stringify(object), this.secretKey).toString());
     try {
@@ -159,6 +168,8 @@ export class PlannerService {
     
     
   }
+  
+  
   getLocalStorage(key:string):any{
     var retrievedObject
     var deData= CryptoJS.AES.decrypt(decodeURIComponent(this.localStorage.retrieve(key)), this.secretKey); 
@@ -175,16 +186,35 @@ export class PlannerService {
   {
     this.localStorage.clear(key)
   }
-
-
+  
+  
   updatePlanner(editRequest:PlannerUpdateRequest,idPlan:number):Observable<any>{
+    this.updateHeader();
     const url=environment.updatePlannerUrl+'/'+idPlan;
     return this.http.put(url,editRequest,this.httpOptions);
   }
   deletePlanner(idPlan:number):Observable<any>{
+    this.updateHeader();
     const url=environment.updatePlannerUrl+'/'+idPlan;
     return this.http.delete(url,this.httpOptions);
   }
+  
 
-
+  updateHeader():void
+  {
+    var bca_id = this.localStorage.retrieve("bca_id")
+    var token = this.localStorage.retrieve("token")
+    this.httpOptions={
+      headers:new HttpHeaders({
+        'Content-Type':'application/json',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS, GET, PUT,DELETE',
+        'Access-Control-Allow-Origin': '*',
+        'Identity': 'ERICIMPOSTORNYA',
+        'Bca-id':String(bca_id),
+        'Token':String(token)
+      })
+    }
+  }
+  
 }

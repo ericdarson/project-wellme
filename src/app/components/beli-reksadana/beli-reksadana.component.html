@@ -1,4 +1,4 @@
-<div class="jflex-column container" style="height: 100%;">
+<div *ngIf="!isFailedToLoad" class="jflex-column container" style="height: 100%;">
     <div class="jflex-row" style="padding-top:20px;" *ngIf="loader==false">
         <a (click)="goBack()" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
             <mat-icon>chevron_left</mat-icon>
@@ -106,5 +106,13 @@
     <div class="background-green jflex-row padding-beauty center-main-axis">
         <div *ngIf="loader==true" class="row"><ngx-shimmer-loading  [shape]="'rect'" [height]="'32px'" class="col-md-12" *ngIf="loader==true"></ngx-shimmer-loading></div>
         <a *ngIf="loader==false" (click)="goToConfirmationPage()" mat-raised-button style="background-color: #6ED940; color: white; width: 80%; "><strong>Beli Reksadana</strong></a>
+    </div>
+</div>
+
+<div *ngIf="this.isFailedToLoad" class="master-component" style="width: 80%; height: 60%;">
+    <div class="row" style="justify-content: center;">
+        <div class="col-md-10">
+            <app-failed-to-load [buttonText]="'Retry'" (onButtonClicked)="retryClicked()"></app-failed-to-load>
+        </div>
     </div>
 </div>

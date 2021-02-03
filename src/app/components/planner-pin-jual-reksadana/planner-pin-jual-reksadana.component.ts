@@ -78,25 +78,35 @@ export class PlannerPinJualReksadanaComponent implements OnInit {
       }
       console.log(strings);
       this.pinMD5=md5.appendStr(strings).end().toString();
-      var pembelian=this.plannerService.doPembelian(this.pinMD5);
-      if(pembelian!=null)
+      var penjualan=this.plannerService.doPenjualan(this.pinMD5);
+      if(penjualan!=null)
       {
         this.wrongPinClass=false;
         this.wrongPinMessage="";
-        pembelian.subscribe((response:any)=>{
-          this.plannerService.clearLocalStorage("plannerBeliState");
-          this.plannerService.clearLocalStorage("plannerKonfirmasi");
-          this.plannerService.setLocalStorage("detailTransaksi",response.output_schema);
-          this.loader=false;
-          this.router.navigate(['../detail-transaksi'],{relativeTo:this.route}
+        penjualan.subscribe((response:any)=>{
+
+          if(response.error_schema.error_message.english=="INSUFFICIENT BALANCE"){
+            this.wrongPinClass=true;
+            this.wrongPinMessage="Saldo Anda Tidak Cukup" 
+          }
+          else{
+            console.log(response);
+            this.plannerService.clearLocalStorage("plannerJual");
+            this.plannerService.setLocalStorage("detailTransaksiJual",response.output_schema);
+            this.loader=false;
+            this.router.navigate(['../detail-transaksi-jual'],{relativeTo:this.route});
+          }
           
-          )
         },(error:any)=>{
           this.loader=false;
           console.log(error);
           if(error.error.error_schema.error_message.english=="WRONG PIN"){
             this.wrongPinClass=true;
             this.wrongPinMessage="Pin yang Anda Masukan Salah" 
+          }
+          else{
+            this.wrongPinClass=true;
+            this.wrongPinMessage="Gagal Membeli Reksadana, Coba lagi" 
           }
         })
       }

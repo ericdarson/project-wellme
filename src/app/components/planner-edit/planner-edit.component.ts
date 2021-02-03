@@ -5,6 +5,9 @@ import { PlannerDetail } from 'src/app/models/planner-detail';
 import { PlannerUpdateRequest } from 'src/app/models/planner-update-request';
 import { PlannerService } from 'src/app/services/planner.service';
 import * as moment from 'moment';
+import { KonfirmasiDeleteComponent } from 'src/app/popup/konfirmasi-delete/konfirmasi-delete.component';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteSuccessComponent } from 'src/app/popup/delete-success/delete-success.component';
 @Component({
   selector: 'app-planner-edit',
   templateUrl: './planner-edit.component.html',
@@ -15,11 +18,11 @@ export class PlannerEditComponent implements OnInit {
   canDelete:boolean=false;
   plannerUpdateRequest:PlannerUpdateRequest;
   idDetail:number;
-  constructor(private plannerService:PlannerService,private router:Router,private location:Location,private route:ActivatedRoute) {}
-
+  constructor(private dialog:MatDialog,private plannerService:PlannerService,private router:Router,private location:Location,private route:ActivatedRoute) {}
+  
   ngOnInit(): void {
     this.checkState();
-
+    
   }
   checkState():void{
     this.plannerDetail=this.plannerService.getLocalStorage("plannerDetail");
@@ -44,7 +47,7 @@ export class PlannerEditComponent implements OnInit {
         nama_plan:this.plannerDetail.nama_plan,
         periodic:this.plannerDetail.periodic
       }
-  
+      
     }
     this.plannerService.setLocalStorage("plannerEdit",this.plannerUpdateRequest);
   }
@@ -52,11 +55,31 @@ export class PlannerEditComponent implements OnInit {
   {
     this.location.back();
   }
-
+  
+  
   deletePlan(){
-    this.plannerService.deletePlanner(this.idDetail).subscribe(response=>{
-      this.router.navigate(['../'],{relativeTo:this.route});
-    })
+    
+    const dialogRef = this.dialog.open(KonfirmasiDeleteComponent, {
+      height:'350px',
+      width: '350px',
+      disableClose: true 
+    });
+    
+    
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this.plannerService.deletePlanner(this.idDetail).subscribe(response=>{
+          const dialogRef2 = this.dialog.open(DeleteSuccessComponent, {
+            height:'350px',
+            width: '350px',
+            disableClose: true 
+          });
+          dialogRef2.afterClosed().subscribe(result => {
+            this.router.navigate(['../'],{relativeTo:this.route});
+          });
+        }); 
+      }
+    });
   }
-
+  
 }
