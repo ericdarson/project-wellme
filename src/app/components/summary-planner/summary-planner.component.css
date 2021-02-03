@@ -1,3 +1,6 @@
 .litle-space{
     margin-bottom: 10px;
 }
+.mat-spinner-color::ng-deep circle{
+    stroke: #6ED940 !important;
+}

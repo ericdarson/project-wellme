@@ -11,8 +11,9 @@ import { PlannerService } from 'src/app/services/planner.service';
 })
 export class SummaryPlannerComponent implements OnInit {
   plannerResiko:PlannerResiko;
-  
-  
+  loader2:boolean=false;
+loader:boolean=true;
+errorMessage:string="";
   constructor(private plannerService:PlannerService,private route:Router,private location:Location) { }
 
   ngOnInit(): void {
@@ -32,6 +33,7 @@ export class SummaryPlannerComponent implements OnInit {
 
   getProfileResiko():void{
     this.plannerService.getPorfileResiko().subscribe(response=>{
+      this.loader=false;
       this.plannerResiko=response.output_schema;
       
     })
@@ -39,10 +41,17 @@ export class SummaryPlannerComponent implements OnInit {
   insertPlanner():void{
     if (this.plannerService.isRequestValid())
     {
+      this.loader2=true;
       this.plannerService.insertPlanner().subscribe(response=>{
+        this.loader2=false;
         this.plannerService.resetVariable();
         this.route.navigate(['/financial-planner']);
-      });
+      },
+      (error:any)=>{
+        this.loader2=false;
+        this.errorMessage="Gagal Menambahkan Planner";
+      }
+      );
     }
   }
   

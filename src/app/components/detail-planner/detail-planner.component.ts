@@ -6,6 +6,7 @@ import { observable } from 'rxjs';
 import { ResponseApi } from 'src/app/models/ResponseApi';
 import { PlannerDetail } from 'src/app/models/planner-detail';
 import { PlannerPembelianService } from 'src/app/services/planner-pembelian.service';
+import { GeturlService } from 'src/app/services/geturl.service';
 @Component({
   selector: 'app-detail-planner',
   templateUrl: './detail-planner.component.html',
@@ -17,7 +18,8 @@ export class DetailPlannerComponent implements OnInit {
   imageSequence:string[]=[];
   imgSrcSequence:string[]=["","","","","","","","",""];
   loader:boolean=true;
-  constructor(private location: Location,private plannerService:PlannerService, private router:Router,private plannerPembelianService:PlannerPembelianService) { }
+  isFailedToLoad : boolean =false;
+  constructor(private location: Location,private plannerService:PlannerService, private router:Router,private plannerPembelianService:PlannerPembelianService,private sharedService:GeturlService) { }
   
   ngOnInit(): void {
     this.id=this.plannerService.getIdDetail();
@@ -47,6 +49,12 @@ export class DetailPlannerComponent implements OnInit {
       this.distributeImage(this.plan.gambar,this.plan.puzzle_sequence,this.plan.category,this.plan.current_amount,this.plan.target_plan);
 
     },(error)=>{
+      if(error.status == 403){
+        this.sharedService.logout()
+      }else{
+        //this.isLoading=false;
+        this.isFailedToLoad = true;
+      }
       console.log(error);
     }
     )
@@ -150,5 +158,9 @@ export class DetailPlannerComponent implements OnInit {
       
     });
   }
-  
+  retryClicked(){
+    this.loader=true;
+    this.isFailedToLoad = false;
+    this.getDetail()
+  }
 }

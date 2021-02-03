@@ -50,8 +50,8 @@ const routes: Routes = [
       { path: 'edit-success',component:PlannerEditSuccessComponent},
       { path: 'jual-semua',component:PlannerJualReksadanaComponent},
       { path: 'pin-jual',component:PlannerPinJualReksadanaComponent},
-      { path: 'detail-transaksi-jual',component:PlannerDetailTransaksiJualComponent}
-      
+      { path: 'detail-transaksi-jual',component:PlannerDetailTransaksiJualComponent},
+      { path: 'success',component:PlannerEditSuccessComponent}
     ]
   }
 ];

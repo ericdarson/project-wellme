@@ -23,7 +23,7 @@ export class PlannerDetailTransaksiJualComponent implements OnInit {
   }
   async checkState():Promise<void>{
     
-    this.detailTransaksi=this.plannerService.getLocalStorage("detailTransaksi");
+    this.detailTransaksi=this.plannerService.getLocalStorage("detailTransaksiJual");
     if(this.detailTransaksi==null)
     {
       this.router.navigate(['../'],{relativeTo:this.route});
@@ -32,7 +32,7 @@ export class PlannerDetailTransaksiJualComponent implements OnInit {
   }
 
   goToListPlanner(){
-    this.plannerService.clearLocalStorage("detailTransaksi");
+    this.plannerService.clearLocalStorage("detailTransaksiJual");
     this.router.navigate(['../'],{relativeTo:this.route});
   }
 }

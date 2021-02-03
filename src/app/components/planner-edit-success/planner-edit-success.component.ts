@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
+import { SyaratKetentuanPembelianComponent } from 'src/app/popup/syarat-ketentuan-pembelian/syarat-ketentuan-pembelian.component';
 
 @Component({
   selector: 'app-planner-edit-success',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlannerEditSuccessComponent implements OnInit {
 
-  constructor() { }
+
+  constructor(  public dialogRef: MatDialogRef<PlannerEditSuccessComponent>) {}
 
   ngOnInit(): void {
+  }
+  onCloseDialog(): void {
+    this.dialogRef.close();
   }
 
 }

@@ -85,6 +85,8 @@ import { PlannerJualReksadanaComponent } from './components/planner-jual-reksada
 import { PlannerPinJualReksadanaComponent } from './components/planner-pin-jual-reksadana/planner-pin-jual-reksadana.component';
 import { PlannerDetailTransaksiJualComponent } from './components/planner-detail-transaksi-jual/planner-detail-transaksi-jual.component';
 import { SyaratKetentuanPenjualanComponent } from './popup/syarat-ketentuan-penjualan/syarat-ketentuan-penjualan.component';
+import { KonfirmasiDeleteComponent } from './popup/konfirmasi-delete/konfirmasi-delete.component';
+import { DeleteSuccessComponent } from './popup/delete-success/delete-success.component';
 
 @NgModule({
   declarations: [
@@ -98,6 +100,8 @@ import { SyaratKetentuanPenjualanComponent } from './popup/syarat-ketentuan-penj
     SyaratKetentuanPembelianComponent,
     InformasiProdukComponent,
     SyaratKetentuanPenjualanComponent,
+    KonfirmasiDeleteComponent,
+    DeleteSuccessComponent,
     
   ],
   imports: [

@@ -1,4 +1,4 @@
-<div class="jflex-column container" style="height: 100%;">
+<div *ngIf="!isFailedToLoad" class="jflex-column container" style="height: 100%;">
     <div class="jflex-row" style="padding-top:20px;" *ngIf="loader==false">
         <a mat-icon-button aria-label="Example icon button with a vertical three dot icon" (click)="goBack()">
             <mat-icon>chevron_left</mat-icon>
@@ -9,6 +9,7 @@
         <div *ngIf="loader==true"><ngx-shimmer-loading [shape]="'circle'" [width]="'50px'" [height]="'50px'" ></ngx-shimmer-loading></div>
         <div *ngIf="loader==true" style="flex-basis: 90%;" class="jflex-row center-main-axis"><ngx-shimmer-loading [shape]="'rect'" [width]="'200px'" [height]="'32px'" ></ngx-shimmer-loading></div>
     </div>
+    
     <div class="jflex-column padding-beauty  center-cross-axis ">
 
         <mat-card class="box-outline litle-space" style="width: 100%;">
@@ -30,7 +31,13 @@
                </div>
            </div>
         </mat-card>
-    <div class="jflex-column little-space">
+        <div class="jflex-column padding-beauty center-main-axis center-cross-axis" style="height:90%" *ngIf="plan.portfolio==null">
+            <img src="assets/img/list-planner-nothing.png">
+            <h2 class="font-green"  style="text-align: center;"><strong>Reksadana Kamu Masih Kosong</strong></h2>
+            <p class="font-green"  style="text-align: center;">Yuk segera membeli reksadana agar bisa mencapai keinginan mu!</p>
+            
+        </div>
+    <div class="jflex-column little-space" *ngIf="plan.portfolio">
         
         <div class="jflex-row" *ngIf="loader==false">
             <img style="width: 100px; height: 100px;" src="{{imgSrcSequence[0]}}">
@@ -59,7 +66,7 @@
     </div>
      
     </div>
-    <div class="jflex-column little-space center-cross-axis center-main-axis">
+    <div class="jflex-column little-space center-cross-axis center-main-axis" *ngIf="plan.portfolio">
         <h2 style="text-align: center; width: 100%;"><b *ngIf="loader==false">{{plan.current_amount/plan.target_plan*100>100?100:plan.current_amount/plan.target_plan*100 |number:'1.0-0'}}%</b>
             <b *ngIf="loader==true">
                 <div class="jflex-row center-main-axis"><ngx-shimmer-loading [shape]="'rect'" [width]="'100px'" [height]="'32px'" ></ngx-shimmer-loading></div>
@@ -84,5 +91,12 @@
         <a *ngIf="!loader" routerLink="/financial-planner/detail-portfolio" mat-raised-button style="background-color: #6ED940; color: white; width: 100%; ">Lihat Detail</a>
         <!-- <a mat-button  class="litle-space box-outline" style="background-color: white; color: #6ED940; border: 2px solid #6ED940; width: 100%; ">Jual Reksadana</a>
         <a href="financial-planner/beli-reksadana" mat-raised-button style="background-color: #6ED940; color: white; width: 100%; ">Beli Reksadana</a> -->
+    </div>
+</div>
+<div *ngIf="this.isFailedToLoad" class="master-component" style="width: 80%; height: 60%;">
+    <div class="row" style="justify-content: center;">
+        <div class="col-md-10">
+            <app-failed-to-load [buttonText]="'Retry'" (onButtonClicked)="retryClicked()"></app-failed-to-load>
+        </div>
     </div>
 </div>

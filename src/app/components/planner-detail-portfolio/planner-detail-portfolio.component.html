@@ -1,27 +1,34 @@
-<div class="jflex-column container" style="height: 100%;">
-    <div class="jflex-row" style="padding-top:20px;">
+<div *ngIf="!isFailedToLoad" class="jflex-column container" style="height: 100%;">
+    <div class="jflex-row" style="padding-top:20px;" *ngIf="!loader">
         <a mat-icon-button aria-label="Example icon button with a vertical three dot icon" (click)="goBack()">
             <mat-icon>chevron_left</mat-icon>
         </a>
         <h1 style="text-align: center;" class="width-full headFont">{{plan.nama_plan}}</h1>
     </div>
+    <div class="jflex-row center-cross-axis row" style="padding-top:20px;" *ngIf="loader==true">
+        <div *ngIf="loader==true"><ngx-shimmer-loading [shape]="'circle'" [width]="'50px'" [height]="'50px'" ></ngx-shimmer-loading></div>
+        <div *ngIf="loader==true" style="flex-basis: 90%;" class="jflex-row center-main-axis"><ngx-shimmer-loading [shape]="'rect'" [width]="'200px'" [height]="'32px'" ></ngx-shimmer-loading></div>
+    </div>
     <div class="jflex-column padding-beauty  center-cross-axis">
         
         <mat-card class="box-outline litle-space" style="width: 100%;">
             <div class="jflex-row stretch">
-                <div class="jflex-column">
-                    <div>Nilai Tabungan</div>
-                    <h1><strong>{{plan.current_amount |currency:'Rp ':true:'1.0'}}</strong></h1>
+                <div class="jflex-column" style="width: 50%;">
+                    <div *ngIf="!loader">Nilai Tabungan</div>
+                    <h1 *ngIf="!loader"><strong>{{plan.current_amount |currency:'Rp ':true:'1.0'}}</strong></h1>
+                    <ngx-shimmer-loading *ngIf="loader" [shape]="'rect'" [height]="'14px'" class="col-md-4"></ngx-shimmer-loading>
+                    <ngx-shimmer-loading *ngIf="loader" [shape]="'rect'" [height]="'32px'" class="col-md-6"></ngx-shimmer-loading>
+            
                 </div>
             </div>
         </mat-card>
-        <div class="jflex-column padding-beauty center-main-axis center-cross-axis" style="height:90%" *ngIf="plan.portfolio==null">
+        <div class="jflex-column padding-beauty center-main-axis center-cross-axis" style="height:90%" *ngIf="plan.portfolio==null&&!loader">
             <img src="assets/img/list-planner-nothing.png">
             <h2 class="font-green"  style="text-align: center;"><strong>Reksadana Kamu Masih Kosong</strong></h2>
             <p class="font-green"  style="text-align: center;">Yuk segera membeli reksadana agar bisa mencapai keinginan mu!</p>
             
         </div>
-        <div class="jflex-row row little-space stretch" style="width:100%; justify-content:space-between; flex-wrap: wrap;" *ngIf="plan.portfolio!=null">
+        <div class="jflex-row row little-space stretch" style="width:100%; justify-content:space-between; flex-wrap: wrap;" *ngIf="plan.portfolio!=null && !loader">
             <mat-card class="box-outline litle-space padding-beauty col-lg-5" *ngFor="let portfolioJenis of portfolio; let i = index" [attr.data-index]="i">
                 <div class="jflex-column">
                     
@@ -65,7 +72,51 @@
             </mat-card>
             
         </div>
-        
+        <div class="jflex-row row little-space stretch" style="width:100%; justify-content:space-between; flex-wrap: wrap;" *ngIf="loader">
+            <mat-card class="box-outline litle-space padding-beauty col-lg-5" *ngFor="let portfolioJenis of [1,2,3]">
+                <div class="jflex-column">
+                    
+                    <div class="jflex-row">
+                        <ngx-shimmer-loading [shape]="'rect'" [height]="'14px'" class="col-md-4"></ngx-shimmer-loading>
+                        
+                    </div>
+                    
+                    <mat-list style="margin-bottom: 10px;">
+                        <mat-divider style="stroke: #6ED940; color: #6ED940; background-color: #6ED940; width: 90%; left:5%;"></mat-divider>
+                    </mat-list>
+                    <div class="jflex-column">
+                        <div class="jflex-row little-space" >
+                            <ngx-shimmer-loading [shape]="'rect'" [height]="'14px'" class="col-md-4"></ngx-shimmer-loading>
+                        </div>
+                        <table>
+                            <tr><td><ngx-shimmer-loading [shape]="'rect'" [height]="'14px'" class="col-md-2"></ngx-shimmer-loading></td><td><ngx-shimmer-loading [shape]="'rect'" [height]="'14px'" class="col-md-2"></ngx-shimmer-loading></td><td><ngx-shimmer-loading [shape]="'rect'" [height]="'14px'" class="col-md-2"></ngx-shimmer-loading></td></tr>
+                            <tr><td><ngx-shimmer-loading [shape]="'rect'" [height]="'14px'" class="col-md-2"></ngx-shimmer-loading></td><td><ngx-shimmer-loading [shape]="'rect'" [height]="'14px'" class="col-md-2"></ngx-shimmer-loading></td><td><strong class="font-green"><ngx-shimmer-loading [shape]="'rect'" [height]="'14px'" class="col-md-2"></ngx-shimmer-loading></strong></td></tr>
+                        </table>
+                    </div>
+                    <mat-list style="margin-bottom: 10px;">
+                        <mat-divider style="stroke: #6ED940; color: #6ED940; background-color: #6ED940; width: 90%; left:5%;"></mat-divider>
+                    </mat-list>
+                    <div class="jflex-column">
+                        <div class="jflex-row litle-space" >
+                            <ngx-shimmer-loading [shape]="'rect'" [height]="'14px'" class="col-md-2"></ngx-shimmer-loading>
+                        </div>
+                    </div>
+                    <div *ngFor="let portfolioDetail of [1,2,3]">
+                        <mat-list style="margin-bottom: 10px;">
+                            <mat-divider style="stroke: #6ED940; color: #6ED940; background-color: #6ED940; width: 90%; left:5%;"></mat-divider>
+                        </mat-list>
+                        <div class="jflex-column">
+                            <table>
+                                
+                                <tr><td><ngx-shimmer-loading [shape]="'rect'" [height]="'14px'" class="col-md-2"></ngx-shimmer-loading></td><td><ngx-shimmer-loading [shape]="'rect'" [height]="'14px'" class="col-md-2"></ngx-shimmer-loading></td></tr>
+                                <tr><td><ngx-shimmer-loading [shape]="'rect'" [height]="'14px'" class="col-md-2"></ngx-shimmer-loading></td></tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </mat-card>
+            
+        </div>
     </div>
     <div class="jflex-row little-space center-cross-axis center-main-axis">
         <div class="jflex-colum">
@@ -77,8 +128,17 @@
     
     
     <div class=" jflex-column padding-beauty center-cross-axis">
-        
-        <a mat-button routerLink="/financial-planner/jual-semua"  class="litle-space box-outline" style="background-color: white; color: #6ED940; border: 2px solid #6ED940; width: 100%; ">Jual Reksadana</a>
-        <a routerLink="/financial-planner/beli-reksadana" mat-button style="background-color: #6ED940; color: white; width: 100%; ">Beli Reksadana</a>
+        <ngx-shimmer-loading *ngIf="loader" [shape]="'rect'" [height]="'14px'" class="col-md-12"></ngx-shimmer-loading>
+        <ngx-shimmer-loading *ngIf="loader" [shape]="'rect'" [height]="'32px'" class="col-md-12"></ngx-shimmer-loading>
+        <a *ngIf="plan.portfolio&&!loader" mat-button routerLink="/financial-planner/jual-semua"  class="litle-space box-outline" style="background-color: white; color: #6ED940; border: 2px solid #6ED940; width: 100%; ">Jual Reksadana</a>
+        <a *ngIf="!loader" routerLink="/financial-planner/beli-reksadana" mat-button style="background-color: #6ED940; color: white; width: 100%; ">Beli Reksadana</a>
+    </div>
+</div>
+
+<div *ngIf="this.isFailedToLoad" class="master-component" style="width: 80%; height: 60%;">
+    <div class="row" style="justify-content: center;">
+        <div class="col-md-10">
+            <app-failed-to-load [buttonText]="'Retry'" (onButtonClicked)="retryClicked()"></app-failed-to-load>
+        </div>
     </div>
 </div>

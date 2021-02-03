@@ -31,6 +31,7 @@ export class SimulasiPlannerComponent implements OnInit,AfterViewInit  {
     nominalInvestasi:[],
   };
   nominalYangHarusDitabung:number=0;
+  loader:boolean=true;
   constructor(private plannerService:PlannerService,private route:Router,private location:Location) {   
     
   }
@@ -176,6 +177,7 @@ export class SimulasiPlannerComponent implements OnInit,AfterViewInit  {
       nominalInvestasi:[],
     };
     this.plannerService.getSimulasiPlanner().subscribe((response:ResponseApi)=>{
+      this.loader=false;
       this.simulasiPlanner=response.output_schema;
       this.nominalYangHarusDitabung=this.simulasiPlanner.nominal_per_periode;
       var detail_chart=this.simulasiPlanner.detail_chart;

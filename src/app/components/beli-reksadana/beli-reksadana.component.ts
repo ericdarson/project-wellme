@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { element } from 'protractor';
 import { PlannerBeliState, StatePembelian } from 'src/app/models/planner-beli-state';
 import { PlannerResiko } from 'src/app/models/planner-resiko';
+import { GeturlService } from 'src/app/services/geturl.service';
 import { PlannerPembelianService } from 'src/app/services/planner-pembelian.service';
 import { PlannerService } from 'src/app/services/planner.service';
 
@@ -31,7 +32,8 @@ export class BeliReksadanaComponent implements OnInit {
   errorClassNominalPembelian:string="hidden";
   errorClassKodePromo:string="hidden";
   loader:boolean=true;
-  constructor(private router:Router,private plannerService:PlannerPembelianService,private location:Location,private route : ActivatedRoute) {}
+  isFailedToLoad : boolean =false;
+  constructor(private router:Router,private plannerService:PlannerPembelianService,private location:Location,private route : ActivatedRoute,private sharedService:GeturlService) {}
   
   ngOnInit(): void {
     this.checkState();
@@ -47,7 +49,16 @@ export class BeliReksadanaComponent implements OnInit {
       this.loader=false;
       this.syncBeliState();
       
-    })
+    },error=>{
+      if(error.status == 403){
+        this.sharedService.logout()
+      }else{
+        //this.isLoading=false;
+        this.isFailedToLoad = true;
+      }
+    }
+    
+    )
   }
   
   checkState():void{
@@ -317,5 +328,11 @@ export class BeliReksadanaComponent implements OnInit {
   
   saveState(){
     this.plannerService.setPlannerBeliState(this.plannerBeliState);
+  }
+
+  retryClicked(){
+    this.loader=true;
+    this.isFailedToLoad = false;
+    this.getProfileResiko();
   }
 }
