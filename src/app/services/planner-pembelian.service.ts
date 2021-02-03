@@ -326,6 +326,12 @@ export class PlannerPembelianService {
     const url=environment.plannerPembelianUrl;
     if(this.preparePembelianRequest())
     {
+      this.plannerBeliState={
+        nominal_pembelian:0,
+        pembelian:[{
+          id_jenis_reksadana:0,nama_plan:""
+        }]
+      };
       console.log(this.requestPembelian);
     var bca_id = this.localStorage.retrieve("bca_id")
     var token = this.localStorage.retrieve("token")
@@ -491,5 +497,5 @@ var nominal_pembelian:number;
       })
     }
   }
-
+  
 }
