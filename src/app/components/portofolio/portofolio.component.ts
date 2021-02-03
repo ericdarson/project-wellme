@@ -5,6 +5,8 @@ import { ProfileService } from '../../services/profile.service';
 import { ProfileMaster } from '../../models/ProfileMaster';
 import { ResponseApi } from '../../models/ResponseApi';
 import { GeturlService } from '../../services/geturl.service';
+import { Route } from '@angular/compiler/src/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-portofolio',
@@ -15,8 +17,10 @@ export class PortofolioComponent implements OnInit {
   isLoading : boolean = false;
   profileMaster : ProfileMaster;
   isFailedToLoad : boolean =false;
+  errorStatus : number ;
 
-  constructor(private profileService : ProfileService ,private sharedService :GeturlService) { }
+  constructor(private profileService : ProfileService ,private sharedService :GeturlService,
+    private router: Router,private activeRoute : ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getProfile();
@@ -40,17 +44,20 @@ export class PortofolioComponent implements OnInit {
         //  console.log("gagal get profile")
       }
      },error=>{
-      if(error.status == 403){
-        this.sharedService.logout()
-      }else{
+       this.errorStatus = error.status
+
         this.isLoading=false;
         this.isFailedToLoad = true;
-      }
+        
      })
   }
 
-  retryClicked(){
-    this.getProfile()
+  errorButtonClicked(){
+    if(this.errorStatus == 403){
+      this.router.navigate(['/'])
+    }else{
+      this.getProfile()
+    }
   }
 
 }

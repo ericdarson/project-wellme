@@ -15,8 +15,10 @@ export class BackwardListReksadanaComponent implements OnInit {
   isLoading:boolean = true;
   isFailedToLoad:boolean = false;
   tempVar : BackwardProjectionListProdukRekadana[] = [];
+  errorStatus: number;
   constructor(private router : Router, private location:Location,private route: ActivatedRoute, private service: BackwardProjectionListReksadanaService) { }
   idJenis:string;
+  
   
   ngOnInit(): void {
     this.jenisreksa = ""+this.service.getJenisReksadana()
@@ -59,8 +61,18 @@ export class BackwardListReksadanaComponent implements OnInit {
       this.isLoading = false;
       this.isFailedToLoad = false;
     }, error=>{
+      this.errorStatus = error.status
       this.isLoading = false;
       this.isFailedToLoad = true;
     })
+  }
+
+  
+  errorButtonClicked(){
+    if(this.errorStatus == 403){
+      this.router.navigate(['/'])
+    }else{
+      this.retryClicked();
+    }
   }
 }

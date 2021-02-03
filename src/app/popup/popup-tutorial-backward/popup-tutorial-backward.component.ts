@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { LocalStorageService } from 'ngx-webstorage';
 
 @Component({
   selector: 'app-popup-tutorial-backward',
@@ -9,7 +10,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 export class PopupTutorialBackwardComponent implements OnInit {
 
   boxChecked : boolean;
-  constructor( public dialogRef: MatDialogRef<PopupTutorialBackwardComponent>) { }
+  constructor( public dialogRef: MatDialogRef<PopupTutorialBackwardComponent>, private localStorage : LocalStorageService) { }
 
   ngOnInit(): void {
   }
@@ -21,6 +22,7 @@ export class PopupTutorialBackwardComponent implements OnInit {
 
   setCheck(checked: boolean) {
     this.boxChecked = checked
+    this.localStorage.store("dialogTutorialBackward",this.boxChecked)
   }
 
   yesClicked(){

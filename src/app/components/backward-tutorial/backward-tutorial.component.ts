@@ -15,6 +15,7 @@ export class BackwardTutorialComponent implements OnInit {
   imageBackgroundArray : string[];
   textTutorial : string[];
   page : number =0;
+  showFirstPage:boolean = true;
 
   imgags = [
     'assets/img/tutorial-1.png',
@@ -76,6 +77,11 @@ export class BackwardTutorialComponent implements OnInit {
   slideActivate(ngbSlideEvent: NgbSlideEvent) {
     console.log(ngbSlideEvent.current);
     this.page = +ngbSlideEvent.current
+    if(this.page==0){
+      this.isFirstPage( this.page )
+    }else{
+      this.showFirstPage = false
+    }
   }
 
   clickNextButton(){
@@ -85,7 +91,6 @@ export class BackwardTutorialComponent implements OnInit {
   // Move to specific slide
   navigateToSlide(item:any) {
     this.ngCarousel.select(item);
-    console.log(item)
   }
 
   // Move to previous slide
@@ -111,4 +116,11 @@ export class BackwardTutorialComponent implements OnInit {
   clickExitButton(){
     this.router.navigate(['../../backward-list-reksadana/'+this.idJenis],{relativeTo:this.activeRoute})
   }
+
+  isFirstPage(pages : number){
+    setTimeout(()=>{ 
+      this.showFirstPage = pages==0
+    }, 200)
+  }
+
 }

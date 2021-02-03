@@ -39,6 +39,9 @@ export class BackwardPembelianComponent implements OnInit {
   isLoading:boolean = true;
   isFailedToLoad:boolean = false;
   isFailedToLoadDate:boolean = false;
+  errorStatus : number;
+  errorStatusDate : number;
+
   constructor(private service:BackwardProjectionListReksadanaService, private location: Location,private currencyPipe : CurrencyPipe,private router : Router,private route: ActivatedRoute) {
     
   }
@@ -85,6 +88,7 @@ export class BackwardPembelianComponent implements OnInit {
       this.isLoading = false;
       this.isFailedToLoadDate = false;
     }, error=>{
+      this.errorStatusDate = error.status
       this.isLoading = false;
       this.isFailedToLoadDate = true;
     })
@@ -267,9 +271,26 @@ export class BackwardPembelianComponent implements OnInit {
     }, error=>{
       this.isLoading = false;
       this.isFailedToLoad = true;
+      this.errorStatus = error.status
       console.log("INFO");
       console.log(this.isLoading);
       console.log(this.isFailedToLoad);
     })
+  }
+
+  errorButtonClicked(){
+    if(this.errorStatus == 403){
+      this.router.navigate(['/'])
+    }else{
+      this.retryClicked();
+    }
+  }
+
+  errorButtonDateClicked(){
+    if(this.errorStatus == 403){
+      this.router.navigate(['/'])
+    }else{
+      this.dateChange();
+    }
   }
 }

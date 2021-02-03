@@ -113,9 +113,9 @@ export class PromoService {
               title : "-1",
               subtitle :  "-1" ,
               description :  "-1" ,
-              current_amount :  1 ,
-              target_akumulasi : 1  ,
-              cashback :  "-1" ,
+              current_amount :  -1 ,
+              target_akumulasi : -1  ,
+              cashback :  -1 ,
               date_available : "-1",
       }
     }

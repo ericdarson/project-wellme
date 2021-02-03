@@ -130,8 +130,14 @@
                         [showSubtitle]="false"
                         [renderOnClick]="false"
                         [outerStrokeWidth]="16"
+                        [backgroundStroke]="'#6ED940'"
+                        [backgroundStrokeWidth]="16"
+                        [backgroundPadding]="-7"
+                        [showInnerStroke] ="false"
+                        [showZeroOuterStroke]="false"
                         [outerStrokeColor]="'#78C000'"
                         [animation]="true"
+                        [showInnerStroke] ="false"
                         [animationDuration]="300">
                     </circle-progress>
                     <mat-icon class="font-32 clickable">arrow_forward_ios</mat-icon>
@@ -157,6 +163,11 @@
                             [showSubtitle]="false"
                             [renderOnClick]="false"
                             [outerStrokeWidth]="16"
+                            [backgroundStroke]="'#6ED940'"
+                            [backgroundStrokeWidth]="16"
+                            [backgroundPadding]="-7"
+                            [showInnerStroke] ="false"
+                            [showZeroOuterStroke]="false"
                             [outerStrokeColor]="'#78C000'"
                             [animation]="true"
                             [animationDuration]="300">
@@ -185,7 +196,7 @@
 <div *ngIf="this.isFailedToLoad" class="master-component">
     <div class="row" style="justify-content: center;">
         <div class="col-md-10">
-            <app-failed-to-load [buttonText]="'Retry'" (onButtonClicked)="retryClicked()"></app-failed-to-load>
+            <app-failed-to-load [errorStatus]="this.errorStatus" (onButtonClicked)="errorButtonClicked()"></app-failed-to-load>
         </div>
     </div>
 </div>

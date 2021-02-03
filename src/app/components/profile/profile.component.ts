@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProfileService } from 'src/app/services/profile.service';
 import { ProfileMaster } from '../../models/ProfileMaster';
 import { ResponseApi } from '../../models/ResponseApi';
@@ -17,11 +18,13 @@ export class ProfileComponent implements OnInit {
   showProfile: boolean= false;
   buttonShowRekening : boolean = false
   isFailedToLoad : boolean =false;
+  errorStatus : number;
 
   profileMaster : ProfileMaster;
 
 
-  constructor(private profileService : ProfileService,private sharedService :GeturlService) { }
+  constructor(private profileService : ProfileService,private sharedService :GeturlService,
+    private router: Router,private activeRoute : ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getProfile()
@@ -51,19 +54,18 @@ export class ProfileComponent implements OnInit {
          console.log("gagal get profile")
       }
      },error=>{
-        console.log(error.status)
-        if(error.status == 403 || error.status =="403"){
-          this.sharedService.logout()
-        }else{
-          console.log("masuk sana")
-          this.isFailedToLoad = true;
-        }
+        this.errorStatus= error.status
+        this.isFailedToLoad = true; 
      })
   }
 
   
-  retryClicked(){
-    this.getProfile()
+  errorButtonClicked(){
+    if(this.errorStatus == 403){
+      this.router.navigate(['/'])
+    }else{
+      this.getProfile()
+    }
   }
 
 

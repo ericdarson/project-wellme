@@ -19,6 +19,7 @@ export class DetailPlannerComponent implements OnInit {
   imgSrcSequence:string[]=["","","","","","","","",""];
   loader:boolean=true;
   isFailedToLoad : boolean =false;
+  errorStatus : number;
   constructor(private location: Location,private plannerService:PlannerService, private router:Router,private plannerPembelianService:PlannerPembelianService,private sharedService:GeturlService) { }
   
   ngOnInit(): void {
@@ -49,12 +50,10 @@ export class DetailPlannerComponent implements OnInit {
       this.distributeImage(this.plan.gambar,this.plan.puzzle_sequence,this.plan.category,this.plan.current_amount,this.plan.target_plan);
 
     },(error)=>{
-      if(error.status == 403){
-        this.sharedService.logout()
-      }else{
-        //this.isLoading=false;
-        this.isFailedToLoad = true;
-      }
+      this.errorStatus = error.status
+    
+      this.isFailedToLoad = true;
+      
       console.log(error);
     }
     )
@@ -162,5 +161,13 @@ export class DetailPlannerComponent implements OnInit {
     this.loader=true;
     this.isFailedToLoad = false;
     this.getDetail()
+  }
+
+  errorButtonClicked(){
+    if(this.errorStatus == 403){
+      this.router.navigate(['/'])
+    }else{
+      this.retryClicked();
+    }
   }
 }

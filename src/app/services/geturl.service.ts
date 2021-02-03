@@ -59,6 +59,7 @@ export class GeturlService implements OnInit{
   logout(){
     this.session.clear('token');
     this.session.clear('bca_id');
+    this.session.clear("dialogTutorialBackward")
     this.router.navigate(['/login'])
   }
 

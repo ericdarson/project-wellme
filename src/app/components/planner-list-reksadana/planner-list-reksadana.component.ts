@@ -23,6 +23,7 @@ export class PlannerListReksadanaComponent implements OnInit {
   loader=true;
   isFailedToLoad :boolean=false;
   notFound:boolean=false;
+  errorStatus : number;
   constructor(private router : Router, private location:Location,private route: ActivatedRoute,private plannerService:PlannerPembelianService, private bottomSheet: MatBottomSheet,private sharedService:GeturlService) { }
   
   ngOnInit(): void {
@@ -52,9 +53,8 @@ export class PlannerListReksadanaComponent implements OnInit {
         console.log(this.listReksadana);
         this.loader=false;
       },error=>{
-        if(error.status == 403){
-          this.sharedService.logout()
-        }else if(error.status==404){
+        this.errorStatus = error.status
+        if(error.status==404){
           this.loader=false;
           this.notFound=true;
         }else
@@ -76,6 +76,14 @@ export class PlannerListReksadanaComponent implements OnInit {
     this.loader=true;
     this.isFailedToLoad = false;
     this.checkState();
+  }
+
+  errorButtonClicked(){
+    if(this.errorStatus == 403){
+      this.router.navigate(['/'])
+    }else{
+      this.retryClicked();
+    }
   }
   
 }

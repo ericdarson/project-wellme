@@ -3,9 +3,9 @@ export class Objectives {
     title : string;
     subtitle :  string ;
     description :  string ;
-    current_amount :  number ;
-    target_akumulasi : number  ;
-    cashback :  string ;
+    current_amount :  number = -1;
+    target_akumulasi : number = 0;
+    cashback :  number ;
     date_available : string;
 }
 
@@ -15,7 +15,7 @@ export class Promotions {
     subtitle :  string ;
     description :  string ;
     minimum_transaction: number;
-    cashback: string;
+    cashback: number;
     date_available: string;
 }
 

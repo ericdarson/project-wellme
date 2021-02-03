@@ -27,6 +27,7 @@ export class BackwardResultComponent implements OnInit {
   jenisreksa:string;
   isFailedToLoad:boolean = false;
   isLoading:boolean = true;
+  errorStatus : number;
 
   constructor(private service: BackwardProjectionListReksadanaService,private location : Location, private route : ActivatedRoute, private router : Router) { }
 
@@ -163,8 +164,17 @@ export class BackwardResultComponent implements OnInit {
       this.isFailedToLoad = false;
       this.isLoading = false;
     },error=>{
+      this.errorStatus = error.status
       this.isFailedToLoad = true;
       this.isLoading = false;
     });
+  }
+
+  errorButtonClicked(){
+    if(this.errorStatus == 403){
+      this.router.navigate(['/'])
+    }else{
+      this.retryClicked();
+    }
   }
 }

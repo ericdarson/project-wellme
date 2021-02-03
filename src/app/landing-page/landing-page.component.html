@@ -15,7 +15,7 @@
                     <div class="clickable text-center col-md-2 font-18 hover-wellme">
                         <b>FAQ</b>
                     </div>
-                    <div class="clickable text-center col-md-3 font-18 hover-wellme" routerLink="../index">
+                    <div class="clickable text-center col-md-3 font-18 hover-wellme">
                         <b>Tentang Wellme</b>
                     </div>
                     <button mat-button class="button-fill font-18 col-md-2" routerLink="../login" >Login</button>
@@ -67,7 +67,7 @@
                     reksa dana sesuai dengan kebutuhan kamu.
                 </div>
                 <div style="margin-top: 2em;" class="flex row">
-                    <button mat-button class="rounded-button-fill font-18 col-md-3" (click)="goToBottom()">Yuk Mulai</button>
+                    <button mat-button class="rounded-button-fill font-18 col-md-3" (click)="scroll(target)">Yuk Mulai</button>
                     <div class="col-md-1">&nbsp;</div>
                     <button mat-button class="rounder-daftar-button font-18 col-md-3" >Daftar</button>
                 </div>
@@ -158,18 +158,18 @@
                 </div>
             </div>
         </div>
-        <div class="row background-down text-center" style="padding: 20em 6em 4em 6em; margin-top: 3em; justify-content: center;">
+        <div #target class="row background-down text-center" style="padding: 20em 6em 4em 6em; margin-top: 3em; justify-content: center;">
            <div class="col-md-12 font-32" style="line-height: 32px;">
                 Rancang Masa Depan dengan Wellme.
            </div>
            <div class="col-md-12 font-24 text-wellme-color" style="margin-top: 2em;">
                 Dream. Invest. Enjoy.
            </div>
-           <div>
-                <img style="width: 100%;margin-top: 5em; margin-bottom: 20em;" class="img-fluid" src="assets/img/app-store-icon.png" alt="Wellme">
+           <div >
+                <img style="width: 100%;margin-top: 5em; margin-bottom: 20em;" class="img-fluid clickable" src="assets/img/app-store-icon.png" alt="Wellme">
            </div>
         </div>
-        <div style="margin-top: 2em;">
+        <div style="margin-top: 2em;" >
             <footer class="page-footer font-small blue" style="padding: 3em 2em 3em 2em">
 
                 <!-- Footer Links -->
