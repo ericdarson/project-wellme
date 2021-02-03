@@ -57,17 +57,20 @@ display:string="block";
         this.listPlannerDisplay="hidden";
       }
     },(error)=>{
+      console.log(error);
+ 
+      if(error.status == 403){
+        this.sharedService.logout()
+      }else{
+        console.log("test");
+        //this.isLoading=false;
+        this.isFailedToLoad = true;
+      }
       var err=error.error.error_schema.error_code;
       if(err=="BIT-17-004")
       {
         this.notFound="jflex-column";
         this.listPlannerDisplay="hidden";
-      }
-      if(error.status == 403){
-        this.sharedService.logout()
-      }else{
-        //this.isLoading=false;
-        this.isFailedToLoad = true;
       }
       console.log('err-->',error);
     })
