@@ -138,7 +138,7 @@
 <div *ngIf="this.isFailedToLoad" class="master-component" style="width: 80%; height: 60%;">
     <div class="row" style="justify-content: center;">
         <div class="col-md-10">
-            <app-failed-to-load [buttonText]="'Retry'" (onButtonClicked)="retryClicked()"></app-failed-to-load>
+            <app-failed-to-load [errorStatus]="this.errorStatus" (onButtonClicked)="errorButtonClicked()"></app-failed-to-load>
         </div>
     </div>
 </div>

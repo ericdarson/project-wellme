@@ -20,6 +20,7 @@ display:string="block";
   listPlannerDisplay:any;
   loader=true;
   isFailedToLoad : boolean =false;
+  errorStatus : number;
   constructor(private router:Router,private plannerService:PlannerService,private sharedService:GeturlService,private location:Location) { }
 
   ngOnInit(): void {
@@ -58,14 +59,10 @@ display:string="block";
       }
     },(error)=>{
       console.log(error);
- 
-      if(error.status == 403){
-        this.sharedService.logout()
-      }else{
-        console.log("test");
-        //this.isLoading=false;
-        this.isFailedToLoad = true;
-      }
+      this.errorStatus = error.status
+     
+      this.isFailedToLoad = true;
+      
       var err=error.error.error_schema.error_code;
       if(err=="BIT-17-004")
       {
@@ -81,6 +78,15 @@ display:string="block";
     this.isFailedToLoad = false;
     this.getListPlanner()
   }
+
+  errorButtonClicked(){
+    if(this.errorStatus == 403){
+      this.router.navigate(['/'])
+    }else{
+      this.retryClicked();
+    }
+  }
+  
   goBack(){
     this.location.back();
   }

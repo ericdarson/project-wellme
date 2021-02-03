@@ -24,6 +24,7 @@ export class PlannerDetailPortfolioComponent implements OnInit {
   plannerResiko:PlannerResiko;
   loader:boolean=true;
   isFailedToLoad:boolean=false;
+  errorStatus : number;
   ngOnInit(): void {
     this.checkState();
     this.prepareDetail();
@@ -99,13 +100,10 @@ export class PlannerDetailPortfolioComponent implements OnInit {
         })
       }
     },error=>{
-      if(error.status == 403){
-        this.sharedService.logout()
-      }else
-      {
-        //this.isLoading=false;
-        this.isFailedToLoad = true;
-      }
+      this.errorStatus = error.status
+      
+      this.isFailedToLoad = true;
+      
     });
     
   }
@@ -123,6 +121,14 @@ export class PlannerDetailPortfolioComponent implements OnInit {
     this.loader=true;
     this.isFailedToLoad = false;
     this.prepareDetail();
+  }
+
+  errorButtonClicked(){
+    if(this.errorStatus == 403){
+      this.router.navigate(['/'])
+    }else{
+      this.retryClicked();
+    }
   }
   
 }

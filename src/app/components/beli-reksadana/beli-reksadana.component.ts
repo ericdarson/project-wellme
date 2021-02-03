@@ -33,6 +33,7 @@ export class BeliReksadanaComponent implements OnInit {
   errorClassKodePromo:string="hidden";
   loader:boolean=true;
   isFailedToLoad : boolean =false;
+  errorStatus: number;
   constructor(private router:Router,private plannerService:PlannerPembelianService,private location:Location,private route : ActivatedRoute,private sharedService:GeturlService) {}
   
   ngOnInit(): void {
@@ -50,12 +51,10 @@ export class BeliReksadanaComponent implements OnInit {
       this.syncBeliState();
       
     },error=>{
-      if(error.status == 403){
-        this.sharedService.logout()
-      }else{
-        //this.isLoading=false;
-        this.isFailedToLoad = true;
-      }
+      this.errorStatus = error.status
+     
+      this.isFailedToLoad = true;
+      
     }
     
     )
@@ -334,5 +333,13 @@ export class BeliReksadanaComponent implements OnInit {
     this.loader=true;
     this.isFailedToLoad = false;
     this.getProfileResiko();
+  }
+
+  errorButtonClicked(){
+    if(this.errorStatus == 403){
+      this.router.navigate(['/'])
+    }else{
+      this.retryClicked();
+    }
   }
 }

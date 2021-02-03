@@ -26,6 +26,7 @@ export class PromoKodeComponent implements OnInit {
   loader:boolean=true;
   isFailedToLoad:boolean=false;
   notFound:boolean=false;
+  errorStatus : number;
   constructor(private router : Router, private location:Location,private route: ActivatedRoute,private plannerService:PlannerPembelianService,private sharedService:GeturlService) { }
   
   ngOnInit(): void {
@@ -48,13 +49,12 @@ export class PromoKodeComponent implements OnInit {
         this.loader=false;
       },
       error=>{
+        this.errorStatus = error.status
         console.log("Error-->",error);
         this.notFoundClass="flex";
         this.displayClass="hidden";
         this.loader=false;
-        if(error.status == 403){
-          this.sharedService.logout()
-        }else if(error.status==404){
+        if(error.status==404){
           this.loader=false;
           this.notFound=true;
         }
@@ -75,5 +75,12 @@ export class PromoKodeComponent implements OnInit {
     this.loader=true;
     this.isFailedToLoad = false;
     this.checkState();
+  }
+  errorButtonClicked(){
+    if(this.errorStatus == 403){
+      this.router.navigate(['/'])
+    }else{
+      this.retryClicked();
+    }
   }
 }
