@@ -85,13 +85,9 @@ export class PlannerEditDataPlannerComponent implements OnInit {
       this.plannerEditRequest.goal_amount=Number(this.portfolioForm.controls['target'].value);
       this.plannerEditRequest.periodic=periodic;
       this.plannerEditRequest.due_date=dateString;
-      this.plannerService.updatePlanner(this.plannerEditRequest,this.idDetail).subscribe(response=>{
-        this.plannerService.clearLocalStorage("plannerEdit");
-        this.openSuccessPopup();
-      },(error:any)=>{
-        this.status=false;
-        console.log("err -->",error);
-      });
+      this.plannerService.setLocalStorage("plannerEdit",this.plannerEditRequest);
+      this.plannerService.setLocalStorage("editConfirmation","02391utjgawmg930qjm31pafawef");
+      this.router.navigate(['../edit-konfirmasi'],{relativeTo:this.route});
     }
   }
 
@@ -139,15 +135,5 @@ export class PlannerEditDataPlannerComponent implements OnInit {
     return null
   }
   
-  openSuccessPopup():void{
-    const dialogRef = this.dialog.open(PlannerEditSuccessComponent, {
-      height:'360px',
-      width: '360px',
-    });
 
-    dialogRef.afterClosed().subscribe(result => {
-      
-      this.router.navigate(['../'],{relativeTo:this.route});
-    });
-  }
 }

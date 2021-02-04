@@ -1,6 +1,6 @@
 export class PlannerReksadana {
-    id_jenis_reksadana:number;
-    nama_jenis_reksadana:string;
+    id_produk:number;
+    nama_produk:string;
     nab:number;
     kinerja_satu_bulan:number;
     date_nab:string;

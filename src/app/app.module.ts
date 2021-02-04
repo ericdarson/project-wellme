@@ -87,6 +87,7 @@ import { PlannerDetailTransaksiJualComponent } from './components/planner-detail
 import { SyaratKetentuanPenjualanComponent } from './popup/syarat-ketentuan-penjualan/syarat-ketentuan-penjualan.component';
 import { KonfirmasiDeleteComponent } from './popup/konfirmasi-delete/konfirmasi-delete.component';
 import { DeleteSuccessComponent } from './popup/delete-success/delete-success.component';
+import { PlannerEditConfirmationComponent } from './components/planner-edit-confirmation/planner-edit-confirmation.component';
 
 @NgModule({
   declarations: [
@@ -102,6 +103,7 @@ import { DeleteSuccessComponent } from './popup/delete-success/delete-success.co
     SyaratKetentuanPenjualanComponent,
     KonfirmasiDeleteComponent,
     DeleteSuccessComponent,
+   
     
   ],
   imports: [

@@ -9,6 +9,7 @@ import { PilihTargetComponent } from '../components/pilih-target/pilih-target.co
 import { PinComponent } from '../components/pin/pin.component';
 import { PlannerDetailPortfolioComponent } from '../components/planner-detail-portfolio/planner-detail-portfolio.component';
 import { PlannerDetailTransaksiJualComponent } from '../components/planner-detail-transaksi-jual/planner-detail-transaksi-jual.component';
+import { PlannerEditConfirmationComponent } from '../components/planner-edit-confirmation/planner-edit-confirmation.component';
 import { PlannerEditDataPlannerComponent } from '../components/planner-edit-data-planner/planner-edit-data-planner.component';
 import { PlannerEditSuccessComponent } from '../components/planner-edit-success/planner-edit-success.component';
 import { PlannerEditTargetComponent } from '../components/planner-edit-target/planner-edit-target.component';
@@ -22,6 +23,7 @@ import { ProductComponent } from '../components/product/product.component';
 import { PromoKodeComponent } from '../components/promo-kode/promo-kode.component';
 import { SimulasiPlannerComponent } from '../components/simulasi-planner/simulasi-planner.component';
 import { SummaryPlannerComponent } from '../components/summary-planner/summary-planner.component';
+import { PlannerKonfirmasi } from '../models/planner-konfirmasi';
 import { FinancialPlannerComponent } from './financial-planner.component';
 
 const routes: Routes = [
@@ -47,7 +49,7 @@ const routes: Routes = [
       { path: 'edit',component:PlannerEditComponent},
       { path: 'edit-target',component:PlannerEditTargetComponent},
       { path: 'edit-detail',component:PlannerEditDataPlannerComponent},
-      { path: 'edit-success',component:PlannerEditSuccessComponent},
+      { path: 'edit-konfirmasi',component:PlannerEditConfirmationComponent},
       { path: 'jual-semua',component:PlannerJualReksadanaComponent},
       { path: 'pin-jual',component:PlannerPinJualReksadanaComponent},
       { path: 'detail-transaksi-jual',component:PlannerDetailTransaksiJualComponent},

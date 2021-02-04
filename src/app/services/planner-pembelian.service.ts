@@ -39,7 +39,7 @@ export class PlannerPembelianService {
   
   insertRequest:InsertPlannerRequest={
     nama_plan:"",
-    goal_amount:"",
+    goal_amount:0,
     periodic:"",
     due_date:"",
     kategori:""
@@ -86,16 +86,19 @@ export class PlannerPembelianService {
   getRekomendasiPembelian():number|null{
     return this.getLocalStorage("rekomendasiPembelian");
   }
+  resetKonfirmasi():void{
+    this.plannerKonfirmasi=[];
+  }
   addKonfirmasiPembelian(reksadana:PlannerReksadana)
   {
     var konfirmasi:PlannerKonfirmasi;
     konfirmasi={
       id_jenis_reksadana:this.idJenisReksadana==null?0:this.idJenisReksadana,
       biaya_pembelian:reksadana.biaya_pembelian,
-      id_produk:reksadana.id_jenis_reksadana,
+      id_produk:reksadana.id_produk,
       jenis_reksadana:this.jenisReksadanaPembelian,
       minimum_amount:reksadana.minimum_amount,
-      nama_produk:reksadana.nama_jenis_reksadana,
+      nama_produk:reksadana.nama_produk,
       nominal:0
     };
     this.searchKonfirmasi();
