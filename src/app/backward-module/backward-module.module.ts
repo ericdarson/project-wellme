@@ -12,6 +12,7 @@ import { BackwardListReksadanaComponent } from '../components/backward-list-reks
 import { BackwardResultComponent } from '../components/backward-result/backward-result.component';
 import { PopupTutorialBackwardComponent } from '../popup/popup-tutorial-backward/popup-tutorial-backward.component';
 import { BackwardTutorialComponent } from '../components/backward-tutorial/backward-tutorial.component';
+import { KonfirmasiExitComponent } from '../popup/konfirmasi-exit/konfirmasi-exit.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { BackwardTutorialComponent } from '../components/backward-tutorial/backw
     BackwardResultComponent,
     PopupTutorialBackwardComponent,
     BackwardTutorialComponent,
+    KonfirmasiExitComponent,
   ],
   imports: [
     CommonModule,

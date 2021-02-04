@@ -95,6 +95,7 @@
                     </button>
                 </mat-grid-tile>
             </mat-grid-list>
+               
         </div>
     </div>
    
@@ -160,6 +161,13 @@
             <button  [disabled]="isLoading" mat-button class="pilih-button width-full " (click)="goToBackwardResult()">  
                 <b>Lihat Proyeksi</b>    
             </button>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div>
+                <button mat-button class="pilih-button width-full" (click)="retryClicked()" >  
+                    <b>Reset Tanggal </b>    
+                </button>
             </div>
         </div>
     </div>

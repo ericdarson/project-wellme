@@ -46,4 +46,8 @@
  }
 
 
- 
+ .floating{
+    position: absolute;
+    right: 20%;
+    top: 50%;
+ }

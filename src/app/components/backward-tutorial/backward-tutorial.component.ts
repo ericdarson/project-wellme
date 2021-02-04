@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbCarousel, NgbSlideEvent,NgbSlideEventSource  } from '@ng-bootstrap/ng-bootstrap';
 import { CurrencyPipe, Location } from '@angular/common';
 import { Route } from '@angular/compiler/src/core';
+import { KonfirmasiExitComponent } from '../../popup/konfirmasi-exit/konfirmasi-exit.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-backward-tutorial',
@@ -25,7 +27,7 @@ export class BackwardTutorialComponent implements OnInit {
   ];
   idJenis :string;
 
-  constructor(private activeRoute : ActivatedRoute, private location : Location,private router : Router) { }
+  constructor(private activeRoute : ActivatedRoute,public dialog: MatDialog, private location : Location,private router : Router) { }
     
   ngOnInit(): void {
     this.activeRoute.paramMap.subscribe(params => {
@@ -121,6 +123,21 @@ export class BackwardTutorialComponent implements OnInit {
     setTimeout(()=>{ 
       this.showFirstPage = pages==0
     }, 200)
+  }
+
+  openDialog(){
+    const dialogRef = this.dialog.open(KonfirmasiExitComponent, {
+      height:'250px',
+      width: '350px',
+      disableClose: true 
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed ' + result);
+      if(result){
+        this.router.navigate(['../../'],{relativeTo:this.activeRoute})
+      }
+    });
   }
 
 }

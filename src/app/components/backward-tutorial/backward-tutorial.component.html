@@ -40,11 +40,11 @@
                     </div>
                     <div class="mt-4 flex" style="justify-content: space-between;">
                         <button mat-button class="exit-button" (click)="clickNextButton()" >Lanjut</button>
-                        <button mat-button class="exit-button text-wellme-color" (click)="clickExitButton()" >Keluar</button>
+                        <!-- <button mat-button class="exit-button text-wellme-color" (click)="clickExitButton()" >Keluar</button> -->
                     </div>
                 </div>
                 <div class="close-button">
-                    <mat-icon class="clickable" style="color:white;font-size: 3em;">close</mat-icon>
+                    <img class="img-fluid clickable" height="40px" width="40px" src="assets/icon/icon_close.png" (click)="openDialog()">
                 </div>
                <div class="font-18 bg-wellme full-image">
                     <img class="img-fluid full-image" style="min-height: 400px; min-width: 600px;"  src="{{image}}">

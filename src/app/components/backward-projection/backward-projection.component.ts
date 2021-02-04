@@ -17,7 +17,7 @@ export class BackwardProjectionComponent implements OnInit {
   listReksadana:BackwardProjectionListJenisReksadana[]
   isDisabled:boolean = true
   skCheck :boolean = false
-  selectedId :string = ""
+  selectedId :string = "0"
   selectedJenis:string = ""
   isLoading:boolean = true;
   isFailedToLoad:boolean = false;
@@ -137,6 +137,27 @@ export class BackwardProjectionComponent implements OnInit {
       this.router.navigate(['/'])
     }else{
       this.retryClicked();
+    }
+  }
+
+  goToTutorialPage(){
+    if(this.showTutorDialog){
+      const dialogRef = this.dialog.open(PopupTutorialBackwardComponent, {
+        height:'350px',
+        width: '350px',
+        disableClose: true 
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        this.service.setJenisReksadana(this.selectedJenis);
+        console.log('The dialog was closed ' + result);
+        if(result){
+          this.router.navigate(['../backward-tutorial/'+this.selectedId], {relativeTo: this.route})
+        }
+      });
+    }else{
+      this.service.setJenisReksadana(this.selectedJenis);
+      this.router.navigate(['../backward-tutorial/'+this.selectedId], {relativeTo: this.route})
     }
   }
 }

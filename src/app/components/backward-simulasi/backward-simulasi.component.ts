@@ -163,6 +163,7 @@ export class BackwardSimulasiComponent implements OnInit {
           this.nabaftersimulasi = this.simulationStartData.starting_nab;
           this.simulationDateAfter = this.simulationStartData.start_datestring;
           this.simulationDateRequest = this.simulationStartData.start_date;
+          this.durasiinvestasi =0
         }
 
         console.log(this.nominalPembelian)
@@ -193,4 +194,5 @@ export class BackwardSimulasiComponent implements OnInit {
       this.doSimulation();
     }
   }
+
 }
