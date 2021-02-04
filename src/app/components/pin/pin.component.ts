@@ -83,6 +83,7 @@ export class PinComponent implements OnInit {
           else{
           this.plannerService.clearLocalStorage("plannerBeliState");
           this.plannerService.clearLocalStorage("plannerKonfirmasi");
+          this.plannerService.resetKonfirmasi();
           this.plannerService.setLocalStorage("detailTransaksi",response.output_schema);
           this.loader=false;
           this.router.navigate(['../detail-transaksi'],{relativeTo:this.route})};

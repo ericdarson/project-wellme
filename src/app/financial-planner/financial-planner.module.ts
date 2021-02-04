@@ -27,6 +27,7 @@ import { PlannerEditSuccessComponent } from '../components/planner-edit-success/
 import { PlannerJualReksadanaComponent } from '../components/planner-jual-reksadana/planner-jual-reksadana.component';
 import { PlannerPinJualReksadanaComponent } from '../components/planner-pin-jual-reksadana/planner-pin-jual-reksadana.component';
 import { PlannerDetailTransaksiJualComponent } from '../components/planner-detail-transaksi-jual/planner-detail-transaksi-jual.component';
+import { PlannerEditConfirmationComponent } from '../components/planner-edit-confirmation/planner-edit-confirmation.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { PlannerDetailTransaksiJualComponent } from '../components/planner-detai
     PlannerJualReksadanaComponent,
     PlannerPinJualReksadanaComponent,
     PlannerDetailTransaksiJualComponent,
+    PlannerEditConfirmationComponent,
   ],
   imports: [
     CommonModule,

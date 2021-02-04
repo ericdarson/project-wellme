@@ -24,7 +24,7 @@ export class PlannerService {
   
   insertRequest:InsertPlannerRequest={
     nama_plan:"",
-    goal_amount:"",
+    goal_amount:0,
     periodic:"",
     due_date:"",
     kategori:""
@@ -69,7 +69,7 @@ export class PlannerService {
     this.simulasiPlannerRequest=[];
     this.insertRequest={
       nama_plan:"",
-      goal_amount:"",
+      goal_amount:0,
       periodic:"",
       due_date:"",
       kategori:""
@@ -111,7 +111,7 @@ export class PlannerService {
   }
   
   isRequestValid():boolean{
-    if(this.insertRequest.nama_plan!=""&&this.insertRequest.goal_amount!=""&&this.insertRequest.periodic!=""&&this.insertRequest.kategori!=""&&this.insertRequest.due_date!=""){
+    if(this.insertRequest.nama_plan!=""&&this.insertRequest.goal_amount!=0&&this.insertRequest.periodic!=""&&this.insertRequest.kategori!=""&&this.insertRequest.due_date!=""){
       return true;
     }
     else{
@@ -124,11 +124,12 @@ export class PlannerService {
   }
   
   
-  setRequest(nama_plan:string,goal_amount:string,periodic:string,dueDate:string){
+  setRequest(nama_plan:string,goal_amount:number,periodic:string,dueDate:string){
     this.insertRequest.nama_plan=String(nama_plan);
-    this.insertRequest.goal_amount=String(goal_amount);
+    this.insertRequest.goal_amount=Number(goal_amount);
     this.insertRequest.periodic=String(periodic);
     this.insertRequest.due_date=String(dueDate);
+
   }
   
   getSimulasiPlanner():Observable<any>{
@@ -140,7 +141,7 @@ export class PlannerService {
       due_date:this.insertRequest.due_date,
       periodic:this.insertRequest.periodic
     };
-    console.log(this.simulasiPlannerRequest);
+
     return this.http.post(url,this.simulasiPlannerRequest,this.httpOptions);
   }
   getPorfileResiko():Observable<any>{

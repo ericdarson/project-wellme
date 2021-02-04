@@ -1,0 +1,43 @@
+<div class="jflex-column container" style="height: 100%;">
+    <div class="jflex-row" style="padding-top:20px;" >
+        <a (click)="goBack()" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+            <mat-icon>chevron_left</mat-icon>
+        </a>
+        <h1 style="flex-basis: 90%; text-align: center;;" class="headFont">Portofolio Baru</h1>
+    </div>
+
+    <div class="jflex-column padding-beauty  center-cross-axis " style="height:90%;">
+        
+        <mat-card class="box-outline litle-space" style="width: 100%;">
+            <div class="jflex-column">
+                <div class="jflex-column">
+                    <div><strong>Nama Portofolio</strong></div>
+                    <h2 class="font-green"><b>{{plannerEditRequest.nama_plan}}</b></h2>
+                </div>
+                
+                <div class="jflex-column">
+                    <div><strong>Total Target</strong></div>
+                    <h2 class="font-green"><b>{{plannerEditRequest.goal_amount | currency:'Rp ':'code'}}</b></h2>
+                </div>
+                
+                <div class="jflex-column">
+                    <div><strong>Tanggal Target Tujuan</strong></div>
+                    <h2 class="font-green"><b>{{plannerEditRequest.due_date}}</b></h2>
+                </div>
+            
+            </div>
+        </mat-card>
+
+    </div>
+    
+    <div class="jflex-row center-main-axis center-cross-axis" style="flex-basis: 90%;" *ngIf="loader==true">
+        <mat-spinner [diameter]="55" class="mat-spinner-color"></mat-spinner>
+    </div>
+    <div class="jflex-row center-main-axis little-space" style="color: red;" *ngIf="status==false">Gagal Mengupdate Planner</div>
+    
+    
+    <div class="background-green jflex-row padding-beauty center-main-axis">
+      
+        <a mat-raised-button (click)="doEdit()" style="background-color: #6ED940; color: white; width: 80%; ">Lanjut</a>
+    </div>
+</div>

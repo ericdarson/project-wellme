@@ -19,7 +19,7 @@
     </div>
     <!-- End Shimering-->
 
-    <div class="jflex-column padding-beauty center-main-axis center-cross-axis" style="height:90%" *ngIf="notFound">
+    <div class="jflex-column padding-beauty center-main-axis center-cross-axis" style="height:90%;" *ngIf="listReksadana==null">
         <img src="assets/img/list-planner-nothing.png">
         <h2 class="font-green"  style="text-align: center;"><strong>Reksadana Tidak Ditemukan</strong></h2>
         <p class="font-green"  style="text-align: center;">Silahkan pilih kategori reksadana lain</p>
@@ -30,7 +30,7 @@
         <div *ngFor="let reksa of listReksadana" class="col-md-6">
             <div class=" profile-item-box p-3 pointer">
                 <div class="text-wellme-color font-18">
-                    <b>{{reksa.nama_jenis_reksadana}}</b>
+                    <b>{{reksa.nama_produk}}</b>
                 </div>
                 <div class="font-12">
                     {{namaJenisReksadana}}

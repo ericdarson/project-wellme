@@ -51,7 +51,7 @@ export class PortofolioBaruComponent implements OnInit {
       
       this.portfolioForm.setValue({
         nama_portfolio:plannerRequest.nama_plan,
-        target:plannerRequest.goal_amount,
+        target:Number(plannerRequest.goal_amount),
         durasi_target:momentvar.format('YYYY-MM-DD'),
         periodic:periodic
 
@@ -68,11 +68,14 @@ export class PortofolioBaruComponent implements OnInit {
     this.location.back();
   }
   onSubmit(){
+
     if(!this.portfolioForm.invalid&&(this.periodic=="Mingguan"||this.periodic=="Bulanan"||this.periodic=="Tahunan")){
+
       var periodic=this.periodic=="Mingguan"?"Weekly":this.periodic=="Bulanan"?"Monthly":"Yearly";
       var date=new Date(this.portfolioForm.controls['durasi_target'].value);
       var dateString=formatDate(date,'dd-MM-yyyy','en-Us');      
-      this.plannerService.setRequest(this.portfolioForm.controls['nama_portfolio'].value,this.portfolioForm.controls['target'].value,periodic,dateString);
+      this.plannerService.setRequest(this.portfolioForm.controls['nama_portfolio'].value,Number(this.portfolioForm.controls['target'].value),periodic,dateString);
+
       this.route.navigate(['/financial-planner/simulasi-planner']);
     }
   }
