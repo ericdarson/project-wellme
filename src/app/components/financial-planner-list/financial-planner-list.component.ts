@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { RouteConfigLoadEnd, Router } from '@angular/router';
+import { ActivatedRoute, RouteConfigLoadEnd, Router } from '@angular/router';
 import { PlannerList } from 'src/app/models/planner-list';
 import { ResponseApi } from 'src/app/models/ResponseApi';
 import { GeturlService } from 'src/app/services/geturl.service';
@@ -21,7 +21,7 @@ display:string="block";
   loader=true;
   isFailedToLoad : boolean =false;
   errorStatus : number;
-  constructor(private router:Router,private plannerService:PlannerService,private sharedService:GeturlService,private location:Location) { }
+  constructor(private router:Router,private plannerService:PlannerService,private sharedService:GeturlService,private location:Location,private route:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getListPlanner();
@@ -88,6 +88,6 @@ display:string="block";
   }
   
   goBack(){
-    this.location.back();
+    this.router.navigate(['../../index/more'],{relativeTo:this.route});
   }
 }

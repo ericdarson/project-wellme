@@ -32,7 +32,7 @@ export class PlannerEditComponent implements OnInit {
       this.router.navigate(['../'],{relativeTo:this.route});
     }
     else{
-      if(this.plannerDetail.portfolio==null)
+      if(this.plannerDetail.portfolio.length==0)
       {
         this.canDelete=true;
       }
@@ -69,6 +69,8 @@ export class PlannerEditComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if(result){
         this.plannerService.deletePlanner(this.idDetail).subscribe(response=>{
+          this.plannerService.clearLocalStorage("plannerDetail");
+          this.plannerService.clearLocalStorage("idDetail");
           const dialogRef2 = this.dialog.open(DeleteSuccessComponent, {
             height:'350px',
             width: '350px',
