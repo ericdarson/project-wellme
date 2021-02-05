@@ -89,6 +89,8 @@ import { KonfirmasiDeleteComponent } from './popup/konfirmasi-delete/konfirmasi-
 import { DeleteSuccessComponent } from './popup/delete-success/delete-success.component';
 import { KonfirmasiExitComponent } from './popup/konfirmasi-exit/konfirmasi-exit.component';
 import { PlannerEditConfirmationComponent } from './components/planner-edit-confirmation/planner-edit-confirmation.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -113,6 +115,7 @@ import { PlannerEditConfirmationComponent } from './components/planner-edit-conf
     AppRoutingModule,
     SharedModule,
     HttpClientModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [Globals,MatDatepickerModule,CurrencyPipe,ScrollDispatcher,SessionStorageService,CookieService],
   bootstrap: [AppComponent]
