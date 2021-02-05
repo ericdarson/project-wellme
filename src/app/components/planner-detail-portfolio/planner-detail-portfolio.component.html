@@ -3,7 +3,7 @@
         <a mat-icon-button aria-label="Example icon button with a vertical three dot icon" (click)="goBack()">
             <mat-icon>chevron_left</mat-icon>
         </a>
-        <h1 style="text-align: center;" class="width-full headFont">{{plan.nama_plan}}</h1>
+        <h1 style="text-align: center;" class="width-full headFont"><b>{{plan.nama_plan}}</b></h1>
     </div>
     <div class="jflex-row center-cross-axis row" style="padding-top:20px;" *ngIf="loader==true">
         <div *ngIf="loader==true"><ngx-shimmer-loading [shape]="'circle'" [width]="'50px'" [height]="'50px'" ></ngx-shimmer-loading></div>
@@ -22,13 +22,13 @@
                 </div>
             </div>
         </mat-card>
-        <div class="jflex-column padding-beauty center-main-axis center-cross-axis" style="height:90%" *ngIf="plan.portfolio==null&&!loader">
+        <div class="jflex-column padding-beauty center-main-axis center-cross-axis" style="height:90%" *ngIf="plan.portfolio.length==0&&!loader">
             <img src="assets/img/list-planner-nothing.png">
             <h2 class="font-green"  style="text-align: center;"><strong>Reksadana Kamu Masih Kosong</strong></h2>
             <p class="font-green"  style="text-align: center;">Yuk segera membeli reksadana agar bisa mencapai keinginan mu!</p>
             
         </div>
-        <div class="jflex-row row little-space stretch" style="width:100%; justify-content:space-between; flex-wrap: wrap;" *ngIf="plan.portfolio!=null && !loader">
+        <div class="jflex-row row little-space stretch" style="width:100%; justify-content:space-between; flex-wrap: wrap;" *ngIf="plan.portfolio.length!=0 && !loader">
             <mat-card class="box-outline litle-space padding-beauty col-lg-5" *ngFor="let portfolioJenis of portfolio; let i = index" [attr.data-index]="i">
                 <div class="jflex-column">
                     
@@ -64,7 +64,7 @@
                         <div class="jflex-column">
                             <table>
                                 <tr><td>{{portfolioDetail.nama_produk}}</td><td><strong class="font-green">{{portfolioDetail.asset|currency:'Rp ':true:'1.0'}}</strong></td></tr>
-                                <tr><td>{{portfolioDetail.status}}</td></tr>
+                                <tr><td *ngIf="portfolioDetail.status!='Unit'">{{portfolioDetail.status}}</td></tr>
                             </table>
                         </div>
                     </div>
@@ -130,7 +130,7 @@
     <div class=" jflex-column padding-beauty center-cross-axis">
         <ngx-shimmer-loading *ngIf="loader" [shape]="'rect'" [height]="'14px'" class="col-md-12"></ngx-shimmer-loading>
         <ngx-shimmer-loading *ngIf="loader" [shape]="'rect'" [height]="'32px'" class="col-md-12"></ngx-shimmer-loading>
-        <a *ngIf="plan.portfolio&&!loader" mat-button routerLink="/financial-planner/jual-semua"  class="litle-space box-outline" style="background-color: white; color: #6ED940; border: 2px solid #6ED940; width: 100%; ">Jual Reksadana</a>
+        <a *ngIf="plan.portfolio.length!=0&&!loader" mat-button routerLink="/financial-planner/jual-semua"  class="litle-space box-outline" style="background-color: white; color: #6ED940; border: 2px solid #6ED940; width: 100%; ">Jual Reksadana</a>
         <a *ngIf="!loader" routerLink="/financial-planner/beli-reksadana" mat-button style="background-color: #6ED940; color: white; width: 100%; ">Beli Reksadana</a>
     </div>
 </div>
