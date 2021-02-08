@@ -40,7 +40,7 @@ export class PlannerJualReksadanaComponent implements OnInit {
       for (let i = 0; i < this.plannerDetail.portfolio.length; i++) {
         if(this.plannerDetail.portfolio[i].status=="Unit")
         {
-          this.totalBiayaPenjualan=Number(this.totalAsset)+Number((this.plannerDetail.portfolio[i].biaya_penjualan/100)*this.plannerDetail.portfolio[i].asset);
+          this.totalBiayaPenjualan=Number(this.totalBiayaPenjualan)+Number((this.plannerDetail.portfolio[i].biaya_penjualan/100)*this.plannerDetail.portfolio[i].asset);
           this.totalAsset=Number(this.totalAsset)+Number(this.plannerDetail.portfolio[i].asset);
           this.requestPenjualan.push({
             id_plan:Number(this.idDetail),
@@ -49,7 +49,7 @@ export class PlannerJualReksadanaComponent implements OnInit {
           })
         }
       }
-      this.totalAsset=Number(this.totalAsset)-Number(this.totalBiayaPenjualan);
+      this.totalAsset=Number(this.totalAsset);
       this.plannerService.setLocalStorage("plannerJual",this.requestPenjualan);
     }
     
