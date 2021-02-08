@@ -10,6 +10,7 @@ import { ProductComponent } from '../components/product/product.component';
 import { MoreComponent } from '../components/more/more.component';
 import { NewsComponent } from '../components/news/news.component';
 import { FailedToLoadComponent } from '../components/failed-to-load/failed-to-load.component';
+import { PopupKonfirmasiLogoutComponent } from '../popup/popup-konfirmasi-logout/popup-konfirmasi-logout.component';
 
 
 @NgModule({
@@ -20,7 +21,7 @@ import { FailedToLoadComponent } from '../components/failed-to-load/failed-to-lo
     ProductComponent,
     MoreComponent,
     NewsComponent,
-    
+    PopupKonfirmasiLogoutComponent,
   
   ],
   imports: [

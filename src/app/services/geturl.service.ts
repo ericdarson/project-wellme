@@ -27,7 +27,7 @@ export class GeturlService implements OnInit{
       // console.log("logout")
       this.logout();
     }else{
-      this.checkSession.checkSession()
+      // this.checkSession.checkSession()
     }
   }
 

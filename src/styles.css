@@ -224,3 +224,7 @@ simple-snack-bar span {
 .mat-spinner-color::ng-deep circle{
     stroke: #6ED940 !important;
 }
+
+.container{
+    background-color: white !important;
+}

@@ -64,9 +64,9 @@
                         <div>SID</div>
                         <div><b>{{profileMaster.sid}}</b></div>
                     </div>
-                    <div class="profile-button clickable">
+                    <button mat-button class="profile-button clickable">
                         <b> Lihat Info</b>
-                    </div>
+                    </button>
                 </div>
             </div>
             <div class="profile-item-box" style="padding: 1em;">
@@ -77,20 +77,29 @@
                         </b>
                     </div>
                     <div class="profile-button clickable" (click)="buttonShowRekClicked()">
-                        <div class="flex" *ngIf="!this.buttonShowRekening">
+                        <button mat-button class="flex" *ngIf="!this.buttonShowRekening">
                             <b style="align-self: center;">Tampilkan</b>
                             <mat-icon>expand_more</mat-icon>
-                        </div>
-                        <div class="flex" *ngIf="this.buttonShowRekening">
+                        </button>
+                        <button mat-button class="flex" *ngIf="this.buttonShowRekening">
                             <b style="align-self: center;">Sembunyikan</b>
                             <mat-icon>expand_less</mat-icon>
-                        </div>
+                        </button>
                     </div>
                 </div>
                 <div *ngIf="this.buttonShowRekening" style="margin-top:1em ;">
                     <div style="height: 1px; background-color: #6ED940; margin-bottom: 1em;"></div>
                     <div>
                         Rekening Reksadana
+                    </div>
+                    <div>
+                        <b>
+                            {{profileMaster.no_rekening_bca}}
+                        </b>
+                    </div>
+                    <div style="height: 1px; background-color: #6ED940; margin-bottom: 1em;margin-top:1em;"></div>
+                    <div>
+                        Rekening Obligasi
                     </div>
                     <div>
                         <b>
@@ -108,6 +117,14 @@
                     </div>
                 </div>
             </div>
+            <div class="text-center mt-5">
+                <button mat-button class="profile-button clickable p-0" (click)="logout()" style="width:25%">
+                    <div>
+                        <b>Logout</b>
+                    </div>
+                </button>
+            </div>
+            
         </div>
     </div>
     <div *ngIf="shimmering">

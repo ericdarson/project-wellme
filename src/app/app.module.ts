@@ -92,6 +92,7 @@ import { PlannerEditConfirmationComponent } from './components/planner-edit-conf
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { RouterModule, ɵROUTER_PROVIDERS } from '@angular/router';
+import { PopupKonfirmasiLogoutComponent } from './popup/popup-konfirmasi-logout/popup-konfirmasi-logout.component';
 
 @NgModule({
   declarations: [
@@ -107,6 +108,7 @@ import { RouterModule, ɵROUTER_PROVIDERS } from '@angular/router';
     SyaratKetentuanPenjualanComponent,
     KonfirmasiDeleteComponent,
     DeleteSuccessComponent,
+
    
     
   ],

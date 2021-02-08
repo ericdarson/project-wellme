@@ -45,6 +45,27 @@ export class CheckSessionService {
       }
   }
 
+  checkSessionFirst():Observable<any>{
+    const url= environment.checkSessionUrl;
+    var bca_id=this.session.retrieve("bca_id")==undefined||this.session.retrieve("bca_id")==null?"":this.session.retrieve("bca_id")
+    var token=this.session.retrieve("token")==undefined||this.session.retrieve("token")==null?"":this.session.retrieve("token")
+    
+    
+      var httpOptions={
+        headers:new HttpHeaders({
+          'Content-Type':'application/json',
+          'Access-Control-Allow-Headers': 'Content-Type',
+          'Access-Control-Allow-Methods': 'POST, OPTIONS, GET, PUT',
+          'Access-Control-Allow-Origin': '*',
+          'Identity':'ERICIMPOSTORNYA',
+          'bca-id': String(bca_id),
+          'token':String(token),
+        })
+      };
+
+      return this.http.post(url,{},httpOptions) 
+  }
+
   logout(){
     this.session.clear('token');
     this.session.clear('bca_id');

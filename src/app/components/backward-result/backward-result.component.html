@@ -1,117 +1,120 @@
 <div class="master-component container">
-
-        <div *ngIf="isFailedToLoad" class="row" style="justify-content: center;">
-            <div class="col-md-10">
-                <app-failed-to-load [errorStatus]="this.errorStatus" (onButtonClicked)="errorButtonClicked()"></app-failed-to-load>
+    <div class="row">
+        <div class="col-xl-8 mx-auto">
+            <div *ngIf="isFailedToLoad" class="row" style="justify-content: center;">
+                <div class="col-md-10">
+                    <app-failed-to-load [errorStatus]="this.errorStatus" (onButtonClicked)="errorButtonClicked()"></app-failed-to-load>
+                </div>
             </div>
-        </div>
 
-    <div *ngIf="!isFailedToLoad">
-    <div class="jflex-row" style="padding-top:20px;">
-        <mat-icon class="clickable" (click)="back()">chevron_left</mat-icon>
-        <h1 style="text-align: center;" class="width-full headFont"><b>Backward Projection</b></h1>
-    </div>
-
-    <div class="flex-center" style="margin-bottom: 2em;margin-top: 1em;">
-        <div class="profile-name">
-           Proyeksi
-        </div>
-    </div>
-    </div>
-
-    <div style="width: 100%">
-        <canvas id="line" #line></canvas><br>
-    </div>
-
-    <div *ngIf="!isFailedToLoad">
-    <mat-grid-list cols="4" rowHeight="6em">
-        <mat-grid-tile>
-            <button mat-button [ngClass]="oneWeekRangeSelected ? 'button-fill' : 'button-range'"
-             class="clickable text-center width-full" style="padding: 1em;" (click)="selectOneWeekRange()">
-                <div>
-                    <b>1 Week</b>
-                </div>
-            </button>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <button mat-button [ngClass]="oneMonthRangeSelected ? 'button-fill' : 'button-range'"
-             class="clickable text-center width-full" style="padding: 1em;" (click)="selectOneMonthRange()">
-                <div>
-                    <b>1 Month</b>
-                </div>
-            </button>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <button mat-button  [ngClass]="threeMonthRangeSelected ? 'button-fill' : 'button-range'"
-             class=" clickable text-center width-full" style="padding: 1em;" (click)="selectThreeMonthRange()">
-                <div>
-                    <b>3 Month</b>
-                </div>
-            </button>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <button mat-button  [ngClass]="oneYearRangeSelected ? 'button-fill' : 'button-range'"
-             class="clickable text-center width-full" style="padding: 1em;" (click)="selectOneYearRange()">
-                <div>
-                    <b>1 Year</b>
-                </div>
-            </button>
-        </mat-grid-tile>
-    </mat-grid-list>
-    <div class="profile-item-box" style="padding: 1em;">
-        <div class="text-wellme-color font-18">
-            <ngx-shimmer-loading *ngIf="isLoading" [shape]="'rect'" [width]="'40%'" [height]="'2em'"></ngx-shimmer-loading>
-            <b *ngIf="!isLoading" >{{ resultData.nama_produk }}</b>
-        </div>
-        <div>
-            <ngx-shimmer-loading *ngIf="isLoading" [shape]="'rect'" [width]="'20%'" [height]="'2em'"></ngx-shimmer-loading>
-            <p>{{ jenisreksa }}</p> 
-        </div>
-        <div>
-            <ngx-shimmer-loading *ngIf="isLoading" [shape]="'rect'" [width]="'20%'" [height]="'2em'"></ngx-shimmer-loading>
-            <p>{{ resultData.datestring }} </p>
-        </div>
-        <div style="margin-top: 1em;">
-            <div>
-               <b>Kinerja 1 Tahun</b>
+            <div *ngIf="!isFailedToLoad">
+            <div class="jflex-row" style="padding-top:20px;">
+                <mat-icon class="clickable" (click)="back()">chevron_left</mat-icon>
+                <h1 style="text-align: center;" class="width-full headFont"><b>Backward Projection</b></h1>
             </div>
-            <div [ngClass]="resultData.cagr_one_year>=0?'text-wellme-color':'text-wellme-red'">
-                <ngx-shimmer-loading *ngIf="isLoading" [shape]="'rect'" [width]="'100%'" [height]="'2em'"></ngx-shimmer-loading>
-                <b *ngIf="!isLoading">{{ resultData.cagr_one_year>=0?'+':'' }}{{ resultData.cagr_one_year | number:'1.2' }}%</b>
+
+            <div class="flex-center" style="margin-bottom: 2em;margin-top: 1em;">
+                <div class="profile-name">
+                Proyeksi
+                </div>
             </div>
-            <div class="flex" style="justify-content: space-between;margin-top: 1em;align-items: center;">
-                <div>
-                    <div>
-                        <b>NAB/ Unit</b>
-                    </div>
+            </div>
+
+            <div style="width: 100%">
+                <canvas id="line" #line></canvas><br>
+            </div>
+
+            <div *ngIf="!isFailedToLoad">
+                <mat-grid-list cols="4" rowHeight="6em">
+                    <mat-grid-tile>
+                        <button mat-button [ngClass]="oneWeekRangeSelected ? 'button-fill' : 'button-range'"
+                        class="clickable text-center width-full" style="padding: 1em;" (click)="selectOneWeekRange()">
+                            <div>
+                                <b>1 Week</b>
+                            </div>
+                        </button>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <button mat-button [ngClass]="oneMonthRangeSelected ? 'button-fill' : 'button-range'"
+                        class="clickable text-center width-full" style="padding: 1em;" (click)="selectOneMonthRange()">
+                            <div>
+                                <b>1 Month</b>
+                            </div>
+                        </button>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <button mat-button  [ngClass]="threeMonthRangeSelected ? 'button-fill' : 'button-range'"
+                        class=" clickable text-center width-full" style="padding: 1em;" (click)="selectThreeMonthRange()">
+                            <div>
+                                <b>3 Month</b>
+                            </div>
+                        </button>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <button mat-button  [ngClass]="oneYearRangeSelected ? 'button-fill' : 'button-range'"
+                        class="clickable text-center width-full" style="padding: 1em;" (click)="selectOneYearRange()">
+                            <div>
+                                <b>1 Year</b>
+                            </div>
+                        </button>
+                    </mat-grid-tile>
+                </mat-grid-list>
+                <div class="profile-item-box" style="padding: 1em;">
                     <div class="text-wellme-color font-18">
-                        <ngx-shimmer-loading *ngIf="isLoading" [shape]="'rect'" [width]="'100%'" [height]="'2em'"></ngx-shimmer-loading>
-                        <b *ngIf="!isLoading">{{resultData.current_nab | currency : 'Rp ' :'symbol':'1.2'}}</b>
+                        <ngx-shimmer-loading *ngIf="isLoading" [shape]="'rect'" [width]="'40%'" [height]="'2em'"></ngx-shimmer-loading>
+                        <b *ngIf="!isLoading" >{{ resultData.nama_produk }}</b>
+                    </div>
+                    <div>
+                        <ngx-shimmer-loading *ngIf="isLoading" [shape]="'rect'" [width]="'20%'" [height]="'2em'"></ngx-shimmer-loading>
+                        <p>{{ jenisreksa }}</p> 
+                    </div>
+                    <div>
+                        <ngx-shimmer-loading *ngIf="isLoading" [shape]="'rect'" [width]="'20%'" [height]="'2em'"></ngx-shimmer-loading>
+                        <p>{{ resultData.datestring }} </p>
+                    </div>
+                    <div style="margin-top: 1em;">
+                        <div>
+                        <b>Kinerja 1 Tahun</b>
+                        </div>
+                        <div [ngClass]="resultData.cagr_one_year>=0?'text-wellme-color':'text-wellme-red'">
+                            <ngx-shimmer-loading *ngIf="isLoading" [shape]="'rect'" [width]="'100%'" [height]="'2em'"></ngx-shimmer-loading>
+                            <b *ngIf="!isLoading">{{ resultData.cagr_one_year>=0?'+':'' }}{{ resultData.cagr_one_year | number:'1.2' }}%</b>
+                        </div>
+                        <div class="flex" style="justify-content: space-between;margin-top: 1em;align-items: center;">
+                            <div>
+                                <div>
+                                    <b>NAB/ Unit</b>
+                                </div>
+                                <div class="text-wellme-color font-18">
+                                    <ngx-shimmer-loading *ngIf="isLoading" [shape]="'rect'" [width]="'100%'" [height]="'2em'"></ngx-shimmer-loading>
+                                    <b *ngIf="!isLoading">{{resultData.current_nab | currency : 'Rp ' :'symbol':'1.2'}}</b>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+                <div class="profile-item-box" style="padding: 1em;">
+                    <ngx-shimmer-loading *ngIf="isLoading" [shape]="'rect'" [width]="'100%'" [height]="'2em'"></ngx-shimmer-loading>
+                    <div *ngIf="!isLoading" class="flex" style="justify-content: space-between;">
+                        <div class="font-18">
+                            <b>Bank Kustodian</b>
+                        </div>
+                        <div class="text-wellme-color font-18">
+                            <b>{{ resultData.bank_kustodian }}</b>
+                        </div>
+                    </div>
+                    <ngx-shimmer-loading *ngIf="isLoading" [shape]="'rect'" [width]="'100%'" [height]="'2em'"></ngx-shimmer-loading>
+                    <div *ngIf="!isLoading"class="flex" style="justify-content: space-between; margin-top: 1em;">
+                        <div class="font-18">
+                            <b>Bank Penampung</b>
+                        </div>
+                        <div class="text-wellme-color font-18">
+                            <b>{{ resultData.bank_penampung }}</b>
+                        </div>
+                    </div>
+                </div>
+            </div>  
         </div>
     </div>
-    <div class="profile-item-box" style="padding: 1em;">
-        <ngx-shimmer-loading *ngIf="isLoading" [shape]="'rect'" [width]="'100%'" [height]="'2em'"></ngx-shimmer-loading>
-        <div *ngIf="!isLoading" class="flex" style="justify-content: space-between;">
-            <div class="font-18">
-                <b>Bank Kustodian</b>
-            </div>
-            <div class="text-wellme-color font-18">
-                <b>{{ resultData.bank_kustodian }}</b>
-            </div>
-        </div>
-        <ngx-shimmer-loading *ngIf="isLoading" [shape]="'rect'" [width]="'100%'" [height]="'2em'"></ngx-shimmer-loading>
-        <div *ngIf="!isLoading"class="flex" style="justify-content: space-between; margin-top: 1em;">
-            <div class="font-18">
-                <b>Bank Penampung</b>
-            </div>
-            <div class="text-wellme-color font-18">
-                <b>{{ resultData.bank_penampung }}</b>
-            </div>
-        </div>
-    </div>
-    </div>  
 
 </div>

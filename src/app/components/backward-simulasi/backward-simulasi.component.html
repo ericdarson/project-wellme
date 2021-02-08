@@ -1,184 +1,188 @@
 <div *ngIf="!isFailedToLoad && !isFailedToLoadSimulation" class="master-component container">
-    <div class="jflex-row" style="padding-top:20px;">
-        <mat-icon class="clickable" (click)="back()">chevron_left</mat-icon>
-        <h1 style="text-align: center;" class="width-full headFont"><b>Backward Projection</b></h1>
-    </div>
-
-    <div class="flex-center" style="margin-bottom: 2em;margin-top: 1em;">
-        <div class="profile-name">
-           Simulasi
-        </div>
-    </div>
-
     <div class="row">
-        <div class="col-md-6">
-            <div class="profile-item-box" style="padding: 1em;">
-                <div class="text-wellme-color font-18">
-                    <ngx-shimmer-loading *ngIf="isLoading" [shape]="'rect'" [width]="'100%'" [height]="'2em'"></ngx-shimmer-loading>
-                    <b  *ngIf="!isLoading">{{ namaProduk }}</b>
-                </div>
-                <div class="mt-5">
-                    <div>
-                        Nominal Pembelian
-                    </div>
-                    <div class="text-wellme-color">
-                        <ngx-shimmer-loading *ngIf="isLoading" [shape]="'rect'" [width]="'30%'" [height]="'2em'"></ngx-shimmer-loading>
-                        <b *ngIf="!isLoading">{{this.nominalPembelian | currency : 'Rp '}}</b>
-                    </div>
-                    <div class="flex mt-4" style="justify-content: space-between;align-items: center;">
-                        <div>
-                            <div>
-                                NAB/ Unit
-                            </div>
-                            <div class="text-wellme-color">
-                                <ngx-shimmer-loading *ngIf="isLoading" [shape]="'rect'" [width]="'100%'" [height]="'2em'"></ngx-shimmer-loading>
-                                <b  *ngIf="!isLoading" >{{this.simulationStartData.starting_nab | currency : 'Rp '}}</b>
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                Total Unit NAB
-                            </div>
-                            <div class="text-wellme-color">
-                                <ngx-shimmer-loading *ngIf="isLoading" [shape]="'rect'" [width]="'100%'" [height]="'2em'"></ngx-shimmer-loading>
-                                <b *ngIf="!isLoading">{{ this.simulationStartData.jumlah_unit | number:'1.4' }}</b>&nbsp;
-                                <b *ngIf="!isLoading">Unit</b>
-                            </div>
-                        </div>
-                    </div>
+        <div class="col-xl-8 mx-auto">
+            <div class="jflex-row" style="padding-top:20px;">
+                <mat-icon class="clickable" (click)="back()">chevron_left</mat-icon>
+                <h1 style="text-align: center;" class="width-full headFont"><b>Backward Projection</b></h1>
+            </div>
+
+            <div class="flex-center" style="margin-bottom: 2em;margin-top: 1em;">
+                <div class="profile-name">
+                Simulasi
                 </div>
             </div>
-        </div>
 
-        <div class="col-md-6">
-            <div class="profile-item-box" style="padding: 1em;">
-                <div class="flex" style="justify-content: space-between; align-items: center;">
-                    <div>
-                        <div class=" font-16">
-                            <b>Lamanya Investasi</b>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="profile-item-box" style="padding: 1em;">
+                        <div class="text-wellme-color font-18">
+                            <ngx-shimmer-loading *ngIf="isLoading" [shape]="'rect'" [width]="'100%'" [height]="'2em'"></ngx-shimmer-loading>
+                            <b  *ngIf="!isLoading">{{ namaProduk }}</b>
                         </div>
-                        <mat-form-field>
-                            <mat-label></mat-label>
-                            <input matInput type="number" [(ngModel)]="lamaInvestasi" placeholder="(contoh : 1,2,3, dst..)" />
-                        </mat-form-field>
+                        <div class="mt-5">
+                            <div>
+                                Nominal Pembelian
+                            </div>
+                            <div class="text-wellme-color">
+                                <ngx-shimmer-loading *ngIf="isLoading" [shape]="'rect'" [width]="'30%'" [height]="'2em'"></ngx-shimmer-loading>
+                                <b *ngIf="!isLoading">{{this.nominalPembelian | currency : 'Rp '}}</b>
+                            </div>
+                            <div class="flex mt-4" style="justify-content: space-between;align-items: center;">
+                                <div>
+                                    <div>
+                                        NAB/ Unit
+                                    </div>
+                                    <div class="text-wellme-color">
+                                        <ngx-shimmer-loading *ngIf="isLoading" [shape]="'rect'" [width]="'100%'" [height]="'2em'"></ngx-shimmer-loading>
+                                        <b  *ngIf="!isLoading" >{{this.simulationStartData.starting_nab | currency : 'Rp '}}</b>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div>
+                                        Total Unit NAB
+                                    </div>
+                                    <div class="text-wellme-color">
+                                        <ngx-shimmer-loading *ngIf="isLoading" [shape]="'rect'" [width]="'100%'" [height]="'2em'"></ngx-shimmer-loading>
+                                        <b *ngIf="!isLoading">{{ this.simulationStartData.jumlah_unit | number:'1.4' }}</b>&nbsp;
+                                        <b *ngIf="!isLoading">Unit</b>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="profile-item-box" style="padding: 1em;">
+                        <div class="flex" style="justify-content: space-between; align-items: center;">
+                            <div>
+                                <div class=" font-16">
+                                    <b>Lamanya Investasi</b>
+                                </div>
+                                <mat-form-field>
+                                    <mat-label></mat-label>
+                                    <input matInput type="number" [(ngModel)]="lamaInvestasi" placeholder="(contoh : 1,2,3, dst..)" />
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <button [disabled]="checkDisable()" mat-button class="pilih-button width-full " (click)="doSimulation()">  
+                                    <b>Terapkan </b>    
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <mat-grid-list cols="3" rowHeight="5em">
+                        <mat-grid-tile>
+                            <button mat-button [ngClass]="hariSelected ? 'button-fill' : 'button-range'"
+                            class="clickable text-center width-full" style="padding: 1em;" (click)="selectHari()">
+                                <div>
+                                    <b>Hari</b>
+                                </div>
+                            </button>
+                        </mat-grid-tile>
+                        <mat-grid-tile>
+                            <button mat-button [ngClass]="mingguSelected ? 'button-fill' : 'button-range'"
+                            class="clickable text-center width-full" style="padding: 1em;" (click)="selectMinggu()">
+                                <div>
+                                    <b>Minggu</b>
+                                </div>
+                            </button>
+                        </mat-grid-tile>
+                        <mat-grid-tile>
+                            <button mat-button  [ngClass]="bulanSelected ? 'button-fill' : 'button-range'"
+                            class=" clickable text-center width-full" style="padding: 1em;" (click)="selectBulan()">
+                                <div>
+                                    <b>Bulan</b>
+                                </div>
+                            </button>
+                        </mat-grid-tile>
+                    </mat-grid-list>
+                    
+                </div>
+            </div>
+        
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <div class="profile-item-box" style="padding: 1em;">
+                        <ngx-shimmer-loading *ngIf="isLoading" [shape]="'rect'" [width]="'100%'" [height]="'2em'"></ngx-shimmer-loading>
+                        
+                    <div *ngIf="!isLoading" class="flex" style="justify-content: space-between; align-items: center;">
+                        
+                        <div>
+                            NAB/ Unit Beli
+                        </div>
+                        
+                        <div class="text-wellme-color">
+                            <b>{{this.simulationStartData.starting_nab | currency : 'Rp '}}</b>
+                        </div>
+                    </div>
+                    <ngx-shimmer-loading *ngIf="isLoading" [shape]="'rect'" [width]="'100%'" [height]="'2em'"></ngx-shimmer-loading>
+                        
+                    <div *ngIf="!isLoading" class="flex" style="justify-content: space-between; align-items: center;">
+                        <div>
+                            NAB/ Unit Simulasi
+                        </div>
+                        <div class="text-wellme-color">
+                            <b>{{this.nabaftersimulasi | currency : 'Rp '}}</b>
+                        </div>
+                    </div>
+                    <ngx-shimmer-loading *ngIf="isLoading" [shape]="'rect'" [width]="'100%'" [height]="'2em'"></ngx-shimmer-loading>
+                    
+                    <div *ngIf="!isLoading" class="flex" style="justify-content: space-between; align-items: center;">
+                        <div>
+                            Tanggal Beli
+                        </div>
+                        <div class="text-wellme-color">
+                            <b>{{ this.simulationStartData.start_datestring }}</b>
+                        </div>
+                    </div>
+                    <ngx-shimmer-loading *ngIf="isLoading" [shape]="'rect'" [width]="'100%'" [height]="'2em'"></ngx-shimmer-loading>
+                    
+                    <div *ngIf="!isLoading" class="flex" style="justify-content: space-between; align-items: center;">
+                        <div>
+                            Tanggal Durasi Investasi
+                        </div>
+                        <div class="text-wellme-color">
+                            <b>{{ this.simulationDateAfter }}</b>
+                        </div>
+                    </div>
+                    <ngx-shimmer-loading *ngIf="isLoading" [shape]="'rect'" [width]="'100%'" [height]="'2em'"></ngx-shimmer-loading>
+                    
+                    <div *ngIf="!isLoading" class="flex" style="justify-content: space-between; align-items: center;">
+                        <div>
+                            Total Investasi Anda Setelah
+                        </div>
+                        <div class="text-wellme-color">
+                            <b>{{ this.durasiinvestasi }} Hari</b>
+                        </div>
+                    </div>
+                    <div class="width-full text-center font-24 text-wellme-color" style="margin-top: 1em; margin-bottom: 1em;">
+                        <ngx-shimmer-loading *ngIf="isLoading" [shape]="'rect'" [width]="'100%'" [height]="'2em'"></ngx-shimmer-loading>
+                        <b *ngIf="!isLoading" >{{this.nabaftersimulasi * this.simulationStartData.jumlah_unit | currency : 'Rp ' :'symbol':'1.2'}}</b>
+                    </div>
+                    <button  [disabled]="isLoading" mat-button class="pilih-button width-full " (click)="goToBackwardResult()">  
+                        <b>Lihat Proyeksi</b>    
+                    </button>
+                    </div>
+                </div>
+                <div class="col-md-6">
                     <div>
-                        <button [disabled]="checkDisable()" mat-button class="pilih-button width-full " (click)="doSimulation()">  
-                            <b>Terapkan </b>    
+                        <button mat-button class="pilih-button width-full" (click)="retryClicked()" >  
+                            <b>Reset Tanggal </b>    
                         </button>
                     </div>
                 </div>
             </div>
-            <mat-grid-list cols="3" rowHeight="5em">
-                <mat-grid-tile>
-                    <button mat-button [ngClass]="hariSelected ? 'button-fill' : 'button-range'"
-                     class="clickable text-center width-full" style="padding: 1em;" (click)="selectHari()">
+        
+            <div class="row mt-4">
+                <div class="col-md-12 text-center">
+                    <button mat-button class="button-fill clickable text-center"  style="padding: 1em; width: 50%;" (click)="selesai()">
                         <div>
-                            <b>Hari</b>
+                            <b>Selesai</b>
                         </div>
                     </button>
-                </mat-grid-tile>
-                <mat-grid-tile>
-                    <button mat-button [ngClass]="mingguSelected ? 'button-fill' : 'button-range'"
-                     class="clickable text-center width-full" style="padding: 1em;" (click)="selectMinggu()">
-                        <div>
-                            <b>Minggu</b>
-                        </div>
-                    </button>
-                </mat-grid-tile>
-                <mat-grid-tile>
-                    <button mat-button  [ngClass]="bulanSelected ? 'button-fill' : 'button-range'"
-                     class=" clickable text-center width-full" style="padding: 1em;" (click)="selectBulan()">
-                        <div>
-                            <b>Bulan</b>
-                        </div>
-                    </button>
-                </mat-grid-tile>
-            </mat-grid-list>
-               
-        </div>
-    </div>
-   
-    <div class="row mt-3">
-        <div class="col-md-6">
-            <div class="profile-item-box" style="padding: 1em;">
-                <ngx-shimmer-loading *ngIf="isLoading" [shape]="'rect'" [width]="'100%'" [height]="'2em'"></ngx-shimmer-loading>
-                
-            <div *ngIf="!isLoading" class="flex" style="justify-content: space-between; align-items: center;">
-                 
-                <div>
-                    NAB/ Unit Beli
-                </div>
-                   
-                <div class="text-wellme-color">
-                    <b>{{this.simulationStartData.starting_nab | currency : 'Rp '}}</b>
                 </div>
             </div>
-            <ngx-shimmer-loading *ngIf="isLoading" [shape]="'rect'" [width]="'100%'" [height]="'2em'"></ngx-shimmer-loading>
-                
-            <div *ngIf="!isLoading" class="flex" style="justify-content: space-between; align-items: center;">
-                <div>
-                    NAB/ Unit Simulasi
-                </div>
-                <div class="text-wellme-color">
-                    <b>{{this.nabaftersimulasi | currency : 'Rp '}}</b>
-                </div>
-            </div>
-            <ngx-shimmer-loading *ngIf="isLoading" [shape]="'rect'" [width]="'100%'" [height]="'2em'"></ngx-shimmer-loading>
-            
-            <div *ngIf="!isLoading" class="flex" style="justify-content: space-between; align-items: center;">
-                <div>
-                    Tanggal Beli
-                </div>
-                <div class="text-wellme-color">
-                    <b>{{ this.simulationStartData.start_datestring }}</b>
-                </div>
-            </div>
-            <ngx-shimmer-loading *ngIf="isLoading" [shape]="'rect'" [width]="'100%'" [height]="'2em'"></ngx-shimmer-loading>
-            
-            <div *ngIf="!isLoading" class="flex" style="justify-content: space-between; align-items: center;">
-                <div>
-                    Tanggal Durasi Investasi
-                </div>
-                <div class="text-wellme-color">
-                    <b>{{ this.simulationDateAfter }}</b>
-                </div>
-            </div>
-            <ngx-shimmer-loading *ngIf="isLoading" [shape]="'rect'" [width]="'100%'" [height]="'2em'"></ngx-shimmer-loading>
-            
-            <div *ngIf="!isLoading" class="flex" style="justify-content: space-between; align-items: center;">
-                <div>
-                    Total Investasi Anda Setelah
-                </div>
-                <div class="text-wellme-color">
-                    <b>{{ this.durasiinvestasi }} Hari</b>
-                </div>
-            </div>
-            <div class="width-full text-center font-24 text-wellme-color" style="margin-top: 1em; margin-bottom: 1em;">
-                <ngx-shimmer-loading *ngIf="isLoading" [shape]="'rect'" [width]="'100%'" [height]="'2em'"></ngx-shimmer-loading>
-                <b *ngIf="!isLoading" >{{this.nabaftersimulasi * this.simulationStartData.jumlah_unit | currency : 'Rp ' :'symbol':'1.2'}}</b>
-            </div>
-            <button  [disabled]="isLoading" mat-button class="pilih-button width-full " (click)="goToBackwardResult()">  
-                <b>Lihat Proyeksi</b>    
-            </button>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div>
-                <button mat-button class="pilih-button width-full" (click)="retryClicked()" >  
-                    <b>Reset Tanggal </b>    
-                </button>
-            </div>
-        </div>
-    </div>
-   
-    <div class="row mt-4">
-        <div class="col-md-12 text-center">
-            <button mat-button class="button-fill clickable text-center"  style="padding: 1em; width: 50%;" (click)="selesai()">
-                <div>
-                    <b>Selesai</b>
-                </div>
-            </button>
         </div>
     </div>
 </div>

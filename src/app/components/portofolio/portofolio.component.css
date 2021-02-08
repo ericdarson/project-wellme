@@ -8,3 +8,6 @@
     margin-left: 0px !important;
     margin-right: 0px !important;
 }
+::ng-deep .container{
+    background-color: white !important;
+}

@@ -1,53 +1,58 @@
 <div *ngIf="!isFailedToLoad" class="jflex-column container pb-5" style="height: 100%;">
-    <div class="jflex-row" style="padding-top:20px;">
-        <mat-icon class="clickable" routerLink="../../index/more">chevron_left</mat-icon>
-        <h1 style="text-align: center;" class="width-full headFont"><b>Backward Projection</b></h1>
-    </div>
-
-    <div class="flex-center" style="margin-bottom: 2em;margin-top: 1em;">
-        <div class="profile-name">
-            Pilih Kategori
-        </div>
-    </div>
-    <!-- start shimerring -->
-    <div class ='item-shimmer' *ngIf="isLoading">
-        <ngx-shimmer-loading [shape]="'rect'" [width]="'100%'" [height]="'150px'"></ngx-shimmer-loading>
-    </div>
-    <div class ='item-shimmer' *ngIf="isLoading">
-        <ngx-shimmer-loading [shape]="'rect'" [width]="'100%'" [height]="'150px'"></ngx-shimmer-loading>
-    </div>
-    <!-- end shimerring -->
-
     <div class="row">
-        <div *ngFor="let reksadana of listReksadana; let i = index" class="col-md-12">
-            <div class="clickable flex" [ngClass]="setClass(reksadana)" style="padding: 2em;align-items: center;" (click)="choose(reksadana)">
-                <div class="width-full font-32">
-                    <b>{{ reksadana.nama }}</b>
+        <div class="col-xl-8 mx-auto">
+            <div>
+                <div class="jflex-row mb-5" style="padding-top:20px;">
+                    <mat-icon class="clickable" routerLink="../../index/more">chevron_left</mat-icon>
+                    <div style="text-align: center;" class="width-full font-32 "><b>Backward Projection</b></div>
                 </div>
-                <div>
-                    <img src="/assets/icon/icon-kategori-{{ (i%3+1) }}.png" alt="Wellme" width="200" height="100">
+            
+                <div class="flex-center" style="margin-bottom: 2em;margin-top: 1em;">
+                    <div class="profile-name">
+                        Pilih Kategori
+                    </div>
+                </div>
+                <!-- start shimerring -->
+                <div class ='item-shimmer' *ngIf="isLoading">
+                    <ngx-shimmer-loading [shape]="'rect'" [width]="'100%'" [height]="'150px'"></ngx-shimmer-loading>
+                </div>
+                <div class ='item-shimmer' *ngIf="isLoading">
+                    <ngx-shimmer-loading [shape]="'rect'" [width]="'100%'" [height]="'150px'"></ngx-shimmer-loading>
+                </div>
+                <!-- end shimerring -->
+            
+                <div class="row">
+                    <div *ngFor="let reksadana of listReksadana; let i = index" class="col-md-12">
+                        <div class="clickable flex" [ngClass]="setClass(reksadana)" style="padding: 2em;align-items: center;" (click)="choose(reksadana)">
+                            <div class="width-full font-32">
+                                <b>{{ reksadana.nama }}</b>
+                            </div>
+                            <div>
+                                <img src="/assets/icon/icon-kategori-{{ (i%3+1) }}.png" alt="Wellme" width="200" height="100">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex mt-3 col-md-12" style="align-self: center;justify-content: center;align-items: center;">
+                        <mat-checkbox class="text-center" [checked]="skCheck" (change)="setSk($event.checked)">
+                            <div>
+                                <b>Saya Sudah Baca  &nbsp;</b>
+                            </div>
+                        </mat-checkbox>
+                        <div class="clickable " style="color: #6ED940;" (click)="openSKPopup()">
+                            <b>Syarat dan Ketentuan &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
+                        </div>
+                        <img class="img-fluid clickable" src="assets/icon/icon_mulai_tur_singkat.png" (click)="goToTutorialPage()" alt="Wellme" width="80" height="80">
+                    </div>
+                
+                    <button mat-button [ngClass]="checkDisable() ? 'button-fill-disabled':'button-fill'" class="col-md-12"
+                     style="margin-top:2em;" [disabled]="checkDisable()" (click)="openTutorialBackward()">Lanjut</button>
                 </div>
             </div>
+           
         </div>
-        <div class="flex mt-3 col-md-12" style="align-self: center;justify-content: center;">
-            <mat-checkbox class="text-center" [checked]="skCheck" (change)="setSk($event.checked)">
-                <div class="font-18">
-                    <b>Saya Sudah Baca  &nbsp;</b>
-                </div>
-            </mat-checkbox>
-            <div class="clickable font-18" style="color: #6ED940;padding-top: 0.10em" (click)="openSKPopup()">
-                <b>Syarat dan Ketentuan</b>
-            </div>
-        </div>
-    
-        <button mat-button [ngClass]="checkDisable() ? 'button-fill-disabled':'button-fill'" class=" width-full col-md-12"
-         style="margin-top:2em;" [disabled]="checkDisable()" (click)="openTutorialBackward()">Lanjut</button>
     </div>
     
-
-     <div class="floating">
-        <img class="img-fluid clickable" src="/assets/icon/icon_mulai_tur_singkat.png" (click)="goToTutorialPage()" alt="Wellme" width="80" height="80">
-     </div>
+    
 </div>
 
 <div *ngIf="isFailedToLoad" class="master-component">

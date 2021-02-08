@@ -26,7 +26,7 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 
 const routes: Routes = [
   { path: '', redirectTo: 'landing-page', pathMatch: 'full'},
-  { path: 'home', component: HomeComponent },
+  { path: 'home',  redirectTo: 'index', pathMatch: 'full'},
   { path: 'index',  loadChildren: () => IndexModule },
   { path: 'backward-projection',  loadChildren: () => BackwardModuleModule },
   { path: 'landing-page',  loadChildren: () => LandingPageModule },

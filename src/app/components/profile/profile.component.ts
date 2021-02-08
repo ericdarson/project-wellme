@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProfileService } from 'src/app/services/profile.service';
 import { ProfileMaster } from '../../models/ProfileMaster';
 import { ResponseApi } from '../../models/ResponseApi';
 import { GeturlService } from '../../services/geturl.service';
 
+
+import { PopupKonfirmasiLogoutComponent } from '../../popup/popup-konfirmasi-logout/popup-konfirmasi-logout.component';
+import { runInThisContext } from 'vm';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -24,7 +28,7 @@ export class ProfileComponent implements OnInit {
 
 
   constructor(private profileService : ProfileService,private sharedService :GeturlService,
-    private router: Router,private activeRoute : ActivatedRoute) { }
+    private router: Router,private activeRoute : ActivatedRoute,public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getProfile()
@@ -66,6 +70,20 @@ export class ProfileComponent implements OnInit {
     }else{
       this.getProfile()
     }
+  }
+
+  logout(){
+    const dialogRef = this.dialog.open(PopupKonfirmasiLogoutComponent, {
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this.sharedService.logout()
+      }else{
+
+      }
+    });
   }
 
 
