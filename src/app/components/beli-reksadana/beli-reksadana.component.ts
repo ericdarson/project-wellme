@@ -129,7 +129,9 @@ export class BeliReksadanaComponent implements OnInit {
     this.resetFormPembelian();
     if(await this.isRequestPembelianValid()==true)
     {
+      
       this.plannerService.setPlannerBeliState(this.plannerBeliState);
+      
       this.router.navigate(['../konfirmasi-transaksi'],{relativeTo:this.route});
     }
   }
@@ -141,6 +143,9 @@ export class BeliReksadanaComponent implements OnInit {
     {
       if(this.plannerBeliState.kode_promo!="")
       {promoValid=await this.isPromoValid(this.plannerBeliState.kode_promo);}
+      else{
+        this.plannerBeliState.cashback=undefined;
+      }
     }
     var nominalValid=this.isNominalValid()
     if(promoValid==true&&nominalValid==true)

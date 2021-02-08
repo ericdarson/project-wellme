@@ -23,14 +23,24 @@
                 <div *ngIf="reksadana.status=='Unit'"><b>{{reksadana.jumlah_unit}} Unit</b></div>
             </div>  
             <div *ngIf="totalAsset!=0" class="jflex-row stretch" style="margin-top: 10px;">
-                <div class="font-green"><b>Biaya penjualan</b></div>
-                <div><b>{{totalBiayaPenjualan | currency:'Rp ':true:'1.0'}}</b></div>
-            </div>                  
+                <div><b>Biaya penjualan</b></div>
+                <div class="font-green"><b>{{totalBiayaPenjualan | currency:'Rp ':true:'1.0'}}</b></div>
+            </div>   
+            <div *ngIf="totalAsset!=0" class="jflex-row stretch" style="margin-top: 10px;">
+                <div><b>Nominal Total Penjualan</b></div>
+                <div class="font-green"><b>{{totalAsset-totalBiayaPenjualan | currency:'Rp ':true:'1.0'}}</b></div>
+            </div>                 
         </div>
     </div>
 
-    <div  *ngIf="totalAsset!=0" class="jflex-row center-main-axis center-cross-axis">
-        <input *ngIf="totalAsset!=0" type="checkbox" [(ngModel)]="snkChecked">&nbsp;  <span><strong>Saya Sudah Baca&nbsp;</strong> <a class="font-green" (click)="openSKPopup()">Syarat dan Ketentuan</a></span>
+    <div  *ngIf="totalAsset!=0" class="jflex-row center-main-axis" style="align-items:flex-start; width:100%">
+        <div class="col-md-11">
+        <input *ngIf="totalAsset!=0" type="checkbox" [(ngModel)]="snkChecked">&nbsp;  <span><strong>Saya menyetujui penjualan reksa dana
+            yang tertera di halaman ini. Saya mengerti
+            bahwa total dana yang dicairkan merupakan
+            perkiraan. Dana yang didapat bisa berubah
+            sesuai dengan harga penutupan reksa dana
+            di hari pejualan.&nbsp;</strong></span></div>
     </div>  
     
     <div class=" jflex-column padding-beauty center-cross-axis">
