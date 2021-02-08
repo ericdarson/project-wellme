@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { LocalStorageService } from 'ngx-webstorage';
+import { ResponseApi } from '../models/ResponseApi';
+import { CheckSessionService } from '../services/check-session.service';
 
 @Component({
   selector: 'app-promo',
@@ -7,9 +11,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PromoComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router,private checkSession: CheckSessionService, private session:LocalStorageService) { }
 
   ngOnInit(): void {
+    this.checkSession.checkSessionFirst().subscribe((response : ResponseApi)=>{
+      if(response.output_schema.session.message=="SUKSES"){
+        this.session.store("token",response.output_schema.session.new_token);
+      }else{
+        this.checkSession.logout()
+      }
+    },(error)=>{
+      this.checkSession.logout()
+    })
   }
 
 }

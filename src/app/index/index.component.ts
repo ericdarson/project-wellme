@@ -23,11 +23,9 @@ export class IndexComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("ini lewat index")
-      this.checkSession.checkSessionFirst().subscribe((response : ResponseApi)=>{
+    this.checkSession.checkSessionFirst().subscribe((response : ResponseApi)=>{
       if(response.output_schema.session.message=="SUKSES"){
         this.session.store("token",response.output_schema.session.new_token);
-        this.router.navigate(['/index'])
       }else{
         this.checkSession.logout()
       }
