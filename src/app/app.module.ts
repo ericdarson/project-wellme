@@ -55,7 +55,7 @@ import { BackwardProjectionComponent } from './components/backward-projection/ba
 import { PopupSyaratKetentuanComponent } from './popup/popup-syarat-ketentuan/popup-syarat-ketentuan.component';
 import { BackwardListReksadanaComponent } from './components/backward-list-reksadana/backward-list-reksadana.component';
 import { BackwardPembelianComponent } from './components/backward-pembelian/backward-pembelian.component';
-import { CurrencyPipe } from '@angular/common';
+import { CurrencyPipe, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { BackwardSimulasiComponent } from './components/backward-simulasi/backward-simulasi.component';
 import { DetailPlannerComponent } from './components/detail-planner/detail-planner.component';
 
@@ -91,6 +91,7 @@ import { KonfirmasiExitComponent } from './popup/konfirmasi-exit/konfirmasi-exit
 import { PlannerEditConfirmationComponent } from './components/planner-edit-confirmation/planner-edit-confirmation.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { RouterModule, ɵROUTER_PROVIDERS } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -117,7 +118,7 @@ import { environment } from '../environments/environment';
     HttpClientModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
-  providers: [Globals,MatDatepickerModule,CurrencyPipe,ScrollDispatcher,SessionStorageService,CookieService],
+  providers: [Globals,MatDatepickerModule,CurrencyPipe,ScrollDispatcher,SessionStorageService,CookieService,{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
