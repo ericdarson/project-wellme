@@ -64,7 +64,8 @@
                         <div class="jflex-column">
                             <table>
                                 <tr><td>{{portfolioDetail.nama_produk}}</td><td><strong class="font-green">{{portfolioDetail.asset|currency:'Rp ':true:'1.0'}}</strong></td></tr>
-                                <tr><td *ngIf="portfolioDetail.status!='Unit'">{{portfolioDetail.status}}</td></tr>
+                                <tr><td *ngIf="portfolioDetail.status=='Dalam Proses'" style="color:#FF7A00"><b>{{portfolioDetail.status}}</b></td></tr>
+                                <tr><td *ngIf="portfolioDetail.status=='Unit'" class="font-green"><b>Berhasil</b></td></tr>
                             </table>
                         </div>
                     </div>

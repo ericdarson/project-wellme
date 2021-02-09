@@ -5,47 +5,57 @@
         </a>
         <h1 style="flex-basis: 90%; text-align: center;;" class="headFont"><b>Jual Reksadana</b></h1>
     </div>
-
+    
     <div class="jflex-column padding-beauty  center-cross-axis " style="height:90%">
-
+        
         <mat-card class="box-outline litle-space" style="width: 100%;">
-           <div class="jflex-row stretch center-cross-axis">
-               <div class="jflex-column" style="width: 100%;">
+            <div class="jflex-row stretch center-cross-axis">
+                <div class="jflex-column" style="width: 100%;">
                     <div>Dana investasi yang di Cairkan</div>
-                    <h1 class="font-green"><b>{{totalAsset|currency:'Rp ':true:'1.0'}}</b></h1>
-               </div>
-           </div>
+                    <h1 class="font-green"><b>{{totalAsset-totalBiayaPenjualan|currency:'Rp ':true:'1.0'}}</b></h1>
+                </div>
+            </div>
         </mat-card>
-     
+        
         <div class="jflex-column" style="width: 100%;"> 
-            <div class="jflex-row stretch"  *ngFor="let reksadana of plannerDetail.portfolio">
-                <div *ngIf="reksadana.status=='Unit'">{{reksadana.nama_produk}}</div>
-                <div *ngIf="reksadana.status=='Unit'"><b>{{reksadana.jumlah_unit}} Unit</b></div>
+            <div class="jflex-column" *ngFor="let reksadana of plannerDetail.portfolio">
+                <div *ngIf="reksadana.status=='Unit'" style="margin-bottom: 10px;">
+                    <h3 style="margin-bottom: 0px;;">{{reksadana.nama_produk}}</h3>
+                    <div class="jflex-row stretch">
+                        <div><b>Unit</b></div>
+                        <div ><b>{{reksadana.jumlah_unit}}</b></div>
+                    </div> 
+                    <div class="jflex-row stretch" style="margin-top: 10px;">
+                        <div><b>Nominal</b></div>
+                        <div ><b>{{reksadana.asset| currency:'Rp ':true:'1.2'}}</b></div>
+                    </div>   
+                    <div class="jflex-row stretch" style="margin-top: 10px;">
+                        <div><b>Biaya penjualan</b></div>
+                        <div class="font-green"><b>(-{{reksadana.asset*reksadana.biaya_penjualan/100| currency:'Rp ':true:'1.2'}})</b></div>
+                    </div>   
+                    <div class="jflex-row stretch" style="margin-top: 10px;">
+                        <div><b>Nominal Total Penjualan</b></div>
+                        <div style="color: #309F00;"><b>{{reksadana.asset-(reksadana.asset*reksadana.biaya_penjualan/100)| currency:'Rp ':true:'1.2'}}</b></div>
+                    </div>
+                </div>
             </div>  
-            <div *ngIf="totalAsset!=0" class="jflex-row stretch" style="margin-top: 10px;">
-                <div><b>Biaya penjualan</b></div>
-                <div class="font-green"><b>{{totalBiayaPenjualan | currency:'Rp ':true:'1.0'}}</b></div>
-            </div>   
-            <div *ngIf="totalAsset!=0" class="jflex-row stretch" style="margin-top: 10px;">
-                <div><b>Nominal Total Penjualan</b></div>
-                <div class="font-green"><b>{{totalAsset-totalBiayaPenjualan | currency:'Rp ':true:'1.0'}}</b></div>
-            </div>                 
+            
         </div>
     </div>
-
+    
     <div  *ngIf="totalAsset!=0" class="jflex-row center-main-axis" style="align-items:flex-start; width:100%">
         <div class="col-md-11">
-        <input *ngIf="totalAsset!=0" type="checkbox" [(ngModel)]="snkChecked">&nbsp;  <span><strong>Saya menyetujui penjualan reksa dana
-            yang tertera di halaman ini. Saya mengerti
-            bahwa total dana yang dicairkan merupakan
-            perkiraan. Dana yang didapat bisa berubah
-            sesuai dengan harga penutupan reksa dana
-            di hari pejualan.&nbsp;</strong></span></div>
-    </div>  
-    
-    <div class=" jflex-column padding-beauty center-cross-axis">
-        
-        <button   mat-button  class="litle-space box-outline" style="background-color: white; color: #6ED940; border: 2px solid #6ED940; width: 100%; margin-bottom: 10px !important;" (click)="cancelingTransaction()">Batalkan Transaksi</button>
-        <button  *ngIf="totalAsset!=0" [disabled]="!snkChecked" routerLink="/financial-planner/pin-jual" mat-button class="button-active"  style="width: 100%">Jual Reksadana</button>
-    </div>
-</div>
+            <input *ngIf="totalAsset!=0" type="checkbox" [(ngModel)]="snkChecked">&nbsp;  <span><strong>Saya menyetujui penjualan reksa dana
+                yang tertera di halaman ini. Saya mengerti
+                bahwa total dana yang dicairkan merupakan
+                perkiraan. Dana yang didapat bisa berubah
+                sesuai dengan harga penutupan reksa dana
+                di hari pejualan.&nbsp;</strong></span></div>
+            </div>  
+            
+            <div class=" jflex-column padding-beauty center-cross-axis">
+                
+                <button   mat-button  class="litle-space box-outline" style="background-color: white; color: #6ED940; border: 2px solid #6ED940; width: 100%; margin-bottom: 10px !important;" (click)="cancelingTransaction()">Batalkan Transaksi</button>
+                <button  *ngIf="totalAsset!=0" [disabled]="!snkChecked" routerLink="/financial-planner/pin-jual" mat-button class="button-active"  style="width: 100%">Jual Reksadana</button>
+            </div>
+        </div>
