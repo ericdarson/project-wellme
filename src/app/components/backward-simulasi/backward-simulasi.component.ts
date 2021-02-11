@@ -28,6 +28,7 @@ export class BackwardSimulasiComponent implements OnInit {
   durasiinvestasi: number = 0;
 
   idproduk:string;
+  dateBegin : string;
 
   simulationdate:string;
   simulationDateAfter:string;
@@ -44,18 +45,18 @@ export class BackwardSimulasiComponent implements OnInit {
     console.log("Jenis Reksa : " + jenisreksa)
     if(jenisreksa == "null" || jenisreksa == ""){
       console.log("redirecting")
-      this.router.navigate(["../../index"]);
+      this.router.navigate(["../../home"],{relativeTo: this.route});
     }
     this.namaProduk = this.service.getNamaProduk();
     if(this.namaProduk == ""){
-      this.router.navigate(["../../index"]);
+      this.router.navigate(["../../home"],{relativeTo: this.route});
     }
     
     this.route.paramMap.subscribe(params => {
       this.idproduk = params.get('id')!
       this.simulationdate = params.get('date')!
     });
-
+    this.dateBegin = this.simulationdate
     this.retryClicked();
   }
   doSimulation(){
@@ -165,8 +166,6 @@ export class BackwardSimulasiComponent implements OnInit {
           this.simulationDateRequest = this.simulationStartData.start_date;
           this.durasiinvestasi =0
         }
-
-        console.log(this.nominalPembelian)
       }else if (response.error_schema.error_code=="BIT-10-001"){
         this.location.back()
       }
@@ -193,6 +192,12 @@ export class BackwardSimulasiComponent implements OnInit {
     }else{
       this.doSimulation();
     }
+  }
+
+  resetTanggal(){
+    this.simulationdate = this.dateBegin
+    this.service.setNabSimulation(null);
+    this.retryClicked()
   }
 
 }

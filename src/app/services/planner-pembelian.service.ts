@@ -283,6 +283,7 @@ export class PlannerPembelianService {
   
   setIdDetail(idDetail:number):void{
     this.idDetail=idDetail;
+    console.log(this.idDetail)
     this.clearLocalStorage("plannerBeliState"); 
     this.setLocalStorage("idDetail",idDetail);
   }

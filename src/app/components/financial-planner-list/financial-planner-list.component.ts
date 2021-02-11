@@ -30,7 +30,7 @@ display:string="block";
 
   portofolioClicked(plan:any):void{
     this.plannerService.setIdDetail(plan.id_plan);
-    this.router.navigate(['/financial-planner/detail-planner'],plan.id_plan);
+    this.router.navigate(['/financial-planner/detail-planner/'+plan.id_plan]);
   }
 
   getListPlanner():void{

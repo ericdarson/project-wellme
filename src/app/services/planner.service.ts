@@ -90,9 +90,9 @@ export class PlannerService {
     return this.http.post(url,this.insertRequest,this.httpOptions);
   }
   
-  getPlannerDetail():Observable<any>{
+  getPlannerDetail(id : string):Observable<any>{
     this.updateHeader();
-    const url=environment.plannerDetailUrl+'/'+this.idDetail;
+    const url=environment.plannerDetailUrl+'/'+id;
     
     return this.http.get(url,this.httpOptions);
   }

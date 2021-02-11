@@ -24,7 +24,7 @@
                 <div class="row">
                     <div *ngFor="let reksadana of listReksadana; let i = index" class="col-md-12">
                         <div class="clickable flex" [ngClass]="setClass(reksadana)" style="padding: 2em;align-items: center;" (click)="choose(reksadana)">
-                            <div class="width-full font-32">
+                            <div class="width-full font-32" style="line-height: 32px;">
                                 <b>{{ reksadana.nama }}</b>
                             </div>
                             <div>
@@ -44,8 +44,10 @@
                         <img class="img-fluid clickable" src="assets/icon/icon_mulai_tur_singkat.png" (click)="goToTutorialPage()" alt="Wellme" width="80" height="80">
                     </div>
                 
-                    <button mat-button [ngClass]="checkDisable() ? 'button-fill-disabled':'button-fill'" class="col-md-12"
-                     style="margin-top:2em;" [disabled]="checkDisable()" (click)="openTutorialBackward()">Lanjut</button>
+                    <div class="col-md-12">
+                        <button mat-button [ngClass]="checkDisable() ? 'button-fill-disabled':'button-fill'" class="col-md-12"
+                        style="margin-top:2em;" [disabled]="checkDisable()" (click)="openTutorialBackward()">Lanjut</button>
+                    </div>
                 </div>
             </div>
            
@@ -57,7 +59,7 @@
 
 <div *ngIf="isFailedToLoad" class="master-component">
     <div class="row" style="justify-content: center;">
-        <div class="col-md-10">
+        <div class="col-md-8">
             <app-failed-to-load [errorStatus]="this.errorStatus" (onButtonClicked)="errorButtonClicked()"></app-failed-to-load>
         </div>
     </div>
