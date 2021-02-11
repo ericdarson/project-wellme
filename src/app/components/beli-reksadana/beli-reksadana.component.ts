@@ -1,4 +1,4 @@
-import { Location } from '@angular/common';
+import { CurrencyPipe, Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { element } from 'protractor';
@@ -34,7 +34,7 @@ export class BeliReksadanaComponent implements OnInit {
   loader:boolean=true;
   isFailedToLoad : boolean =false;
   errorStatus: number;
-  constructor(private router:Router,private plannerService:PlannerPembelianService,private location:Location,private route : ActivatedRoute,private sharedService:GeturlService) {}
+  constructor(private router:Router,private plannerService:PlannerPembelianService,private location:Location,private route : ActivatedRoute,private sharedService:GeturlService,private currencyPipe : CurrencyPipe) {}
   
   ngOnInit(): void {
     this.checkState();
@@ -110,6 +110,7 @@ export class BeliReksadanaComponent implements OnInit {
     if(p!=null)
     {
       this.plannerBeliState=p;
+      this.formattedAmount=p.nominal_pembelian?String(p.nominal_pembelian):"";
     }
     this.plannerBeliState.pembelian.forEach((element,key) => {
       var reksadana=this.plannerService.getKonfirmasiByIdJenis(element.id_jenis_reksadana);
@@ -348,5 +349,22 @@ export class BeliReksadanaComponent implements OnInit {
     }else{
       this.retryClicked();
     }
+  }
+  formattedAmount :string = "";
+  temp :any
+  transformAmount(element:any){
+    
+    if(this.formattedAmount.substr(-3)[0] == '.'){
+      this.formattedAmount = this.formattedAmount.substr(0,this.formattedAmount.length-3);
+    }
+    this.formattedAmount= this.formattedAmount.replace(/[^0-9]/g, "")
+    this.plannerBeliState.nominal_pembelian=Number(this.formattedAmount);
+    this.saveState();
+
+    this.temp = this.currencyPipe.transform(this.formattedAmount, ' ');
+    if(this.temp!=null){
+      this.formattedAmount =this.temp
+    }
+    element.target.value = this.formattedAmount;
   }
 }

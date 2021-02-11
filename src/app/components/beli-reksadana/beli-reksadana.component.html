@@ -80,7 +80,8 @@
             <mat-form-field appearance="standard" style="width: 100%;">
                 <mat-label *ngIf="loader==false">Masukan Nominal</mat-label>
                 <div *ngIf="loader==true" class="row"><ngx-shimmer-loading  [shape]="'rect'" [height]="'32px'" class="col-md-5" *ngIf="loader==true"></ngx-shimmer-loading></div>
-                <input *ngIf="loader==false" type="number" [min]="0"  matInput [(ngModel)]="plannerBeliState.nominal_pembelian" (change)="saveState()">
+                <span style="color: #6ED940;" matPrefix><b>Rp</b> &nbsp;</span>
+                <input *ngIf="loader==false" type="text"  matInput [(ngModel)]="formattedAmount" (change)="transformAmount($event)">
                 <div *ngIf="loader==true" class="row"><ngx-shimmer-loading  [shape]="'rect'" [height]="'32px'" class="col-md-4" *ngIf="loader==true"></ngx-shimmer-loading></div>
             </mat-form-field>
             <span *ngIf="loader==false" style="color:red" [ngClass]="errorClassNominalPembelian">{{errorMessageNominalPembelian}}</span>

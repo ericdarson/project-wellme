@@ -15,7 +15,10 @@
   .litle-space{
       margin-bottom: 10px;
   }
-
+  input {
+    color: #6ED940;
+    font-weight: bold;
+}
 
 .mat-button-toggle-checked {
     background-color: #6ED940;
