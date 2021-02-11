@@ -129,7 +129,7 @@ export class PlannerService {
     this.insertRequest.goal_amount=Number(goal_amount);
     this.insertRequest.periodic=String(periodic);
     this.insertRequest.due_date=String(dueDate);
-
+    console.log(this.insertRequest);
   }
   
   getSimulasiPlanner():Observable<any>{

@@ -1,4 +1,4 @@
-import { DatePipe, formatDate, Location } from '@angular/common';
+import { CurrencyPipe, DatePipe, formatDate, Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -14,7 +14,7 @@ export class PortofolioBaruComponent implements OnInit {
   id:number|null;
   periodic:string="";
   dateMin = new Date();
-  constructor(private location:Location,private plannerService:PlannerService,private route:Router) { }
+  constructor(private location:Location,private plannerService:PlannerService,private currencyPipe : CurrencyPipe,private route:Router) { }
   portfolioForm:any;
   monthlyDisabled:boolean=false;
   yearlyDisabled:boolean=false;
@@ -56,6 +56,7 @@ export class PortofolioBaruComponent implements OnInit {
         periodic:periodic
 
       });
+      this.formattedAmount=plannerRequest.goal_amount;
       this.periodic=periodic;
       // this.portfolioForm.cotrols['nama_portfolio'].value=plannerRequest.nama_plan;
       // this.portfolioForm.cotrols['target'].value=plannerRequest.goal_amount;
@@ -74,6 +75,7 @@ export class PortofolioBaruComponent implements OnInit {
       var periodic=this.periodic=="Mingguan"?"Weekly":this.periodic=="Bulanan"?"Monthly":"Yearly";
       var date=new Date(this.portfolioForm.controls['durasi_target'].value);
       var dateString=formatDate(date,'dd-MM-yyyy','en-Us');      
+      this.transformToAmount();
       this.plannerService.setRequest(this.portfolioForm.controls['nama_portfolio'].value,Number(this.portfolioForm.controls['target'].value),periodic,dateString);
 
       this.route.navigate(['/financial-planner/simulasi-planner']);
@@ -114,4 +116,31 @@ export class PortofolioBaruComponent implements OnInit {
     }
     return null
   }
+
+  formattedAmount :string = "";
+  temp :any
+  transformAmount(element:any){
+    
+    if(this.formattedAmount.substr(-3)[0] == '.'){
+      this.formattedAmount = this.formattedAmount.substr(0,this.formattedAmount.length-3);
+    }
+    this.formattedAmount= this.formattedAmount.replace(/[^0-9]/g, "")
+    this.portfolioForm.controls['target'].value=Number(this.formattedAmount);
+
+
+    this.temp = this.currencyPipe.transform(this.formattedAmount, ' ');
+    if(this.temp!=null){
+      this.formattedAmount =this.temp
+    }
+    element.target.value = this.formattedAmount;
+  }
+
+  transformToAmount():void{
+    if( this.portfolioForm.controls['target'].value.substr(-3)[0] == '.'){
+      this.portfolioForm.controls['target'].value =  this.portfolioForm.controls['target'].value.substr(0, this.portfolioForm.controls['target'].value.length-3);
+    }
+    this.portfolioForm.controls['target'].value=  this.portfolioForm.controls['target'].value.replace(/[^0-9]/g, "")
+    this.portfolioForm.controls['target'].value=Number(this.portfolioForm.controls['target'].value);
+  }
+
 }
