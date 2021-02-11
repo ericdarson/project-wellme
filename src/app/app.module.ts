@@ -120,7 +120,7 @@ import { PopupKonfirmasiLogoutComponent } from './popup/popup-konfirmasi-logout/
     HttpClientModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
-  providers: [Globals,MatDatepickerModule,CurrencyPipe,ScrollDispatcher,SessionStorageService,CookieService,{provide: LocationStrategy, useClass: HashLocationStrategy}],
+  providers: [Globals,MatDatepickerModule,CurrencyPipe,ScrollDispatcher,SessionStorageService,CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

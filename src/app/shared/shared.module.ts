@@ -36,7 +36,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { MatButtonModule } from '@angular/material/button';
 import { PortofolioComponent } from '../components/portofolio/portofolio.component';
-import { CommonModule, CurrencyPipe } from '@angular/common';
+import { CommonModule, CurrencyPipe, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {ScrollingModule , ScrollDispatcher} from '@angular/cdk/scrolling';
@@ -174,6 +174,7 @@ export class SharedModule {
             ScrollDispatcher,
             CurrencyPipe,
             MatDatepickerModule,
+            {provide: LocationStrategy, useClass: HashLocationStrategy}
           ]
         };
       }

@@ -17,16 +17,16 @@ export class AppComponent implements OnInit {
   constructor(private checkSession: CheckSessionService, private session:LocalStorageService,private router : Router) { }
 
   ngOnInit(): void {
-    this.checkSession.checkSessionFirst().subscribe((response : ResponseApi)=>{
-      if(response.output_schema.session.message=="SUKSES"){
-        this.session.store("token",response.output_schema.session.new_token);
-        this.router.navigate(['/index'])
-      }else{
-        this.checkSession.logout()
-      }
-    },(error)=>{
-      this.checkSession.logout()
-    })
+    // this.checkSession.checkSessionFirst().subscribe((response : ResponseApi)=>{
+    //   if(response.output_schema.session.message=="SUKSES"){
+    //     this.session.store("token",response.output_schema.session.new_token);
+    //     this.router.navigate(['/index'])
+    //   }else{
+    //     this.checkSession.logout()
+    //   }
+    // },(error)=>{
+    //   this.checkSession.logout()
+    // })
 
   }
 }
