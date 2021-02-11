@@ -8,4 +8,5 @@ export class PlannerPortfolio {
     asset:number;
     status:string;
     biaya_penjualan:number;
+    minimal_penjualan:number;
 }
