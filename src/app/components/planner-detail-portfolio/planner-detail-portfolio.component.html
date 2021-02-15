@@ -131,7 +131,7 @@
     <div class=" jflex-column padding-beauty center-cross-axis">
         <ngx-shimmer-loading *ngIf="loader" [shape]="'rect'" [height]="'14px'" class="col-md-12"></ngx-shimmer-loading>
         <ngx-shimmer-loading *ngIf="loader" [shape]="'rect'" [height]="'32px'" class="col-md-12"></ngx-shimmer-loading>
-        <a *ngIf="plan.portfolio.length!=0&&!loader" mat-button routerLink="/financial-planner/jual-semua"  class="litle-space box-outline" style="background-color: white; color: #6ED940; border: 2px solid #6ED940; width: 100%; ">Jual Reksadana</a>
+        <a *ngIf="plan.portfolio.length!=0&&!loader&&canSell==true" mat-button routerLink="/financial-planner/jual-semua"  class="litle-space box-outline" style="background-color: white; color: #6ED940; border: 2px solid #6ED940; width: 100%; ">Jual Reksadana</a>
         <a *ngIf="!loader" routerLink="/financial-planner/beli-reksadana" mat-button style="background-color: #6ED940; color: white; width: 100%; ">Beli Reksadana</a>
     </div>
 </div>
