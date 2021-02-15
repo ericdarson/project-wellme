@@ -47,9 +47,12 @@ import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet'
 import {ReactiveFormsModule} from '@angular/forms'
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { FailedToLoadComponent } from '../components/failed-to-load/failed-to-load.component';
+import { ReplacePipe } from '../pipe/replace-pipe.pipe';
 @NgModule({
   declarations: [
     FailedToLoadComponent,
+    ReplacePipe
+    
   ],
   exports: [
     CommonModule,
@@ -100,6 +103,7 @@ import { FailedToLoadComponent } from '../components/failed-to-load/failed-to-lo
     ReactiveFormsModule,
     ClipboardModule,
     FailedToLoadComponent,
+    ReplacePipe,
 
   ],
   imports: [
@@ -163,6 +167,7 @@ import { FailedToLoadComponent } from '../components/failed-to-load/failed-to-lo
     NgxWebstorageModule.forRoot(),
     ReactiveFormsModule,
     ClipboardModule,
+  
 
   ],
 })

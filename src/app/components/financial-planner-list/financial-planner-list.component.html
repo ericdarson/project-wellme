@@ -22,8 +22,8 @@
             <div class="jflex-row col-md-12 stretch">
                 <div class="jflex-column stretch">
                     <span><strong>{{plan.nama_plan}}</strong></span>
-                    <span class="percentage-list">{{plan.current | currency:'Rp ':true:'1.0-2'}} </span>
-                    <span class="target">Target:&nbsp;{{plan.target |currency:'Rp ':true:'1.0-2'}}</span>
+                    <span class="percentage-list">{{plan.current | currency:'Rp '|IDR}} </span>
+                    <span class="target">Target:&nbsp;{{plan.target |currency:'Rp '|IDR}}</span>
                 </div>
                 <div class="jflex-column">
                 <circle-progress 

@@ -36,7 +36,7 @@ export class BackwardResultComponent implements OnInit {
     console.log("Jenis Reksa : " + this.jenisreksa)
     if(this.jenisreksa == "null" || this.jenisreksa == ""){
       console.log("redirecting")
-      this.router.navigate(["../../home"],{relativeTo: this.route});
+      this.router.navigate(["../../../home"],{relativeTo: this.route});
     }
 
     this.route.paramMap.subscribe(params => {
@@ -125,7 +125,7 @@ export class BackwardResultComponent implements OnInit {
   }
 
   back(){
-    this.router.navigate(['../../../backward-simulasi/'+this.reksaId+"/"+this.simulationdate],{relativeTo:this.route})
+    this.location.back()
   }
 
   selectOneWeekRange(){

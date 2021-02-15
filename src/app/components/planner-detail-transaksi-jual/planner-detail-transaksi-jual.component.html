@@ -14,16 +14,16 @@
             </div>
             <div class="jflex-column">
                 <p style="margin-bottom:0;">Nominal Penjualan</p>
-                <h3 class="font-green"><strong>{{detailTransaksi.detail_jual.total_jual|currency:'Rp ':true:'1.0'}}</strong></h3>
+                <h3 class="font-green"><strong>{{detailTransaksi.detail_jual.total_jual|currency:'Rp '|IDR}}</strong></h3>
             </div>
             
             <div class="jflex-column">
                 <p style="margin-bottom:0;">Nominal Biaya Penjualan</p>
-                <h3 class="font-green"><strong>{{detailTransaksi.detail_jual.total_biaya|currency:'Rp ':true:'1.0'}} ({{(detailTransaksi.detail_jual.total_biaya/detailTransaksi.detail_jual.total_jual)*100|number:'1.0'}}%)</strong></h3>
+                <h3 class="font-green"><strong>{{detailTransaksi.detail_jual.total_biaya|currency:'Rp '|IDR}} ({{(detailTransaksi.detail_jual.total_biaya/detailTransaksi.detail_jual.total_jual)*100|number:'1.0'}}%)</strong></h3>
             </div>
             <div class="jflex-column">
                 <p style="margin-bottom:0;">Nominal Total Penjualan</p>
-                <h3 class="font-green"><strong>{{detailTransaksi.detail_jual.total_jual-detailTransaksi.detail_jual.total_biaya|currency:'Rp ':true:'1.0'}}</strong></h3>
+                <h3 class="font-green"><strong>{{detailTransaksi.detail_jual.total_jual-detailTransaksi.detail_jual.total_biaya|currency:'Rp '|IDR}}</strong></h3>
             </div>
             
             <div class="jflex-column">

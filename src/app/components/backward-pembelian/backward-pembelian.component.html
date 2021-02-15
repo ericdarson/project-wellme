@@ -94,7 +94,7 @@
                                     </div>
                                     <ngx-shimmer-loading *ngIf="isLoading" [shape]="'rect'" [width]="'100%'" [height]="'3em'"></ngx-shimmer-loading>
                                     <div *ngIf="!isLoading" class="text-wellme-color">
-                                        <b>{{detailProduk.nab | currency : 'Rp '}}</b>
+                                        <b>{{detailProduk.nab | currency : 'Rp '|IDR}}</b>
                                     </div>
                                 </div>
                                 
@@ -127,7 +127,7 @@
                             <input autocomplete=false matInput type="text" (change)="transformAmount($event)" [(ngModel)]="formattedAmount"  />
                         </mat-form-field>
                         <p *ngIf="isLoading"><ngx-shimmer-loading [shape]="'rect'" [width]="'30%'" [height]="'2em'"></ngx-shimmer-loading></p>
-                        <p *ngIf="!isLoading" >Minimum Pembelian : {{ detailProduk.minimal_pembelian | currency : 'Rp '}}</p>
+                        <p *ngIf="!isLoading" >Minimum Pembelian : {{ detailProduk.minimal_pembelian | currency : 'Rp '|IDR}}</p>
                     </div>
                 </div>
             </div>

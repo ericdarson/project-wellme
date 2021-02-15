@@ -15,7 +15,7 @@
             <div class="jflex-row stretch">
                 <div class="jflex-column" style="width: 50%;">
                     <div *ngIf="!loader">Nilai Tabungan</div>
-                    <h1 *ngIf="!loader"><strong>{{plan.current_amount |currency:'Rp ':true:'1.0'}}</strong></h1>
+                    <h1 *ngIf="!loader"><strong>{{plan.current_amount |currency:'Rp '|IDR}}</strong></h1>
                     <ngx-shimmer-loading *ngIf="loader" [shape]="'rect'" [height]="'14px'" class="col-md-4"></ngx-shimmer-loading>
                     <ngx-shimmer-loading *ngIf="loader" [shape]="'rect'" [height]="'32px'" class="col-md-6"></ngx-shimmer-loading>
             
@@ -63,7 +63,7 @@
                         </mat-list>
                         <div class="jflex-column">
                             <table>
-                                <tr><td>{{portfolioDetail.nama_produk}}</td><td><strong class="font-green">{{portfolioDetail.asset|currency:'Rp ':true:'1.0'}}</strong></td></tr>
+                                <tr><td>{{portfolioDetail.nama_produk}}</td><td><strong class="font-green">{{portfolioDetail.asset|currency:'Rp '|IDR}}</strong></td></tr>
                                 <tr><td *ngIf="portfolioDetail.status=='Dalam Proses'" style="color:#FF7A00"><b>{{portfolioDetail.status}}</b></td></tr>
                                 <tr><td *ngIf="portfolioDetail.status=='Unit'" class="font-green"><b>Berhasil</b></td></tr>
                             </table>

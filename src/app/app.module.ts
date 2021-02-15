@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { DEFAULT_CURRENCY_CODE, NgModule } from '@angular/core';
 import {MatIconModule} from '@angular/material/icon';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -94,6 +94,7 @@ import { environment } from '../environments/environment';
 import { RouterModule, ɵROUTER_PROVIDERS } from '@angular/router';
 import { PopupKonfirmasiLogoutComponent } from './popup/popup-konfirmasi-logout/popup-konfirmasi-logout.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -108,9 +109,6 @@ import { PopupKonfirmasiLogoutComponent } from './popup/popup-konfirmasi-logout/
     SyaratKetentuanPenjualanComponent,
     KonfirmasiDeleteComponent,
     DeleteSuccessComponent,
-
-   
-    
   ],
   imports: [
     BrowserModule,
@@ -121,7 +119,7 @@ import { PopupKonfirmasiLogoutComponent } from './popup/popup-konfirmasi-logout/
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [Globals,MatDatepickerModule,CurrencyPipe,ScrollDispatcher,SessionStorageService,CookieService,
-    {provide: LocationStrategy, useClass: HashLocationStrategy}],
+    {provide: LocationStrategy, useClass: HashLocationStrategy},{provide: DEFAULT_CURRENCY_CODE, useValue: 'IDR' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

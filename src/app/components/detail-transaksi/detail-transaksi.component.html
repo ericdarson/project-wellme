@@ -3,7 +3,7 @@
         <a mat-icon-button aria-label="Example icon button with a vertical three dot icon">
             <mat-icon>chevron_left</mat-icon>
         </a>
-        <h1 style="flex-basis: 90%; text-align: center;;" class="headFont"><b>Beli Reksadana</b></h1>
+        <h1 style="flex-basis: 94%; text-align: center;;" class="headFont"><b>Beli Reksadana</b></h1>
     </div>
     <div class="jflex-column padding-beauty  center-cross-axis "  style="height:90%;"  >
         <h1>Detail Transaksi</h1>
@@ -14,16 +14,16 @@
             </div>
             <div class="jflex-column">
                 <p style="margin-bottom:0;">Nominal Pembelian</p>
-                <h3 class="font-green"><strong>{{detailTransaksi.total_pembelian|currency:'Rp ':true:'1.0'}}</strong></h3>
+                <h3 class="font-green"><strong>{{detailTransaksi.total_pembelian|currency:'Rp '|IDR}}</strong></h3>
             </div>
             
             <div class="jflex-column">
                 <p style="margin-bottom:0;">Nominal Biaya Pembelian</p>
-                <h3 class="font-green"><strong>{{detailTransaksi.total_biaya|currency:'Rp ':true:'1.0'}} ({{(detailTransaksi.total_biaya/detailTransaksi.total_pembelian)*100|number:'1.0'}}%)</strong></h3>
+                <h3 class="font-green"><strong>{{detailTransaksi.total_biaya|currency:'Rp '|IDR}} ({{(detailTransaksi.total_biaya/detailTransaksi.total_pembelian)*100|number:'1.0'}}%)</strong></h3>
             </div>
             <div class="jflex-column">
                 <p style="margin-bottom:0;">Nominal Total Pembelian</p>
-                <h3 class="font-green"><strong>{{detailTransaksi.total_pembelian+detailTransaksi.total_biaya|currency:'Rp ':true:'1.0'}}</strong></h3>
+                <h3 class="font-green"><strong>{{detailTransaksi.total_pembelian+detailTransaksi.total_biaya|currency:'Rp '|IDR}}</strong></h3>
             </div>
             
             <div class="jflex-column">
