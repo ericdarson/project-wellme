@@ -55,7 +55,7 @@ export class KonfirmasiTransaksiComponent implements OnInit {
       {
         this.totalPromo=this.plannerBeliState.cashback;
       }
-      this.totalTransaksi=this.totalBiaya+this.biayaPembelian-this.totalPromo
+      this.totalTransaksi=this.totalBiaya+this.biayaPembelian
     }
   }
   

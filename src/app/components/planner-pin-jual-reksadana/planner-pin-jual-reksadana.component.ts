@@ -110,7 +110,7 @@ export class PlannerPinJualReksadanaComponent implements OnInit {
           }
           else{
             this.wrongPinClass=true;
-            this.wrongPinMessage="Gagal Membeli Reksadana, Coba lagi" 
+            this.wrongPinMessage="[ERROR: "+error.error.error_schema.error_code+"]Gagal Menjual Reksadana, Coba Lagi";
           }
         })
       }
