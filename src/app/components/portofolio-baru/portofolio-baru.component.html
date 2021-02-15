@@ -3,18 +3,18 @@
         <a (click)="goBack()" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
             <mat-icon>chevron_left</mat-icon>
         </a>
-        <h1 style="flex-basis: 90%; text-align: center;;" class="headFont"><b>Portofolio Baru</b></h1>
+        <h1 style="flex-basis: 90%; text-align: center;;" class="headFont"><b>Target Baru</b></h1>
     </div>
     <form [formGroup]="portfolioForm" (submit)="onSubmit()">
         <div class="jflex-column padding-beauty  center-cross-axis ">
             <h1 style="font-weight: 300;">Gadget</h1>
             
             <mat-card class="box-outline litle-space" style="width: 100%;">
-                <div><strong>Nama Portofolio</strong></div>
+                <div><strong>Nama Target</strong></div>
                 <mat-form-field appearance="standard" style="width: 100%;">
-                    <mat-label>Masukan Nama Portfolio</mat-label>
+                    <mat-label>Masukan Nama Target</mat-label>
                     <input  matInput formControlName="nama_portfolio">
-                    <mat-error *ngIf="portfolioForm.controls['nama_portfolio'].invalid">Nama Portfolio Tidak Boleh Kosong</mat-error>
+                    <mat-error *ngIf="portfolioForm.controls['nama_portfolio'].invalid">Nama Target Tidak Boleh Kosong</mat-error>
                 </mat-form-field>
             </mat-card>
             <mat-card class="box-outline litle-space" style="width: 100%;">
