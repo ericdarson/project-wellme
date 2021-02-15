@@ -25,12 +25,16 @@ export class PlannerJualReksadanaComponent implements OnInit {
   errMessage:string="";
   pvalid:boolean=true;
   errDisplay:boolean=false;
+  canSell:boolean=false;
   constructor(private dialog:MatDialog,private location:Location,private plannerService:PlannerService,private router:Router,private route:ActivatedRoute) { }
   
   ngOnInit(): void {
     this.checkState();
+
   }
-  
+
+
+
   checkState():void{
     
     this.plannerDetail=this.plannerService.getLocalStorage("plannerDetail");
@@ -43,6 +47,7 @@ export class PlannerJualReksadanaComponent implements OnInit {
       for (let i = 0; i < this.plannerDetail.portfolio.length; i++) {
         if(this.plannerDetail.portfolio[i].status=="Unit")
         {
+          this.canSell=true;
           console.log(this.plannerDetail.portfolio[i]);
           this.totalBiayaPenjualan=Number(this.totalBiayaPenjualan)+Number((this.plannerDetail.portfolio[i].biaya_penjualan/100)*this.plannerDetail.portfolio[i].asset);
           this.totalAsset=Number(this.totalAsset)+Number(this.plannerDetail.portfolio[i].asset);
