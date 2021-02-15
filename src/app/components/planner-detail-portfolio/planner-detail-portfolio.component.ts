@@ -124,8 +124,12 @@ export class PlannerDetailPortfolioComponent implements OnInit {
   }
 
   errorButtonClicked(){
+    console.log(this.errorStatus)
+    console.log("clicked error")
     if(this.errorStatus == 403){
       this.router.navigate(['/'])
+    }else if(this.errorStatus == 404){
+      this.goBack()
     }else{
       this.retryClicked();
     }
@@ -139,3 +143,4 @@ export class AlokasiRekomendasi{
   rekomendasiPercentage:number;
   rekomendasiAmount:number;
 }
+

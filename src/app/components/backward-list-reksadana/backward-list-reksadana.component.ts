@@ -25,9 +25,8 @@ export class BackwardListReksadanaComponent implements OnInit {
     console.log("Jenis Reksa : " + this.jenisreksa)
     if(this.jenisreksa == "null" || this.jenisreksa == ""){
       console.log("redirecting")
-      this.router.navigate(["../../index"]);
+      this.router.navigate(["../../home"] ,{relativeTo: this.route});
     }
-
     this.route.paramMap.subscribe(params => {
       this.idJenis = params.get("id")!
     });
