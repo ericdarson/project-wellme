@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
+import { ResponseApi } from 'src/app/models/ResponseApi';
+import { CheckSessionService } from 'src/app/services/check-session.service';
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({
@@ -16,11 +18,26 @@ export class LoginPageComponent implements OnInit {
   message : string;
   isLoading : boolean = false;
   isWrongPass : boolean =false
-  constructor(private router : Router, private session :LocalStorageService, private loginservice : LoginService) {
+  constructor(private router : Router,
+     private session :LocalStorageService, private loginservice : LoginService,
+     private checkSession: CheckSessionService ) {
 
    }
 
   ngOnInit(): void {
+    this.isLoading = true
+    this.checkSession.checkSessionFirst().subscribe((response : ResponseApi)=>{
+      this.isLoading = false
+      if(response.output_schema.session.message=="SUKSES"){   
+        this.session.store("token",response.output_schema.session.new_token);
+        this.router.navigate(['/index'])
+      }else{
+        this.checkSession.logout()
+      }
+    },(error)=>{
+      this.isLoading = false
+      this.checkSession.logout()
+    })
   }
 
   loginClicked(){
