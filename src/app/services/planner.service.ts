@@ -90,9 +90,9 @@ export class PlannerService {
     return this.http.post(url,this.insertRequest,this.httpOptions);
   }
   
-  getPlannerDetail():Observable<any>{
+  getPlannerDetail(id : string):Observable<any>{
     this.updateHeader();
-    const url=environment.plannerDetailUrl+'/'+this.idDetail;
+    const url=environment.plannerDetailUrl+'/'+id;
     
     return this.http.get(url,this.httpOptions);
   }
@@ -129,7 +129,7 @@ export class PlannerService {
     this.insertRequest.goal_amount=Number(goal_amount);
     this.insertRequest.periodic=String(periodic);
     this.insertRequest.due_date=String(dueDate);
-
+    console.log(this.insertRequest);
   }
   
   getSimulasiPlanner():Observable<any>{

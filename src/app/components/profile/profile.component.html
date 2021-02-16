@@ -1,6 +1,6 @@
 <div *ngIf="!this.isFailedToLoad" class="master-component">
 
-    <h1 class="flex-center" style="margin-bottom: 2em;"><b>Profile</b></h1>
+    <h1 class="flex-center" style="margin-bottom: 2em;"><b>Profil</b></h1>
     <div *ngIf="showProfile">
         <div class="flex-center" style="margin-bottom: 1em;">
             <div class="profile-name">
@@ -78,11 +78,11 @@
                     </div>
                     <div class="profile-button clickable" (click)="buttonShowRekClicked()">
                         <button mat-button class="flex" *ngIf="!this.buttonShowRekening">
-                            <b style="align-self: center;">Tampilkan</b>
+                            <!-- <b style="align-self: center;">Tampilkan</b> -->
                             <mat-icon>expand_more</mat-icon>
                         </button>
                         <button mat-button class="flex" *ngIf="this.buttonShowRekening">
-                            <b style="align-self: center;">Sembunyikan</b>
+                            <!-- <b style="align-self: center;">Sembunyikan</b> -->
                             <mat-icon>expand_less</mat-icon>
                         </button>
                     </div>
@@ -120,7 +120,7 @@
             <div class="text-center mt-5">
                 <button mat-button class="profile-button clickable p-0" (click)="logout()" style="width:25%">
                     <div>
-                        <b>Logout</b>
+                        <b>Log Out</b>
                     </div>
                 </button>
             </div>

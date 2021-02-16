@@ -96,7 +96,7 @@ export class PinComponent implements OnInit {
           }
           else{
             this.wrongPinClass=true;
-            this.wrongPinMessage="Gagal Membeli Reksadana" 
+            this.wrongPinMessage="[ERROR: "+error.error.error_schema.error_code+"]Gagal Membeli Reksadana, Coba Lagi"; 
           }
         })
       }

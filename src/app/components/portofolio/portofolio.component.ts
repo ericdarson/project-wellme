@@ -30,7 +30,7 @@ export class PortofolioComponent implements OnInit {
     this.isLoading =true
     this.isFailedToLoad = false
     this.profileService.getProfile().subscribe((response:ResponseApi)=>{
-      // console.log(response)
+      console.log(response)
       if (response.error_schema.error_message.indonesian=="BERHASIL")
       {
          this.profileMaster = response.output_schema.detail_profile

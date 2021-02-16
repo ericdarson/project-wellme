@@ -51,7 +51,7 @@ export class BackwardPembelianComponent implements OnInit {
     console.log("Jenis Reksa : " + jenisreksa)
     if(jenisreksa == "null" || jenisreksa == ""){
       console.log("redirecting")
-      this.router.navigate(["../../index"]);
+      this.router.navigate(["../../../home"],{relativeTo: this.route});
     }
 
     this.route.paramMap.subscribe(params => {

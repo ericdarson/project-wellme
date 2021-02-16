@@ -66,7 +66,7 @@
     </div>
      
     </div>
-    <div class="jflex-column little-space center-cross-axis center-main-axis" *ngIf="plan.portfolio.length!=0">
+    <div class="jflex-column little-space center-cross-axis center-main-axis" *ngIf="plan.portfolio.length!=0&&plan.current_amount/plan.target_plan*100<100">
         <h2 style="text-align: center; width: 100%;"><b *ngIf="loader==false">{{plan.current_amount/plan.target_plan*100>100?100:plan.current_amount/plan.target_plan*100 |number:'1.0-0'}}%</b>
             <b *ngIf="loader==true">
                 <div class="jflex-row center-main-axis"><ngx-shimmer-loading [shape]="'rect'" [width]="'100px'" [height]="'32px'" ></ngx-shimmer-loading></div>
@@ -77,6 +77,12 @@
         </p>    
         <div *ngIf="loader==true" class="jflex-row center-main-axis"><ngx-shimmer-loading [shape]="'rect'" [width]="'93%'" [height]="'50px'" ></ngx-shimmer-loading></div>
         <h1><strong *ngIf="!loader">{{plan.current_amount |currency:' ':true:'1.0-2'}}/{{plan.target_plan |currency:' ':true:'1.0-2'}}</strong></h1>
+        <div style="width: 100%;" class="row" *ngIf="loader">
+            <ngx-shimmer-loading [shape]="'rect'" class="col-md-12" [width]="'100%'" [height]="'50px'" ></ngx-shimmer-loading>
+        </div>
+    </div> 
+    <div class="jflex-column little-space center-cross-axis center-main-axis" *ngIf="plan.portfolio.length!=0&&plan.current_amount/plan.target_plan*100>=100">
+        <h1><strong *ngIf="!loader">Completed!</strong></h1>
         <div style="width: 100%;" class="row" *ngIf="loader">
             <ngx-shimmer-loading [shape]="'rect'" class="col-md-12" [width]="'100%'" [height]="'50px'" ></ngx-shimmer-loading>
         </div>

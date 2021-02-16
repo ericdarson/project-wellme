@@ -5,7 +5,7 @@
                 <a mat-icon-button aria-label="Example icon button with a vertical three dot icon">
                     <mat-icon (click)="backClicked()">chevron_left</mat-icon>
                 </a>
-                <h1 style="text-align: center;" class="headFont pl-5"><strong>Objectives Overview</strong></h1>
+                <h1 style="text-align: center;" class="headFont pl-5"><strong>Detail Objective</strong></h1>
                 <img src="assets/icon/well-me-logo-small.png" style="padding-right: 10px;" width="107" height="33">
             </div>
             <div *ngIf="!isNotFound && !isLoading" class="padding-beauty" style="height: 90%; overflow: auto;">
@@ -38,14 +38,14 @@
                         <div class="text-center" style="padding:10px; border: #6ED940 1px solid; border-radius: 10%;">
                             <mat-icon style="color: #6ED940;">card_giftcard</mat-icon>
                             <div>Reward</div>
-                            <div><strong>{{objective.cashback | currency : 'Rp'}}</strong></div>
+                            <div><strong>{{objective.cashback | currency : 'Rp'|IDR}}</strong></div>
                         </div>
                     </div>
                     <div class="col-xl-4 my-4" >
                         <div class="text-center" style="padding:10px; border: #6ED940 1px solid; border-radius: 10%;">
                             <mat-icon style="color: #6ED940;">check_box</mat-icon>
                             <div>Task</div>
-                            <div><strong>{{objective.target_akumulasi | currency : 'Rp'}}</strong></div>
+                            <div><strong>{{objective.target_akumulasi | currency : 'Rp'|IDR}}</strong></div>
                         </div>
                     </div>
                     <div class="col-xl-4 my-4" >

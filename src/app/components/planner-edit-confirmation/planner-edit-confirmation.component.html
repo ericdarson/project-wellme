@@ -3,7 +3,7 @@
         <a (click)="goBack()" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
             <mat-icon>chevron_left</mat-icon>
         </a>
-        <h1 style="flex-basis: 90%; text-align: center;;" class="headFont"><b>Portofolio Baru</b></h1>
+        <h1 style="flex-basis: 90%; text-align: center;;" class="headFont"><b>Target Baru</b></h1>
     </div>
 
     <div class="jflex-column padding-beauty  center-cross-axis " style="height:90%;">
@@ -11,13 +11,13 @@
         <mat-card class="box-outline litle-space" style="width: 100%;">
             <div class="jflex-column">
                 <div class="jflex-column">
-                    <div><strong>Nama Portofolio</strong></div>
+                    <div><strong>Nama Target</strong></div>
                     <h2 class="font-green"><b>{{plannerEditRequest.nama_plan}}</b></h2>
                 </div>
                 
                 <div class="jflex-column">
                     <div><strong>Total Target</strong></div>
-                    <h2 class="font-green"><b>{{plannerEditRequest.goal_amount | currency:'Rp ':'code'}}</b></h2>
+                    <h2 class="font-green"><b>{{plannerEditRequest.goal_amount | currency:'Rp '|IDR}}</b></h2>
                 </div>
                 
                 <div class="jflex-column">

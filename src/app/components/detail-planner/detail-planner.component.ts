@@ -20,24 +20,30 @@ export class DetailPlannerComponent implements OnInit {
   loader:boolean=true;
   isFailedToLoad : boolean =false;
   errorStatus : number;
-  constructor(private location: Location,private plannerService:PlannerService, private router:Router,private plannerPembelianService:PlannerPembelianService,private sharedService:GeturlService) { }
+  constructor(private location: Location,private plannerService:PlannerService,
+     private router:Router,private plannerPembelianService:PlannerPembelianService,
+     private sharedService:GeturlService,private activeRoute : ActivatedRoute) {
+     
+    }
   
   ngOnInit(): void {
-    this.id=this.plannerService.getIdDetail();
-    
+    // this.id=this.plannerService.getIdDetail();
+    this.activeRoute.paramMap.subscribe(params => {
+      this.id = params.get("id")!
+    });
+    console.log(this.id)
     if(this.id==undefined||this.id==null)
     {
       this.router.navigate(['/financial-planner/']);
     }
     else{
-
       this.plannerPembelianService.setIdDetail(this.id);
     }
     this.getDetail();
   }
   
   getDetail():void{
-    this.plannerService.getPlannerDetail().subscribe((response:ResponseApi)=>{
+    this.plannerService.getPlannerDetail(this.id).subscribe((response:ResponseApi)=>{
      this.loader=false;
       this.plan=response.output_schema;
       console.log(this.plan);
@@ -166,6 +172,8 @@ export class DetailPlannerComponent implements OnInit {
   errorButtonClicked(){
     if(this.errorStatus == 403){
       this.router.navigate(['/'])
+    }else if(this.errorStatus ==404){
+      this.goBack()
     }else{
       this.retryClicked();
     }

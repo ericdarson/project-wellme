@@ -25,7 +25,7 @@
                             </div>
                             <div class="text-wellme-color">
                                 <ngx-shimmer-loading *ngIf="isLoading" [shape]="'rect'" [width]="'30%'" [height]="'2em'"></ngx-shimmer-loading>
-                                <b *ngIf="!isLoading">{{this.nominalPembelian | currency : 'Rp '}}</b>
+                                <b *ngIf="!isLoading">{{this.nominalPembelian | currency : 'Rp '|IDR}}</b>
                             </div>
                             <div class="flex mt-4" style="justify-content: space-between;align-items: center;">
                                 <div>
@@ -34,7 +34,7 @@
                                     </div>
                                     <div class="text-wellme-color">
                                         <ngx-shimmer-loading *ngIf="isLoading" [shape]="'rect'" [width]="'100%'" [height]="'2em'"></ngx-shimmer-loading>
-                                        <b  *ngIf="!isLoading" >{{this.simulationStartData.starting_nab | currency : 'Rp '}}</b>
+                                        <b  *ngIf="!isLoading" >{{this.simulationStartData.starting_nab | currency : 'Rp '|IDR}}</b>
                                     </div>
                                 </div>
                                 <div>
@@ -113,7 +113,7 @@
                         </div>
                         
                         <div class="text-wellme-color">
-                            <b>{{this.simulationStartData.starting_nab | currency : 'Rp '}}</b>
+                            <b>{{this.simulationStartData.starting_nab | currency : 'Rp '|IDR}}</b>
                         </div>
                     </div>
                     <ngx-shimmer-loading *ngIf="isLoading" [shape]="'rect'" [width]="'100%'" [height]="'2em'"></ngx-shimmer-loading>
@@ -123,7 +123,7 @@
                             NAB/ Unit Simulasi
                         </div>
                         <div class="text-wellme-color">
-                            <b>{{this.nabaftersimulasi | currency : 'Rp '}}</b>
+                            <b>{{this.nabaftersimulasi | currency : 'Rp '|IDR}}</b>
                         </div>
                     </div>
                     <ngx-shimmer-loading *ngIf="isLoading" [shape]="'rect'" [width]="'100%'" [height]="'2em'"></ngx-shimmer-loading>
@@ -158,7 +158,7 @@
                     </div>
                     <div class="width-full text-center font-24 text-wellme-color" style="margin-top: 1em; margin-bottom: 1em;">
                         <ngx-shimmer-loading *ngIf="isLoading" [shape]="'rect'" [width]="'100%'" [height]="'2em'"></ngx-shimmer-loading>
-                        <b *ngIf="!isLoading" >{{this.nabaftersimulasi * this.simulationStartData.jumlah_unit | currency : 'Rp ' :'symbol':'1.2'}}</b>
+                        <b *ngIf="!isLoading" >{{this.nabaftersimulasi * this.simulationStartData.jumlah_unit | currency : 'Rp ' :'symbol':'1.2'|IDR}}</b>
                     </div>
                     <button  [disabled]="isLoading" mat-button class="pilih-button width-full " (click)="goToBackwardResult()">  
                         <b>Lihat Proyeksi</b>    
@@ -167,7 +167,7 @@
                 </div>
                 <div class="col-md-6">
                     <div>
-                        <button mat-button class="pilih-button width-full" (click)="retryClicked()" >  
+                        <button mat-button class="pilih-button width-full" (click)="resetTanggal()" >  
                             <b>Reset Tanggal </b>    
                         </button>
                     </div>
@@ -189,7 +189,7 @@
 
 <div *ngIf="isFailedToLoad" class="master-component">
     <div class="row" style="justify-content: center;">
-        <div class="col-md-10">
+        <div class="col-md-8">
             <app-failed-to-load [errorStatus]="this.errorStatus" (onButtonClicked)="errorButtonClicked()"></app-failed-to-load>
         </div>
     </div>
@@ -197,7 +197,7 @@
 
 <div *ngIf="isFailedToLoadSimulation" class="master-component">
     <div class="row" style="justify-content: center;">
-        <div class="col-md-10">
+        <div class="col-md-8">
             <app-failed-to-load [errorStatus]="this.errorStatusSimulation" (onButtonClicked)="errorButtonSimulationClicked()"></app-failed-to-load>
         </div>
     </div>

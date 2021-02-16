@@ -35,6 +35,7 @@ export class PlannerPinJualReksadanaComponent implements OnInit {
   plannerDetail:PlannerDetail;
   idDetail:number;
   requestPenjualan:PlannerRequestJual[];
+  penjualanValid:boolean|null;
   goBack()
   {
     this.location.back();
@@ -43,8 +44,10 @@ export class PlannerPinJualReksadanaComponent implements OnInit {
     this.plannerDetail=this.plannerService.getLocalStorage("plannerDetail");
     this.idDetail=this.plannerService.getLocalStorage("idDetail");
     this.requestPenjualan=this.plannerService.getLocalStorage("plannerJual");
-    if(this.plannerDetail==null||this.idDetail==null||this.requestPenjualan==null)
+    this.penjualanValid=this.plannerService.getLocalStorage("pvalid");
+    if(this.plannerDetail==null||this.idDetail==null||this.requestPenjualan==null||this.penjualanValid==false||this.penjualanValid==null)
     {
+      //console.log(this.plannerDetail.category,this.idDetail,this.requestPenjualan,this.penjualanValid);
       this.router.navigate(['../'],{relativeTo:this.route});
     }
   }
@@ -92,6 +95,7 @@ export class PlannerPinJualReksadanaComponent implements OnInit {
           else{
             console.log(response);
             this.plannerService.clearLocalStorage("plannerJual");
+            this.plannerService.clearLocalStorage("pvalid");
             this.plannerService.setLocalStorage("detailTransaksiJual",response.output_schema);
             this.loader=false;
             this.router.navigate(['../detail-transaksi-jual'],{relativeTo:this.route});
@@ -106,7 +110,7 @@ export class PlannerPinJualReksadanaComponent implements OnInit {
           }
           else{
             this.wrongPinClass=true;
-            this.wrongPinMessage="Gagal Membeli Reksadana, Coba lagi" 
+            this.wrongPinMessage="[ERROR: "+error.error.error_schema.error_code+"]Gagal Menjual Reksadana, Coba Lagi";
           }
         })
       }

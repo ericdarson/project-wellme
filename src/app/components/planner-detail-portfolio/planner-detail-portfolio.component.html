@@ -1,4 +1,4 @@
-<div *ngIf="!isFailedToLoad" class="jflex-column container" style="height: 100%;">
+<div *ngIf="!isFailedToLoad" class="jflex-column container" >
     <div class="jflex-row" style="padding-top:20px;" *ngIf="!loader">
         <a mat-icon-button aria-label="Example icon button with a vertical three dot icon" (click)="goBack()">
             <mat-icon>chevron_left</mat-icon>
@@ -15,7 +15,7 @@
             <div class="jflex-row stretch">
                 <div class="jflex-column" style="width: 50%;">
                     <div *ngIf="!loader">Nilai Tabungan</div>
-                    <h1 *ngIf="!loader"><strong>{{plan.current_amount |currency:'Rp ':true:'1.0'}}</strong></h1>
+                    <h1 *ngIf="!loader"><strong>{{plan.current_amount |currency:'Rp '|IDR}}</strong></h1>
                     <ngx-shimmer-loading *ngIf="loader" [shape]="'rect'" [height]="'14px'" class="col-md-4"></ngx-shimmer-loading>
                     <ngx-shimmer-loading *ngIf="loader" [shape]="'rect'" [height]="'32px'" class="col-md-6"></ngx-shimmer-loading>
             
@@ -63,7 +63,7 @@
                         </mat-list>
                         <div class="jflex-column">
                             <table>
-                                <tr><td>{{portfolioDetail.nama_produk}}</td><td><strong class="font-green">{{portfolioDetail.asset|currency:'Rp ':true:'1.0'}}</strong></td></tr>
+                                <tr><td>{{portfolioDetail.nama_produk}}</td><td><strong class="font-green">{{portfolioDetail.asset|currency:'Rp '|IDR}}</strong></td></tr>
                                 <tr><td *ngIf="portfolioDetail.status=='Dalam Proses'" style="color:#FF7A00"><b>{{portfolioDetail.status}}</b></td></tr>
                                 <tr><td *ngIf="portfolioDetail.status=='Unit'" class="font-green"><b>Berhasil</b></td></tr>
                             </table>
@@ -131,14 +131,14 @@
     <div class=" jflex-column padding-beauty center-cross-axis">
         <ngx-shimmer-loading *ngIf="loader" [shape]="'rect'" [height]="'14px'" class="col-md-12"></ngx-shimmer-loading>
         <ngx-shimmer-loading *ngIf="loader" [shape]="'rect'" [height]="'32px'" class="col-md-12"></ngx-shimmer-loading>
-        <a *ngIf="plan.portfolio.length!=0&&!loader" mat-button routerLink="/financial-planner/jual-semua"  class="litle-space box-outline" style="background-color: white; color: #6ED940; border: 2px solid #6ED940; width: 100%; ">Jual Reksadana</a>
+        <a *ngIf="plan.portfolio.length!=0&&!loader&&canSell==true" mat-button routerLink="/financial-planner/jual-semua"  class="litle-space box-outline" style="background-color: white; color: #6ED940; border: 2px solid #6ED940; width: 100%; ">Jual Reksadana</a>
         <a *ngIf="!loader" routerLink="/financial-planner/beli-reksadana" mat-button style="background-color: #6ED940; color: white; width: 100%; ">Beli Reksadana</a>
     </div>
 </div>
 
 <div *ngIf="this.isFailedToLoad" class="master-component" style="width: 80%; height: 60%;">
     <div class="row" style="justify-content: center;">
-        <div class="col-md-10">
+        <div class="col-md-8">
             <app-failed-to-load [errorStatus]="this.errorStatus" (onButtonClicked)="errorButtonClicked()"></app-failed-to-load>
         </div>
     </div>

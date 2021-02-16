@@ -3,7 +3,7 @@
         <a (click)="goBack()" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
             <mat-icon>chevron_left</mat-icon>
         </a>
-        <h1 style="flex-basis: 90%; text-align: center;;" class="headFont"><b>Beli Reksadana</b></h1>
+        <h1 style="flex-basis: 94%; text-align: center;;" class="headFont"><b>Beli Reksadana</b></h1>
     </div>
     <div class="jflex-column padding-beauty  center-cross-axis scroll "  style="height:90%; "  >
         <h1>Konfirmasi</h1>
@@ -23,7 +23,7 @@
                             </div>
                         </td>
                         <td *ngIf="reksadana.percentage&&plannerBeliState.nominal_pembelian">
-                            <h3 class="font-green"><strong>{{reksadana.percentage/100*plannerBeliState.nominal_pembelian| currency :'Rp ':true:'1.0'}}</strong></h3>
+                            <h3 class="font-green"><strong>{{reksadana.percentage/100*plannerBeliState.nominal_pembelian| currency :'Rp ':true:'1.0'|IDR}}</strong></h3>
                         </td>
                     </tr>
                     
@@ -31,11 +31,10 @@
                         <td>
                             <div class="jflex-column">
                                 <h3><strong>Promo</strong></h3>
-                                <h2 class="font-green"><strong>{{plannerBeliState.kode_promo}}</strong></h2>
                             </div>
                         </td>
                         <td>
-                            <h3 class="font-green"><strong>{{plannerBeliState.cashback| currency :'Rp ':true:'1.0'}}</strong></h3>
+                            <h3 class="font-green"><strong>{{plannerBeliState.kode_promo}}</strong></h3>
                         </td>
                     </tr>
                     <tr *ngIf="biayaPembelian">
@@ -45,7 +44,7 @@
                             </div>
                         </td>
                         <td>
-                            <h3 class="font-green"><strong>{{biayaPembelian | currency :'Rp ':true:'1.0'}}</strong></h3>
+                            <h3 class="font-green"><strong>{{biayaPembelian | currency :'Rp ':true:'1.0'|IDR}}</strong></h3>
                         </td>
                     </tr>
                     <tr *ngIf="totalTransaksi">
@@ -55,7 +54,7 @@
                             </div>
                         </td>
                         <td>
-                            <h3 class="font-green"><strong>{{totalTransaksi | currency :'Rp ':true:'1.0'}}</strong></h3>
+                            <h3 class="font-green"><strong>{{totalTransaksi | currency :'Rp ':true:'1.0'|IDR}}</strong></h3>
                         </td>
                     </tr>
                     

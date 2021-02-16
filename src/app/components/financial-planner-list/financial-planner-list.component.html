@@ -22,8 +22,8 @@
             <div class="jflex-row col-md-12 stretch">
                 <div class="jflex-column stretch">
                     <span><strong>{{plan.nama_plan}}</strong></span>
-                    <span class="percentage-list">{{plan.current/plan.target*100>100?100:plan.current/plan.target*100 | number:'1.0-0'}} %</span>
-                    <span class="target">Target:&nbsp;{{plan.target |currency:'Rp ':true:'1.0-2'}}</span>
+                    <span class="percentage-list">{{plan.current | currency:'Rp '|IDR}} </span>
+                    <span class="target">Target:&nbsp;{{plan.target |currency:'Rp '|IDR}}</span>
                 </div>
                 <div class="jflex-column">
                 <circle-progress 
@@ -64,7 +64,7 @@
         
     </div>
     <div class="background-green jflex-row row padding-beauty center-main-axis">
-        <a mat-raised-button [routerLink]="['/financial-planner/pilih-target']" routerLinkActive="true" style="background-color: #6ED940; color: white; width: 80%; ">Tambah Portofolio</a>
+        <a mat-raised-button [routerLink]="['/financial-planner/pilih-target']" routerLinkActive="true" style="background-color: #6ED940; color: white; width: 80%; ">Tambah Target</a>
     </div>
 </div>
 

@@ -31,10 +31,10 @@ const routes: Routes = [
     path: '', 
     component:FinancialPlannerComponent,
     children: [
-      { path: '', redirectTo: 'planner-list', pathMatch: 'full' },
+      { path: '', redirectTo: 'planner-list'},
       { path:'planner-list', component:FinancialPlannerListComponent},
       { path:'summary-planner', component:SummaryPlannerComponent},
-      { path:'detail-planner', component:DetailPlannerComponent},
+      { path:'detail-planner/:id', component:DetailPlannerComponent},
       { path:'detail-portfolio', component:PlannerDetailPortfolioComponent},
       { path:'beli-reksadana', component:BeliReksadanaComponent},
       { path:'promo', component:PromoKodeComponent},

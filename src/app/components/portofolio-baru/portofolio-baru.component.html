@@ -3,25 +3,28 @@
         <a (click)="goBack()" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
             <mat-icon>chevron_left</mat-icon>
         </a>
-        <h1 style="flex-basis: 90%; text-align: center;;" class="headFont"><b>Portofolio Baru</b></h1>
+        <h1 style="flex-basis: 93%; text-align: center;;" class="headFont"><b>Target Baru</b></h1>
     </div>
     <form [formGroup]="portfolioForm" (submit)="onSubmit()">
         <div class="jflex-column padding-beauty  center-cross-axis ">
             <h1 style="font-weight: 300;">Gadget</h1>
             
             <mat-card class="box-outline litle-space" style="width: 100%;">
-                <div><strong>Nama Portofolio</strong></div>
+                <div><strong>Nama Target</strong></div>
                 <mat-form-field appearance="standard" style="width: 100%;">
-                    <mat-label>Masukan Nama Portfolio</mat-label>
+                    <mat-label>Masukan Nama Target</mat-label>
                     <input  matInput formControlName="nama_portfolio">
-                    <mat-error *ngIf="portfolioForm.controls['nama_portfolio'].invalid">Nama Portfolio Tidak Boleh Kosong</mat-error>
+                    <mat-error *ngIf="portfolioForm.controls['nama_portfolio'].invalid">Nama Target Tidak Boleh Kosong</mat-error>
                 </mat-form-field>
             </mat-card>
             <mat-card class="box-outline litle-space" style="width: 100%;">
                 <div><strong>Total Target yang Harus Terkumpul</strong></div>
                 <mat-form-field appearance="standard" style="width: 100%;" >
                     <mat-label>Masukan target</mat-label>
-                    <input type="number"  matInput formControlName="target">
+                    <span style="color: #6ED940;" matPrefix><b>Rp</b> &nbsp;</span>
+                        <input autocomplete=false formControlName="target" matInput type="text" (change)="transformAmount($event)" [(ngModel)]="formattedAmount"  />
+                    
+                    
                     <mat-error *ngIf="portfolioForm.controls['target'].invalid">Target Tidak Valid</mat-error>
                 </mat-form-field>
             </mat-card>
@@ -29,7 +32,7 @@
                 <div><strong>Durasi Target</strong></div>
                 <mat-form-field appearance="standard" style="width: 100%;">
                     <mat-label>Masukan Tanggal</mat-label>
-                    <input matInput [matDatepicker]="picker" [min]="dateMin" formControlName="durasi_target">
+                    <input matInput readonly="readonly" [matDatepicker]="picker" [min]="dateMin" formControlName="durasi_target">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                     <mat-error *ngIf="portfolioForm.controls['durasi_target'].invalid">Durasi Target Minimal 2 Minggu dari Tanggal Hari Ini</mat-error>

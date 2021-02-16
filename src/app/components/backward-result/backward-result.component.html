@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-xl-8 mx-auto">
             <div *ngIf="isFailedToLoad" class="row" style="justify-content: center;">
-                <div class="col-md-10">
+                <div class="col-md-8">
                     <app-failed-to-load [errorStatus]="this.errorStatus" (onButtonClicked)="errorButtonClicked()"></app-failed-to-load>
                 </div>
             </div>
@@ -30,7 +30,7 @@
                         <button mat-button [ngClass]="oneWeekRangeSelected ? 'button-fill' : 'button-range'"
                         class="clickable text-center width-full" style="padding: 1em;" (click)="selectOneWeekRange()">
                             <div>
-                                <b>1 Week</b>
+                                <b>1 Minggu</b>
                             </div>
                         </button>
                     </mat-grid-tile>
@@ -38,7 +38,7 @@
                         <button mat-button [ngClass]="oneMonthRangeSelected ? 'button-fill' : 'button-range'"
                         class="clickable text-center width-full" style="padding: 1em;" (click)="selectOneMonthRange()">
                             <div>
-                                <b>1 Month</b>
+                                <b>1 Bulan</b>
                             </div>
                         </button>
                     </mat-grid-tile>
@@ -46,7 +46,7 @@
                         <button mat-button  [ngClass]="threeMonthRangeSelected ? 'button-fill' : 'button-range'"
                         class=" clickable text-center width-full" style="padding: 1em;" (click)="selectThreeMonthRange()">
                             <div>
-                                <b>3 Month</b>
+                                <b>3 Bulan</b>
                             </div>
                         </button>
                     </mat-grid-tile>
@@ -54,7 +54,7 @@
                         <button mat-button  [ngClass]="oneYearRangeSelected ? 'button-fill' : 'button-range'"
                         class="clickable text-center width-full" style="padding: 1em;" (click)="selectOneYearRange()">
                             <div>
-                                <b>1 Year</b>
+                                <b>1 Tahun</b>
                             </div>
                         </button>
                     </mat-grid-tile>
@@ -87,7 +87,7 @@
                                 </div>
                                 <div class="text-wellme-color font-18">
                                     <ngx-shimmer-loading *ngIf="isLoading" [shape]="'rect'" [width]="'100%'" [height]="'2em'"></ngx-shimmer-loading>
-                                    <b *ngIf="!isLoading">{{resultData.current_nab | currency : 'Rp ' :'symbol':'1.2'}}</b>
+                                    <b *ngIf="!isLoading">{{resultData.current_nab | currency : 'Rp ' :'symbol':'1.2'|IDR}}</b>
                                 </div>
                             </div>
                         </div>

@@ -25,6 +25,8 @@ export class PlannerDetailPortfolioComponent implements OnInit {
   loader:boolean=true;
   isFailedToLoad:boolean=false;
   errorStatus : number;
+  canSell:boolean=false;
+
   ngOnInit(): void {
     this.checkState();
     this.prepareDetail();
@@ -61,6 +63,10 @@ export class PlannerDetailPortfolioComponent implements OnInit {
     this.plannerService.getPorfileResiko().subscribe(response=>{
       this.loader=false;
       for (let i = 0; i < this.plan.portfolio.length; i++) {
+        if(this.plan.portfolio[i].status=="Unit")
+        {
+this.canSell=true;
+        }
         var index=this.searchJenisReksadana(this.plan.portfolio[i].nama_jenis);
         if(index!=null){
           if(this.portfolio[index]==undefined){
@@ -124,8 +130,12 @@ export class PlannerDetailPortfolioComponent implements OnInit {
   }
 
   errorButtonClicked(){
+    console.log(this.errorStatus)
+    console.log("clicked error")
     if(this.errorStatus == 403){
       this.router.navigate(['/'])
+    }else if(this.errorStatus == 404){
+      this.goBack()
     }else{
       this.retryClicked();
     }
@@ -139,3 +149,4 @@ export class AlokasiRekomendasi{
   rekomendasiPercentage:number;
   rekomendasiAmount:number;
 }
+

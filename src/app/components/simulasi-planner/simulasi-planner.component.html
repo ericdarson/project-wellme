@@ -27,7 +27,7 @@
                 
                 <div class="jflex-column">
                     <div><strong>Total Target</strong></div>
-                    <h2 class="font-green">{{plannerRequest.goal_amount | currency:'Rp ':'code'}}</h2>
+                    <h2 class="font-green">{{plannerRequest.goal_amount | currency:'Rp '|IDR}}</h2>
                 </div>
                 
                 <div class="jflex-column">
@@ -37,7 +37,7 @@
                 
                 <div class="jflex-column">
                     <div><strong>Total Tabungan/Bulan</strong></div>
-                    <h2 class="font-green">{{nominalYangHarusDitabung | currency:'Rp ':'code'}}</h2>
+                    <h2 class="font-green">{{nominalYangHarusDitabung | currency:'Rp '|IDR}}</h2>
                 </div>
             </div>
         </mat-card>

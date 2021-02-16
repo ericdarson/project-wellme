@@ -1,51 +1,52 @@
-<div *ngIf="!isFailedToLoad" class="jflex-column" style="height: 100%;">
-    <div class="jflex-row" style="padding-top:20px;">
-        <a (click)="goBack()" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
-            <mat-icon>chevron_left</mat-icon>
-        </a>
-        <h1 style="flex-basis: 85%; text-align: center;;" class="headFont"><b>Kode Promo</b></h1>
-        <img src="assets/icon/well-me-logo-small.png" style="padding-right: 10px;" width="107" height="33">
-    </div>
-    <div *ngIf="promoList.length==0" class="jflex-column padding-beauty center-main-axis center-cross-axis" style="height:90%">
-        <img src="assets/img/list-planner-nothing.png">
-        <h2 class="font-green"><strong>Tidak ada item yang bisa dicari :(</strong></h2>
-        <p class="font-green"> Ayo selesaikan objectives dan dapatkan berbagai macam Promo Menarik</p>
+<div *ngIf="!isFailedToLoad" class="jflex-column container" style="height: 100%;">
+    <div class="row" style="justify-content: center;">
+        <div class="col-md-10">
+            <div class="jflex-row" style="padding-top:20px;">
+                <a (click)="goBack()" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+                    <mat-icon>chevron_left</mat-icon>
+                </a>
+                <h1 style="flex-basis: 85%; text-align: center;;" class="headFont"><b>Kode Promo</b></h1>
+                <img src="assets/icon/well-me-logo-small.png" style="padding-right: 10px;" width="107" height="33">
+            </div>
+            <div *ngIf="promoList.length==0" class="jflex-column padding-beauty center-main-axis center-cross-axis" style="height:90%">
+                <img src="assets/img/list-planner-nothing.png">
+                <h2 class="font-green"><strong>Tidak ada item yang bisa dicari :(</strong></h2>
+                <p class="font-green"> Ayo selesaikan objectives dan dapatkan berbagai macam Promo Menarik</p>
+                
+            </div>
+            <div class="row flex" *ngIf="loader">
+                <div *ngFor="let i of [1,2,3,4,5,6]" class = "col-md-6">
+                    <div class="mt-3">
+                        <ngx-shimmer-loading [shape]="'rect'" [width]="'100%'" [height]="'150px'"></ngx-shimmer-loading>
+                    </div>
+                </div>
+            </div>
+            <div [ngClass]="displayClass" *ngIf="!loader" class="row padding-beauty scroll stretch" style="height: 90%;  justify-content: space-between; padding: 60px;;">
         
-    </div>
-    <div class="row flex" *ngIf="loader">
-        <div *ngFor="let i of [1,2,3,4,5,6]" class = "col-md-6">
-            <div class="mt-3">
-                <ngx-shimmer-loading [shape]="'rect'" [width]="'100%'" [height]="'150px'"></ngx-shimmer-loading>
+                <mat-card class="box-outline padding-beauty little-space col-md-5" style="margin-bottom: 10px; height: 260px;"  *ngFor="let promo of promoList">
+               
+                    <div class="jflex-column stretch" >
+                        <span class="font-green jflex-row" style="align-items: flex-end; margin-bottom: 20px;"><img src="assets/img/img_promo.png" style="width: 170px; height: auto;"></span>
+                        <span><h1><strong>{{promo.title}}</strong></h1></span>
+                        <span class="jflex-row center-cross-axis"><mat-icon style="font-size:15pt;color: #6ED940;">access_time</mat-icon> Available Until: {{promo.date_available}}</span>
+                        <p>{{promo.description}}</p>
+                        <div class="jflex-row stretch center-cross-axis">
+                            <div class="jflex-column">
+                                <p>Kode Promo:</p>
+                                <h1><strong>{{promo.kode_promo}}</strong></h1>
+                            </div>
+                            <div>
+                                <button (click)="setPromoKode(promo.kode_promo)" mat-button class="green-button" style="padding: 5px 40px;">Pilih</button>
+                            </div>
+                        </div>    
+                    </div>
+        
+                </mat-card>
             </div>
         </div>
-    </div>
-    <div [ngClass]="displayClass" *ngIf="!loader" class="row padding-beauty scroll stretch" style="height: 90%; overflow: auto;  justify-content: space-between; padding: 60px;;">
-
-        <mat-card class="box-outline padding-beauty little-space col-md-5" style="margin-bottom: 10px; height: 260px;"  *ngFor="let promo of promoList">
        
-            <div class="jflex-column stretch" >
-                <span class="font-green jflex-row" style="align-items: flex-end; margin-bottom: 20px;"><img src="assets/img/img_promo.png" style="width: 170px; height: auto;"></span>
-                <span><h1><strong>{{promo.title}}</strong></h1></span>
-                <span class="jflex-row center-cross-axis"><mat-icon style="font-size:15pt;color: #6ED940;">access_time</mat-icon> Available Until: {{promo.date_available}}</span>
-                <p>{{promo.description}}</p>
-                <div class="jflex-row stretch center-cross-axis">
-                    <div class="jflex-column">
-                        <p>Kode Promo:</p>
-                        <h1><strong>{{promo.kode_promo}}</strong></h1>
-                    </div>
-                    <div>
-                        <button (click)="setPromoKode(promo.kode_promo)" mat-button class="green-button" style="padding: 5px 40px;">Pilih</button>
-                    </div>
-                </div>    
-            </div>
-
-        </mat-card>
-
-       
-        
-
-        
     </div>
+    
 </div>
 
 <div *ngIf="this.isFailedToLoad" class="master-component" style="width: 80%; height: 60%;">

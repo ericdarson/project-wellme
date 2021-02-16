@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PlannerService } from 'src/app/services/planner.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { PlannerService } from 'src/app/services/planner.service';
 })
 export class PilihTargetComponent implements OnInit {
   iconColor:string[][]=[["#fff","#6ED940"],["#fff","#6ED940"],["#fff","#6ED940"],["#fff","#6ED940"],["#fff","#6ED940"],["#fff","#6ED940"],["#fff","#6ED940"],["#fff","#6ED940"],["#fff","#6ED940"],]
-  constructor(private location:Location,private plannerService:PlannerService,private router:Router) { }
+  constructor(private location:Location,private plannerService:PlannerService,private router:Router,private route:ActivatedRoute) { }
   
   ngOnInit(): void {
     this.checkState();
@@ -45,6 +45,6 @@ export class PilihTargetComponent implements OnInit {
 
 
   goBack(){
-    this.router.navigate(['/']);
+    this.router.navigate(['../planner-list'],{relativeTo:this.route});
   }
 }

@@ -36,7 +36,7 @@ export class BackwardResultComponent implements OnInit {
     console.log("Jenis Reksa : " + this.jenisreksa)
     if(this.jenisreksa == "null" || this.jenisreksa == ""){
       console.log("redirecting")
-      this.router.navigate(["../../index"]);
+      this.router.navigate(["../../../home"],{relativeTo: this.route});
     }
 
     this.route.paramMap.subscribe(params => {
@@ -157,12 +157,17 @@ export class BackwardResultComponent implements OnInit {
       {
         this.resultData = response.output_schema;
         this.initChart();
-
+        this.isFailedToLoad = false;
+        this.isLoading = false;
       }else if (response.error_schema.error_code=="BIT-10-001"){
         this.location.back()
+        this.isFailedToLoad = false;
+        this.isLoading = false;
+      }else if(response.error_schema.error_code=="BIT-17-201"){
+        this.errorStatus = 404
+        this.isFailedToLoad = true;
+        this.isLoading = false;
       }
-      this.isFailedToLoad = false;
-      this.isLoading = false;
     },error=>{
       this.errorStatus = error.status
       this.isFailedToLoad = true;
@@ -173,6 +178,8 @@ export class BackwardResultComponent implements OnInit {
   errorButtonClicked(){
     if(this.errorStatus == 403){
       this.router.navigate(['/'])
+    }else if(this.errorStatus == 404){
+      this.back()
     }else{
       this.retryClicked();
     }

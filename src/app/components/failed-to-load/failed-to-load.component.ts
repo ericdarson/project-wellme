@@ -23,6 +23,10 @@ export class FailedToLoadComponent implements OnInit {
       this.image = "assets/img/error_page_403.png"
       this.buttonText = "Menu Utama"
       this.descText = "Akses Terbatas Mohon Kembali ke Menu Utama"
+    }else if(this.errorStatus == 404){
+      this.image = "assets/icon/failed-to-load-icon.png"
+      this.buttonText = "Kembali"
+      this.descText = "Data Tidak Ditemukan"
     }else{
       this.image = "assets/icon/failed-to-load-icon.png"
       this.buttonText = "Muat Ulang"

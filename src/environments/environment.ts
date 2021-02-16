@@ -20,10 +20,10 @@ export const environment = {
   promoUrl : 'http://10.8.0.5:8071/promo',
   BackwaardProjectionUrl:'http://10.8.0.5:8071',
   claimPromoUrl : 'http://10.8.0.5:8071/promo/claim',
-  activedPromoUrl : 'http://10.8.0.5:8071/promo/activate/',
-  plannerPembelianUrl:'http://10.8.0.5:8071/financial-planner/pembelian/',
+  activedPromoUrl : 'http://10.8.0.5:8071/promo/activate',
+  plannerPembelianUrl:'http://10.8.0.5:8071/financial-planner/pembelian',
   updatePlannerUrl:'http://10.8.0.5:8071/planner',
-  plannerPenjualanUrl:'http://10.8.0.5:8071/financial-planner/penjualan/'
+  plannerPenjualanUrl:'http://10.8.0.5:8071/financial-planner/penjualan'
 };
 
 /*
