@@ -23,7 +23,7 @@
                             </div>
                         </td>
                         <td *ngIf="reksadana.percentage&&plannerBeliState.nominal_pembelian">
-                            <h3 class="font-green"><strong>{{reksadana.percentage/100*plannerBeliState.nominal_pembelian| currency :'Rp ':true:'1.0'|IDR}}</strong></h3>
+                            <h3 class="font-green"><strong>{{reksadana.percentage/100*plannerBeliState.nominal_pembelian| currency :'Rp '|IDR}}</strong></h3>
                         </td>
                     </tr>
                     
@@ -44,7 +44,7 @@
                             </div>
                         </td>
                         <td>
-                            <h3 class="font-green"><strong>{{biayaPembelian | currency :'Rp ':true:'1.0'|IDR}}</strong></h3>
+                            <h3 class="font-green"><strong>{{biayaPembelian | currency :'Rp '|IDR}}</strong></h3>
                         </td>
                     </tr>
                     <tr *ngIf="totalTransaksi">
@@ -54,7 +54,7 @@
                             </div>
                         </td>
                         <td>
-                            <h3 class="font-green"><strong>{{totalTransaksi | currency :'Rp ':true:'1.0'|IDR}}</strong></h3>
+                            <h3 class="font-green"><strong>{{totalTransaksi | currency :'Rp '|IDR}}</strong></h3>
                         </td>
                     </tr>
                     

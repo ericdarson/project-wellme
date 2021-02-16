@@ -41,8 +41,14 @@
                             <div>
                                 <b>Kinerja 1 Bulan</b>
                             </div>
-                            <div>
-                                <span *ngIf="reksa.kinerja_satu_bulan>=0">+</span><span *ngIf="reksa.kinerja_satu_bulan<0">-</span> {{reksa.kinerja_satu_bulan}} %
+                            <!-- <div *ngIf="reksa.kinerja_satu_bulan!='-'">
+                                <span *ngIf="reksa.kinerja_satu_bulan>=0">+</span>
+                                {{reksa.kinerja_satu_bulan | number}} %
+                            </div> -->
+                            <div  [ngClass]="+reksa.kinerja_satu_bulan>=0?'text-wellme-color':'text-wellme-red'">
+                                <b *ngIf="!stringIsNumber(reksa.kinerja_satu_bulan)">{{reksa.kinerja_satu_bulan}}</b>
+                                <b *ngIf="stringIsNumber(reksa.kinerja_satu_bulan)">{{+reksa.kinerja_satu_bulan | number}}%</b>
+                                
                             </div>
                         </div>
                         <div>

@@ -56,9 +56,14 @@ export class BackwardListReksadanaComponent implements OnInit {
         response.output_schema.forEach((element:BackwardProjectionListProdukRekadana) => {
           this.tempVar.push(element)
         });
+        this.isLoading = false;
+        this.isFailedToLoad = false;
+      }else{
+        this.errorStatus = 404
+        this.isLoading = false;
+        this.isFailedToLoad = true;
       }
-      this.isLoading = false;
-      this.isFailedToLoad = false;
+      
     }, error=>{
       this.errorStatus = error.status
       this.isLoading = false;

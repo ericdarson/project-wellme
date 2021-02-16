@@ -86,4 +86,13 @@ export class PlannerListReksadanaComponent implements OnInit {
     }
   }
   
+
+  stringIsNumber(s:any) {
+    var x = +s; // made cast obvious for demonstration
+    if (Number.isNaN(x)){
+      return false
+    }else{
+      return true
+    }
+  }
 }
