@@ -58,8 +58,8 @@ export class PlannerEditDataPlannerComponent implements OnInit {
   isFilled():void{
       var periodic=this.plannerEditRequest.periodic=="Weekly"?"Mingguan":this.plannerEditRequest.periodic=="Monthly"?"Bulanan":"Tahunan";
       var momentvar=moment(this.plannerEditRequest.due_date,'DD-MM-YYYY');
-      console.log("Edit Due Date: ",this.plannerEditRequest.due_date);
-      console.log(momentvar.format('YYYY-MM-DD'));
+      //console.log("Edit Due Date: ",this.plannerEditRequest.due_date);
+      //console.log(momentvar.format('YYYY-MM-DD'));
       this.portfolioForm.setValue({
         nama_portfolio:this.plannerEditRequest.nama_plan,
         target:this.plannerEditRequest.goal_amount,

@@ -135,7 +135,7 @@ export class PromoService {
     //    }
     // }
     // this.selectedObjective = JSON.parse(deData.toString(CryptoJS.enc.Utf8));
-    console.log(this.selectedObjective)
+    //console.log(this.selectedObjective)
     return this.selectedObjective
     
   }

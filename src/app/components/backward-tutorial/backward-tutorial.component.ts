@@ -77,7 +77,7 @@ export class BackwardTutorialComponent implements OnInit {
   }
 
   slideActivate(ngbSlideEvent: NgbSlideEvent) {
-    console.log(ngbSlideEvent.current);
+    //console.log(ngbSlideEvent.current);
     this.page = +ngbSlideEvent.current
     if(this.page==0){
       this.isFirstPage( this.page )
@@ -133,7 +133,7 @@ export class BackwardTutorialComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed ' + result);
+      //console.log('The dialog was closed ' + result);
       if(result){
         this.router.navigate(['../../'],{relativeTo:this.activeRoute})
       }

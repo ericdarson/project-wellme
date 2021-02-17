@@ -18,7 +18,7 @@
                         <div>
                             <div class="font-24 mb-2"> <b>Password</b> </div>
                             <mat-form-field class="w-100">
-                                <input matInput [(ngModel)]="this.password" autocomplete="off" placeholder="(Masukkan Password anda)" [type]="hide ? 'password' : 'text'" required>
+                                <input matInput [(ngModel)]="this.password" autocomplete="off" placeholder="(Masukkan Password anda)" [type]="hide ? 'password' : 'text'" (keyup.enter)="loginClicked()" required>
                                 <mat-icon matSuffix class="clickable" (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                             </mat-form-field>
                         </div> 

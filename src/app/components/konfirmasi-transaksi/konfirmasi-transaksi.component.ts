@@ -40,7 +40,7 @@ export class KonfirmasiTransaksiComponent implements OnInit {
       this.plannerBeliState!=null?this.plannerBeliState.pembelian.forEach((element:StatePembelian) => {
         var biaya=0;
         var totalBiaya=0;
-        console.log(element);
+        //console.log(element);
         if(element.biaya_pembelian!=undefined&&element.percentage&&this.plannerBeliState?.nominal_pembelian!=undefined)
         {
           biaya=Number((element.biaya_pembelian/100)*(element.percentage/100)*this.plannerBeliState.nominal_pembelian);
@@ -66,7 +66,7 @@ export class KonfirmasiTransaksiComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      //console.log('The dialog was closed');
       
     });
   }
@@ -78,7 +78,7 @@ export class KonfirmasiTransaksiComponent implements OnInit {
     });
     
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      //console.log('The dialog was closed');
       
     });
   }

@@ -21,11 +21,11 @@
                 </div>
                 <!-- end shimerring -->
             
-                <div class="row">
+                <div *ngIf="!isLoading" class="row">
                     <div *ngFor="let reksadana of listReksadana; let i = index" class="col-md-12">
-                        <div class="clickable flex" [ngClass]="setClass(reksadana)" style="padding: 2em;align-items: center;" (click)="choose(reksadana)">
+                        <div class="clickable flex" [ngClass]="reksadana.selected ? 'item-box-choosen' : 'item-box'" style="padding: 2em;align-items: center;" (click)="choose(reksadana)">
                             <div class="width-full font-32" style="line-height: 32px;">
-                                <b>{{ reksadana.nama }}</b>
+                                <div><b>{{ reksadana.nama }}</b></div>
                             </div>
                             <div>
                                 <img src="assets/icon/icon-kategori-{{ (i%3+1) }}.png" alt="Wellme" width="200" height="100">
@@ -57,7 +57,7 @@
     
 </div>
 
-<div *ngIf="isFailedToLoad" class="master-component">
+<div *ngIf="isFailedToLoad" class="master-component container">
     <div class="row" style="justify-content: center;">
         <div class="col-md-8">
             <app-failed-to-load [errorStatus]="this.errorStatus" (onButtonClicked)="errorButtonClicked()"></app-failed-to-load>

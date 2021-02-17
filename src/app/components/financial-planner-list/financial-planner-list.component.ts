@@ -43,7 +43,7 @@ display:string="block";
       }
       else{
         this.loader=false;
-        console.log(response);
+        //console.log(response);
         this.listPlanner=response.output_schema.list_planner;
         this.listPlanner.forEach((element:any) => {
           var round=Math.ceil(element.current/element.floor)
@@ -58,7 +58,7 @@ display:string="block";
         this.listPlannerDisplay="hidden";
       }
     },(error)=>{
-      console.log(error);
+      //console.log(error);
       this.errorStatus = error.status
      
       this.isFailedToLoad = true;
@@ -69,7 +69,7 @@ display:string="block";
         this.notFound="jflex-column";
         this.listPlannerDisplay="hidden";
       }
-      console.log('err-->',error);
+      //console.log('err-->',error);
     })
   }
 

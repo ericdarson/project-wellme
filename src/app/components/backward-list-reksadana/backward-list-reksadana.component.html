@@ -34,8 +34,12 @@
                             <div>
                                 <b>Kinerja 1 Tahun</b>
                             </div>
-                            <div  [ngClass]="+reksa.kinerja_satu_bulan>=0?'text-wellme-color':'text-wellme-red'">
+                            <!-- <div  [ngClass]="+reksa.kinerja_satu_bulan>=0?'text-wellme-color':'text-wellme-red'">
                                 <b>{{reksa.kinerja_satu_bulan}}%</b>
+                            </div> -->
+                            <div  [ngClass]="+reksa.kinerja_satu_bulan>=0?'text-wellme-color':'text-wellme-red'">
+                                <b *ngIf="!stringIsNumber(reksa.kinerja_satu_bulan)">{{reksa.kinerja_satu_bulan}}</b>
+                                <b *ngIf="stringIsNumber(reksa.kinerja_satu_bulan)">{{+reksa.kinerja_satu_bulan | number}}%</b>
                             </div>
                             <div class="flex" style="justify-content: space-between;margin-top: 1em;">
                                 <div>
@@ -58,7 +62,7 @@
         </div>
     </div>
 </div>
-<div *ngIf="isFailedToLoad" class="master-component">
+<div *ngIf="isFailedToLoad" class="master-component container">
     <div class="row" style="justify-content: center;">
         <div class="col-md-8">
             <app-failed-to-load [errorStatus]="this.errorStatus" (onButtonClicked)="errorButtonClicked()"></app-failed-to-load>

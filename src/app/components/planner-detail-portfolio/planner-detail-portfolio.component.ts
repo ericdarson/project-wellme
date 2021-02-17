@@ -88,7 +88,7 @@ this.canSell=true;
       
       
       this.plannerResiko=response.output_schema;
-      console.log(this.plannerResiko);
+      //console.log(this.plannerResiko);
       for (let i = 0; i < this.jenisReksadana.length; i++) {
         var totalAlokasi:number=0;
         var percentageAlokasi;
@@ -130,8 +130,8 @@ this.canSell=true;
   }
 
   errorButtonClicked(){
-    console.log(this.errorStatus)
-    console.log("clicked error")
+    //console.log(this.errorStatus)
+    //console.log("clicked error")
     if(this.errorStatus == 403){
       this.router.navigate(['/'])
     }else if(this.errorStatus == 404){

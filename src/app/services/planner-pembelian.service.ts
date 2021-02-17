@@ -276,19 +276,19 @@ export class PlannerPembelianService {
       
     }
     
-    console.log("RESPONSE: ",response);
-    console.log(exist);
+    //console.log("RESPONSE: ",response);
+    //console.log(exist);
     return exist;
   }
   
   setIdDetail(idDetail:number):void{
     this.idDetail=idDetail;
-    console.log(this.idDetail)
+    //console.log(this.idDetail)
     this.clearLocalStorage("plannerBeliState"); 
     this.setLocalStorage("idDetail",idDetail);
   }
   getIdDetail():number|null{
-    console.log(this.getLocalStorage("idDetail"));
+    //console.log(this.getLocalStorage("idDetail"));
     return this.getLocalStorage("idDetail");
   }
   setPlannerPromo(kode:string):void
@@ -336,7 +336,7 @@ export class PlannerPembelianService {
           id_jenis_reksadana:0,nama_plan:""
         }]
       };
-      console.log(this.requestPembelian);
+      //console.log(this.requestPembelian);
     var bca_id = this.localStorage.retrieve("bca_id")
     var token = this.localStorage.retrieve("token")
     var httpOptions={
@@ -419,7 +419,7 @@ var nominal_pembelian:number;
     var reksadana:PlannerProduct[]=[];
     var productReady:boolean=false;
     var requestReady:boolean=false;
-    console.log(this.plannerBeliState);
+    //console.log(this.plannerBeliState);
     for (let i = 0; i < this.plannerBeliState.pembelian.length; i++) {
       if(this.plannerBeliState.pembelian[i].id_produk!=undefined&&this.plannerBeliState.nominal_pembelian!=undefined&&this.plannerBeliState.pembelian[i].percentage!=undefined){
         var num:number|undefined=this.plannerBeliState.pembelian[i].id_produk==undefined?0:this.plannerBeliState.pembelian[i].id_produk;
@@ -445,7 +445,7 @@ var nominal_pembelian:number;
         products:reksadana
       };
     }
-    console.log('product:',productReady,'request: ',requestReady);
+    //console.log('product:',productReady,'request: ',requestReady);
     if(productReady==true&&requestReady==true)
     {
       return true;
@@ -475,7 +475,7 @@ var nominal_pembelian:number;
       retrievedObject = JSON.parse(deData.toString(CryptoJS.enc.Utf8));
       return retrievedObject;
     } catch (e) {
-      console.log(e)
+      //console.log(e)
       return null;
     }
     

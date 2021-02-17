@@ -50,7 +50,7 @@ export class PinComponent implements OnInit {
     {
       this.pin=[];
       this.activeStatus=["dot","dot","dot","dot","dot","dot"];
-      console.log(this.pin);
+      //console.log(this.pin);
     }
     if(num==-1) {
       this.pin.pop();
@@ -68,7 +68,7 @@ export class PinComponent implements OnInit {
         strings+=dataStrings[i];
         
       }
-      console.log(strings);
+      //console.log(strings);
       this.pinMD5=md5.appendStr(strings).end().toString();
       var pembelian=this.plannerService.doPembelian(this.pinMD5);
       if(pembelian!=null)
@@ -89,7 +89,7 @@ export class PinComponent implements OnInit {
           this.router.navigate(['../detail-transaksi'],{relativeTo:this.route})};
         },(error:any)=>{
           this.loader=false;
-          console.log(error);
+          //console.log(error);
           if(error.error.error_schema.error_message.english=="WRONG PIN"){
             this.wrongPinClass=true;
             this.wrongPinMessage="Pin yang Anda Masukan Salah" 

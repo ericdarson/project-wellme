@@ -45,12 +45,12 @@ export class PromoKodeComponent implements OnInit {
     else{
       this.plannerService.getPromoList().subscribe((response:ResponseApi)=>{
         this.promoList=response.output_schema.promotions;
-        console.log("Promo-->",this.promoList);
+        //console.log("Promo-->",this.promoList);
         this.loader=false;
       },
       error=>{
         this.errorStatus = error.status
-        console.log("Error-->",error);
+        //console.log("Error-->",error);
         this.notFoundClass="flex";
         this.displayClass="hidden";
         this.loader=false;

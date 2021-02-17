@@ -48,7 +48,7 @@ export class PlannerJualReksadanaComponent implements OnInit {
         if(this.plannerDetail.portfolio[i].status=="Unit")
         {
           this.canSell=true;
-          console.log(this.plannerDetail.portfolio[i]);
+          //console.log(this.plannerDetail.portfolio[i]);
           this.totalBiayaPenjualan=Number(this.totalBiayaPenjualan)+Number((this.plannerDetail.portfolio[i].biaya_penjualan/100)*this.plannerDetail.portfolio[i].asset);
           this.totalAsset=Number(this.totalAsset)+Number(this.plannerDetail.portfolio[i].asset);
           if(Number(this.plannerDetail.portfolio[i].jumlah_unit)<Number(this.plannerDetail.portfolio[i].minimal_penjualan))
@@ -85,7 +85,7 @@ export class PlannerJualReksadanaComponent implements OnInit {
     });
     
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      //console.log('The dialog was closed');
       
     });
   }

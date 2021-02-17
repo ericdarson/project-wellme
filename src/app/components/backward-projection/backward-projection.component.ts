@@ -44,7 +44,7 @@ export class BackwardProjectionComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      //console.log('The dialog was closed');
 
     });
   }
@@ -59,7 +59,7 @@ export class BackwardProjectionComponent implements OnInit {
   
       dialogRef.afterClosed().subscribe(result => {
         this.service.setJenisReksadana(this.selectedJenis);
-        console.log('The dialog was closed ' + result);
+        //console.log('The dialog was closed ' + result);
         if(result){
           this.router.navigate(['../backward-tutorial/'+this.selectedId], {relativeTo: this.route})
         }else{
@@ -78,6 +78,7 @@ export class BackwardProjectionComponent implements OnInit {
   setSk(checked: boolean) {
     this.skCheck = checked
   }
+
   choose(item: BackwardProjectionListJenisReksadana){
     this.listReksadana.forEach (
       function(single) {
@@ -113,7 +114,7 @@ export class BackwardProjectionComponent implements OnInit {
     this.isLoading = true;
     this.isFailedToLoad = false;
     this.service.getListJenis().subscribe(response=>{
-      console.log(response)
+      // //console.log(response)
       if (response.error_schema.error_code=="BIT-00-000")
       {
         response.output_schema.forEach((element:BackwardProjectionListJenisReksadanaResponse) => {
@@ -123,8 +124,10 @@ export class BackwardProjectionComponent implements OnInit {
           single.selected = false
           this.listReksadana.push(single)
         });
+        
         this.isLoading = false
         this.isFailedToLoad = false;
+        this.choose(this.listReksadana[0])
       }
     }, error=>{
       this.errorStatus = error.status
@@ -150,7 +153,7 @@ export class BackwardProjectionComponent implements OnInit {
   
       dialogRef.afterClosed().subscribe(result => {
         this.service.setJenisReksadana(this.selectedJenis);
-        console.log('The dialog was closed ' + result);
+        //console.log('The dialog was closed ' + result);
         if(result){
           this.router.navigate(['../backward-tutorial/'+this.selectedId], {relativeTo: this.route})
         }

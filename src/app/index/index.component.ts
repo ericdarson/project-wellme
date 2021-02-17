@@ -18,20 +18,12 @@ export class IndexComponent implements OnInit {
   }
 
   ngOnDestroy(){
-    // console.log("destroy")
+    // //console.log("destroy")
    
   }
 
   ngOnInit(): void {
-    this.checkSession.checkSessionFirst().subscribe((response : ResponseApi)=>{
-      if(response.output_schema.session.message=="SUKSES"){
-        this.session.store("token",response.output_schema.session.new_token);
-      }else{
-        this.checkSession.logout()
-      }
-    },(error)=>{
-      this.checkSession.logout()
-    })
+    
   }
  
 }

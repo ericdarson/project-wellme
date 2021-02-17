@@ -56,7 +56,7 @@ export class PlannerEditConfirmationComponent implements OnInit {
       this.loader=false;
     },(error:any)=>{
       this.status=false;
-      console.log("err -->",error);
+      //console.log("err -->",error);
     });
   }
   openSuccessPopup():void{

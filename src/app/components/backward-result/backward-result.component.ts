@@ -33,9 +33,9 @@ export class BackwardResultComponent implements OnInit {
 
   ngOnInit(): void {
     this.jenisreksa = ""+this.service.getJenisReksadana()
-    console.log("Jenis Reksa : " + this.jenisreksa)
+    //console.log("Jenis Reksa : " + this.jenisreksa)
     if(this.jenisreksa == "null" || this.jenisreksa == ""){
-      console.log("redirecting")
+      //console.log("redirecting")
       this.router.navigate(["../../../home"],{relativeTo: this.route});
     }
 
@@ -152,7 +152,7 @@ export class BackwardResultComponent implements OnInit {
     this.isFailedToLoad = false;
     this.isLoading = true;
     this.service.projectionResult(this.simulationdate, this.reksaId).subscribe(response=>{
-      console.log(response)
+      //console.log(response)
       if (response.error_schema.error_code=="BIT-00-000")
       {
         this.resultData = response.output_schema;

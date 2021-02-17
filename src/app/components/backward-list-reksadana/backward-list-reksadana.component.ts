@@ -22,9 +22,9 @@ export class BackwardListReksadanaComponent implements OnInit {
   
   ngOnInit(): void {
     this.jenisreksa = ""+this.service.getJenisReksadana()
-    console.log("Jenis Reksa : " + this.jenisreksa)
+    //console.log("Jenis Reksa : " + this.jenisreksa)
     if(this.jenisreksa == "null" || this.jenisreksa == ""){
-      console.log("redirecting")
+      //console.log("redirecting")
       this.router.navigate(["../../home"] ,{relativeTo: this.route});
     }
     this.route.paramMap.subscribe(params => {
@@ -36,7 +36,7 @@ export class BackwardListReksadanaComponent implements OnInit {
 
 
   goToPembelianPage(item : BackwardProjectionListProdukRekadana){
-    console.log(this.router.url)
+    //console.log(this.router.url)
     let newDate = moment(item.max_backward_date, 'DD MMM YY')
     let tglChart = newDate.format('DD-MM-YYYY');
     this.router.navigate(['../../backward-pembelian',item.id_produk,tglChart], {relativeTo: this.route})
@@ -50,7 +50,7 @@ export class BackwardListReksadanaComponent implements OnInit {
     this.isFailedToLoad = false;
     this.isLoading = true;
     this.service.getAllProduk(this.idJenis).subscribe(response=>{
-      console.log(response)
+      //console.log(response)
       if (response.error_schema.error_code=="BIT-00-000")
       {
         response.output_schema.forEach((element:BackwardProjectionListProdukRekadana) => {
@@ -75,8 +75,18 @@ export class BackwardListReksadanaComponent implements OnInit {
   errorButtonClicked(){
     if(this.errorStatus == 403){
       this.router.navigate(['/'])
+    }else if(this.errorStatus == 404){
+      this.goBack()
     }else{
       this.retryClicked();
+    }
+  }
+  stringIsNumber(s:any) {
+    var x = +s; // made cast obvious for demonstration
+    if (Number.isNaN(x)){
+      return false
+    }else{
+      return true
     }
   }
 }

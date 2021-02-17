@@ -42,9 +42,9 @@ export class BackwardSimulasiComponent implements OnInit {
 
   ngOnInit(): void {
     let jenisreksa = ""+this.service.getJenisReksadana()
-    console.log("Jenis Reksa : " + jenisreksa)
+    //console.log("Jenis Reksa : " + jenisreksa)
     if(jenisreksa == "null" || jenisreksa == ""){
-      console.log("redirecting")
+      //console.log("redirecting")
       this.router.navigate(["../../../home"],{relativeTo: this.route});
     }
     this.namaProduk = this.service.getNamaProduk();
@@ -74,20 +74,20 @@ export class BackwardSimulasiComponent implements OnInit {
 
     this.durasiinvestasi += (date.getTime() - olddate.getTime())  / 1000 / 60 / 60 / 24;
     this.lamaInvestasi = 0;
-    console.log(date)
+    //console.log(date)
     let datestring = moment(date).format("DD-MM-yyyy");
     let datestringtampil = moment(date).format("DD MMM YY");
     this.isLoading = true;
     this.isFailedToLoadSimulation = false;
     this.service.forwardSimulation(datestring, this.idproduk).subscribe(response=>{
-      console.log(response)
+      //console.log(response)
       if (response.error_schema.error_code=="BIT-00-000")
       {
         this.simulationForwardData = response.output_schema;
         this.nabaftersimulasi = this.simulationForwardData.nab_simulation;
         this.simulationDateAfter = datestringtampil;
         this.simulationDateRequest = datestring;
-        console.log(this.nominalPembelian)
+        //console.log(this.nominalPembelian)
       }
       this.isLoading = false;
       this.isFailedToLoadSimulation = false;
@@ -131,12 +131,12 @@ export class BackwardSimulasiComponent implements OnInit {
     this.service.setDateSimulationString(null);
     this.service.setJenisReksadana("");
     this.service.setNamaProduk("");
-    console.log("redirecting")
+    //console.log("redirecting")
       this.router.navigate(["../backward-projection",{relativeTo:this.route}]);
   }
   retryClicked(){
     this.service.startSimulation(this.simulationdate, this.idproduk).subscribe(response=>{
-      console.log(response)
+      //console.log(response)
       if (response.error_schema.error_code=="BIT-00-000")
       {
         this.simulationStartData = response.output_schema;

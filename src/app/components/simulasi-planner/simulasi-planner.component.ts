@@ -236,7 +236,7 @@ export class SimulasiPlannerComponent implements OnInit,AfterViewInit  {
     });
     },
     (error)=>{
-      console.log(error);
+      //console.log(error);
     })
   }
   

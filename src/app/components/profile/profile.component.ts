@@ -36,7 +36,7 @@ export class ProfileComponent implements OnInit {
 
   buttonShowRekClicked(){
     this.buttonShowRekening = !this.buttonShowRekening
-    console.log(this.buttonShowRekening)
+    //console.log(this.buttonShowRekening)
   }
 
   getProfile(){
@@ -55,7 +55,7 @@ export class ProfileComponent implements OnInit {
         this.shimmering=false;
         this.showProfile = false
         this.isFailedToLoad = true;
-         console.log("gagal get profile")
+         //console.log("gagal get profile")
       }
      },error=>{
         this.errorStatus= error.status

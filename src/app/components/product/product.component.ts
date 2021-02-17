@@ -26,12 +26,12 @@ export class ProductComponent implements OnInit {
       if (response.error_schema.error_message.indonesian=="BERHASIL")
       {
         this.productTypes = response.output_schema
-        console.log(this.productTypes)
-        console.log(this.productTypes[0])
+        //console.log(this.productTypes)
+        //console.log(this.productTypes[0])
         this.isLoading=false;
       }
       else{
-        console.log(response)
+        //console.log(response)
         this.isLoading=false;
         this.isFailedToLoad = true;
       }

@@ -31,7 +31,7 @@ export class DetailPlannerComponent implements OnInit {
     this.activeRoute.paramMap.subscribe(params => {
       this.id = params.get("id")!
     });
-    console.log(this.id)
+    //console.log(this.id)
     if(this.id==undefined||this.id==null)
     {
       this.router.navigate(['/financial-planner/']);
@@ -46,7 +46,7 @@ export class DetailPlannerComponent implements OnInit {
     this.plannerService.getPlannerDetail(this.id).subscribe((response:ResponseApi)=>{
      this.loader=false;
       this.plan=response.output_schema;
-      console.log(this.plan);
+      //console.log(this.plan);
       this.plannerPembelianService.setLocalStorage('plannerDetail',this.plan);
       this.plannerService.setNamaPlannerDetail(this.plan.nama_plan);
       this.plannerService.setRekomendasiPembelian(this.plan.rekomendasi_pembelian);
@@ -60,7 +60,7 @@ export class DetailPlannerComponent implements OnInit {
     
       this.isFailedToLoad = true;
       
-      console.log(error);
+      //console.log(error);
     }
     )
   }

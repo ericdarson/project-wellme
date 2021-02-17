@@ -3,12 +3,11 @@
     margin-bottom: 1em;
 }
 .item-box{
-    background: #FFFFFF;
     border: 1px solid rgba(0, 0, 0, 0.5);
     box-sizing: border-box;
     border-radius: 5px;
     margin-bottom: 1em;
-    opacity: 50%;
+    opacity: 0.5 !important;
     color : #000000 50%;
 }
 
@@ -18,17 +17,16 @@
     box-sizing: border-box;
     border-radius: 5px;
     margin-bottom: 1em;
-    opacity: 100%;
+    opacity: 1 !important;
     color : #309F00;
 }
 
 .item-box-choosen{
-    background: #FFFFFF;
     border: 1px solid #6ED940;
     box-sizing: border-box;
     border-radius: 5px;
     margin-bottom: 1em;
-    opacity: 100%;
+    opacity: 1 !important;
     color : #309F00;
 }
 

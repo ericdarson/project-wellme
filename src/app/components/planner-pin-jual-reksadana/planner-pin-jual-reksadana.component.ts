@@ -47,7 +47,7 @@ export class PlannerPinJualReksadanaComponent implements OnInit {
     this.penjualanValid=this.plannerService.getLocalStorage("pvalid");
     if(this.plannerDetail==null||this.idDetail==null||this.requestPenjualan==null||this.penjualanValid==false||this.penjualanValid==null)
     {
-      //console.log(this.plannerDetail.category,this.idDetail,this.requestPenjualan,this.penjualanValid);
+      ////console.log(this.plannerDetail.category,this.idDetail,this.requestPenjualan,this.penjualanValid);
       this.router.navigate(['../'],{relativeTo:this.route});
     }
   }
@@ -61,7 +61,7 @@ export class PlannerPinJualReksadanaComponent implements OnInit {
     {
       this.pin=[];
       this.activeStatus=["dot","dot","dot","dot","dot","dot"];
-      console.log(this.pin);
+      //console.log(this.pin);
     }
     if(num==-1) {
       this.pin.pop();
@@ -79,7 +79,7 @@ export class PlannerPinJualReksadanaComponent implements OnInit {
         strings+=dataStrings[i];
         
       }
-      console.log(strings);
+      //console.log(strings);
       this.pinMD5=md5.appendStr(strings).end().toString();
       var penjualan=this.plannerService.doPenjualan(this.pinMD5);
       if(penjualan!=null)
@@ -93,7 +93,7 @@ export class PlannerPinJualReksadanaComponent implements OnInit {
             this.wrongPinMessage="Saldo Anda Tidak Cukup" 
           }
           else{
-            console.log(response);
+            //console.log(response);
             this.plannerService.clearLocalStorage("plannerJual");
             this.plannerService.clearLocalStorage("pvalid");
             this.plannerService.setLocalStorage("detailTransaksiJual",response.output_schema);
@@ -103,7 +103,7 @@ export class PlannerPinJualReksadanaComponent implements OnInit {
           
         },(error:any)=>{
           this.loader=false;
-          console.log(error);
+          //console.log(error);
           if(error.error.error_schema.error_message.english=="WRONG PIN"){
             this.wrongPinClass=true;
             this.wrongPinMessage="Pin yang Anda Masukan Salah" 

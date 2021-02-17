@@ -47,7 +47,7 @@ export class PortofolioBaruComponent implements OnInit {
       var periodic=plannerRequest.periodic=="Weekly"?"Mingguan":plannerRequest.periodic=="Monthly"?"Bulanan":"Tahunan";
       var momentvar=moment(plannerRequest.due_date,'DD-MM-YYYY');
       
-      console.log(momentvar.format('YYYY-MM-DD'));
+      //console.log(momentvar.format('YYYY-MM-DD'));
       
       this.portfolioForm.setValue({
         nama_portfolio:plannerRequest.nama_plan,

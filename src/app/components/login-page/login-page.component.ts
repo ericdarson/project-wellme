@@ -43,7 +43,7 @@ export class LoginPageComponent implements OnInit {
   loginClicked(){
     this.isLoading = true
     this.loginservice.login(this.bca_id,this.password).subscribe(response=>{
-      console.log(response)
+      //console.log(response)
      if (response.output_schema.detail_login.message=="SUKSES")
      {
        this.isLoading = false

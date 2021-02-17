@@ -97,7 +97,7 @@ export class BackwardProjectionListReksadanaService {
     return this.http.get<ResponseApi>(environment.BackwaardProjectionUrl+"/simulation/forward/"+idproduk+"/"+date, httpOptions);
   }
   projectionResult(date:string, idproduk:string){
-    console.log(environment.BackwaardProjectionUrl+"/projection/"+idproduk+"/"+date)
+    //console.log(environment.BackwaardProjectionUrl+"/projection/"+idproduk+"/"+date)
     return this.http.get<ResponseApi>(environment.BackwaardProjectionUrl+"/projection/"+idproduk+"/"+date, httpOptions);
   }
 }

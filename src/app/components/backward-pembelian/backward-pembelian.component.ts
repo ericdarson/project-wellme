@@ -48,9 +48,9 @@ export class BackwardPembelianComponent implements OnInit {
 
   ngOnInit(): void {
     let jenisreksa = ""+this.service.getJenisReksadana()
-    console.log("Jenis Reksa : " + jenisreksa)
+    //console.log("Jenis Reksa : " + jenisreksa)
     if(jenisreksa == "null" || jenisreksa == ""){
-      console.log("redirecting")
+      //console.log("redirecting")
       this.router.navigate(["../../../home"],{relativeTo: this.route});
     }
 
@@ -79,7 +79,7 @@ export class BackwardPembelianComponent implements OnInit {
     this.redrawChartKosong();
     this.isFailedToLoadDate = false;
     this.service.getDetailProduk(this.reksaId, this.latest_date).subscribe(response=>{
-      console.log(response)
+      //console.log(response)
       if (response.error_schema.error_code=="BIT-00-000")
       {
         this.detailProduk = response.output_schema;
@@ -96,7 +96,7 @@ export class BackwardPembelianComponent implements OnInit {
   
   redrawChartAwal(){
     if(this.detailProduk != null) {
-      console.log(this.detailProduk)
+      //console.log(this.detailProduk)
       let tempData : BackwardProjetionDailyNab[] = [];
       if(this.oneWeekRangeSelected)
         tempData = this.detailProduk.one_week_daily_nab;
@@ -168,7 +168,7 @@ export class BackwardPembelianComponent implements OnInit {
 
   redrawChart(){
     if(this.detailProduk != null) {
-      console.log(this.detailProduk)
+      //console.log(this.detailProduk)
       let tempData : BackwardProjetionDailyNab[] = [];
       if(this.oneWeekRangeSelected)
         tempData = this.detailProduk.one_week_daily_nab;
@@ -235,7 +235,7 @@ export class BackwardPembelianComponent implements OnInit {
     this.formattedAmount= this.formattedAmount.replace(/[^0-9]/g, "")
     this.desiredValue= +this.formattedAmount;
 
-    console.log(this.formattedAmount)
+    //console.log(this.formattedAmount)
     this.temp = this.currencyPipe.transform(this.formattedAmount, ' ');
     if(this.temp!=null){
       this.formattedAmount =this.temp
@@ -249,7 +249,7 @@ export class BackwardPembelianComponent implements OnInit {
 
   goToSimulasiPage(){
     this.service.setNabSimulation(null);
-    //console.log(this.service.getNabSimulation())
+    ////console.log(this.service.getNabSimulation())
     this.service.setNominal(this.desiredValue);
     this.service.setNamaProduk(this.detailProduk.nama_produk);
     this.router.navigate(['../../../backward-simulasi/'+this.reksaId+"/"+this.latest_date],{relativeTo:this.route})
@@ -259,7 +259,7 @@ export class BackwardPembelianComponent implements OnInit {
     this.isLoading = true;
     this.isFailedToLoad = false;
     this.service.getDetailProduk(this.reksaId, this.latest_date).subscribe(response=>{
-      console.log(response)
+      //console.log(response)
       if (response.error_schema.error_code=="BIT-00-000")
       {
         this.detailProduk = response.output_schema;
@@ -272,9 +272,9 @@ export class BackwardPembelianComponent implements OnInit {
       this.isLoading = false;
       this.isFailedToLoad = true;
       this.errorStatus = error.status
-      console.log("INFO");
-      console.log(this.isLoading);
-      console.log(this.isFailedToLoad);
+      //console.log("INFO");
+      //console.log(this.isLoading);
+      //console.log(this.isFailedToLoad);
     })
   }
 

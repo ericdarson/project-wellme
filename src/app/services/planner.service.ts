@@ -129,7 +129,7 @@ export class PlannerService {
     this.insertRequest.goal_amount=Number(goal_amount);
     this.insertRequest.periodic=String(periodic);
     this.insertRequest.due_date=String(dueDate);
-    console.log(this.insertRequest);
+    //console.log(this.insertRequest);
   }
   
   getSimulasiPlanner():Observable<any>{
@@ -178,7 +178,7 @@ export class PlannerService {
       retrievedObject = JSON.parse(deData.toString(CryptoJS.enc.Utf8));
       return retrievedObject;
     } catch (e) {
-      console.log(e)
+      //console.log(e)
       return null;
     }
     

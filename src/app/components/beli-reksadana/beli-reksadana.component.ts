@@ -106,7 +106,7 @@ export class BeliReksadanaComponent implements OnInit {
   syncBeliState():void{
     
     var p=this.plannerService.getPlannerBeliState();
-    console.log('Sync Beli State ->',p)
+    //console.log('Sync Beli State ->',p)
     if(p!=null)
     {
       this.plannerBeliState=p;
@@ -114,7 +114,7 @@ export class BeliReksadanaComponent implements OnInit {
     }
     this.plannerBeliState.pembelian.forEach((element,key) => {
       var reksadana=this.plannerService.getKonfirmasiByIdJenis(element.id_jenis_reksadana);
-      console.log('Dari Konfirmasi ->',reksadana)
+      //console.log('Dari Konfirmasi ->',reksadana)
       if(reksadana!=null){
         this.plannerBeliState.pembelian[key].id_produk=reksadana.id_produk;
         this.plannerBeliState.pembelian[key].nama_produk=reksadana.nama_produk;

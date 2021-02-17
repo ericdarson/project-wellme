@@ -35,7 +35,7 @@
                 <div class="col-md-12">
                     <mat-grid-list  cols="4">
                         <mat-grid-tile>
-                            <button mat-button [ngClass]="oneWeekRangeSelected ? 'button-fill' : 'button-range'"
+                            <button mat-button [ngClass]="oneWeekRangeSelected ? 'button-selected' : 'button-range'"
                             class="clickable text-center width-full" style="padding: 1em;" (click)="selectOneWeekRange()">
                                 <div>
                                     <b>1 Minggu</b>
@@ -43,7 +43,7 @@
                             </button>
                         </mat-grid-tile>
                         <mat-grid-tile>
-                            <button mat-button [ngClass]="oneMonthRangeSelected ? 'button-fill' : 'button-range'"
+                            <button mat-button [ngClass]="oneMonthRangeSelected ? 'button-selected' : 'button-range'"
                             class="clickable text-center width-full" style="padding: 1em;" (click)="selectOneMonthRange()">
                                 <div>
                                     <b>1 Bulan</b>
@@ -51,7 +51,7 @@
                             </button>
                         </mat-grid-tile>
                         <mat-grid-tile>
-                            <button mat-button  [ngClass]="threeMonthRangeSelected ? 'button-fill' : 'button-range'"
+                            <button mat-button  [ngClass]="threeMonthRangeSelected ? 'button-selected' : 'button-range'"
                             class=" clickable text-center width-full" style="padding: 1em;" (click)="selectThreeMonthRange()">
                                 <div>
                                     <b>3 Bulan</b>
@@ -59,7 +59,7 @@
                             </button>
                         </mat-grid-tile>
                         <mat-grid-tile>
-                            <button mat-button  [ngClass]="oneYearRangeSelected ? 'button-fill' : 'button-range'"
+                            <button mat-button  [ngClass]="oneYearRangeSelected ? 'button-selected' : 'button-range'"
                             class="clickable text-center width-full" style="padding: 1em;" (click)="selectOneYearRange()">
                                 <div>
                                     <b>1 Tahun</b>

@@ -7,6 +7,8 @@ import { ResponseApi } from '../../models/ResponseApi';
 import { GeturlService } from '../../services/geturl.service';
 import { Route } from '@angular/compiler/src/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CheckSessionService } from '../../services/check-session.service';
+import { LocalStorageService } from 'ngx-webstorage';
 
 @Component({
   selector: 'app-portofolio',
@@ -20,28 +22,42 @@ export class PortofolioComponent implements OnInit {
   errorStatus : number ;
 
   constructor(private profileService : ProfileService ,private sharedService :GeturlService,
-    private router: Router,private activeRoute : ActivatedRoute) { }
+    private router: Router,private activeRoute : ActivatedRoute,private checkSession: CheckSessionService, private session:LocalStorageService) { }
 
   ngOnInit(): void {
-    this.getProfile();
+    this.isLoading =true
+    this.isFailedToLoad = false
+    this.checkSession.checkSessionFirst().subscribe((response : ResponseApi)=>{
+      this.isLoading=false;
+      if(response.output_schema.session.message=="SUKSES"){
+        this.session.store("token",response.output_schema.session.new_token);
+        this.getProfile();
+      }else{
+        this.checkSession.logout()
+      }
+    },(error)=>{
+      this.checkSession.logout()
+    })
+  
   }
+  
 
   getProfile(){
     this.isLoading =true
     this.isFailedToLoad = false
     this.profileService.getProfile().subscribe((response:ResponseApi)=>{
-      console.log(response)
+      //console.log(response)
       if (response.error_schema.error_message.indonesian=="BERHASIL")
       {
          this.profileMaster = response.output_schema.detail_profile
-        //  console.log(this.profileMaster)
-        //  console.log(this.profileMaster.email)
+        //  //console.log(this.profileMaster)
+        //  //console.log(this.profileMaster.email)
          this.isLoading=false;
       }
       else{
         this.isLoading=false;
         this.isFailedToLoad = true;
-        //  console.log("gagal get profile")
+        //  //console.log("gagal get profile")
       }
      },error=>{
        this.errorStatus = error.status

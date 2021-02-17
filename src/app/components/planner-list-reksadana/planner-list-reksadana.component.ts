@@ -50,7 +50,7 @@ export class PlannerListReksadanaComponent implements OnInit {
       this.plannerService.getListReksadana(this.idJenis).subscribe((response:ResponseApi)=>{
         
         this.listReksadana=response.output_schema;
-        console.log(this.listReksadana);
+        //console.log(this.listReksadana);
         this.loader=false;
       },error=>{
         this.errorStatus = error.status

@@ -76,23 +76,23 @@ export class PromoDetailComponent implements OnInit {
 
   detectChange(){
     this.objective = this.promoService.getSelectedPromo();
-    console.log(this.objective)
+    //console.log(this.objective)
     if(this.objective == null || this.objective == undefined || this.objective.kode_promo == "-1"){
       this.isNotFound = true;
       this.isLoading = false;
     }else{
       if(+this.objective.current_amount==-1){
-        console.log("not start")
+        //console.log("not start")
         this.isNotStart = true;
         this.isComplete = this.isProgress = false;
         this.promoStatus="promo-box-on-progress"
       }else if(+this.objective.current_amount >= +this.objective.target_akumulasi){
-        console.log("complete")
+        //console.log("complete")
         this.isComplete = true;
         this.isNotStart = this.isProgress = false;
         this.promoStatus="promo-box-complete"
       }else if(+this.objective.current_amount >= 0){
-        console.log("progress")
+        //console.log("progress")
         this.isProgress = true;
         this.isNotStart = this.isComplete = false; 
         this.promoStatus="promo-box-on-progress"
