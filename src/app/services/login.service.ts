@@ -4,22 +4,21 @@ import { Observable } from 'rxjs';
 import {Md5} from 'ts-md5/dist/md5';
 import {environment} from 'src/environments/environment'
 import { GeturlService } from './geturl.service';
-const httpOptions={
-  headers:new HttpHeaders({
+import { SharedService } from './shared.service';
+const headers=new HttpHeaders({
     'Content-Type':'application/json',
     'Access-Control-Allow-Headers': 'Content-Type',
     'Access-Control-Allow-Methods': 'POST, OPTIONS, GET, PUT',
     'Access-Control-Allow-Origin': '*',
     'Identity': 'ERICIMPOSTORNYA',
   })
-}
 @Injectable({
   providedIn: 'root'
 })
 
 export class LoginService {
   
- constructor(private http:HttpClient, private getUrlService : GeturlService) {
+ constructor(private http:HttpClient, private getUrlService : GeturlService,private sharedService: SharedService) {
    
  }
   
@@ -31,7 +30,9 @@ export class LoginService {
       bca_id:bca_id,
       password:password
     }
-    return this.http.post(url,request,httpOptions);
+
+    return this.sharedService.requestConn("post",url,request,headers)
+    // return this.http.post(url,request,httpOptions);
   }
   
 }

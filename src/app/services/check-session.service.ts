@@ -5,6 +5,7 @@ import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { GeturlService } from './geturl.service';
+import { SharedService } from './shared.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ import { GeturlService } from './geturl.service';
 export class CheckSessionService {
 
   @Output() login:string="";
-  constructor(private http:HttpClient, private session:LocalStorageService,private router:Router) { 
+  constructor(private http:HttpClient,private sharedService:SharedService, private session:LocalStorageService,private router:Router) { 
 
   }
   
@@ -24,8 +25,7 @@ export class CheckSessionService {
       if(bca_id == "" ){
         this.router.navigate(['/login'])
       }else{
-        var httpOptions={
-          headers:new HttpHeaders({
+        var headers=new HttpHeaders({
             'Content-Type':'application/json',
             'Access-Control-Allow-Headers': 'Content-Type',
             'Access-Control-Allow-Methods': 'POST, OPTIONS, GET, PUT',
@@ -34,13 +34,12 @@ export class CheckSessionService {
             'bca-id': String(bca_id),
             'token':String(token),
           })
-        };
-        this.http.post(url,{},httpOptions).subscribe((response:any) =>{
+        this.sharedService.requestConn("post",url,{},headers).subscribe((response:any) =>{
           if(response.output_schema.session.message=="SUKSES"){
             this.session.store("token",response.output_schema.session.new_token);
           }
         },error=>{
-
+          
         })
       }
   }
@@ -51,8 +50,7 @@ export class CheckSessionService {
     var token=this.session.retrieve("token")==undefined||this.session.retrieve("token")==null?"":this.session.retrieve("token")
     
     
-      var httpOptions={
-        headers:new HttpHeaders({
+      var headers= new HttpHeaders({
           'Content-Type':'application/json',
           'Access-Control-Allow-Headers': 'Content-Type',
           'Access-Control-Allow-Methods': 'POST, OPTIONS, GET, PUT',
@@ -61,9 +59,9 @@ export class CheckSessionService {
           'bca-id': String(bca_id),
           'token':String(token),
         })
-      };
 
-      return this.http.post(url,{},httpOptions) 
+      return this.sharedService.requestConn("post",url,{},headers);
+      // return this.http.post(url,{},httpOptions) 
   }
 
   logout(){

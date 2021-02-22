@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient,HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {environment} from 'src/environments/environment'
+import { SharedService } from './shared.service';
 
 const httpOptions={
   headers:new HttpHeaders({
@@ -18,13 +19,15 @@ const httpOptions={
 
 export class ReksadanaService {
   
- constructor(private http:HttpClient) {
+ constructor(private http:HttpClient, private sharedService: SharedService) {
    
  }
 
  getReksadana(kategoriId:string):Observable<any>{
+    var headers=new HttpHeaders({})
     const url=environment.getReksadanaUrl + "/:"+ kategoriId;
     
-    return this.http.get(url,httpOptions);
+    return this.sharedService.requestConn("get",url,null,headers);
+    // return this.http.get(url,httpOptions);
   }
 }

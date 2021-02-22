@@ -9,6 +9,7 @@ import { PlannerBeliState } from '../models/planner-beli-state';
 import { ResponseApi } from '../models/ResponseApi';
 import { LocalStorageService } from 'ngx-webstorage';
 import { PlannerUpdateRequest } from '../models/planner-update-request';
+import { SharedService } from './shared.service';
 var CryptoJS = require("crypto-js");
 
 @Injectable({
@@ -20,6 +21,7 @@ export class PlannerService {
   rekomendasiPembelian:number|null=null;
   jenisReksadanaPembelian:string;
   httpOptions:any;
+  httpHeader : HttpHeaders;
   plannerKonfirmasi:PlannerKonfirmasi[]=[];
   
   insertRequest:InsertPlannerRequest={
@@ -35,7 +37,7 @@ export class PlannerService {
   idJenisReksadana:number|null=null;
   secretKey:string="aoiw3jtq3p4t8jawefimeifpq32jcf";
   plannerBeliState:PlannerBeliState;
-  constructor(private http:HttpClient,private localStorage:LocalStorageService) {
+  constructor(private http:HttpClient,private localStorage:LocalStorageService,private sharedService: SharedService) {
     var bca_id = this.localStorage.retrieve("bca_id")
     var token = this.localStorage.retrieve("token")
     this.httpOptions={
@@ -80,21 +82,27 @@ export class PlannerService {
     this.updateHeader();
     const url=environment.plannerListUrl;
     
-    return this.http.get(url,this.httpOptions);
+    return this.sharedService.requestConn("get",url,{},this.httpHeader)
+
+    // return this.http.get(url,this.httpOptions);
   }
   
   insertPlanner():Observable<any>{
     this.updateHeader();
     const url=environment.insertPlannerUrl;
     
-    return this.http.post(url,this.insertRequest,this.httpOptions);
+    return this.sharedService.requestConn("post",url,this.insertRequest,this.httpHeader)
+    // return this.http.post(url,this.insertRequest,this.httpOptions);
   }
   
   getPlannerDetail(id : string):Observable<any>{
     this.updateHeader();
     const url=environment.plannerDetailUrl+'/'+id;
     
-    return this.http.get(url,this.httpOptions);
+
+    
+    return this.sharedService.requestConn("get",url,{},this.httpHeader)
+    // return this.http.get(url,this.httpOptions);
   }
   
   setIdDetail(idDetail:number):void{
@@ -142,18 +150,24 @@ export class PlannerService {
       periodic:this.insertRequest.periodic
     };
 
-    return this.http.post(url,this.simulasiPlannerRequest,this.httpOptions);
+    
+    return this.sharedService.requestConn("post",url,this.simulasiPlannerRequest,this.httpHeader)
+    // return this.http.post(url,this.simulasiPlannerRequest,this.httpOptions);
   }
   getPorfileResiko():Observable<any>{
     this.updateHeader();
     const url=environment.profileResikoUrl;
-    return this.http.get(url,this.httpOptions);
+    
+    return this.sharedService.requestConn("get",url,{},this.httpHeader)
+    // return this.http.get(url,this.httpOptions);
   }
   
   getListReksadana(idJenis:number):Observable<any>{
     this.updateHeader();
     const url=environment.listReksadanaPlannerUrl+'/'+idJenis;
-    return this.http.get(url,this.httpOptions);
+    
+    return this.sharedService.requestConn("get",url,{},this.httpHeader)
+    // return this.http.get(url,this.httpOptions);
   }
   
   
@@ -192,12 +206,16 @@ export class PlannerService {
   updatePlanner(editRequest:PlannerUpdateRequest,idPlan:number):Observable<any>{
     this.updateHeader();
     const url=environment.updatePlannerUrl+'/'+idPlan;
-    return this.http.put(url,editRequest,this.httpOptions);
+    
+    return this.sharedService.requestConn("put",url,editRequest,this.httpHeader)
+    // return this.http.put(url,editRequest,this.httpOptions);
   }
   deletePlanner(idPlan:number):Observable<any>{
     this.updateHeader();
     const url=environment.updatePlannerUrl+'/'+idPlan;
-    return this.http.delete(url,this.httpOptions);
+
+    return this.sharedService.requestConn("delete",url,{},this.httpHeader)
+    // return this.http.delete(url,this.httpOptions);
   }
   
 
@@ -205,8 +223,7 @@ export class PlannerService {
   {
     var bca_id = this.localStorage.retrieve("bca_id")
     var token = this.localStorage.retrieve("token")
-    this.httpOptions={
-      headers:new HttpHeaders({
+    this.httpHeader=new HttpHeaders({
         'Content-Type':'application/json',
         'Access-Control-Allow-Headers': 'Content-Type',
         'Access-Control-Allow-Methods': 'POST, OPTIONS, GET, PUT,DELETE',
@@ -215,7 +232,6 @@ export class PlannerService {
         'Bca-id':String(bca_id),
         'Token':String(token)
       })
-    }
   }
   
 }

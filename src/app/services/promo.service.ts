@@ -5,6 +5,7 @@ import {environment} from 'src/environments/environment'
 import { GeturlService } from './geturl.service';
 import { LocalStorageService } from 'ngx-webstorage';
 import { Objectives } from '../models/Promotion';
+import { SharedService } from './shared.service';
 var CryptoJS = require("crypto-js");
 
 const httpOptions={
@@ -28,16 +29,15 @@ export class PromoService {
   secretKey : string = "Wellme"
   
  constructor(private http:HttpClient,private getUrl : GeturlService,
-  private session : LocalStorageService) {
+  private session : LocalStorageService,private sharedService: SharedService) {
    
  }
 
- getPromo():Observable<any>{
+  getPromo():Observable<any>{
       const url= this.getUrl.getPromoUrl();
       var bca_id = this.session.retrieve("bca_id")
       var token = this.session.retrieve("token")
-      var httpOptions={
-        headers:new HttpHeaders({
+      var headers=new HttpHeaders({
           'Content-Type':'application/json',
           'Access-Control-Allow-Headers': 'Content-Type',
           'Access-Control-Allow-Methods': 'POST, OPTIONS, GET, PUT',
@@ -46,16 +46,15 @@ export class PromoService {
           'Bca-Id': String(bca_id),
           'Token':String(token),
         })
-      }
-      return this.http.get(url,httpOptions);
+      
+      return this.sharedService.requestConn("get",url,null,headers);
   }
 
   klaimPromo(kode_promo :string):Observable<any>{
     const url= this.getUrl.getKlaimPromoUrl();
     var bca_id = this.session.retrieve("bca_id")
     var token = this.session.retrieve("token")
-    var httpOptions={
-      headers:new HttpHeaders({
+    var headers=new HttpHeaders({
         'Content-Type':'application/json',
         'Access-Control-Allow-Headers': 'Content-Type',
         'Access-Control-Allow-Methods': 'POST, OPTIONS, GET, PUT',
@@ -64,21 +63,20 @@ export class PromoService {
         'Bca-Id': String(bca_id),
         'Token':String(token),
       })
-    }
     var kodepromo : any
     kodepromo={
       kode_promo:kode_promo
     };
 
-    return this.http.put(url,kodepromo,httpOptions);
+    return this.sharedService.requestConn("put",url,kodepromo,headers);
+    // return this.http.put(url,kodepromo,httpOptions);
   }
 
   activatedPromo(kode_promo :string):Observable<any>{
     const url= this.getUrl.getActivedPromoUrl();
     var bca_id = this.session.retrieve("bca_id")
     var token = this.session.retrieve("token")
-    var httpOptions={
-      headers:new HttpHeaders({
+    var headers=new HttpHeaders({
         'Content-Type':'application/json',
         'Access-Control-Allow-Headers': 'Content-Type',
         'Access-Control-Allow-Methods': 'POST, OPTIONS, GET, PUT',
@@ -87,13 +85,14 @@ export class PromoService {
         'Bca-Id': String(bca_id),
         'Token':String(token),
       })
-    }
+  
     var kodepromo : any
     kodepromo={
       kode_promo:kode_promo
     };
 
-    return this.http.post(url,kodepromo,httpOptions);
+    return this.sharedService.requestConn("post",url,kodepromo,headers);
+    // return this.http.post(url,kodepromo,httpOptions);
   }
 
   selectPromo(promo : Objectives){

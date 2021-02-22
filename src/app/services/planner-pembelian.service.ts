@@ -14,6 +14,7 @@ import {PlannerProduct} from '../models/planner-product';
 import { PercentPipe } from '@angular/common';
 import { request } from 'http';
 import { LocalStorageService } from 'ngx-webstorage';
+import { SharedService } from './shared.service';
 var CryptoJS = require("crypto-js");
 @Injectable({
   providedIn: 'root'
@@ -24,8 +25,7 @@ export class PlannerPembelianService {
   rekomendasiPembelian:number|null=null;
   jenisReksadanaPembelian:string;
   requestPembelian:PlannerBeliReskadana;
-  httpOptions:any={
-    headers:new HttpHeaders({
+  httpHeader=new HttpHeaders({
       'Content-Type':'application/json',
       'Access-Control-Allow-Headers': 'Content-Type',
       'Access-Control-Allow-Methods': 'POST, OPTIONS, GET, PUT,DELETE',
@@ -34,7 +34,6 @@ export class PlannerPembelianService {
       'Bca-id':'jeje',
       'Token':'A905AB43ABF8BB33F532FAB977C1B80A'
     })
-  }
   plannerKonfirmasi:PlannerKonfirmasi[]=[];
   
   insertRequest:InsertPlannerRequest={
@@ -50,21 +49,21 @@ export class PlannerPembelianService {
   encryptedObject:String;
   plannerBeliState:PlannerBeliState;
   secretKey:string="aoiw3jtq3p4t8jawefimeifpq32jcf";
-  constructor(private http:HttpClient,private localStorage:LocalStorageService) {
+  constructor(private http:HttpClient,private localStorage:LocalStorageService, private sharedService:SharedService) {
     var bca_id = this.localStorage.retrieve("bca_id")
     var token = this.localStorage.retrieve("token")
-    this.httpOptions={
-      headers:new HttpHeaders({
-        'Content-Type':'application/json',
-        'Access-Control-Allow-Headers': 'Content-Type',
-        'Access-Control-Allow-Methods': 'POST, OPTIONS, GET, PUT,DELETE',
-        'Access-Control-Allow-Origin': '*',
-        'Identity': 'ERICIMPOSTORNYA',
-        'Bca-id':String(bca_id),
-        'Token':String(token)
-      })
-    }
+
+    this.httpHeader=new HttpHeaders({
+      'Content-Type':'application/json',
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Allow-Methods': 'POST, OPTIONS, GET, PUT,DELETE',
+      'Access-Control-Allow-Origin': '*',
+      'Identity': 'ERICIMPOSTORNYA',
+      'Bca-id':String(bca_id),
+      'Token':String(token)
+    })
   }
+  
   setNamaPlannerDetail(nama:string|null):void{
     this.setLocalStorage("namaPlannerDetail",nama);
     this.namaPlannerDetail=nama;
@@ -76,7 +75,9 @@ export class PlannerPembelianService {
   getPorfileResiko():Observable<any>{
     this.updateHeader();
     const url=environment.profileResikoUrl;
-    return this.http.get(url,this.httpOptions);
+
+    return this.sharedService.requestConn("get",url,{},this.httpHeader)
+    // return this.http.get(url,this.httpOptions);
   }
   
   setRekomendasiPembelian(num:number|null):void{
@@ -258,7 +259,8 @@ export class PlannerPembelianService {
     this.updateHeader();
     const url=environment.promoPlannerUrl;
     
-    return this.http.get(url,this.httpOptions);
+    return this.sharedService.requestConn("get",url,{},this.httpHeader)
+    // return this.http.get(url,this.httpOptions);
   }
   async isPromoValid(kode:string){
     var response= await this.getPromoList().toPromise();
@@ -321,7 +323,10 @@ export class PlannerPembelianService {
   getListReksadana(idJenis:number):Observable<any>{
     this.updateHeader();
     const url=environment.listReksadanaPlannerUrl+'/'+idJenis;
-    return this.http.get(url,this.httpOptions);
+
+    
+    return this.sharedService.requestConn("get",url,{},this.httpHeader)
+    // return this.http.get(url,this.httpOptions);
   }
   
   
@@ -489,8 +494,7 @@ var nominal_pembelian:number;
   {
     var bca_id = this.localStorage.retrieve("bca_id")
     var token = this.localStorage.retrieve("token")
-    this.httpOptions={
-      headers:new HttpHeaders({
+    this.httpHeader=new HttpHeaders({
         'Content-Type':'application/json',
         'Access-Control-Allow-Headers': 'Content-Type',
         'Access-Control-Allow-Methods': 'POST, OPTIONS, GET, PUT,DELETE',
@@ -499,7 +503,6 @@ var nominal_pembelian:number;
         'Bca-id':String(bca_id),
         'Token':String(token)
       })
-    }
   }
   
 }

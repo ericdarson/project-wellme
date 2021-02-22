@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import {environment} from 'src/environments/environment'
 import { GeturlService } from './geturl.service';
 import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
+import { SharedService } from './shared.service';
 
 const httpOptions={
   headers:new HttpHeaders({
@@ -20,7 +21,7 @@ const httpOptions={
 
 export class ProfileService {
   
- constructor(private http:HttpClient, private getUrl : GeturlService,private session : LocalStorageService) {
+ constructor(private http:HttpClient,private sharedService : SharedService, private getUrl : GeturlService,private session : LocalStorageService) {
    
  }
   
@@ -28,8 +29,7 @@ export class ProfileService {
     const url= this.getUrl.getProfileUrl();
     var bca_id = this.session.retrieve("bca_id")
     var token = this.session.retrieve("token")
-    var httpOptions={
-      headers:new HttpHeaders({
+    var headers=new HttpHeaders({
         'Content-Type':'application/json',
         'Access-Control-Allow-Headers': 'Content-Type',
         'Access-Control-Allow-Methods': 'POST, OPTIONS, GET, PUT',
@@ -38,8 +38,10 @@ export class ProfileService {
         'Bca-Id': String(bca_id),
         'Token':String(token),
       })
-    }
-    return this.http.get(url,httpOptions);
+    
+
+    return this.sharedService.requestConn("get",url,null,headers);
+    // return this.http.get(url,httpOptions);
   }
   
 }

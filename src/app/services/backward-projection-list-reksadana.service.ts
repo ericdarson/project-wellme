@@ -5,15 +5,10 @@ import { Observable } from 'rxjs';
 import { DatePipe } from '@angular/common'
 import {environment} from 'src/environments/environment'
 import { CookieService } from 'ngx-cookie-service';
+import { SharedService } from './shared.service';
 
-const httpOptions={
-  headers:new HttpHeaders({
-    'Content-Type':'application/json',
-    'Access-Control-Allow-Headers': 'Content-Type',
-    'Access-Control-Allow-Methods': 'POST, OPTIONS, GET, PUT',
-    'Access-Control-Allow-Origin': '*',
-  })
-}
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -22,7 +17,13 @@ export class BackwardProjectionListReksadanaService {
   datepipe: DatePipe
   jenisreksa:string="";
   namaProduk:string="";
-  constructor(private http:HttpClient, private cookieService:CookieService) { }
+  httpHeader = new HttpHeaders({
+    'Content-Type':'application/json',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS, GET, PUT',
+    'Access-Control-Allow-Origin': '*',
+  })
+  constructor(private http:HttpClient, private cookieService:CookieService,private sharedService : SharedService) { }
 
   ngOnInit() {
 
@@ -68,18 +69,23 @@ export class BackwardProjectionListReksadanaService {
 
   getListJenis():Observable<ResponseApi> {
     responseApi:ResponseApi;
-    return this.http.get<ResponseApi>(environment.BackwaardProjectionUrl+"/reksadana",httpOptions);
+    return this.sharedService.requestConn("get",environment.BackwaardProjectionUrl+"/wellme/backward-projection/api/reksadana/",{},this.httpHeader)
+    // return this.http.get<ResponseApi>(environment.BackwaardProjectionUrl+"/wellme/backward-projection/api/reksadana/",httpOptions);
   }
 
   getAllProduk(idJenis:string):Observable<ResponseApi> {
     responseApi:ResponseApi;
-    return this.http.get<ResponseApi>(environment.BackwaardProjectionUrl+"/products/" + idJenis,httpOptions);
+    
+    return this.sharedService.requestConn("get",environment.BackwaardProjectionUrl+"/wellme/backward-projection/api/products/"+ idJenis,{},this.httpHeader)
+    // return this.http.get<ResponseApi>(environment.BackwaardProjectionUrl+"/wellme/backward-projection/api/products/" + idJenis,httpOptions);
   
   }
 
   getDetailProduk(idProduk:string, tglChart:string):Observable<ResponseApi> {
     responseApi:ResponseApi;
-    return this.http.get<ResponseApi>(environment.BackwaardProjectionUrl+"/product/" + idProduk + "/"+tglChart ,httpOptions);
+
+    return this.sharedService.requestConn("get",environment.BackwaardProjectionUrl+"/wellme/backward-projection/api/product/" + idProduk + "/"+tglChart,{},this.httpHeader)
+    // return this.http.get<ResponseApi>(environment.BackwaardProjectionUrl+"/wellme/backward-projection/api/product/" + idProduk + "/"+tglChart ,httpOptions);
   }
   
   setNominal(value:number){
@@ -91,13 +97,19 @@ export class BackwardProjectionListReksadanaService {
   }
 
   startSimulation(date:string,idproduk:string){
-    return this.http.get<ResponseApi>(environment.BackwaardProjectionUrl+"/simulation/start/" + date + "/"+idproduk+"/"+this.cookieService.get('nominal'),httpOptions);
+    return this.sharedService.requestConn("get",environment.BackwaardProjectionUrl+"/wellme/backward-projection/api/simulation/start/" + date + "/"+idproduk+"/"+this.cookieService.get('nominal'),{},this.httpHeader)
+    
+    // return this.http.get<ResponseApi>(environment.BackwaardProjectionUrl+"/simulation/start/" + date + "/"+idproduk+"/"+this.cookieService.get('nominal'),httpOptions);
   }
   forwardSimulation(date:string, idproduk:string){
-    return this.http.get<ResponseApi>(environment.BackwaardProjectionUrl+"/simulation/forward/"+idproduk+"/"+date, httpOptions);
+    return this.sharedService.requestConn("get",environment.BackwaardProjectionUrl+"/wellme/backward-projection/api/simulation/forward/"+idproduk+"/"+date,{},this.httpHeader)
+
+    // return this.http.get<ResponseApi>(environment.BackwaardProjectionUrl+"/wellme/backward-projection/api/simulation/forward/"+idproduk+"/"+date, httpOptions);
   }
   projectionResult(date:string, idproduk:string){
     //console.log(environment.BackwaardProjectionUrl+"/projection/"+idproduk+"/"+date)
-    return this.http.get<ResponseApi>(environment.BackwaardProjectionUrl+"/projection/"+idproduk+"/"+date, httpOptions);
+    return this.sharedService.requestConn("get",environment.BackwaardProjectionUrl+"/wellme/backward-projection/api/projection/"+idproduk+"/"+date,{},this.httpHeader)
+
+    // return this.http.get<ResponseApi>(environment.BackwaardProjectionUrl+"/wellme/backward-projection/api/projection/"+idproduk+"/"+date, httpOptions);
   }
 }
