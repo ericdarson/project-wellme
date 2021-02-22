@@ -36,6 +36,10 @@ export class GeturlService implements OnInit{
     return environment.loginUrl;
   }
 
+  getLogoutUrl(){
+    return environment.logoutUrl;
+  }
+
   getProfileUrl(){
     this.checkUserLogin()
     return environment.profileUrl;
@@ -57,6 +61,8 @@ export class GeturlService implements OnInit{
   }
 
   logout(){
+    
+
     this.session.clear('token');
     this.session.clear('bca_id');
     this.session.clear("dialogTutorialBackward")

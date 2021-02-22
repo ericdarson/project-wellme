@@ -5,10 +5,11 @@
 export const environment = {
   production: false,
   loginUrl:'http://10.8.0.5:1000/wellme/authentication/api/login-web',
+  logoutUrl:'http://10.8.0.5:1000/wellme/authentication/api/logout-web',
   profileUrl:'http://10.8.0.5:1000/wellme/authentication/api/profile',
   plannerDetailUrl:'http://10.8.0.5:1000/wellme/financial-planner/api/financial-planner/details',
   plannerListUrl:'http://10.8.0.5:1000/wellme/financial-planner/api/list-planner',
-  deletePlannerUrl:'http://19.8.0.5:1000/wellme/financial-planner/api/planner',
+  deletePlannerUrl:'http://10.8.0.5:1000/wellme/financial-planner/api/planner',
   insertPlannerUrl:'http://10.8.0.5:1000/wellme/financial-planner/api/planner',
   getJenisReksadanaUrl:'http://10.8.0.5:1000/wellme/backward-projection/api/reksadana',
   getReksadanaUrl:'http://10.8.0.5:1000/products',

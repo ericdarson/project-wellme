@@ -9,6 +9,7 @@ import { GeturlService } from '../../services/geturl.service';
 
 import { PopupKonfirmasiLogoutComponent } from '../../popup/popup-konfirmasi-logout/popup-konfirmasi-logout.component';
 import { runInThisContext } from 'vm';
+import { LoginService } from '../../services/login.service';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -28,7 +29,7 @@ export class ProfileComponent implements OnInit {
 
 
   constructor(private profileService : ProfileService,private sharedService :GeturlService,
-    private router: Router,private activeRoute : ActivatedRoute,public dialog: MatDialog) { }
+    private router: Router,private activeRoute : ActivatedRoute,public dialog: MatDialog,private logoutService : LoginService) { }
 
   ngOnInit(): void {
     this.getProfile()
@@ -79,11 +80,25 @@ export class ProfileComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result){
-        this.sharedService.logout()
+        this.doLogout()
       }else{
 
       }
     });
+  }
+
+  doLogout(){
+    this.logoutService.logout().subscribe((response:ResponseApi)=>{
+      if (response.error_schema.error_message.indonesian=="BERHASIL")
+      {
+        this.sharedService.logout()
+      }
+      else{
+        this.sharedService.logout()
+      }
+     },error=>{
+        this.sharedService.logout()
+     })
   }
 
 

@@ -12,9 +12,9 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class LoginPageComponent implements OnInit {
 
-  bca_id : string;
+  bca_id : string="";
   hide :boolean=true;
-  password : string;
+  password : string ="";
   message : string;
   isLoading : boolean = false;
   isWrongPass : boolean =false
@@ -42,28 +42,34 @@ export class LoginPageComponent implements OnInit {
 
   loginClicked(){
     this.isLoading = true
-    this.loginservice.login(this.bca_id,this.password).subscribe(response=>{
-      //console.log(response)
-     if (response.output_schema.detail_login.message=="SUKSES")
-     {
-       this.isLoading = false
-       this.session.store("bca_id",this.bca_id);
-       this.session.store("token",response.output_schema.detail_login.token);
-       this.message="";
-       this.router.navigate(['/index'])
-       this.isWrongPass = false;
-     }else if(response.output_schema.detail_login.message=="USERNAME ATAU PASSWORD SALAH"){
-        this.isWrongPass = true;
-        this.isLoading = false;
-     }
-     else{
+    if(this.password.length == 0 || this.bca_id.length == 0){
+      this.isLoading = false;
+      this.isWrongPass = true;
+    }else{
+      this.loginservice.login(this.bca_id,this.password).subscribe(response=>{
+        //console.log(response)
+       if (response.output_schema.detail_login.message=="SUKSES")
+       {
+         this.isLoading = false
+         this.session.store("bca_id",this.bca_id);
+         this.session.store("token",response.output_schema.detail_login.token);
+         this.message="";
+         this.router.navigate(['/index'])
+         this.isWrongPass = false;
+       }else if(response.output_schema.detail_login.message=="USERNAME ATAU PASSWORD SALAH"){
+          this.isWrongPass = true;
+          this.isLoading = false;
+       }
+       else{
+          this.isLoading = false;
+          this.isWrongPass = false;
+       }
+      },error=>{
         this.isLoading = false;
         this.isWrongPass = false;
-     }
-    },error=>{
-      this.isLoading = false;
-      this.isWrongPass = false;
-    })
+      })
+    }
+    
   }
 
 }
