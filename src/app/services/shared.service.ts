@@ -53,9 +53,6 @@ export class SharedService {
 
 
   getTokenAPIGW(): Observable<any>{
-    console.log(environment.client_id)
-    
-    console.log(environment.client_secret)
     var value = btoa(environment.client_id+':'+environment.client_secret)
     var httpOptions={
       headers:new HttpHeaders({

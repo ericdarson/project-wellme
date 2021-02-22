@@ -8,7 +8,7 @@
                 <h1 style="flex-basis: 85%; text-align: center;;" class="headFont"><b>Kode Promo</b></h1>
                 <img src="assets/icon/well-me-logo-small.png" style="padding-right: 10px;" width="107" height="33">
             </div>
-            <div *ngIf="promoList.length==0" class="jflex-column padding-beauty center-main-axis center-cross-axis" style="height:90%">
+            <div *ngIf="promoList.length==0 && !loader" class="jflex-column padding-beauty center-main-axis center-cross-axis" style="height:90%">
                 <img src="assets/img/list-planner-nothing.png">
                 <h2 class="font-green"><strong>Tidak ada item yang bisa dicari :(</strong></h2>
                 <p class="font-green"> Ayo selesaikan objectives dan dapatkan berbagai macam Promo Menarik</p>

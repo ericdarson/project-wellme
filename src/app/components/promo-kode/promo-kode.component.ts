@@ -47,6 +47,7 @@ export class PromoKodeComponent implements OnInit {
         this.promoList=response.output_schema.promotions;
         //console.log("Promo-->",this.promoList);
         this.loader=false;
+        this.isFailedToLoad = false;
       },
       error=>{
         this.errorStatus = error.status

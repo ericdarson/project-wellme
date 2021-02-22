@@ -117,7 +117,7 @@ export class BackwardProjectionComponent implements OnInit {
     this.isLoading = true;
     this.isFailedToLoad = false;
     this.service.getListJenis().subscribe(response=>{
-      console.log(response)
+      // console.log(response)
       if (response.error_schema.error_code=="BIT-00-000")
       {
         response.output_schema.forEach((element:BackwardProjectionListJenisReksadanaResponse) => {

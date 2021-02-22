@@ -344,8 +344,7 @@ export class PlannerPembelianService {
       //console.log(this.requestPembelian);
     var bca_id = this.localStorage.retrieve("bca_id")
     var token = this.localStorage.retrieve("token")
-    var httpOptions={
-      headers:new HttpHeaders({
+    this.httpHeader=new HttpHeaders({
         'Content-Type':'application/json',
         'Access-Control-Allow-Headers': 'Content-Type',
         'Access-Control-Allow-Methods': 'POST, OPTIONS, GET, PUT,DELETE',
@@ -355,9 +354,10 @@ export class PlannerPembelianService {
         'Token':String(token),
         'Pin':pinMd5
       })
-    }
       
-      return this.http.post(url,this.requestPembelian,httpOptions);
+
+      return this.sharedService.requestConn("post",url,this.requestPembelian,this.httpHeader)
+      // return this.http.post(url,this.requestPembelian,httpOptions);
     }
     return null;
     //return this.http.post(url,this.requestPembelian,this.httpOptions);
@@ -372,8 +372,7 @@ export class PlannerPembelianService {
       
       var bca_id = this.localStorage.retrieve("bca_id")
       var token = this.localStorage.retrieve("token")
-      var httpOptions={
-        headers:new HttpHeaders({
+      this.httpHeader=new HttpHeaders({
           'Content-Type':'application/json',
           'Access-Control-Allow-Headers': 'Content-Type',
           'Access-Control-Allow-Methods': 'POST, OPTIONS, GET, PUT,DELETE',
@@ -383,9 +382,8 @@ export class PlannerPembelianService {
           'Token':String(token),
           'Pin':pinMd5
         })
-      }
-      
-      return this.http.post(url,body,httpOptions);
+      return this.sharedService.requestConn("post",url,body,this.httpHeader)
+      // return this.http.post(url,body,httpOptions);
     }
     return null;
     //return this.http.post(url,this.requestPembelian,this.httpOptions);
@@ -478,9 +476,10 @@ var nominal_pembelian:number;
     var deData= CryptoJS.AES.decrypt(decodeURIComponent(this.localStorage.retrieve(key)), this.secretKey); 
     try {
       retrievedObject = JSON.parse(deData.toString(CryptoJS.enc.Utf8));
+      // console.log(retrievedObject)
       return retrievedObject;
     } catch (e) {
-      //console.log(e)
+      // console.log(e)
       return null;
     }
     
