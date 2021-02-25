@@ -70,7 +70,7 @@
             <div class="jflex-column stretch">
                 <div *ngIf="loader==false"><strong>Rekomendasi Pembelian</strong></div>
                 <div *ngIf="loader==true" class="row"><ngx-shimmer-loading  [shape]="'rect'" [height]="'32px'" class="col-md-5" *ngIf="loader==true"></ngx-shimmer-loading></div>
-                <h3 class="font-green" style="margin-bottom: 0;" *ngIf="loader==false"><strong>{{rekomendasiPembelian |currency:'Rp ':true:'1.0-2'}}</strong></h3>
+                <h3 class="font-green" style="margin-bottom: 0;" *ngIf="loader==false"><strong>{{rekomendasiPembelian |currency:'Rp '|IDR}}</strong></h3>
                 <div *ngIf="loader==true" class="row"><ngx-shimmer-loading  [shape]="'rect'" [height]="'32px'" class="col-md-4" *ngIf="loader==true"></ngx-shimmer-loading></div>
             </div>
         </mat-card>

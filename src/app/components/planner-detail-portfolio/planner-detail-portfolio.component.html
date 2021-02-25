@@ -45,8 +45,8 @@
                             <strong class="font-green">{{jenisReksadana[i]}}</strong>
                         </div>
                         <table>
-                            <tr><td>Alokasi</td><td><strong class="font-green">{{alokasiRekomendasi[i].alokasiPercentage | number:'1.2' }}%</strong></td><td><strong class="font-green">{{alokasiRekomendasi[i].alokasiAmount |currency:' ':true:'1.0'}}</strong></td></tr>
-                            <tr><td>Rekomendasi</td><td><strong class="font-green">{{alokasiRekomendasi[i].rekomendasiPercentage | number:'1.2' }}%</strong></td><td><strong class="font-green">{{alokasiRekomendasi[i].rekomendasiAmount |currency:' ':true:'1.0'}}</strong></td></tr>
+                            <tr><td>Alokasi</td><td><strong class="font-green">{{alokasiRekomendasi[i].alokasiPercentage | number:'1.2' }}%</strong></td><td><strong class="font-green">{{alokasiRekomendasi[i].alokasiAmount |currency:'Rp '|IDR}}</strong></td></tr>
+                            <tr><td>Rekomendasi</td><td><strong class="font-green">{{alokasiRekomendasi[i].rekomendasiPercentage | number:'1.2' }}%</strong></td><td><strong class="font-green">{{alokasiRekomendasi[i].rekomendasiAmount |currency:'Rp '|IDR}}</strong></td></tr>
                         </table>
                     </div>
                     <mat-list style="margin-bottom: 10px;">
