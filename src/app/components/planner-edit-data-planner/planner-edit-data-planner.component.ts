@@ -26,6 +26,7 @@ export class PlannerEditDataPlannerComponent implements OnInit {
   idDetail:number;
   status:boolean=true;
   masterPeriodic:string;
+  kategori : string=""
   
   constructor(private dialog:MatDialog,private location:Location,private plannerService:PlannerService,private router:Router,private route:ActivatedRoute) { }
   ngOnInit(): void {
@@ -48,8 +49,8 @@ export class PlannerEditDataPlannerComponent implements OnInit {
     {
       this.router.navigate(['../'],{relativeTo:this.route});
     }
-    var kategori=this.plannerEditRequest.kategori;
-    if(kategori=="")
+    this.kategori=this.plannerEditRequest.kategori;
+    if(this.kategori=="")
     { 
       this.router.navigate(['/financial-planner/']);
     }

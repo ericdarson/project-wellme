@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
     // },(error)=>{
     //   this.checkSession.logout()
     // })
-
+    console.log("Wellme v8")
   }
 }
 
