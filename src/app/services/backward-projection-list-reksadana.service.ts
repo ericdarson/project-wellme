@@ -69,7 +69,7 @@ export class BackwardProjectionListReksadanaService {
 
   getListJenis():Observable<ResponseApi> {
     responseApi:ResponseApi;
-    return this.sharedService.requestConn("get",environment.BackwaardProjectionUrl+"/wellme/backward-projection/api/reksadana/",{},this.httpHeader)
+    return this.sharedService.requestConn("get",environment.BackwaardProjectionUrl+"/wellme/backward-projection/api/reksadana",{},this.httpHeader)
     // return this.http.get<ResponseApi>(environment.BackwaardProjectionUrl+"/wellme/backward-projection/api/reksadana/",httpOptions);
   }
 

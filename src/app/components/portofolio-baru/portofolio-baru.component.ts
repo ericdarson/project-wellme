@@ -18,6 +18,7 @@ export class PortofolioBaruComponent implements OnInit {
   portfolioForm:any;
   monthlyDisabled:boolean=false;
   yearlyDisabled:boolean=false;
+  kategori:String="";
   ngOnInit(): void {
     this.checkState();
     this.portfolioForm = new FormGroup({
@@ -32,8 +33,8 @@ export class PortofolioBaruComponent implements OnInit {
 
 
   checkState():void{
-    var kategori=this.plannerService.getInsertRequest().kategori;
-    if(kategori=="")
+    this.kategori=this.plannerService.getInsertRequest().kategori;
+    if(this.kategori=="")
     { 
       this.route.navigate(['/financial-planner/pilih-target']);
     }
@@ -57,6 +58,7 @@ export class PortofolioBaruComponent implements OnInit {
 
       });
       this.formattedAmount=plannerRequest.goal_amount;
+      this.transformToAmount();
       this.periodic=periodic;
       // this.portfolioForm.cotrols['nama_portfolio'].value=plannerRequest.nama_plan;
       // this.portfolioForm.cotrols['target'].value=plannerRequest.goal_amount;
@@ -136,10 +138,11 @@ export class PortofolioBaruComponent implements OnInit {
   }
 
   transformToAmount():void{
-    if( this.portfolioForm.controls['target'].value.substr(-3)[0] == '.'){
-      this.portfolioForm.controls['target'].value =  this.portfolioForm.controls['target'].value.substr(0, this.portfolioForm.controls['target'].value.length-3);
+    console.log(this.portfolioForm.controls['target'].value);
+    if( String(this.portfolioForm.controls['target'].value).substr(-3)[0] == '.'){
+      this.portfolioForm.controls['target'].value =  String(this.portfolioForm.controls['target'].value).substr(0, String(this.portfolioForm.controls['target'].value).length-3);
     }
-    this.portfolioForm.controls['target'].value=  this.portfolioForm.controls['target'].value.replace(/[^0-9]/g, "")
+    this.portfolioForm.controls['target'].value=  String(this.portfolioForm.controls['target'].value).replace(/[^0-9]/g, "")
     this.portfolioForm.controls['target'].value=Number(this.portfolioForm.controls['target'].value);
   }
 
